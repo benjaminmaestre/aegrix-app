@@ -21,9 +21,9 @@ export default function Home() {
       <div className="relative z-10">
         <ProblemSection />
         <PlatformSection />
+        <ProductDivisions />
         <WebGrowthSection />
         <DiagnosticSection />
-        <ProductDivisions />
         <SectorsSection />
         <ProcessSection />
         <ImplementationModels />
