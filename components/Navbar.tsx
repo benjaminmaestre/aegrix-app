@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { useScrolled } from '@/hooks/useScrolled';
-import { navItems } from '@/lib/data';
+import { navItems, WHATSAPP_URL } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
@@ -21,10 +21,16 @@ const Navbar = () => {
           : "bg-transparent py-8"
       )}
     >
-      <div className="container-width h-24 flex items-center justify-between">
+      <div className={cn(
+        "container-width flex items-center justify-between transition-all duration-500",
+        scrolled ? "h-20 md:h-24" : "h-28 md:h-40"
+      )}>
         {/* LOGO OVERFLOW */}
         <Link href="/" className="relative z-50 flex items-center group">
-          <div className="relative h-24 flex items-center">
+          <div className={cn(
+            "relative flex items-center transition-all duration-500",
+            scrolled ? "h-20 md:h-24" : "h-28 md:h-40"
+          )}>
             {/* Glow effect that also overflows */}
             <div className="absolute top-4 left-1/2 -translate-x-1/2 w-32 h-32 bg-aegrix-cyan/20 blur-2xl rounded-full scale-50 group-hover:scale-110 transition-transform duration-500" />
             
@@ -34,7 +40,10 @@ const Navbar = () => {
               width={160} 
               height={44}
               priority
-              className="h-32 w-auto object-contain relative z-10 brightness-110 transition-transform duration-500 group-hover:scale-105 origin-top"
+              className={cn(
+                "w-auto object-contain relative z-10 brightness-110 transition-all duration-500 group-hover:scale-105 origin-top",
+                scrolled ? "h-16 md:h-20" : "h-20 md:h-32"
+              )}
             />
           </div>
         </Link>
@@ -52,7 +61,9 @@ const Navbar = () => {
             </Link>
           ))}
           <Link 
-            href="#diagnostico" 
+            href={WHATSAPP_URL} 
+            target="_blank"
+            rel="noopener noreferrer"
             className={cn(
               "btn-secondary py-2.5 px-6 text-[12px] font-bold uppercase tracking-widest border-aegrix-cyan/20 bg-aegrix-cyan/5",
               scrolled && "border-aegrix-cyan text-white"
@@ -90,9 +101,11 @@ const Navbar = () => {
               </Link>
             ))}
             <Link 
-              href="#diagnostico" 
+              href={WHATSAPP_URL} 
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
-              className="btn-primary w-full text-lg py-5 mt-4"
+              className="btn-primary w-full text-lg py-5 mt-4 text-center"
             >
               Solicitar diagnóstico
             </Link>

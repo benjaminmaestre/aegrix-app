@@ -5,6 +5,12 @@ import ProcessSection from '@/components/ProcessSection';
 import ImplementationModels from '@/components/ImplementationModels';
 import FinalCTA from '@/components/FinalCTA';
 
+export const metadata = {
+  title: 'Metodología AEGRIX | Ingeniería de Despliegue Enterprise',
+  description:
+    'Descubre nuestro protocolo de 4 pasos para la implementación de infraestructura digital: Diagnóstico, Arquitectura, Implementación y Control.',
+};
+
 export default function MetodologiaPage() {
   return (
     <main className="relative min-h-screen bg-aegrix-bg">
@@ -24,9 +30,7 @@ export default function MetodologiaPage() {
       <ProcessSection />
       <ImplementationModels />
       
-      <div className="section-padding">
-        <FinalCTA />
-      </div>
+      <FinalCTA />
       <Footer />
     </main>
   );

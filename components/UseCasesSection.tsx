@@ -3,6 +3,7 @@
 import React from 'react';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 
 const cases = [
@@ -72,10 +73,10 @@ const UseCasesSection = () => {
                   </span>
                 ))}
               </div>
-              <button className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-2 group/btn">
+              <Link href="/sectores" className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-2 group/btn">
                 Ver detalles 
                 <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
-              </button>
+              </Link>
             </div>
           ))}
         </div>

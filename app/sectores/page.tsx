@@ -5,6 +5,12 @@ import SectorsSection from '@/components/SectorsSection';
 import UseCasesSection from '@/components/UseCasesSection';
 import FinalCTA from '@/components/FinalCTA';
 
+export const metadata = {
+  title: 'Sectores AEGRIX | Soluciones Digitales por Industria',
+  description:
+    'Especialización técnica en Fintech, Legal, E-commerce y Salud. Adaptamos nuestra Capa de Control Digital a los desafíos de tu sector.',
+};
+
 export default function SectoresPage() {
   return (
     <main className="relative min-h-screen bg-aegrix-bg">
@@ -24,9 +30,7 @@ export default function SectoresPage() {
       <SectorsSection />
       <UseCasesSection />
       
-      <div className="section-padding">
-        <FinalCTA />
-      </div>
+      <FinalCTA />
       <Footer />
     </main>
   );

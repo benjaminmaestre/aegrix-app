@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, MessageSquare } from 'lucide-react';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
+import { WHATSAPP_URL } from '@/lib/data';
 
 const FinalCTA = () => {
   const { ref, inView } = useInView();
@@ -29,11 +30,16 @@ const FinalCTA = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link href="#diagnostico" className="btn-primary w-full sm:w-auto px-12 py-5 group text-center">
+            <Link 
+              href={WHATSAPP_URL} 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary w-full sm:w-auto px-12 py-5 group text-center flex items-center justify-center gap-3"
+            >
               Solicitar Diagnóstico 360
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link href="mailto:info@aegrix.com" className="btn-secondary w-full sm:w-auto px-12 py-5 text-center">
+            <Link href="mailto:info@aegrix.com" className="btn-secondary w-full sm:w-auto px-12 py-5 text-center flex items-center justify-center gap-3">
               Hablar con un consultor
               <MessageSquare size={20} className="ml-2 opacity-60" />
             </Link>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { productDivisions } from '@/lib/data';
+import { productDivisions, WHATSAPP_URL } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
 import { Shield, Globe, Cpu, Heart, CheckCircle2, ArrowRight } from 'lucide-react';
@@ -74,7 +74,12 @@ const ProductDivisions = () => {
                   ))}
                 </div>
 
-                <Link href="/#diagnostico" className="btn-secondary w-full group py-4 flex items-center justify-center">
+                <Link 
+                  href={WHATSAPP_URL} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary w-full group py-4 flex items-center justify-center"
+                >
                   Saber más sobre {division.id === 'web' ? 'Infraestructura Web' : division.title.split(' ')[1]}
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform ml-2" />
                 </Link>

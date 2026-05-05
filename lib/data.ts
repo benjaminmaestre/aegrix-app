@@ -121,3 +121,5 @@ export const webBenefits = [
   { title: 'Conversion First', desc: 'Formularios y flujos diseñados para captar oportunidades.' },
   { title: 'Full Tracking', desc: 'Medición real desde el clic hasta la conversión.' },
 ];
+
+export const WHATSAPP_URL = "https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20AEGRIX%20360";

@@ -5,6 +5,12 @@ import ProductDivisions from '@/components/ProductDivisions';
 import WebGrowthSection from '@/components/WebGrowthSection';
 import FinalCTA from '@/components/FinalCTA';
 
+export const metadata = {
+  title: 'Servicios AEGRIX | Ciberseguridad, Web, Datos e IA',
+  description:
+    'Soluciones de ciberseguridad, desarrollo web, analítica de datos e inteligencia artificial para empresas que quieren operar con más control digital.',
+};
+
 export default function ServiciosPage() {
   return (
     <main className="relative min-h-screen bg-aegrix-bg">
@@ -24,9 +30,7 @@ export default function ServiciosPage() {
       <ProductDivisions />
       <WebGrowthSection />
       
-      <div className="section-padding">
-        <FinalCTA />
-      </div>
+      <FinalCTA />
       <Footer />
     </main>
   );

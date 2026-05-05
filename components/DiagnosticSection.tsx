@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { diagnosticChecklist } from '@/lib/data';
+import { diagnosticChecklist, WHATSAPP_URL } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
 import { Shield, Globe, Cpu, CheckCircle2, ArrowRight, ClipboardCheck } from 'lucide-react';
@@ -53,7 +53,12 @@ const DiagnosticSection = () => {
               </div>
             </div>
 
-            <Link href="mailto:info@aegrix.com" className="btn-primary w-full sm:w-auto px-12 group">
+            <Link 
+              href={WHATSAPP_URL} 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary w-full sm:w-auto px-12 group flex items-center justify-center gap-3"
+            >
               Solicitar diagnóstico ahora
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
