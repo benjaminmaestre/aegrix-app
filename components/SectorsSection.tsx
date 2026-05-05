@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { 
-  Building2, UtensilsCrossed, Package, Briefcase, 
-  GraduationCap, Church, TrendingUp, Rocket 
+  Building2, Package, Briefcase, GraduationCap, 
+  Activity, Home, Shield, Globe, Cpu, BarChart3
 } from 'lucide-react';
 import { sectors } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
@@ -11,51 +11,49 @@ import { cn } from '@/lib/utils';
 
 const iconMap: Record<string, any> = {
   Building2,
-  UtensilsCrossed,
   Package,
   Briefcase,
   GraduationCap,
-  Church,
-  TrendingUp,
-  Rocket,
+  Activity,
+  Home,
 };
 
 const SectorsSection = () => {
   const { ref, inView } = useInView();
 
   return (
-    <section ref={ref} className="section-padding bg-aegrix-bg-2" id="sectores">
+    <section id="sectores" ref={ref} className="section-padding bg-aegrix-bg-2">
       <div className="container-width">
         <div className={cn(
-          "text-center max-w-3xl mx-auto mb-20 transition-all duration-700",
+          "text-center max-w-3xl mx-auto mb-20 transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
-          <h2 className="heading-lg mb-6">
+          <div className="label-tag mb-6">Expertise por sector</div>
+          <h2 className="heading-lg mb-8 text-white">
             Soluciones para empresas que necesitan <br />
             <span className="text-aegrix-cyan">seguridad, claridad y crecimiento.</span>
           </h2>
-          <p className="body-lg">
-            Adaptamos nuestra infraestructura tecnológica a las necesidades específicas de cada sector.
+          <p className="body-lg text-aegrix-muted">
+            Adaptamos la Capa de Control Digital a las necesidades específicas de cada sector comercial en Latinoamérica.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {sectors.map((sector, idx) => {
             const Icon = iconMap[sector.icon];
             return (
               <div 
-                key={sector.id}
+                key={sector.name}
                 className={cn(
-                  "card-base card-hover p-6 flex flex-col items-center text-center group transition-all duration-700",
+                  "card-base card-hover p-10 flex flex-col items-center text-center group transition-all duration-700 bg-aegrix-surface/50 border-white/5",
                   inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
                 )}
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
-                <div className="w-14 h-14 rounded-full bg-aegrix-bg flex items-center justify-center text-aegrix-cyan mb-6 border border-aegrix-border group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-300">
-                  {Icon && <Icon size={24} />}
+                <div className="w-16 h-16 rounded-2xl bg-white/3 border border-white/5 flex items-center justify-center text-aegrix-cyan mb-6 group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
+                  {Icon && <Icon size={32} />}
                 </div>
-                <h3 className="font-sora font-semibold text-white text-lg mb-2">{sector.title}</h3>
-                <p className="body-md text-xs opacity-70 leading-relaxed">{sector.description}</p>
+                <h3 className="font-sora font-bold text-white text-xl tracking-tight">{sector.name}</h3>
               </div>
             );
           })}

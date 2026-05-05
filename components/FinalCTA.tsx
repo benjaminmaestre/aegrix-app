@@ -1,54 +1,60 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { MessageCircle, ChevronRight } from 'lucide-react';
+import { ArrowRight, MessageSquare } from 'lucide-react';
+import { useInView } from '@/hooks/useInView';
+import { cn } from '@/lib/utils';
 
 const FinalCTA = () => {
-  return (
-    <section className="section-padding bg-aegrix-bg overflow-hidden">
-      <div className="container-width">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl mx-auto bg-aegrix-surface border border-aegrix-cyan/20 rounded-[2.5rem] p-10 md:p-20 shadow-cyan-lg text-center relative overflow-hidden"
-        >
-          {/* Decorative elements */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-aegrix-cyan/5 blur-3xl rounded-full -mr-16 -mt-16" />
-          <div className="absolute bottom-0 left-0 w-32 h-32 bg-aegrix-blue/5 blur-3xl rounded-full -ml-16 -mb-16" />
+  const { ref, inView } = useInView();
 
-          <h2 className="heading-lg mb-8 leading-tight">
-            ¿Quieres saber qué tan segura, visible <br className="hidden md:block" />
-            e inteligente está tu empresa?
+  return (
+    <section id="contacto" ref={ref} className="section-padding bg-aegrix-bg relative overflow-hidden">
+      {/* Decorative Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl bg-aegrix-cyan/5 blur-[150px] rounded-full pointer-events-none" />
+      
+      <div className="container-width relative z-10">
+        <div className={cn(
+          "max-w-4xl mx-auto text-center transition-all duration-1000",
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        )}>
+          <div className="label-tag mb-8 border-aegrix-cyan/20">The Final Step</div>
+          <h2 className="heading-lg mb-8 text-white">
+            Construye una empresa más <br />
+            <span className="text-aegrix-cyan">segura, medible e inteligente.</span>
           </h2>
-          
-          <p className="body-lg mb-12 max-w-2xl mx-auto">
-            Recibe una visión clara de tus riesgos, oportunidades, datos disponibles y próximos pasos para una transformación digital estratégica.
+          <p className="body-lg mb-12 text-aegrix-muted max-w-2xl mx-auto">
+            No importa en qué etapa tecnológica se encuentre tu empresa. Puedes empezar por lo más urgente y escalar tu Capa de Control Digital por fases.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <button className="btn-primary w-full sm:w-auto text-lg px-10 py-5 group">
-              Solicitar diagnóstico
-              <ChevronRight size={22} className="group-hover:translate-x-1 transition-transform" />
+            <button className="btn-primary w-full sm:w-auto px-12 py-5 group">
+              Solicitar Diagnóstico 360
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
-            <a 
-              href="https://wa.me/573107379163" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn-secondary w-full sm:w-auto text-lg px-10 py-5 group"
-            >
-              <MessageCircle size={22} className="text-aegrix-cyan" />
-              Hablar por WhatsApp
-              <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-            </a>
+            <button className="btn-secondary w-full sm:w-auto px-12 py-5">
+              Hablar con un consultor
+              <MessageSquare size={20} className="ml-2 opacity-60" />
+            </button>
           </div>
 
-          <p className="font-manrope text-sm text-aegrix-muted mt-8 opacity-70">
-            Sin compromiso · Respuesta en menos de 24 horas
-          </p>
-        </motion.div>
+          <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-12 text-white/40">
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[10px] font-bold uppercase tracking-widest">Seguridad</span>
+              <span className="text-xs">Diseñada para durar</span>
+            </div>
+            <div className="w-px h-8 bg-white/5 hidden md:block" />
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[10px] font-bold uppercase tracking-widest">Control</span>
+              <span className="text-xs">Visibilidad absoluta</span>
+            </div>
+            <div className="w-px h-8 bg-white/5 hidden md:block" />
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[10px] font-bold uppercase tracking-widest">Escala</span>
+              <span className="text-xs">Arquitectura de futuro</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

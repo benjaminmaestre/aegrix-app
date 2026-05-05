@@ -1,89 +1,91 @@
 'use client';
 
 import React from 'react';
-import { Check } from 'lucide-react';
-import { webBenefits, conversionFunnel } from '@/lib/data';
+import { webBenefits } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
+import { Globe, Zap, Target, TrendingUp, CheckCircle2 } from 'lucide-react';
 
 const WebGrowthSection = () => {
   const { ref, inView } = useInView();
 
   return (
-    <section ref={ref} className="section-padding bg-aegrix-bg-2 overflow-hidden">
+    <section className="section-padding bg-aegrix-bg overflow-hidden">
       <div className="container-width">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column */}
+        <div ref={ref} className="grid lg:grid-cols-2 gap-20 items-center">
           <div className={cn(
-            "transition-all duration-700",
+            "order-2 lg:order-1 transition-all duration-1000",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
           )}>
-            <span className="label-tag mb-6">AEGRIX Web</span>
-            <h2 className="heading-lg mb-8">
-              Infraestructura web segura, <br />
-              <span className="text-aegrix-cyan">rápida y orientada a conversión.</span>
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
+              <div className="absolute inset-0 bg-linear-to-br from-aegrix-cyan/20 to-transparent mix-blend-overlay opacity-50" />
+              <div className="absolute inset-0 grid-bg opacity-20" />
+              
+              {/* Floating Performance Indicator */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                <div className="text-[120px] font-sora font-bold text-white/5 tracking-tighter">100</div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                  <div className="w-24 h-24 rounded-full border-4 border-aegrix-cyan border-t-transparent animate-spin" />
+                  <div className="absolute inset-0 flex items-center justify-center text-aegrix-cyan font-sora font-bold text-xl">
+                    99+
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute bottom-8 left-8 right-8 p-6 bg-aegrix-surface/80 backdrop-blur-md border border-white/10 rounded-xl">
+                <div className="flex justify-between items-center mb-4">
+                  <div className="text-[10px] font-bold text-aegrix-cyan uppercase tracking-widest">Performance Score</div>
+                  <div className="flex gap-1">
+                    {[1, 2, 3, 4, 5].map(i => <div key={i} className="w-1.5 h-1.5 rounded-full bg-aegrix-cyan" />)}
+                  </div>
+                </div>
+                <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                  <div className="h-full bg-aegrix-cyan w-[98%] shadow-[0_0_10px_#00C2FF]" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className={cn(
+            "order-1 lg:order-2 transition-all duration-1000 delay-300",
+            inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+          )}>
+            <div className="label-tag mb-8">AEGRIX Web</div>
+            <h2 className="heading-lg mb-8 text-white">
+              Tu web no debe existir: <br />
+              <span className="text-aegrix-cyan">debe trabajar.</span>
             </h2>
-            <p className="body-lg mb-10">
-              Tu página web no debe ser solo una tarjeta de presentación. Debe ser una herramienta que trabaje 24/7 para atraer, convencer y convertir clientes.
+            <p className="body-lg mb-10 text-aegrix-muted">
+              No hacemos simples páginas web. Diseñamos infraestructura digital premium optimizada para generar confianza, cargar a máxima velocidad y convertir visitantes en oportunidades comerciales reales.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 mb-12">
-              {webBenefits.map((benefit, idx) => (
-                <div key={idx} className="flex items-start gap-3">
-                  <div className="mt-1 w-5 h-5 rounded-full bg-aegrix-cyan/10 flex items-center justify-center text-aegrix-cyan shrink-0">
-                    <Check size={12} />
-                  </div>
-                  <span className="font-manrope text-sm text-aegrix-muted">{benefit}</span>
+            <div className="grid sm:grid-cols-2 gap-6 mb-12">
+              {webBenefits.map((benefit, i) => (
+                <div key={i} className="p-6 rounded-xl bg-white/2 border border-white/5 hover:border-aegrix-cyan/20 transition-all">
+                  <div className="text-aegrix-cyan mb-4 font-sora font-bold text-sm tracking-widest uppercase">{benefit.title}</div>
+                  <p className="text-xs text-aegrix-muted leading-relaxed">{benefit.desc}</p>
                 </div>
               ))}
             </div>
 
-            <button className="btn-primary">
-              Quiero una web que venda más →
-            </button>
-          </div>
-
-          {/* Right Column - Conversion Funnel */}
-          <div className={cn(
-            "relative transition-all duration-1000 delay-300",
-            inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
-          )}>
-            <div className="bg-aegrix-surface border border-aegrix-border rounded-3xl p-8 md:p-12 shadow-cyan-lg">
-              <div className="text-center mb-10">
-                <h3 className="font-sora font-bold text-xl text-white mb-2">Funnel de conversión web</h3>
-                <p className="text-xs text-aegrix-muted uppercase tracking-widest font-bold">Optimización de punta a punta</p>
+            <div className="p-8 rounded-2xl bg-aegrix-cyan/5 border border-aegrix-cyan/20">
+              <div className="flex items-center gap-4 text-white font-sora font-bold text-lg mb-4">
+                <Target size={24} className="text-aegrix-cyan" />
+                Enfoque en Conversión
               </div>
-
-              <div className="flex flex-col items-center gap-2">
-                {conversionFunnel.map((step, idx) => (
-                  <div 
-                    key={idx} 
-                    className={cn(
-                      "group relative flex items-center justify-between px-6 py-4 rounded-xl border border-white/5 transition-all duration-500 hover:border-aegrix-cyan/30",
-                      step.bg
-                    )}
-                    style={{ width: step.width }}
-                  >
-                    <div className="flex flex-col">
-                      <span className="text-[10px] text-aegrix-muted uppercase font-bold tracking-tighter opacity-60">Paso 0{idx + 1}</span>
-                      <span className="text-sm font-sora font-bold text-white">{step.label}</span>
-                    </div>
-                    <div className="text-right">
-                      <span className={cn(
-                        "text-xs font-black px-2 py-1 rounded",
-                        idx >= 3 ? "bg-aegrix-cyan text-aegrix-bg" : "text-aegrix-cyan"
-                      )}>
-                        {step.metric}
-                      </span>
-                    </div>
-                  </div>
+              <ul className="space-y-3">
+                {[
+                  'Sitios corporativos en Next.js / React',
+                  'Performance técnico impecable (100 Core Web Vitals)',
+                  'Tracking de conversiones avanzado',
+                  'SEO técnico inicial y escalabilidad'
+                ].map((li, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-aegrix-muted">
+                    <CheckCircle2 size={16} className="text-aegrix-cyan shrink-0 mt-0.5" />
+                    {li}
+                  </li>
                 ))}
-              </div>
-
-              <div className="mt-12 pt-8 border-t border-aegrix-border flex justify-between gap-4">
-                <p className="text-[11px] text-aegrix-muted italic">"Una web lenta pierde clientes."</p>
-                <p className="text-[11px] text-aegrix-muted italic text-right">"Una web sin medición pierde aprendizajes."</p>
-              </div>
+              </ul>
             </div>
           </div>
         </div>

@@ -1,142 +1,181 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { commandMetrics } from '@/lib/data';
 import { cn } from '@/lib/utils';
-import { Shield, Activity, TrendingUp, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Shield, Activity, Zap, BarChart3, Lock, Cpu, Globe, ArrowUpRight } from 'lucide-react';
 
 const CommandCenter = () => {
   return (
-    <div className="bg-aegrix-surface border border-aegrix-cyan/15 rounded-2xl p-6 shadow-cyan-lg relative overflow-hidden">
-      {/* ZONA 1 — Header */}
-      <div className="flex justify-between items-center mb-8 pb-4 border-b border-aegrix-border">
-        <div className="flex items-center gap-2">
-          <Image 
-            src="/AEGRIX_hero_vector.svg" 
-            alt="AEGRIX" 
-            width={60} 
-            height={16} 
-            className="h-4 w-auto object-contain brightness-150"
-          />
-          <span className="text-[10px] font-bold text-aegrix-muted uppercase tracking-widest">Control Center</span>
+    <div className="bg-[#0A0F1A] border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+      {/* Top Bar - Operating System Feel */}
+      <div className="bg-[#121926] border-b border-white/5 px-6 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <div className="flex gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/40" />
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/40" />
+            <div className="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/40" />
+          </div>
+          <div className="h-4 w-px bg-white/10 mx-2" />
+          <div className="flex items-center gap-2">
+            <Image 
+              src="/AEGRIX_hero_vector.svg" 
+              alt="AEGRIX" 
+              width={60} 
+              height={16} 
+              className="h-3 w-auto opacity-80"
+            />
+            <span className="text-[9px] font-bold text-white/40 uppercase tracking-widest">Control Center v4.0</span>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-aegrix-green opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-aegrix-green"></span>
-          </span>
-          <span className="text-[10px] font-bold text-aegrix-green uppercase tracking-widest">Sistema activo</span>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 px-3 py-1 rounded bg-aegrix-green/10 border border-aegrix-green/20">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-aegrix-green opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-aegrix-green"></span>
+            </span>
+            <span className="text-[9px] font-bold text-aegrix-green uppercase tracking-[0.2em]">Sistema activo</span>
+          </div>
         </div>
       </div>
 
-      {/* ZONA 2 — Metrics Grid */}
-      <div className="grid grid-cols-2 gap-4 mb-8">
-        {commandMetrics.slice(0, 4).map((metric, idx) => (
-          <div key={idx} className="bg-aegrix-bg rounded-xl p-4 border border-aegrix-border/50">
-            <div className="text-[10px] text-aegrix-muted uppercase tracking-wider mb-1">{metric.layer}</div>
-            <div className="flex items-end justify-between">
-              <div className="font-sora font-bold text-lg text-white">{metric.value}</div>
-              <div className={cn(
-                "text-[9px] px-1.5 py-0.5 rounded uppercase font-bold",
-                metric.status === 'active' ? "bg-aegrix-green/10 text-aegrix-green" : "bg-aegrix-cyan/10 text-aegrix-cyan"
-              )}>
-                {metric.label}
+      <div className="p-6 lg:p-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Module 1: Security Posture */}
+          <div className="bg-white/2 border border-white/5 rounded-xl p-5 hover:bg-white/4 transition-colors group">
+            <div className="flex items-center justify-between mb-6">
+              <div className="p-2 rounded-lg bg-aegrix-cyan/10 border border-aegrix-cyan/20 text-aegrix-cyan">
+                <Lock size={16} />
+              </div>
+              <span className="text-[9px] font-bold text-aegrix-green uppercase tracking-widest bg-aegrix-green/10 px-2 py-0.5 rounded">Protección activa</span>
+            </div>
+            <div className="text-[10px] text-white/40 uppercase tracking-widest mb-1">Security Posture</div>
+            <div className="text-3xl font-sora font-bold text-white mb-2">100%</div>
+            <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+              <div className="w-full h-full bg-aegrix-cyan shadow-[0_0_10px_rgba(0,194,255,0.5)]" />
+            </div>
+          </div>
+
+          {/* Module 2: Web Performance */}
+          <div className="bg-white/2 border border-white/5 rounded-xl p-5 hover:bg-white/4 transition-colors group">
+            <div className="flex items-center justify-between mb-6">
+              <div className="p-2 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-yellow-500">
+                <Zap size={16} />
+              </div>
+              <span className="text-[9px] font-bold text-aegrix-cyan uppercase tracking-widest bg-aegrix-cyan/10 px-2 py-0.5 rounded">Alta velocidad</span>
+            </div>
+            <div className="text-[10px] text-white/40 uppercase tracking-widest mb-1">Web Response</div>
+            <div className="text-3xl font-sora font-bold text-white mb-2">0.8<span className="text-sm font-medium text-white/40 ml-1">s</span></div>
+            <div className="flex items-center gap-1 text-[10px] text-aegrix-green font-bold">
+              <ArrowUpRight size={12} />
+              +14% Performance
+            </div>
+          </div>
+
+          {/* Module 3: Conversion Signals */}
+          <div className="bg-white/2 border border-white/5 rounded-xl p-5 hover:bg-white/4 transition-colors group">
+            <div className="flex items-center justify-between mb-6">
+              <div className="p-2 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-500">
+                <Activity size={16} />
+              </div>
+              <span className="text-[9px] font-bold text-purple-500 uppercase tracking-widest bg-purple-500/10 px-2 py-0.5 rounded">Leads rastreados</span>
+            </div>
+            <div className="text-[10px] text-white/40 uppercase tracking-widest mb-1">Conversion Signals</div>
+            <div className="text-3xl font-sora font-bold text-white mb-2">24/24</div>
+            <div className="text-[10px] text-white/60">Fuentes conectadas y activas</div>
+          </div>
+
+          {/* Module 4: AI Insights */}
+          <div className="bg-white/2 border border-white/5 rounded-xl p-5 hover:bg-white/4 transition-colors group">
+            <div className="flex items-center justify-between mb-6">
+              <div className="p-2 rounded-lg bg-aegrix-green/10 border border-aegrix-green/20 text-aegrix-green">
+                <Cpu size={16} />
+              </div>
+              <span className="text-[9px] font-bold text-aegrix-green uppercase tracking-widest bg-aegrix-green/10 px-2 py-0.5 rounded">Inteligencia activa</span>
+            </div>
+            <div className="text-[10px] text-white/40 uppercase tracking-widest mb-1">AI Automation</div>
+            <div className="text-3xl font-sora font-bold text-white mb-2">Activo</div>
+            <div className="text-[10px] text-white/60">Reportes generados: 12 hoy</div>
+          </div>
+        </div>
+
+        {/* System Graph and Status */}
+        <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 bg-white/1 border border-white/5 rounded-xl p-6">
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-white/5 text-white/60">
+                  <BarChart3 size={18} />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-white uppercase tracking-widest">Rendimiento Operativo</div>
+                  <div className="text-[10px] text-white/40">Comparativa: Seguridad vs Velocidad vs Datos</div>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-aegrix-cyan" />
+                  <span className="text-[10px] text-white/60">Crecimiento</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-white/20" />
+                  <span className="text-[10px] text-white/60">Riesgo</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="h-48 w-full relative">
+              <svg viewBox="0 0 800 200" className="w-full h-full">
+                <path 
+                  d="M0,180 Q100,170 200,120 T400,80 T600,40 T800,10" 
+                  fill="none" 
+                  stroke="#00C2FF" 
+                  strokeWidth="3" 
+                  className="drop-shadow-[0_0_10px_rgba(0,194,255,0.5)]"
+                />
+                <path 
+                  d="M0,190 Q150,185 300,160 T500,140 T800,120" 
+                  fill="none" 
+                  stroke="rgba(255,255,255,0.1)" 
+                  strokeWidth="2" 
+                />
+                <line x1="0" y1="200" x2="800" y2="200" stroke="white" strokeWidth="1" strokeOpacity="0.05" />
+                <line x1="0" y1="150" x2="800" y2="150" stroke="white" strokeWidth="1" strokeOpacity="0.05" />
+                <line x1="0" y1="100" x2="800" y2="100" stroke="white" strokeWidth="1" strokeOpacity="0.05" />
+                <line x1="0" y1="50" x2="800" y2="50" stroke="white" strokeWidth="1" strokeOpacity="0.05" />
+              </svg>
+            </div>
+          </div>
+
+          <div className="bg-white/1 border border-white/5 rounded-xl p-6">
+            <div className="text-xs font-bold text-white uppercase tracking-widest mb-6 border-b border-white/5 pb-4">Claridad Operativa</div>
+            <div className="space-y-5">
+              {[
+                { label: 'Control Posture', value: 94, color: 'bg-aegrix-cyan' },
+                { label: 'Decision Score', value: 88, color: 'bg-aegrix-cyan/60' },
+                { label: 'System Integrity', value: 100, color: 'bg-aegrix-green' },
+              ].map((kpi, i) => (
+                <div key={i}>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-[10px] text-white/60 uppercase tracking-widest">{kpi.label}</span>
+                    <span className="text-[10px] font-bold text-white">{kpi.value}%</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                    <div className={cn("h-full", kpi.color)} style={{ width: `${kpi.value}%` }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-10 p-4 rounded-lg bg-white/3 border border-white/5">
+              <div className="text-[9px] text-white/40 uppercase tracking-widest mb-2 italic">Reflexión estratégica:</div>
+              <div className="text-[11px] text-white/80 leading-relaxed font-medium italic">
+                "Tu web no debe existir: debe trabajar."
               </div>
             </div>
           </div>
-        ))}
-      </div>
-
-      {/* ZONA 3 — SVG Graph */}
-      <div className="bg-aegrix-bg rounded-xl p-5 mb-8 border border-aegrix-border/50">
-        <div className="flex justify-between items-center mb-4">
-          <span className="text-[10px] font-bold text-white uppercase tracking-widest">Rendimiento operativo</span>
-          <span className="text-[9px] text-aegrix-muted">Últimos 6 meses</span>
         </div>
-        <div className="relative h-20 w-full">
-          <svg viewBox="0 0 300 80" className="w-full h-full">
-            {/* Sales Line */}
-            <path 
-              d="M0,60 Q50,55 100,45 T200,25 T300,10" 
-              fill="none" 
-              stroke="#00C2FF" 
-              strokeWidth="2"
-              className="opacity-80"
-            />
-            {/* Efficiency Line */}
-            <path 
-              d="M0,70 Q75,65 150,55 T300,40" 
-              fill="none" 
-              stroke="#2563EB" 
-              strokeWidth="2"
-              className="opacity-50"
-            />
-            {/* Grid lines */}
-            {[0, 20, 40, 60, 80].map((y) => (
-              <line key={y} x1="0" y1={y} x2="300" y2={y} stroke="white" strokeWidth="0.5" strokeOpacity="0.05" />
-            ))}
-          </svg>
-        </div>
-      </div>
-
-      {/* ZONA 4 — Two Columns */}
-      <div className="grid grid-cols-2 gap-8 mb-8 border-t border-aegrix-border pt-6">
-        <div className="space-y-3">
-          <span className="text-[10px] font-bold text-aegrix-muted uppercase tracking-widest block mb-2">Estado del sistema</span>
-          <div className="flex items-center gap-2 text-[11px] text-white/90">
-            <CheckCircle2 size={12} className="text-aegrix-green" />
-            <span>Backups completados</span>
-          </div>
-          <div className="flex items-center gap-2 text-[11px] text-white/90">
-            <CheckCircle2 size={12} className="text-aegrix-green" />
-            <span>SSL activo</span>
-          </div>
-          <div className="flex items-center gap-2 text-[11px] text-white/90">
-            <CheckCircle2 size={12} className="text-aegrix-green" />
-            <span>Accesos revisados</span>
-          </div>
-          <div className="flex items-center gap-2 text-[11px] text-white/90">
-            <AlertCircle size={12} className="text-aegrix-cyan" />
-            <span>1 actualización pendiente</span>
-          </div>
-        </div>
-        <div className="space-y-3">
-          <span className="text-[10px] font-bold text-aegrix-muted uppercase tracking-widest block mb-2">KPIs del mes</span>
-          <div className="flex justify-between text-[11px]">
-            <span className="text-aegrix-muted">Nuevos leads:</span>
-            <span className="text-aegrix-green font-bold">+18%</span>
-          </div>
-          <div className="flex justify-between text-[11px]">
-            <span className="text-aegrix-muted">Velocidad web:</span>
-            <span className="text-white font-bold">1.2s</span>
-          </div>
-          <div className="flex justify-between text-[11px]">
-            <span className="text-aegrix-muted">Reportes:</span>
-            <span className="text-white font-bold">24</span>
-          </div>
-          <div className="flex justify-between text-[11px]">
-            <span className="text-aegrix-muted">Vulnerabilidades:</span>
-            <span className="text-aegrix-green font-bold">0</span>
-          </div>
-        </div>
-      </div>
-
-      {/* ZONA 5 — Visual Flow */}
-      <div className="flex items-center justify-between text-[9px] font-bold uppercase tracking-widest text-aegrix-muted/60">
-        <span>Security</span>
-        <span className="text-aegrix-cyan/40">→</span>
-        <span>Web</span>
-        <span className="text-aegrix-cyan/40">→</span>
-        <span>Data</span>
-        <span className="text-aegrix-cyan/40">→</span>
-        <span>AI</span>
-        <span className="text-aegrix-cyan/40">→</span>
-        <span className="text-aegrix-cyan">Growth</span>
-      </div>
-
-      <div className="mt-6 text-center">
-        <p className="font-manrope text-[11px] text-aegrix-muted italic">
-          "Tu web no debe existir: debe trabajar."
-        </p>
       </div>
     </div>
   );
