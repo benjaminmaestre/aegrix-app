@@ -21,18 +21,20 @@ const Navbar = () => {
           : "bg-transparent py-8"
       )}
     >
-      <div className="container-width flex items-center justify-between py-2">
-        {/* LOGO */}
-        <Link href="/" className="relative z-50 flex items-center gap-3 group">
-          <div className="relative">
-            <div className="absolute inset-0 bg-aegrix-cyan/20 blur-xl rounded-full scale-50 group-hover:scale-100 transition-transform duration-500" />
+      <div className="container-width h-24 flex items-center justify-between">
+        {/* LOGO OVERFLOW */}
+        <Link href="/" className="relative z-50 flex items-center group">
+          <div className="relative h-24 flex items-center">
+            {/* Glow effect that also overflows */}
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 w-32 h-32 bg-aegrix-cyan/20 blur-2xl rounded-full scale-50 group-hover:scale-110 transition-transform duration-500" />
+            
             <Image 
               src="/AEGRIX_hero_vector.svg" 
               alt="AEGRIX" 
               width={160} 
               height={44}
               priority
-              className="h-20 w-auto object-contain relative z-10 brightness-110"
+              className="h-32 w-auto object-contain relative z-10 brightness-110 transition-transform duration-500 group-hover:scale-105 origin-top"
             />
           </div>
         </Link>
