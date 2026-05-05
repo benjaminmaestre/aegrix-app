@@ -11,11 +11,11 @@ const CommandCenter = () => {
       <div className="flex justify-between items-center mb-8 pb-4 border-b border-aegrix-border">
         <div className="flex items-center gap-2">
           <Image 
-            src="/aegrix_transparent.png" 
+            src="/AEGRIX_hero_vector.svg" 
             alt="AEGRIX" 
             width={60} 
             height={16} 
-            className="h-4 w-auto object-contain brightness-125"
+            className="h-4 w-auto object-contain brightness-150"
           />
           <span className="text-[10px] font-bold text-aegrix-muted uppercase tracking-widest">Control Center</span>
         </div>

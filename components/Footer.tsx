@@ -14,11 +14,11 @@ const Footer = () => {
             <Link href="/" className="inline-block">
               <div className="flex items-center">
                 <Image 
-                  src="/aegrix_transparent.png" 
+                  src="/AEGRIX_hero_vector.svg" 
                   alt="AEGRIX Logo" 
                   width={140} 
                   height={38}
-                  className="h-10 w-auto object-contain opacity-90"
+                  className="h-10 w-auto object-contain brightness-110"
                 />
               </div>
             </Link>

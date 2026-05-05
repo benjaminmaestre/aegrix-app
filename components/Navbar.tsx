@@ -26,12 +26,12 @@ const Navbar = () => {
         <Link href="/" className="relative z-50">
           <div className="flex items-center">
             <Image 
-              src="/aegrix_transparent.png" 
+              src="/AEGRIX_hero_vector.svg" 
               alt="AEGRIX Logo" 
               width={140} 
               height={38}
               priority
-              className="h-12 w-auto object-contain"
+              className="h-10 w-auto object-contain brightness-110"
             />
           </div>
         </Link>
