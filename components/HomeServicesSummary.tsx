@@ -48,7 +48,7 @@ const HomeServicesSummary = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: idx * 0.1, duration: 0.8 }}
               className={cn(
-                "p-8 rounded-2xl bg-white/2 border transition-all duration-500 hover:bg-white/4 group",
+                "p-6 md:p-8 rounded-2xl bg-white/2 border transition-all duration-500 hover:bg-white/4 group",
                 service.borderColor
               )}
             >
@@ -63,10 +63,10 @@ const HomeServicesSummary = () => {
           ))}
         </div>
         
-        <div className="mt-12 flex justify-center">
+        <div className="mt-16 flex justify-center">
           <Link 
             href="/servicios" 
-            className="group flex items-center gap-2 text-aegrix-cyan font-bold uppercase tracking-widest text-[10px]"
+            className="group flex items-center gap-3 text-aegrix-cyan font-bold uppercase tracking-widest text-[11px] py-4 px-8 border border-white/5 rounded-full hover:bg-aegrix-cyan/5 transition-all"
           >
             Ver servicios AEGRIX
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

@@ -40,7 +40,7 @@ const FinalCTA = () => {
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link href="mailto:info@aegrix.com" className="btn-secondary w-full sm:w-auto px-12 py-5 text-center flex items-center justify-center gap-3">
-              Hablar con un consultor
+              Escribir por correo
               <MessageSquare size={20} className="ml-2 opacity-60" />
             </Link>
           </div>

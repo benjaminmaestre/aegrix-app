@@ -6,9 +6,9 @@ import ImplementationModels from '@/components/ImplementationModels';
 import FinalCTA from '@/components/FinalCTA';
 
 export const metadata = {
-  title: 'Metodología AEGRIX | Ingeniería de Despliegue Enterprise',
+  title: 'Metodología AEGRIX | Implementación Digital sin Fricciones',
   description:
-    'Descubre nuestro protocolo de 4 pasos para la implementación de infraestructura digital: Diagnóstico, Arquitectura, Implementación y Control.',
+    'Conoce el método AEGRIX para diagnosticar, diseñar, implementar y controlar soluciones digitales seguras, medibles y escalables para empresas.',
 };
 
 export default function MetodologiaPage() {

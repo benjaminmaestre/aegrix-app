@@ -23,13 +23,13 @@ const Navbar = () => {
     >
       <div className={cn(
         "container-width flex items-center justify-between transition-all duration-500",
-        scrolled ? "h-20 md:h-24" : "h-28 md:h-40"
+        scrolled ? "h-20" : "h-28"
       )}>
         {/* LOGO OVERFLOW */}
         <Link href="/" className="relative z-50 flex items-center group">
           <div className={cn(
             "relative flex items-center transition-all duration-500",
-            scrolled ? "h-20 md:h-24" : "h-28 md:h-40"
+            scrolled ? "h-20" : "h-28"
           )}>
             {/* Glow effect that also overflows */}
             <div className="absolute top-4 left-1/2 -translate-x-1/2 w-32 h-32 bg-aegrix-cyan/20 blur-2xl rounded-full scale-50 group-hover:scale-110 transition-transform duration-500" />
@@ -42,7 +42,7 @@ const Navbar = () => {
               priority
               className={cn(
                 "w-auto object-contain relative z-10 brightness-110 transition-all duration-500 group-hover:scale-105 origin-top",
-                scrolled ? "h-16 md:h-20" : "h-20 md:h-32"
+                scrolled ? "h-16" : "h-24"
               )}
             />
           </div>

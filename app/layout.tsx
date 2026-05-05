@@ -43,6 +43,11 @@ export const metadata: Metadata = {
     url: 'https://aegrix.co',
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: '/AEGRIX_right_logo_icon.svg',
+    shortcut: '/AEGRIX_right_logo_icon.svg',
+    apple: '/AEGRIX_right_logo_icon.svg',
+  },
 };
 
 export default function RootLayout({

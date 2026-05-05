@@ -62,8 +62,45 @@ body {
   .card-base        { @apply bg-aegrix-surface border border-aegrix-border rounded-xl p-8; }
   .card-hover       { @apply transition-all duration-500 hover:border-aegrix-cyan/30 hover:shadow-cyan-sm hover:-translate-y-1; }
   
-  .btn-primary      { @apply bg-aegrix-cyan text-aegrix-bg font-manrope font-bold px-8 py-4 rounded-md transition-all duration-300 hover:shadow-cyan-md hover:scale-[1.02] flex items-center justify-center gap-2; }
-  .btn-secondary    { @apply border border-aegrix-border text-white font-manrope font-medium px-8 py-4 rounded-md transition-all duration-300 hover:border-aegrix-cyan hover:text-aegrix-cyan flex items-center justify-center gap-2; }
+  .btn-primary { 
+    @apply relative overflow-hidden text-aegrix-cyan/90 font-manrope font-extrabold px-10 py-5 rounded-full transition-all duration-700 flex items-center justify-center gap-3 border-[3px] border-[#05060B] tracking-[0.2em] uppercase text-[10px]; 
+    background: linear-gradient(145deg, #161B2E, #0A0D1A);
+    box-shadow: 
+      0 0 60px rgba(0,194,255,0.15),
+      inset 0 2px 10px rgba(255,255,255,0.05),
+      inset 0 -2px 10px rgba(0,0,0,0.5);
+  }
+  
+  .btn-primary:hover {
+    @apply scale-[1.02] shadow-[0_0_80px_rgba(0,194,255,0.35)];
+  }
+
+  .btn-secondary { 
+    @apply relative overflow-hidden text-white/70 font-manrope font-extrabold px-10 py-5 rounded-full transition-all duration-700 flex items-center justify-center gap-3 border-[3px] border-[#05060B] tracking-[0.2em] uppercase text-[10px]; 
+    background: linear-gradient(145deg, #1A1D26, #0F1118);
+    box-shadow: 
+      0 0 40px rgba(255,255,255,0.05),
+      inset 0 2px 8px rgba(255,255,255,0.03),
+      inset 0 -2px 8px rgba(0,0,0,0.5);
+  }
+
+  .btn-secondary:hover {
+    @apply scale-[1.02] text-white border-white/20 shadow-[0_0_60px_rgba(255,255,255,0.1)];
+  }
+  
+  /* Shared Shimmer Effect */
+  .btn-primary::after, .btn-secondary::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full;
+    transition: transform 0.8s ease-in-out;
+  }
+  
+  .btn-primary::after { @apply bg-linear-to-r from-transparent via-aegrix-cyan/10 to-transparent; }
+  .btn-secondary::after { @apply bg-linear-to-r from-transparent via-white/5 to-transparent; }
+  
+  .btn-primary:hover::after, .btn-secondary:hover::after {
+    @apply translate-x-full;
+  }
   .btn-ghost        { @apply text-aegrix-cyan font-manrope font-semibold hover:underline underline-offset-8 transition-all duration-300; }
   
   .grid-bg          { background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; }
