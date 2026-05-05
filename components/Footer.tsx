@@ -12,11 +12,14 @@ const Footer = () => {
           {/* Col 1 — Marca */}
           <div className="space-y-6">
             <Link href="/" className="inline-block">
-              <div className="w-[140px] h-[38px] flex items-center">
-                {/* LOGO PLACEHOLDER — reemplazar con <Image> cuando se añada /public/logo-aegrix.svg */}
-                <span className="text-2xl font-sora font-extrabold tracking-tighter text-white">
-                  AEG<span className="text-aegrix-cyan italic">RIX</span>
-                </span>
+              <div className="flex items-center">
+                <Image 
+                  src="/aegrix_transparent.png" 
+                  alt="AEGRIX Logo" 
+                  width={140} 
+                  height={38}
+                  className="h-10 w-auto object-contain opacity-90"
+                />
               </div>
             </Link>
             <p className="font-manrope text-sm text-aegrix-muted leading-relaxed max-w-xs">

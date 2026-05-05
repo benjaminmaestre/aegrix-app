@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { commandMetrics } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { Shield, Activity, TrendingUp, CheckCircle2, AlertCircle } from 'lucide-react';
@@ -8,9 +9,16 @@ const CommandCenter = () => {
     <div className="bg-aegrix-surface border border-aegrix-cyan/15 rounded-2xl p-6 shadow-cyan-lg relative overflow-hidden">
       {/* ZONA 1 — Header */}
       <div className="flex justify-between items-center mb-8 pb-4 border-b border-aegrix-border">
-        <span className="label-tag bg-transparent border-none p-0 text-[10px]">
-          AEGRIX CONTROL CENTER
-        </span>
+        <div className="flex items-center gap-2">
+          <Image 
+            src="/aegrix_transparent.png" 
+            alt="AEGRIX" 
+            width={60} 
+            height={16} 
+            className="h-4 w-auto object-contain brightness-125"
+          />
+          <span className="text-[10px] font-bold text-aegrix-muted uppercase tracking-widest">Control Center</span>
+        </div>
         <div className="flex items-center gap-2">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-aegrix-green opacity-75"></span>

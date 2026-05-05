@@ -24,11 +24,15 @@ const Navbar = () => {
       <div className="container-width flex items-center justify-between">
         {/* LOGO */}
         <Link href="/" className="relative z-50">
-          <div className="w-[120px] h-[32px] flex items-center">
-            {/* LOGO PLACEHOLDER — reemplazar con <Image> cuando se añada /public/logo-aegrix.svg */}
-            <span className="text-2xl font-sora font-extrabold tracking-tighter text-white">
-              AEG<span className="text-aegrix-cyan italic">RIX</span>
-            </span>
+          <div className="flex items-center">
+            <Image 
+              src="/aegrix_transparent.png" 
+              alt="AEGRIX Logo" 
+              width={140} 
+              height={38}
+              priority
+              className="h-12 w-auto object-contain"
+            />
           </div>
         </Link>
 
