@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Variables ── */
+:root {
+  --cyan:       #00C2FF;
+  --bg:         #05070D;
+  --surface:    #0E1420;
+  --muted:      #A7B0C0;
+  --border:     rgba(255,255,255,0.08);
+  --glow-sm:    0 0 20px rgba(0,194,255,0.12);
+  --glow-md:    0 0 40px rgba(0,194,255,0.18);
+}
+
+/* ── Base ── */
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #05070D;
+  color: #FFFFFF;
+  font-family: var(--font-manrope), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #05070D; }
+::-webkit-scrollbar-thumb { background: #1C2333; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #00C2FF; }
+
+/* ── Selección de texto ── */
+::selection { background: rgba(0,194,255,0.2); color: #FFFFFF; }
+
+/* ── Utilidades globales ── */
+@layer utilities {
+  .section-padding  { @apply py-24 md:py-32; }
+  .container-width  { @apply max-w-7xl mx-auto px-6 lg:px-8; }
+  .heading-xl       { @apply font-sora font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight; }
+  .heading-lg       { @apply font-sora font-bold text-3xl md:text-4xl tracking-tight; }
+  .heading-md       { @apply font-sora font-semibold text-2xl md:text-3xl; }
+  .body-lg          { @apply font-manrope text-lg text-aegrix-muted leading-relaxed; }
+  .body-md          { @apply font-manrope text-base text-aegrix-muted leading-relaxed; }
+  .label-tag        { @apply font-manrope text-xs font-semibold uppercase tracking-widest text-aegrix-cyan px-3 py-1 bg-aegrix-surface border border-aegrix-border rounded-full inline-block; }
+  .card-base        { @apply bg-aegrix-surface border border-aegrix-border rounded-2xl p-8; }
+  .card-hover       { @apply transition-all duration-300 hover:border-aegrix-cyan hover:shadow-cyan-sm hover:-translate-y-1; }
+  .btn-primary      { @apply bg-aegrix-cyan text-aegrix-bg font-manrope font-bold px-7 py-3.5 rounded-lg transition-all duration-200 hover:shadow-cyan-md hover:scale-[1.02] flex items-center justify-center gap-2; }
+  .btn-secondary    { @apply border border-aegrix-border text-white font-manrope font-medium px-7 py-3.5 rounded-lg transition-all duration-200 hover:border-aegrix-cyan hover:text-aegrix-cyan flex items-center justify-center gap-2; }
+  .btn-ghost        { @apply text-aegrix-cyan font-manrope font-medium hover:underline underline-offset-4 transition-all duration-200; }
+  .grid-bg          { background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 40px 40px; }
+}
