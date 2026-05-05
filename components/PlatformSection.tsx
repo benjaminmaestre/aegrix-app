@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { platformBlocks } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
 import { ArrowRight, Layers, ShieldCheck, Zap, BarChart3 } from 'lucide-react';
-import Image from 'next/image';
 
 const PlatformSection = () => {
   const { ref, inView } = useInView();
@@ -44,10 +44,10 @@ const PlatformSection = () => {
               ))}
             </div>
 
-            <button className="btn-primary px-10 group">
+            <Link href="/servicios" className="btn-primary px-10 group inline-flex items-center justify-center">
               Explorar la Capa de Control
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform ml-2" />
+            </Link>
           </div>
 
           <div className={cn(

@@ -1,10 +1,9 @@
 export const navItems = [
   { label: 'Inicio', href: '/' },
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Diagnóstico 360', href: '#diagnostico' },
-  { label: 'Sectores', href: '#sectores' },
-  { label: 'Proceso', href: '#proceso' },
-  { label: 'Contacto', href: '#contacto' },
+  { label: 'Servicios', href: '/servicios' },
+  { label: 'Sectores', href: '/sectores' },
+  { label: 'Metodología', href: '/metodologia' },
+  { label: 'Diagnóstico 360', href: '/#diagnostico' },
 ];
 
 export const problemCards = [

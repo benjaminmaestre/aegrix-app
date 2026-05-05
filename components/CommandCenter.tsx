@@ -42,62 +42,40 @@ const CommandCenter = () => {
 
       <div className="p-6 lg:p-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Module 1: Security Posture */}
-          <div className="bg-white/2 border border-white/5 rounded-xl p-5 hover:bg-white/4 transition-colors group">
-            <div className="flex items-center justify-between mb-6">
-              <div className="p-2 rounded-lg bg-aegrix-cyan/10 border border-aegrix-cyan/20 text-aegrix-cyan">
-                <Lock size={16} />
-              </div>
-              <span className="text-[9px] font-bold text-aegrix-green uppercase tracking-widest bg-aegrix-green/10 px-2 py-0.5 rounded">Protección activa</span>
-            </div>
-            <div className="text-[10px] text-white/40 uppercase tracking-widest mb-1">Security Posture</div>
-            <div className="text-3xl font-sora font-bold text-white mb-2">100%</div>
-            <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
-              <div className="w-full h-full bg-aegrix-cyan shadow-[0_0_10px_rgba(0,194,255,0.5)]" />
-            </div>
-          </div>
+          {commandMetrics.map((metric, idx) => {
+            const Icon = idx === 0 ? Lock : idx === 1 ? Zap : idx === 2 ? Activity : Cpu;
+            const iconColor = idx === 0 ? 'text-aegrix-cyan' : idx === 1 ? 'text-yellow-500' : idx === 2 ? 'text-purple-500' : 'text-aegrix-green';
+            const bgColor = idx === 0 ? 'bg-aegrix-cyan/10' : idx === 1 ? 'bg-yellow-500/10' : idx === 2 ? 'bg-purple-500/10' : 'bg-aegrix-green/10';
+            const borderColor = idx === 0 ? 'border-aegrix-cyan/20' : idx === 1 ? 'border-yellow-500/20' : idx === 2 ? 'border-purple-500/20' : 'border-aegrix-green/20';
 
-          {/* Module 2: Web Performance */}
-          <div className="bg-white/2 border border-white/5 rounded-xl p-5 hover:bg-white/4 transition-colors group">
-            <div className="flex items-center justify-between mb-6">
-              <div className="p-2 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-yellow-500">
-                <Zap size={16} />
+            return (
+              <div key={idx} className="bg-white/2 border border-white/5 rounded-xl p-5 hover:bg-white/4 transition-colors group">
+                <div className="flex items-center justify-between mb-6">
+                  <div className={cn("p-2 rounded-lg border", bgColor, borderColor, iconColor)}>
+                    <Icon size={16} />
+                  </div>
+                  <span className={cn("text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded", bgColor, iconColor)}>
+                    {metric.label}
+                  </span>
+                </div>
+                <div className="text-[10px] text-white/40 uppercase tracking-widest mb-1">{metric.layer}</div>
+                <div className="text-3xl font-sora font-bold text-white mb-2">{metric.value}</div>
+                {idx === 0 && (
+                  <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+                    <div className="w-full h-full bg-aegrix-cyan shadow-[0_0_10px_rgba(0,194,255,0.5)]" />
+                  </div>
+                )}
+                {idx === 1 && (
+                  <div className="flex items-center gap-1 text-[10px] text-aegrix-green font-bold">
+                    <ArrowUpRight size={12} />
+                    +14% Performance
+                  </div>
+                )}
+                {idx === 2 && <div className="text-[10px] text-white/60">Fuentes conectadas y activas</div>}
+                {idx === 3 && <div className="text-[10px] text-white/60">Reportes generados: 12 hoy</div>}
               </div>
-              <span className="text-[9px] font-bold text-aegrix-cyan uppercase tracking-widest bg-aegrix-cyan/10 px-2 py-0.5 rounded">Alta velocidad</span>
-            </div>
-            <div className="text-[10px] text-white/40 uppercase tracking-widest mb-1">Web Response</div>
-            <div className="text-3xl font-sora font-bold text-white mb-2">0.8<span className="text-sm font-medium text-white/40 ml-1">s</span></div>
-            <div className="flex items-center gap-1 text-[10px] text-aegrix-green font-bold">
-              <ArrowUpRight size={12} />
-              +14% Performance
-            </div>
-          </div>
-
-          {/* Module 3: Conversion Signals */}
-          <div className="bg-white/2 border border-white/5 rounded-xl p-5 hover:bg-white/4 transition-colors group">
-            <div className="flex items-center justify-between mb-6">
-              <div className="p-2 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-500">
-                <Activity size={16} />
-              </div>
-              <span className="text-[9px] font-bold text-purple-500 uppercase tracking-widest bg-purple-500/10 px-2 py-0.5 rounded">Leads rastreados</span>
-            </div>
-            <div className="text-[10px] text-white/40 uppercase tracking-widest mb-1">Conversion Signals</div>
-            <div className="text-3xl font-sora font-bold text-white mb-2">24/24</div>
-            <div className="text-[10px] text-white/60">Fuentes conectadas y activas</div>
-          </div>
-
-          {/* Module 4: AI Insights */}
-          <div className="bg-white/2 border border-white/5 rounded-xl p-5 hover:bg-white/4 transition-colors group">
-            <div className="flex items-center justify-between mb-6">
-              <div className="p-2 rounded-lg bg-aegrix-green/10 border border-aegrix-green/20 text-aegrix-green">
-                <Cpu size={16} />
-              </div>
-              <span className="text-[9px] font-bold text-aegrix-green uppercase tracking-widest bg-aegrix-green/10 px-2 py-0.5 rounded">Inteligencia activa</span>
-            </div>
-            <div className="text-[10px] text-white/40 uppercase tracking-widest mb-1">AI Automation</div>
-            <div className="text-3xl font-sora font-bold text-white mb-2">Activo</div>
-            <div className="text-[10px] text-white/60">Reportes generados: 12 hoy</div>
-          </div>
+            );
+          })}
         </div>
 
         {/* System Graph and Status */}

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { diagnosticChecklist } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
@@ -52,10 +53,10 @@ const DiagnosticSection = () => {
               </div>
             </div>
 
-            <button className="btn-primary w-full sm:w-auto px-12 group">
+            <Link href="mailto:info@aegrix.com" className="btn-primary w-full sm:w-auto px-12 group">
               Solicitar diagnóstico ahora
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
           </div>
 
           <div className={cn(

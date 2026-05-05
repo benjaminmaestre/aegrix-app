@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import CommandCenter from './CommandCenter';
 import { productDivisions } from '@/lib/data';
@@ -55,8 +56,8 @@ const Hero = () => {
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-24">
-            <button className="btn-primary px-10">Solicitar Diagnóstico 360</button>
-            <button className="btn-secondary px-10">Ver arquitectura</button>
+            <Link href="#diagnostico" className="btn-primary px-10">Solicitar Diagnóstico 360</Link>
+            <Link href="/servicios" className="btn-secondary px-10">Ver arquitectura</Link>
           </motion.div>
         </motion.div>
 

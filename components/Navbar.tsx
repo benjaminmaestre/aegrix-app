@@ -21,7 +21,7 @@ const Navbar = () => {
           : "bg-transparent py-8"
       )}
     >
-      <div className="container-width h-32 flex items-center justify-between">
+      <div className="container-width flex items-center justify-between py-2">
         {/* LOGO */}
         <Link href="/" className="relative z-50 flex items-center gap-3 group">
           <div className="relative">
@@ -32,7 +32,7 @@ const Navbar = () => {
               width={160} 
               height={44}
               priority
-              className="h-32 w-auto object-contain relative z-10 brightness-110"
+              className="h-20 w-auto object-contain relative z-10 brightness-110"
             />
           </div>
         </Link>

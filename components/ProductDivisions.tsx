@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { productDivisions } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
@@ -73,10 +74,10 @@ const ProductDivisions = () => {
                   ))}
                 </div>
 
-                <button className="btn-secondary w-full group py-4">
+                <Link href="/#diagnostico" className="btn-secondary w-full group py-4 flex items-center justify-center">
                   Saber más sobre {division.id === 'web' ? 'Infraestructura Web' : division.title.split(' ')[1]}
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </button>
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform ml-2" />
+                </Link>
               </div>
             );
           })}
