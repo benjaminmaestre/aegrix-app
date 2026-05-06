@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import type { Metadata } from 'next';
 import { Sora, Manrope } from 'next/font/google';
 import { notFound } from 'next/navigation';

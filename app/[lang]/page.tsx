@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import React from 'react';
 import Hero from '@/components/Hero';
 import ProblemSection from '@/components/ProblemSection';

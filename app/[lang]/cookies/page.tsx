@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import React from 'react';
 import LegalPageLayout from '@/components/LegalPageLayout';
 import { getDictionary } from '@/lib/get-dictionary';

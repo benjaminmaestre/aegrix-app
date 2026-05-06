@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import React from 'react';
 import { Shield, Target, Zap, ChevronRight } from 'lucide-react';
 import { getDictionary } from '@/lib/get-dictionary';
