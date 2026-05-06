@@ -164,7 +164,7 @@ const ContactSection = () => {
                     </>
                   ) : (
                     <>
-                      By sending this form, I declare that the information provided is true, that I have authorization to share it, and that I accept the treatment of my personal data in accordance with AEGRIX's Privacy Policy. I understand that AEGRIX will not be responsible for consequences derived from false or incomplete information.
+                      By sending this form, I declare that the information provided is true, that I have authorization to share it, and that I accept the treatment of my personal data in accordance with AEGRIX&apos;s Privacy Policy. I understand that AEGRIX will not be responsible for consequences derived from false or incomplete information.
                     </>
                   )}
                 </p>

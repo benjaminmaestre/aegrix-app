@@ -3,13 +3,13 @@
 import React from 'react';
 import { 
   Building2, Package, Briefcase, GraduationCap, 
-  Activity, Home, Shield, Globe, Cpu, BarChart3
+  Activity, Home, type LucideIcon
 } from 'lucide-react';
 import { sectors } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, LucideIcon> = {
   Building2,
   Package,
   Briefcase,

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import HeroControlLayer from './HeroControlLayer';
 import VisionSlide from './VisionSlide';
-import { WHATSAPP_URL } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
 interface HeroProps {

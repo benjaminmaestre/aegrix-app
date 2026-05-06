@@ -90,7 +90,7 @@ export default async function SecurityPage({
         <>
           <p>At AEGRIX, information security, digital asset protection, data confidentiality, and responsible management of technological risks are fundamental principles in our service delivery.</p>
           <p>This Security Policy describes the general guidelines AEGRIX adopts to protect its website, digital channels, and information received from users and clients in relation to our software engineering, cybersecurity, AI, and consulting services.</p>
-          <p>This policy should be read alongside AEGRIX's Privacy Policy, Cookies Policy, and Terms and Conditions.</p>
+          <p>This policy should be read alongside AEGRIX&apos;s Privacy Policy, Cookies Policy, and Terms and Conditions.</p>
 
           <hr className="border-white/5 my-8" />
 
@@ -107,7 +107,7 @@ export default async function SecurityPage({
           <p>Security services are executed according to the contracted scope. Clients acknowledge that no service can guarantee absolute protection or total risk elimination.</p>
 
           <h2>5. Client and User Responsibility</h2>
-          <p>Users are responsible for providing truthful information, protecting their credentials, and timely implementing AEGRIX's security recommendations.</p>
+          <p>Users are responsible for providing truthful information, protecting their credentials, and timely implementing AEGRIX&apos;s security recommendations.</p>
 
           <h2>6. Permitted Use</h2>
           <p>Unauthorized access attempts, penetration testing without written consent, malware delivery, and unauthorized scraping are strictly prohibited.</p>

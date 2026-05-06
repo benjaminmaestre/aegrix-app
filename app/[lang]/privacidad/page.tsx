@@ -147,7 +147,7 @@ export default async function PrivacyPage({
           <h2>13. Third-Party Links</h2>
           <p>AEGRIX is not responsible for the privacy practices or content of external websites linked from our platform.</p>
 
-          <h2>14. Minors' Data</h2>
+          <h2>14. Minors&apos; Data</h2>
           <p>AEGRIX does not target minors. Any treatment will require legal representative authorization.</p>
 
           <h2>15. Business Confidentiality</h2>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { FileText, Shield, Clock } from 'lucide-react';
 
 interface LegalPageLayoutProps {

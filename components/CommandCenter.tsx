@@ -149,7 +149,7 @@ const CommandCenter = () => {
             <div className="mt-10 p-4 rounded-lg bg-white/3 border border-white/5">
               <div className="text-[9px] text-white/40 uppercase tracking-widest mb-2 italic">Reflexión estratégica:</div>
               <div className="text-[11px] text-white/80 leading-relaxed font-medium italic">
-                "Tu web no debe existir: debe trabajar."
+                &quot;Tu web no debe existir: debe trabajar.&quot;
               </div>
             </div>
           </div>

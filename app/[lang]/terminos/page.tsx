@@ -186,7 +186,7 @@ export default async function TermsPage({
           <p>Both parties agree to treat technical and commercial information exchanged as confidential.</p>
 
           <h2>18. Personal Data Protection</h2>
-          <p>Treatment is performed in accordance with Law 1581 of 2012 and AEGRIX's Privacy Policy available on this site.</p>
+          <p>Treatment is performed in accordance with Law 1581 of 2012 and AEGRIX&apos;s Privacy Policy available on this site.</p>
 
           <h2>19. Third-Party Links and Services</h2>
           <p>AEGRIX does not control or guarantee the functioning or security of linked third-party sites or APIs.</p>
@@ -198,7 +198,7 @@ export default async function TermsPage({
           <p>Unauthorized scraping, identity theft, and malware introduction are prohibited. AEGRIX will take legal action against breaches.</p>
 
           <h2>22. Limitation of Liability</h2>
-          <p>To the extent permitted by law, AEGRIX's total liability is limited to the value paid for the specific service.</p>
+          <p>To the extent permitted by law, AEGRIX&apos;s total liability is limited to the value paid for the specific service.</p>
 
           <h2>23. Indemnity</h2>
           <p>Users shall hold AEGRIX harmless from claims derived from improper use or breach of these terms.</p>

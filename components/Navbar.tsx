@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useScrolled } from '@/hooks/useScrolled';
-import { navItems, WHATSAPP_URL } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
 interface NavbarProps {
