@@ -45,3 +45,5 @@ current_lint*.txt
 lint_results*.txt
 *lint*.log
 *build*.log
+
+.vercel
