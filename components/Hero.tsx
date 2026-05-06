@@ -31,7 +31,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
   }, [currentSlide]);
 
   return (
-    <section className="relative min-h-screen overflow-hidden flex flex-col justify-center">
+    <section className="relative w-full min-h-screen overflow-hidden flex flex-col">
       <AnimatePresence mode="wait">
         {currentSlide === 0 ? (
           /* SLIDE 0: ENGINEERING DOMINANCE */
@@ -41,7 +41,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="absolute inset-0 flex items-center justify-center pt-32"
+            className="w-full min-h-screen flex flex-col relative pt-28 md:pt-32 pb-32"
           >
             {/* Background Ambience */}
             <div className="absolute inset-0 z-0 pointer-events-none">
@@ -50,7 +50,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
               <div className="absolute inset-0 grid-bg opacity-[0.08]" />
             </div>
 
-            <div className="container-width relative z-10">
+            <div className="container-width relative z-10 mt-8 md:my-auto">
               <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
@@ -59,7 +59,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
                   className="flex flex-col text-left z-20 lg:col-span-5 xl:col-span-5"
                 >
                   <div className="max-w-[720px]">
-                    <h1 className="font-sora font-bold text-4xl md:text-5xl lg:text-5xl xl:text-6xl text-white mb-6 leading-tight tracking-tight">
+                    <h1 className="font-sora font-bold text-3xl md:text-5xl lg:text-5xl xl:text-6xl text-white mb-6 leading-tight tracking-tight">
                       {dict.title_part1} <br />
                       <span className="text-aegrix-cyan">{dict.title_highlight}</span>
                     </h1>
@@ -101,10 +101,10 @@ const Hero = ({ lang, dict }: HeroProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="absolute inset-0 pt-36 pb-24"
+            className="w-full min-h-screen flex flex-col relative pt-28 md:pt-36 pb-32"
           >
-            <div className="container-width w-full h-full">
-              <div className="w-full h-full rounded-[40px] overflow-hidden shadow-3xl border border-white/5 relative">
+            <div className="container-width w-full mt-8 md:my-auto h-full flex flex-col">
+              <div className="w-full flex-1 min-h-[500px] md:min-h-[600px] rounded-[40px] overflow-hidden shadow-3xl border border-white/5 relative">
                 <VisionSlide />
               </div>
             </div>
@@ -113,7 +113,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
       </AnimatePresence>
 
       {/* Slide Navigation Controls */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8 z-50">
+      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8 z-40">
         <button 
           onClick={() => setCurrentSlide(0)}
           className="group flex flex-col items-start gap-2"

@@ -23,7 +23,7 @@ const VisionSlide = () => {
 
   return (
     <div
-      className="relative w-full h-full min-h-[600px] flex items-center justify-center overflow-hidden rounded-[40px] z-20"
+      className="relative w-full h-full min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-hidden rounded-[40px] z-20"
       style={{ backgroundColor: '#F5F5F0', opacity: 1 }}
     >
       <AnimatePresence mode="wait">
@@ -116,7 +116,7 @@ const VisionSlide = () => {
             exit={{ opacity: 0 }}
             className="absolute inset-0 bg-[#0A192F] flex flex-col items-center justify-center p-8"
           >
-            <h2 className="text-3xl md:text-5xl font-sora font-bold text-white mb-16 text-center">
+            <h2 className="text-2xl md:text-5xl font-sora font-bold text-white mb-10 md:mb-16 text-center">
               Domina tu industria con <br />
               <span style={{ color: `${CYAN}99` }}>nuestros tres pilares estratégicos...</span>
             </h2>
@@ -173,7 +173,7 @@ const VisionSlide = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute text-3xl md:text-5xl font-sora font-bold text-slate-900 leading-tight w-full"
+                    className="absolute text-2xl md:text-5xl font-sora font-bold text-slate-900 leading-tight w-full"
                   >
                     Integramos las 3 capas <br /> en un solo entorno de control.
                   </motion.h2>
@@ -182,7 +182,7 @@ const VisionSlide = () => {
                     key="title4"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute text-3xl md:text-5xl font-sora font-bold text-slate-900 leading-tight w-full"
+                    className="absolute text-2xl md:text-5xl font-sora font-bold text-slate-900 leading-tight w-full"
                   >
                     Lleva tu infraestructura al siguiente nivel.
                   </motion.h2>
@@ -265,7 +265,7 @@ const AegrixCoreEngine = () => (
   <motion.div
     initial={{ y: 40, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
-    className="relative w-full max-w-4xl aspect-16/11 md:aspect-16/10 bg-[#0A0F1A] rounded-t-3xl border-x-[6px] border-t-[6px] border-slate-800 overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,212,212,0.25)] flex flex-col"
+    className="relative w-full max-w-4xl aspect-4/3 sm:aspect-16/11 md:aspect-16/10 bg-[#0A0F1A] rounded-t-3xl border-x-4 md:border-x-[6px] border-t-4 md:border-t-[6px] border-slate-800 overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,212,212,0.25)] flex flex-col"
   >
     {/* Mac-style Window Header */}
     <div className="h-8 md:h-10 bg-slate-900 flex items-center px-4 md:px-6 gap-2 border-b border-white/5 relative shrink-0">
