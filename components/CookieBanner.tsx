@@ -2,7 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Cookie, X } from 'lucide-react';
+import { Cookie, X, Check, Settings } from 'lucide-react';
+import Link from 'next/link';
+import { setCookieConsent, CookiePreferences } from '@/lib/cookie-consent';
+import { cn } from '@/lib/utils';
 
 interface CookieBannerProps {
   lang: 'en' | 'es';
@@ -14,74 +17,123 @@ interface CookieBannerProps {
   };
 }
 
-const CookieBanner = ({ dict }: CookieBannerProps) => {
+const CookieBanner = ({ lang, dict }: CookieBannerProps) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showConfig, setShowConfig] = useState(false);
+  const [preferences, setPreferences] = useState<Omit<CookiePreferences, 'updatedAt'>>({
+    necessary: true,
+    analytics: false,
+    marketing: false,
+    functional: false,
+  });
 
   useEffect(() => {
-    // Check if the user has already made a choice
     const consent = localStorage.getItem('cookie-consent');
     if (!consent) {
-      // Small delay for better UX
-      const timer = setTimeout(() => setIsVisible(true), 2000);
+      const timer = setTimeout(() => setIsVisible(true), 1500);
       return () => clearTimeout(timer);
     }
   }, []);
 
-  const handleAccept = () => {
-    localStorage.setItem('cookie-consent', 'accepted');
+  const handleAcceptAll = () => {
+    const allPrefs = { necessary: true, analytics: true, marketing: true, functional: true };
+    setCookieConsent('accepted', allPrefs);
     setIsVisible(false);
   };
 
-  const handleDecline = () => {
-    localStorage.setItem('cookie-consent', 'declined');
+  const handleDeclineAll = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    const minPrefs = { necessary: true, analytics: false, marketing: false, functional: false };
+    setCookieConsent('declined', minPrefs);
     setIsVisible(false);
   };
+
+  const handleSaveConfig = () => {
+    setCookieConsent('custom', preferences);
+    setIsVisible(false);
+  };
+
+  const togglePreference = (key: keyof typeof preferences) => {
+    if (key === 'necessary') return;
+    setPreferences(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const categories = [
+    { id: 'necessary' as const, title: lang === 'es' ? 'Necesarias' : 'Necessary', required: true },
+    { id: 'analytics' as const, title: lang === 'es' ? 'Analítica' : 'Analytics', required: false },
+    { id: 'functional' as const, title: lang === 'es' ? 'Funcionales' : 'Functional', required: false },
+    { id: 'marketing' as const, title: lang === 'es' ? 'Marketing' : 'Marketing', required: false }
+  ];
 
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ y: 100, opacity: 0 }}
+          initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed bottom-6 left-6 right-6 z-100 flex justify-center pointer-events-none"
+          exit={{ y: 50, opacity: 0 }}
+          className="fixed bottom-4 left-4 right-4 z-100 flex justify-center pointer-events-none"
         >
-          <div className="w-full max-w-4xl bg-[#0A0F1A]/95 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-[32px] shadow-2xl flex flex-col md:flex-row items-center gap-6 md:gap-8 pointer-events-auto relative overflow-hidden">
-            {/* Decoration */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-aegrix-cyan/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-            
-            <div className="w-12 h-12 rounded-2xl bg-aegrix-cyan/10 flex items-center justify-center shrink-0">
-              <Cookie className="text-aegrix-cyan" size={24} />
-            </div>
-            
-            <div className="flex-1 text-center md:text-left">
-              <p className="text-sm md:text-base text-slate-300 leading-relaxed font-medium">
-                {dict.message}
-              </p>
+          <div className="w-full max-w-3xl bg-[#070B14]/95 backdrop-blur-md border border-white/10 p-4 rounded-2xl shadow-2xl pointer-events-auto relative overflow-hidden">
+            <div className="flex flex-col md:flex-row items-center gap-4 relative z-10">
+              <div className="flex-1 flex items-start gap-3">
+                <Cookie className="text-aegrix-cyan shrink-0 mt-0.5" size={16} />
+                <div className="flex flex-col">
+                  <p className="text-[11px] text-slate-300 leading-normal max-w-xl">
+                    {dict.message}
+                    <Link href={`/${lang}/cookies`} className="text-aegrix-cyan ml-1 hover:underline font-bold uppercase text-[9px] tracking-tighter">
+                      {lang === 'es' ? 'Ver Política' : 'Policy'}
+                    </Link>
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                {!showConfig ? (
+                  <>
+                    <button onClick={(e) => handleDeclineAll(e)} className="px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-slate-500 hover:text-white transition-colors">
+                      {dict.decline}
+                    </button>
+                    <button onClick={() => setShowConfig(true)} className="p-1.5 text-slate-400 hover:text-white border border-white/5 rounded-lg hover:bg-white/5 transition-all" title={dict.settings}>
+                      <Settings size={14} />
+                    </button>
+                    <button onClick={handleAcceptAll} className="px-4 py-1.5 bg-aegrix-cyan text-black text-[9px] font-black uppercase tracking-wider rounded-lg hover:bg-white transition-all shadow-lg">
+                      {dict.accept}
+                    </button>
+                  </>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <button onClick={() => setShowConfig(false)} className="text-[9px] font-bold text-slate-500 hover:text-white uppercase px-2 tracking-widest">
+                      {lang === 'es' ? 'Volver' : 'Back'}
+                    </button>
+                    <button onClick={handleSaveConfig} className="px-4 py-1.5 bg-white text-black text-[9px] font-black uppercase tracking-wider rounded-lg shadow-lg">
+                      {lang === 'es' ? 'Guardar' : 'Save'}
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
 
-            <div className="flex flex-wrap justify-center md:justify-end gap-3 shrink-0">
-              <button
-                onClick={handleDecline}
-                className="px-6 py-3 rounded-full text-[11px] font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-colors"
-              >
-                {dict.decline}
-              </button>
-              <button
-                onClick={handleAccept}
-                className="px-8 py-3 rounded-full bg-aegrix-cyan text-black text-[11px] font-bold uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-[0_10px_20px_-5px_rgba(0,212,212,0.3)]"
-              >
-                {dict.accept}
-              </button>
-            </div>
+            {showConfig && (
+              <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="grid grid-cols-2 md:grid-cols-4 gap-2 pt-4 mt-4 border-t border-white/5">
+                {categories.map((cat) => (
+                  <div 
+                    key={cat.id} 
+                    onClick={() => !cat.required && togglePreference(cat.id)}
+                    className={cn(
+                      "flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all",
+                      preferences[cat.id] ? "bg-aegrix-cyan/10 border-aegrix-cyan/40" : "bg-white/2 border-white/5 opacity-50"
+                    )}
+                  >
+                    <span className="text-[9px] font-bold uppercase tracking-tighter text-white">{cat.title}</span>
+                    {preferences[cat.id] && <Check size={10} className="text-aegrix-cyan" />}
+                  </div>
+                ))}
+              </motion.div>
+            )}
 
-            <button 
-              onClick={() => setIsVisible(false)}
-              className="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors p-2"
-              aria-label="Close"
-            >
-              <X size={16} />
+            <button onClick={(e) => handleDeclineAll(e)} className="absolute top-2 right-2 text-slate-600 hover:text-white p-1" aria-label="Close">
+              <X size={12} />
             </button>
           </div>
         </motion.div>

@@ -4,7 +4,6 @@ import React from 'react';
 import { processSteps } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
-// import removed to fix unused warning
 
 const ProcessSection = () => {
   const { ref, inView } = useInView();
