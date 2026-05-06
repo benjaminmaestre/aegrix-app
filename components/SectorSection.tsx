@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, Activity, Landmark, ArrowRight } from 'lucide-react';
+import { Landmark, Activity, Briefcase } from 'lucide-react';
 
 const industries = [
   {

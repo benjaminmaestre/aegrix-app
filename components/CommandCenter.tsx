@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { commandMetrics } from '@/lib/data';
 import { cn } from '@/lib/utils';
-import { Shield, Activity, Zap, BarChart3, Lock, Cpu, Globe, ArrowUpRight } from 'lucide-react';
+import { Activity, Zap, BarChart3, Lock, Cpu, ArrowUpRight } from 'lucide-react';
 
 const CommandCenter = () => {
   return (

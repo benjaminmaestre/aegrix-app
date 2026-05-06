@@ -2,10 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { platformBlocks } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
-import { ArrowRight, Layers, ShieldCheck, Zap, BarChart3 } from 'lucide-react';
+import { ShieldCheck, Zap, BarChart3 } from 'lucide-react';
 
 const PlatformSection = () => {
   const { ref, inView } = useInView();

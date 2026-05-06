@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { productDivisions, WHATSAPP_URL } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
-import { Shield, Globe, Cpu, Heart, CheckCircle2, ArrowRight, type LucideIcon } from 'lucide-react';
+import { Shield, Globe, Cpu, Heart, CheckCircle2, type LucideIcon } from 'lucide-react';
 
 const icons: Record<string, LucideIcon> = {
   shield: Shield,

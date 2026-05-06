@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MessageSquare, Phone, Send, ShieldCheck } from 'lucide-react';
+import { Mail, MessageSquare, Send, ShieldCheck } from 'lucide-react';
 import { WHATSAPP_URL } from '@/lib/data';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';

@@ -4,7 +4,7 @@ import React from 'react';
 import { webBenefits } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
-import { Globe, Zap, Target, TrendingUp, CheckCircle2 } from 'lucide-react';
+import { Target, CheckCircle2 } from 'lucide-react';
 
 const WebGrowthSection = () => {
   const { ref, inView } = useInView();

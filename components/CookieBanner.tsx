@@ -14,7 +14,7 @@ interface CookieBannerProps {
   };
 }
 
-const CookieBanner = ({ lang, dict }: CookieBannerProps) => {
+const CookieBanner = ({ dict }: CookieBannerProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

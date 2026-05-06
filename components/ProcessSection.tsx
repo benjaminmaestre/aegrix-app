@@ -4,7 +4,7 @@ import React from 'react';
 import { processSteps } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+// import removed to fix unused warning
 
 const ProcessSection = () => {
   const { ref, inView } = useInView();

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, MessageSquare } from 'lucide-react';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
 import { WHATSAPP_URL } from '@/lib/data';

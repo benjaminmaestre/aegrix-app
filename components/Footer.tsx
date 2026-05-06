@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { Linkedin, Twitter, Instagram, ArrowUpRight } from 'lucide-react';
+import { Instagram, ArrowUpRight } from 'lucide-react';
 
 const Footer = () => {
   const params = useParams();

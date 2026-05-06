@@ -4,7 +4,7 @@ import React from 'react';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const cases = [
   {

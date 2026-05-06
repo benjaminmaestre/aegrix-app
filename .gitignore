@@ -41,5 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 # local lint results
+current_lint*.txt
 lint_results*.txt
-
+*lint*.log
+*build*.log

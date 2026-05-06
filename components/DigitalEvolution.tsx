@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { AlertTriangle, Zap, UserX, UserCheck, ShieldAlert, ShieldCheck } from 'lucide-react';
+import { AlertTriangle, Zap, UserX } from 'lucide-react';
 
 const scenarios = [
   {

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { diagnosticChecklist, WHATSAPP_URL } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
-import { Shield, Globe, Cpu, CheckCircle2, ArrowRight, ClipboardCheck } from 'lucide-react';
+import { CheckCircle2, ClipboardCheck } from 'lucide-react';
 
 const DiagnosticSection = () => {
   const { ref, inView } = useInView();
