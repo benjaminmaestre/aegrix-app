@@ -94,7 +94,7 @@ const CookieBanner = ({ lang, dict }: CookieBannerProps) => {
                     <button onClick={(e) => handleDeclineAll(e)} className="px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider text-slate-500 hover:text-white transition-colors">
                       {dict.decline}
                     </button>
-                    <button onClick={() => setShowConfig(true)} className="p-1.5 text-slate-400 hover:text-white border border-white/5 rounded-lg hover:bg-white/5 transition-all" title={dict.settings}>
+                    <button onClick={() => setShowConfig(true)} className="p-1.5 text-slate-400 hover:text-white border border-white/5 rounded-lg hover:bg-white/5 transition-all" title={dict.settings} aria-label={dict.settings}>
                       <Settings size={14} />
                     </button>
                     <button onClick={handleAcceptAll} className="px-4 py-1.5 bg-aegrix-cyan text-black text-[9px] font-black uppercase tracking-wider rounded-lg hover:bg-white transition-all shadow-lg">
@@ -117,22 +117,26 @@ const CookieBanner = ({ lang, dict }: CookieBannerProps) => {
             {showConfig && (
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="grid grid-cols-2 md:grid-cols-4 gap-2 pt-4 mt-4 border-t border-white/5">
                 {categories.map((cat) => (
-                  <div 
+                  <button 
+                    type="button"
                     key={cat.id} 
                     onClick={() => !cat.required && togglePreference(cat.id)}
+                    disabled={cat.required}
+                    aria-pressed={preferences[cat.id]}
                     className={cn(
-                      "flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all",
-                      preferences[cat.id] ? "bg-aegrix-cyan/10 border-aegrix-cyan/40" : "bg-white/2 border-white/5 opacity-50"
+                      "flex items-center justify-between p-2 rounded-lg border cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-aegrix-cyan/50",
+                      preferences[cat.id] ? "bg-aegrix-cyan/10 border-aegrix-cyan/40" : "bg-white/2 border-white/5 opacity-50",
+                      cat.required ? "cursor-not-allowed opacity-80" : ""
                     )}
                   >
                     <span className="text-[9px] font-bold uppercase tracking-tighter text-white">{cat.title}</span>
                     {preferences[cat.id] && <Check size={10} className="text-aegrix-cyan" />}
-                  </div>
+                  </button>
                 ))}
               </motion.div>
             )}
 
-            <button onClick={(e) => handleDeclineAll(e)} className="absolute top-2 right-2 text-slate-600 hover:text-white p-1" aria-label="Close">
+            <button onClick={(e) => handleDeclineAll(e)} className="absolute top-2 right-2 text-slate-600 hover:text-white p-1" aria-label={lang === 'es' ? 'Cerrar y rechazar cookies no necesarias' : 'Close and reject non-essential cookies'}>
               <X size={12} />
             </button>
           </div>

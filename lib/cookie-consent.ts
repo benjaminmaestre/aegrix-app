@@ -14,7 +14,14 @@ export const COOKIE_PREFERENCES_KEY = 'cookie-preferences';
 export const getCookiePreferences = (): CookiePreferences | null => {
   if (typeof window === 'undefined') return null;
   const prefs = localStorage.getItem(COOKIE_PREFERENCES_KEY);
-  return prefs ? JSON.parse(prefs) : null;
+  if (!prefs) return null;
+  
+  try {
+    return JSON.parse(prefs);
+  } catch (error) {
+    console.error('Failed to parse cookie preferences:', error);
+    return null;
+  }
 };
 
 export const hasCookieConsent = (category: keyof Omit<CookiePreferences, 'updatedAt'>): boolean => {
