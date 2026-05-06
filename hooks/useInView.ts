@@ -6,13 +6,13 @@ interface UseInViewOptions {
   triggerOnce?: boolean;
 }
 
-export function useInView(options: UseInViewOptions = {}): {
-  ref: MutableRefObject<any>;
+export function useInView<T extends HTMLElement = HTMLDivElement>(options: UseInViewOptions = {}): {
+  ref: MutableRefObject<T | null>;
   inView: boolean;
 } {
   const { threshold = 0.15, rootMargin = '0px', triggerOnce = true } = options;
   const [inView, setInView] = useState(false);
-  const ref = useRef<any>(null);
+  const ref = useRef<T | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

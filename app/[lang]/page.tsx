@@ -26,7 +26,7 @@ export default async function Home({
 
   return (
     <main className="relative min-h-screen bg-aegrix-bg">
-      <Hero dict={dict.hero} />
+      <Hero lang={lang} dict={dict.hero} />
       <div className="relative z-10">
         <ProblemSection />
         <DigitalEvolution />

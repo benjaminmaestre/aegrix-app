@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Sora, Manrope } from 'next/font/google';
 import '../globals.css';
 import Navbar from '@/components/Navbar';
+import CookieBanner from '@/components/CookieBanner';
 import { getDictionary } from '@/lib/get-dictionary';
 
 const sora = Sora({
@@ -92,6 +93,7 @@ export default async function RootLayout({
         />
         <Navbar lang={lang as 'en' | 'es'} dict={dict.navbar} />
         {children}
+        <CookieBanner lang={lang as 'en' | 'es'} dict={dict.cookies} />
       </body>
     </html>
   );

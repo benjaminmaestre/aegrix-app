@@ -27,5 +27,29 @@
       "precision": "Precisión en Datos",
       "innovation": "Innovación Constante"
     }
+  },
+  "cookies": {
+    "message": "Utilizamos cookies propias y de terceros para garantizar el funcionamiento del sitio, mejorar tu experiencia, analizar el tráfico, proteger la seguridad de la plataforma y optimizar nuestras comunicaciones comerciales. Al continuar navegando, aceptas nuestra Política de Cookies.",
+    "accept": "Aceptar todas",
+    "decline": "Rechazar no necesarias",
+    "settings": "Configurar cookies"
+  },
+  "legal": {
+    "privacy": {
+      "title": "Política de Privacidad",
+      "last_updated": "Última actualización: Mayo 2024"
+    },
+    "terms": {
+      "title": "Términos de Servicio",
+      "last_updated": "Última actualización: Mayo 2024"
+    },
+    "cookies": {
+      "title": "Política de Cookies",
+      "last_updated": "Última actualización: Mayo 2024"
+    },
+    "security": {
+      "title": "Política de Seguridad",
+      "last_updated": "Última actualización: Mayo 2024"
+    }
   }
 }

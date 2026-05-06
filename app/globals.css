@@ -30,20 +30,34 @@
 }
 
 /* ── Base ── */
-html { scroll-behavior: smooth; }
+html {
+  overflow-x: hidden;
+}
 
 body {
   background-color: #05070D;
   color: #FFFFFF;
   font-family: var(--font-manrope), sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
+
 /* ── Scrollbar Enterprise ── */
-::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar       { width: 10px; }
 ::-webkit-scrollbar-track { background: #05070D; }
-::-webkit-scrollbar-thumb { background: #1C2333; border-radius: 2px; }
+::-webkit-scrollbar-thumb { 
+  background: #1C2333; 
+  border-radius: 5px;
+  border: 2px solid #05070D;
+}
 ::-webkit-scrollbar-thumb:hover { background: #00C2FF; }
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1C2333 #05070D;
+}
 
 /* ── Utilidades Globales de Alta Ingeniería ── */
 @layer utilities {

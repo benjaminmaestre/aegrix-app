@@ -2,10 +2,14 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MessageSquare, Phone, Send } from 'lucide-react';
+import { Mail, MessageSquare, Phone, Send, ShieldCheck } from 'lucide-react';
 import { WHATSAPP_URL } from '@/lib/data';
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
 
 const ContactSection = () => {
+  const params = useParams();
+  const lang = (params?.lang as string) || 'es';
   return (
     <section id="contacto" className="section-padding bg-aegrix-bg relative overflow-hidden">
       <div className="container-width relative z-10">
@@ -97,13 +101,74 @@ const ContactSection = () => {
                 />
               </div>
 
+              <div className="space-y-3 mt-6 mb-2">
+                <div className="flex items-start gap-3">
+                  <div className="pt-1">
+                    <input 
+                      type="checkbox" 
+                      id="privacy-consent" 
+                      required 
+                      className="w-4 h-4 rounded border-white/10 bg-white/5 text-aegrix-cyan focus:ring-aegrix-cyan/30"
+                    />
+                  </div>
+                  <label htmlFor="privacy-consent" className="text-[11px] text-aegrix-muted leading-relaxed cursor-pointer">
+                    {lang === 'es' ? (
+                      <>
+                        He leído y acepto la <Link href={`/${lang}/privacidad`} className="text-aegrix-cyan hover:underline">Política de Privacidad</Link>.
+                      </>
+                    ) : (
+                      <>
+                        I have read and accept the <Link href={`/${lang}/privacidad`} className="text-aegrix-cyan hover:underline">Privacy Policy</Link>.
+                      </>
+                    )}
+                  </label>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="pt-1">
+                    <input 
+                      type="checkbox" 
+                      id="terms-consent" 
+                      required 
+                      className="w-4 h-4 rounded border-white/10 bg-white/5 text-aegrix-cyan focus:ring-aegrix-cyan/30"
+                    />
+                  </div>
+                  <label htmlFor="terms-consent" className="text-[11px] text-aegrix-muted leading-relaxed cursor-pointer">
+                    {lang === 'es' ? (
+                      <>
+                        He leído y acepto los <Link href={`/${lang}/terminos`} className="text-aegrix-cyan hover:underline">Términos y Condiciones de Servicio</Link>.
+                      </>
+                    ) : (
+                      <>
+                        I have read and accept the <Link href={`/${lang}/terminos`} className="text-aegrix-cyan hover:underline">Terms and Conditions of Service</Link>.
+                      </>
+                    )}
+                  </label>
+                </div>
+              </div>
+
               <button 
                 type="submit"
-                className="btn-primary w-full flex items-center justify-center gap-3 group"
+                className="btn-primary w-full flex items-center justify-center gap-3 group mt-4"
               >
-                Enviar Mensaje
+                {lang === 'es' ? 'Enviar Mensaje' : 'Send Message'}
                 <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
+
+              <div className="mt-6 flex items-start gap-2 p-4 rounded-xl bg-white/2 border border-white/5">
+                <ShieldCheck size={14} className="text-aegrix-cyan shrink-0 mt-0.5" />
+                <p className="text-[10px] text-aegrix-muted leading-relaxed italic">
+                  {lang === 'es' ? (
+                    <>
+                      Al enviar este formulario, declaro que la información suministrada es veraz, que cuento con autorización para compartirla y que acepto el tratamiento de mis datos personales conforme a la Política de Privacidad de AEGRIX. Entiendo que AEGRIX no será responsable por consecuencias derivadas de información falsa o incompleta.
+                    </>
+                  ) : (
+                    <>
+                      By sending this form, I declare that the information provided is true, that I have authorization to share it, and that I accept the treatment of my personal data in accordance with AEGRIX's Privacy Policy. I understand that AEGRIX will not be responsible for consequences derived from false or incomplete information.
+                    </>
+                  )}
+                </p>
+              </div>
             </form>
 
             {/* Decorative background for the form */}

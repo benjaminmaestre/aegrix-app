@@ -9,6 +9,7 @@ import { WHATSAPP_URL } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
 interface HeroProps {
+  lang: 'en' | 'es';
   dict: {
     title_part1: string;
     title_highlight: string;
@@ -18,19 +19,20 @@ interface HeroProps {
   };
 }
 
-const Hero = ({ dict }: HeroProps) => {
+const Hero = ({ lang, dict }: HeroProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Auto-switch main slides every 20 seconds (Vision slide is long)
+  // Auto-switch main slides with dynamic timing
   useEffect(() => {
-    const timer = setInterval(() => {
+    const duration = currentSlide === 0 ? 25000 : 22000;
+    const timer = setTimeout(() => {
       setCurrentSlide((prev) => (prev === 0 ? 1 : 0));
-    }, 25000);
-    return () => clearInterval(timer);
-  }, []);
+    }, duration);
+    return () => clearTimeout(timer);
+  }, [currentSlide]);
 
   return (
-    <section className="relative h-screen min-h-[800px] overflow-hidden flex flex-col justify-center">
+    <section className="relative min-h-screen overflow-hidden flex flex-col justify-center">
       <AnimatePresence mode="wait">
         {currentSlide === 0 ? (
           /* SLIDE 0: ENGINEERING DOMINANCE */
@@ -40,7 +42,7 @@ const Hero = ({ dict }: HeroProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="absolute inset-0 flex items-center justify-center pt-20"
+            className="absolute inset-0 flex items-center justify-center pt-32"
           >
             {/* Background Ambience */}
             <div className="absolute inset-0 z-0 pointer-events-none">
@@ -50,15 +52,15 @@ const Hero = ({ dict }: HeroProps) => {
             </div>
 
             <div className="container-width relative z-10">
-              <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+              <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex flex-col text-left z-20"
+                  className="flex flex-col text-left z-20 lg:col-span-5 xl:col-span-5"
                 >
                   <div className="max-w-[720px]">
-                    <h1 className="font-sora font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-8 leading-tight tracking-tight">
+                    <h1 className="font-sora font-bold text-4xl md:text-5xl lg:text-5xl xl:text-6xl text-white mb-6 leading-tight tracking-tight">
                       {dict.title_part1} <br />
                       <span className="text-aegrix-cyan">{dict.title_highlight}</span>
                     </h1>
@@ -68,7 +70,7 @@ const Hero = ({ dict }: HeroProps) => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center gap-5">
-                      <Link href={`/es#diagnostico`} className="btn-primary w-full sm:w-auto">
+                      <Link href={`/${lang}#diagnostico`} className="btn-primary w-full sm:w-auto">
                         {dict.cta_primary}
                       </Link>
                       <Link href="#arquitectura" className="btn-secondary w-full sm:w-auto">
@@ -82,7 +84,7 @@ const Hero = ({ dict }: HeroProps) => {
                   initial={{ opacity: 0, scale: 0.95, x: 30 }}
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                  className="w-full relative flex justify-center lg:justify-end"
+                  className="w-full relative flex justify-center lg:justify-end lg:col-span-7 xl:col-span-7"
                 >
                   <div className="w-full max-w-[720px]">
                     <HeroControlLayer />
@@ -100,9 +102,9 @@ const Hero = ({ dict }: HeroProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="absolute inset-0 flex flex-col pt-20"
+            className="absolute inset-0 pt-36 pb-24"
           >
-            <div className="container-width grow flex items-center py-10">
+            <div className="container-width w-full h-full">
               <div className="w-full h-full rounded-[40px] overflow-hidden shadow-3xl border border-white/5 relative">
                 <VisionSlide />
               </div>
