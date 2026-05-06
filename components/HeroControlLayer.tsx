@@ -91,7 +91,7 @@ const HeroControlLayer = () => {
                   "w-full flex items-center gap-4 p-3.5 rounded-xl border transition-all duration-500 text-left group",
                   activeIndex === idx 
                     ? cn("bg-white/[0.07] border-white/10 shadow-lg scale-[1.02]", layer.borderColor.replace('/30', '/10'))
-                    : "bg-transparent border-transparent opacity-30 hover:opacity-100 hover:bg-white/[0.03]"
+                    : "bg-transparent border-transparent opacity-30 hover:opacity-100 hover:bg-white/3"
                 )}
               >
                 <div className={cn(

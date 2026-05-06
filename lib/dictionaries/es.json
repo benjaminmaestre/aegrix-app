@@ -1,0 +1,31 @@
+{
+  "hero": {
+    "title_part1": "De la invisibilidad al",
+    "title_highlight": "dominio digital absoluto.",
+    "description": "Modernizamos tu infraestructura con sistemas robustos e ingeniería de software de élite. Integramos ciberseguridad avanzada e inteligencia artificial para que tu empresa opere con control total.",
+    "cta_primary": "Iniciar Evolución",
+    "cta_secondary": "Ver arquitectura"
+  },
+  "navbar": {
+    "services": "Servicios",
+    "nosotros": "Nosotros",
+    "sectors": "Sectores",
+    "methodology": "Metodología",
+    "contact": "Contacto",
+    "cta": "Solicitar diagnóstico 360"
+  },
+  "about": {
+    "title": "Nuestra Filosofía",
+    "subtitle": "ADN AEGRIX",
+    "description": "No somos solo una firma de tecnología; somos arquitectos de estabilidad digital. En AEGRIX, creemos que la tecnología debe ser una capa invisible pero indestructible que permita a las empresas operar sin límites.",
+    "mission_title": "Misión",
+    "mission_text": "Proveer la infraestructura digital más segura y eficiente para las empresas que lideran el futuro.",
+    "vision_title": "Visión",
+    "vision_text": "Ser el estándar global en integración de seguridad, datos e inteligencia artificial.",
+    "values": {
+      "security": "Seguridad Total",
+      "precision": "Precisión en Datos",
+      "innovation": "Innovación Constante"
+    }
+  }
+}

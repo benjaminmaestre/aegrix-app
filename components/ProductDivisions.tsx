@@ -24,7 +24,6 @@ const ProductDivisions = () => {
           "text-center max-w-3xl mx-auto mb-20 transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
-          <div className="label-tag mb-6">Productized Divisions</div>
           <h2 className="heading-lg mb-8 text-white">
             Diseñamos sistemas digitales <br />
             <span className="text-aegrix-cyan">seguros, medibles e inteligentes.</span>
@@ -78,10 +77,9 @@ const ProductDivisions = () => {
                   href={WHATSAPP_URL} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-secondary w-full group py-4 flex items-center justify-center"
+                  className="btn-secondary w-full"
                 >
                   Saber más sobre {division.id === 'web' ? 'Infraestructura Web' : division.title.split(' ')[1]}
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform ml-2" />
                 </Link>
               </div>
             );

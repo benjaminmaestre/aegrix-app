@@ -37,7 +37,6 @@ const UseCasesSection = () => {
           "max-w-3xl mb-20 transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
-          <div className="label-tag mb-6">Casos de Uso</div>
           <h2 className="heading-lg mb-8 text-white">
             Soluciones reales para <br />
             <span className="text-aegrix-cyan">desafíos complejos.</span>
@@ -73,9 +72,9 @@ const UseCasesSection = () => {
                   </span>
                 ))}
               </div>
-              <Link href="/sectores" className="text-xs font-bold text-white uppercase tracking-widest flex items-center gap-2 group/btn">
+              <Link href="/sectores" className="btn-ghost">
                 Ver detalles 
-                <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                <ArrowRight size={14} />
               </Link>
             </div>
           ))}

@@ -1,0 +1,35 @@
+'use client';
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import { MessageCircle } from 'lucide-react';
+import { WHATSAPP_URL } from '@/lib/data';
+
+const WhatsAppFloating = () => {
+  return (
+    <motion.a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      whileHover={{ scale: 1.1, y: -5 }}
+      whileTap={{ scale: 0.9 }}
+      className="fixed bottom-8 right-8 z-60 flex items-center justify-center w-14 h-14 rounded-2xl border border-cyan-200/50 text-[#031018] shadow-2xl transition-all duration-300"
+      style={{
+        background: 'linear-gradient(180deg, #8EF1FF 0%, #00C2FF 48%, #008FC7 100%)',
+        boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 10px 30px rgba(0, 194, 255, 0.3)'
+      }}
+      aria-label="WhatsApp Contact"
+    >
+      <MessageCircle size={28} fill="currentColor" strokeWidth={1} />
+      
+      {/* Active pulse effect */}
+      <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 border-2 border-[#031018] rounded-full">
+        <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-75" />
+      </span>
+    </motion.a>
+  );
+};
+
+export default WhatsAppFloating;

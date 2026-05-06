@@ -62,46 +62,102 @@ body {
   .card-base        { @apply bg-aegrix-surface border border-aegrix-border rounded-xl p-8; }
   .card-hover       { @apply transition-all duration-500 hover:border-aegrix-cyan/30 hover:shadow-cyan-sm hover:-translate-y-1; }
   
+  /* ── SISTEMA DE BOTONES AEGRIX LIQUID GLASS PREMIUM ── */
+  
   .btn-primary { 
-    @apply relative overflow-hidden text-aegrix-cyan/90 font-manrope font-extrabold px-10 py-5 rounded-full transition-all duration-700 flex items-center justify-center gap-3 border-[3px] border-[#05060B] tracking-[0.2em] uppercase text-[10px]; 
-    background: linear-gradient(145deg, #161B2E, #0A0D1A);
+    @apply inline-flex items-center justify-center gap-3 rounded-2xl px-8 py-4
+    font-manrope text-[13px] font-bold uppercase tracking-widest
+    text-[#031018] transition-all duration-300
+    border border-cyan-200/70;
+    background: linear-gradient(180deg, #8EF1FF 0%, #00C2FF 48%, #008FC7 100%);
     box-shadow: 
-      0 0 60px rgba(0,194,255,0.15),
-      inset 0 2px 10px rgba(255,255,255,0.05),
-      inset 0 -2px 10px rgba(0,0,0,0.5);
+      inset 0 1px 0 rgba(255, 255, 255, 0.65),
+      inset 0 -10px 18px rgba(0, 52, 78, 0.28),
+      0 14px 34px rgba(0, 194, 255, 0.24),
+      0 8px 24px rgba(0, 0, 0, 0.34);
   }
   
   .btn-primary:hover {
-    @apply scale-[1.02] shadow-[0_0_80px_rgba(0,194,255,0.35)];
+    @apply brightness-110 -translate-y-0.5;
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.75),
+      inset 0 -10px 18px rgba(0, 52, 78, 0.22),
+      0 18px 40px rgba(0, 194, 255, 0.32),
+      0 10px 30px rgba(0, 0, 0, 0.4);
   }
 
+  .btn-primary:active { @apply translate-y-px brightness-100 transition-none; }
+
   .btn-secondary { 
-    @apply relative overflow-hidden text-white/70 font-manrope font-extrabold px-10 py-5 rounded-full transition-all duration-700 flex items-center justify-center gap-3 border-[3px] border-[#05060B] tracking-[0.2em] uppercase text-[10px]; 
-    background: linear-gradient(145deg, #1A1D26, #0F1118);
+    @apply inline-flex items-center justify-center gap-3 rounded-2xl px-8 py-4
+    font-manrope text-[13px] font-bold uppercase tracking-widest
+    text-white/90 transition-all duration-500
+    border border-white/20 relative overflow-hidden;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
     box-shadow: 
-      0 0 40px rgba(255,255,255,0.05),
-      inset 0 2px 8px rgba(255,255,255,0.03),
-      inset 0 -2px 8px rgba(0,0,0,0.5);
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -8px 16px rgba(0, 0, 0, 0.4),
+      0 12px 28px rgba(0, 0, 0, 0.5),
+      0 0 15px rgba(0, 194, 255, 0.03);
   }
 
   .btn-secondary:hover {
-    @apply scale-[1.02] text-white border-white/20 shadow-[0_0_60px_rgba(255,255,255,0.1)];
+    @apply border-aegrix-cyan/50 text-aegrix-cyan bg-white/5 -translate-y-0.5;
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      inset 0 -8px 16px rgba(0, 0, 0, 0.3),
+      0 20px 40px rgba(0, 0, 0, 0.6),
+      0 0 20px rgba(0, 194, 255, 0.15);
+  }
+
+  .btn-secondary:active { @apply translate-y-px transition-none; }
+
+  .btn-nav {
+    @apply inline-flex items-center justify-center rounded-2xl px-6 py-2.5
+    font-manrope text-[13px] font-bold uppercase tracking-widest
+    text-white transition-all duration-500
+    border border-aegrix-cyan/40;
+    background: linear-gradient(180deg, rgba(0, 194, 255, 0.25) 0%, rgba(0, 194, 255, 0.05) 100%);
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      0 8px 24px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(0, 194, 255, 0.1);
+  }
+
+  .btn-nav:hover {
+    @apply border-aegrix-cyan/70 text-aegrix-cyan bg-aegrix-cyan/15 scale-[1.02];
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      0 12px 30px rgba(0, 0, 0, 0.5),
+      0 0 30px rgba(0, 194, 255, 0.25);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 font-manrope text-[13px] font-bold uppercase tracking-widest
+    text-aegrix-cyan transition-all duration-300 hover:text-white;
   }
   
-  /* Shared Shimmer Effect */
-  .btn-primary::after, .btn-secondary::after {
-    content: '';
-    @apply absolute inset-0 -translate-x-full;
-    transition: transform 0.8s ease-in-out;
+  .grid-bg { 
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); 
+    background-size: 60px 60px; 
   }
-  
-  .btn-primary::after { @apply bg-linear-to-r from-transparent via-aegrix-cyan/10 to-transparent; }
-  .btn-secondary::after { @apply bg-linear-to-r from-transparent via-white/5 to-transparent; }
-  
-  .btn-primary:hover::after, .btn-secondary:hover::after {
-    @apply translate-x-full;
+
+  /* Smooth scroll margins for anchor links */
+  section[id] {
+    scroll-margin-top: 100px;
   }
-  .btn-ghost        { @apply text-aegrix-cyan font-manrope font-semibold hover:underline underline-offset-8 transition-all duration-300; }
-  
-  .grid-bg          { background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+
+  .footer-social-link {
+    @apply flex items-center justify-center w-12 h-12 rounded-2xl
+    bg-[#031018] border border-white/5 text-aegrix-muted
+    transition-all duration-300 relative overflow-hidden;
+    box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.6);
+  }
+
+  .footer-social-link:hover {
+    @apply text-white border-aegrix-cyan/30 -translate-y-1;
+    box-shadow: 
+      0 10px 20px rgba(0, 0, 0, 0.4),
+      0 0 15px rgba(0, 194, 255, 0.15);
+  }
 }

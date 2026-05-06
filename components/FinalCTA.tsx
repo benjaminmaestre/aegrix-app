@@ -32,17 +32,18 @@ const FinalCTA = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link 
               href={WHATSAPP_URL} 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary w-full sm:w-auto px-12 py-5 group text-center flex items-center justify-center gap-3"
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn-primary w-full sm:w-auto"
             >
               Solicitar Diagnóstico 360
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link href="mailto:info@aegrix.com" className="btn-secondary w-full sm:w-auto px-12 py-5 text-center flex items-center justify-center gap-3">
+            <a 
+              href="mailto:contacto@aegrix.com" 
+              className="btn-secondary w-full sm:w-auto"
+            >
               Escribir por correo
-              <MessageSquare size={20} className="ml-2 opacity-60" />
-            </Link>
+            </a>
           </div>
 
           <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-12 text-white/40">

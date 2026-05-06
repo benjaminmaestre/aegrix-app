@@ -11,16 +11,13 @@ const PlatformSection = () => {
   const { ref, inView } = useInView();
 
   return (
-    <section ref={ref} className="section-padding bg-aegrix-bg relative">
+    <section id="arquitectura" ref={ref} className="section-padding bg-aegrix-bg relative">
       <div className="container-width">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div className={cn(
             "transition-all duration-1000",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
           )}>
-            <div className="label-tag mb-8 bg-aegrix-cyan/10 text-aegrix-cyan border-aegrix-cyan/20">
-              The Architecture
-            </div>
             <h2 className="heading-lg mb-8 text-white">
               Una sola capa para proteger, <br />
               <span className="text-aegrix-cyan">medir y acelerar tu operación.</span>
@@ -44,9 +41,8 @@ const PlatformSection = () => {
               ))}
             </div>
 
-            <Link href="/servicios" className="btn-primary px-10 group inline-flex items-center justify-center">
+            <Link href="#servicios" className="btn-primary">
               Explorar la Capa de Control
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform ml-2" />
             </Link>
           </div>
 

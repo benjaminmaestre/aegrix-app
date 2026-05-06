@@ -1,9 +1,9 @@
 export const navItems = [
   { label: 'Inicio', href: '/' },
-  { label: 'Servicios', href: '/servicios' },
-  { label: 'Sectores', href: '/sectores' },
-  { label: 'Metodología', href: '/metodologia' },
-  { label: 'Diagnóstico 360', href: '/#diagnostico' },
+  { label: 'Servicios', href: '/#servicios' },
+  { label: 'Sectores', href: '/#sectores' },
+  { label: 'Metodología', href: '/#metodologia' },
+  { label: 'Contacto', href: '/#contacto' },
 ];
 
 export const problemCards = [
@@ -43,17 +43,17 @@ export const productDivisions = [
   },
   {
     id: 'web',
-    title: 'AEGRIX Web',
-    tagline: 'Infraestructura web para vender más.',
-    description: 'Tu web no debe existir: debe trabajar. Desarrollamos herramientas de conversión de alto rendimiento.',
-    features: ['Desarrollo Premium Next.js/React', 'Performance y Core Web Vitals', 'Tracking de conversiones avanzado', 'SEO técnico y UX profesional'],
+    title: 'AEGRIX Software & Web',
+    tagline: 'Sistemas robustos e infraestructura de alto rendimiento.',
+    description: 'No solo diseñamos páginas; construimos el motor digital de tu empresa. Desde landings de alta conversión hasta sistemas enterprise escalables y robustos.',
+    features: ['Sistemas Enterprise & SaaS', 'Desarrollo Full-Stack Premium', 'Landings de Alta Conversión', 'Arquitecturas Escalables y Seguras'],
   },
   {
     id: 'data-ai',
-    title: 'AEGRIX Data & AI',
-    tagline: 'Analítica y automatización inteligente.',
-    description: 'Datos sin análisis son oportunidades invisibles. Automatizamos tu crecimiento con IA estratégica.',
-    features: ['Dashboards de control operativo', 'Automatización de flujos de trabajo', 'Integración de IA empresarial', 'Modelos predictivos de negocio'],
+    title: 'AEGRIX Data & IA',
+    tagline: 'IA Estratégica y Capacitación Corporativa.',
+    description: 'No solo implementamos inteligencia artificial; capacitamos a tu equipo para dominarla y transformar los datos en decisiones rentables.',
+    features: ['Implementación de Agentes IA', 'Capacitación Ejecutiva en IA', 'Automatización de Procesos Inteligentes', 'Modelos Predictivos de Negocio'],
   },
   {
     id: 'care',

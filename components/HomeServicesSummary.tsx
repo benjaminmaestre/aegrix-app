@@ -66,10 +66,9 @@ const HomeServicesSummary = () => {
         <div className="mt-16 flex justify-center">
           <Link 
             href="/servicios" 
-            className="group flex items-center gap-3 text-aegrix-cyan font-bold uppercase tracking-widest text-[11px] py-4 px-8 border border-white/5 rounded-full hover:bg-aegrix-cyan/5 transition-all"
+            className="btn-ghost"
           >
-            Ver servicios AEGRIX
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            Ver servicios AEGRIX <ArrowRight size={16} />
           </Link>
         </div>
       </div>

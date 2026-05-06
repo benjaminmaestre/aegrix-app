@@ -1,88 +1,145 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import HeroControlLayer from './HeroControlLayer';
+import VisionSlide from './VisionSlide';
 import { WHATSAPP_URL } from '@/lib/data';
+import { cn } from '@/lib/utils';
 
-const Hero = () => {
+interface HeroProps {
+  dict: {
+    title_part1: string;
+    title_highlight: string;
+    description: string;
+    cta_primary: string;
+    cta_secondary: string;
+  };
+}
+
+const Hero = ({ dict }: HeroProps) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Auto-switch main slides every 20 seconds (Vision slide is long)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev === 0 ? 1 : 0));
+    }, 25000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative min-h-screen pt-32 md:pt-40 lg:pt-48 pb-16 overflow-hidden flex flex-col justify-center">
-      {/* Background Ambience - Contained */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(0,194,255,0.05),transparent_50%)]" />
-        <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.05),transparent_50%)]" />
-        <div className="absolute inset-0 grid-bg opacity-[0.08]" />
-      </div>
-
-      <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
-          
-          {/* LEFT COLUMN: TEXT & CTAs */}
+    <section className="relative h-screen min-h-[800px] overflow-hidden flex flex-col justify-center">
+      <AnimatePresence mode="wait">
+        {currentSlide === 0 ? (
+          /* SLIDE 0: ENGINEERING DOMINANCE */
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col text-left z-20 min-w-0"
+            key="engineering"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+            className="absolute inset-0 flex items-center justify-center pt-20"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-sm w-fit">
-              <div className="w-1.5 h-1.5 rounded-full bg-aegrix-cyan animate-pulse shadow-[0_0_10px_#00C2FF]" />
-              <span className="text-[10px] font-bold text-white/90 uppercase tracking-[0.25em]">AEGRIX CONTROL LAYER</span>
+            {/* Background Ambience */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(0,194,255,0.05),transparent_50%)]" />
+              <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.05),transparent_50%)]" />
+              <div className="absolute inset-0 grid-bg opacity-[0.08]" />
             </div>
 
-            <div className="max-w-[720px]">
-              <h1 className="font-sora font-bold text-4xl md:text-5xl lg:text-5xl xl:text-6xl text-white mb-8 leading-[1.05] tracking-tight">
-                Convierte tu operación digital en una capa de control <br />
-                <span className="text-aegrix-cyan">segura, medible e inteligente.</span>
-              </h1>
-
-              <p className="body-lg mb-12 text-aegrix-muted max-w-xl leading-relaxed opacity-80">
-                AEGRIX integra ciberseguridad, desarrollo web, datos e inteligencia artificial para que tu empresa opere con más visibilidad, protección y capacidad de crecimiento.
-              </p>
-
-              {/* TRUST CHIPS */}
-              <div className="flex flex-wrap gap-3 mb-16">
-                {['Protección', 'Visibilidad', 'Automatización'].map((label, i) => (
-                  <div key={i} className="px-4 py-2 rounded-lg bg-white/[0.02] border border-white/10 text-[11px] font-bold text-white/60 uppercase tracking-[0.15em] flex items-center gap-3">
-                    <div className="w-1 h-1 rounded-full bg-aegrix-cyan/40" />
-                    {label}
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-center gap-6">
-                <Link 
-                  href={WHATSAPP_URL} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="btn-primary px-10 h-16 w-full sm:w-auto text-base"
+            <div className="container-width relative z-10">
+              <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex flex-col text-left z-20"
                 >
-                  Solicitar Diagnóstico 360
-                </Link>
-                <Link href="/servicios" className="btn-secondary px-10 h-16 w-full sm:w-auto text-base">
-                  Ver arquitectura
-                </Link>
+                  <div className="max-w-[720px]">
+                    <h1 className="font-sora font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-8 leading-tight tracking-tight">
+                      {dict.title_part1} <br />
+                      <span className="text-aegrix-cyan">{dict.title_highlight}</span>
+                    </h1>
+
+                    <p className="body-lg mb-12 text-aegrix-muted max-w-xl opacity-80">
+                      {dict.description}
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row items-center gap-5">
+                      <Link href={`/es#diagnostico`} className="btn-primary w-full sm:w-auto">
+                        {dict.cta_primary}
+                      </Link>
+                      <Link href="#arquitectura" className="btn-secondary w-full sm:w-auto">
+                        {dict.cta_secondary}
+                      </Link>
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, x: 30 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  className="w-full relative flex justify-center lg:justify-end"
+                >
+                  <div className="w-full max-w-[720px]">
+                    <HeroControlLayer />
+                  </div>
+                  <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-aegrix-cyan/5 blur-[120px] rounded-full pointer-events-none" />
+                </motion.div>
               </div>
             </div>
           </motion.div>
-
-          {/* RIGHT COLUMN: VISUAL CONTROL LAYER */}
+        ) : (
+          /* SLIDE 1: VISION NARRATIVE */
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, x: 30 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full relative flex justify-center lg:justify-end min-w-0"
+            key="vision"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+            className="absolute inset-0 flex flex-col pt-20"
           >
-            <div className="w-full max-w-[640px] xl:max-w-[720px] transform transition-transform duration-700">
-              <HeroControlLayer />
+            <div className="container-width grow flex items-center py-10">
+              <div className="w-full h-full rounded-[40px] overflow-hidden shadow-3xl border border-white/5 relative">
+                <VisionSlide />
+              </div>
             </div>
-            
-            {/* Visual Decorative elements */}
-            <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-aegrix-cyan/5 blur-[120px] rounded-full pointer-events-none" />
           </motion.div>
+        )}
+      </AnimatePresence>
 
-        </div>
+      {/* Slide Navigation Controls */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8 z-50">
+        <button 
+          onClick={() => setCurrentSlide(0)}
+          className="group flex flex-col items-start gap-2"
+        >
+          <span className={cn(
+            "text-[10px] font-bold uppercase tracking-[0.2em] transition-colors",
+            currentSlide === 0 ? "text-aegrix-cyan" : "text-white/30"
+          )}>Engineering</span>
+          <div className={cn(
+            "h-0.5 rounded-full transition-all duration-500",
+            currentSlide === 0 ? "w-16 bg-aegrix-cyan" : "w-8 bg-white/10 group-hover:bg-white/30"
+          )} />
+        </button>
+
+        <button 
+          onClick={() => setCurrentSlide(1)}
+          className="group flex flex-col items-start gap-2"
+        >
+          <span className={cn(
+            "text-[10px] font-bold uppercase tracking-[0.2em] transition-colors",
+            currentSlide === 1 ? "text-aegrix-cyan" : "text-white/30"
+          )}>AI Vision</span>
+          <div className={cn(
+            "h-0.5 rounded-full transition-all duration-500",
+            currentSlide === 1 ? "w-16 bg-aegrix-cyan" : "w-8 bg-white/10 group-hover:bg-white/30"
+          )} />
+        </button>
       </div>
     </section>
   );

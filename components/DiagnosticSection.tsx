@@ -18,9 +18,6 @@ const DiagnosticSection = () => {
             "transition-all duration-1000",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
           )}>
-            <div className="label-tag mb-8 bg-aegrix-cyan/10 text-aegrix-cyan border-aegrix-cyan/20">
-              The Gateway
-            </div>
             <h2 className="heading-lg mb-8 text-white">
               Diagnóstico <span className="text-aegrix-cyan">AEGRIX 360</span>
             </h2>
@@ -57,10 +54,9 @@ const DiagnosticSection = () => {
               href={WHATSAPP_URL} 
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary w-full sm:w-auto px-12 group flex items-center justify-center gap-3"
+              className="btn-primary w-full sm:w-auto"
             >
               Solicitar diagnóstico ahora
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
