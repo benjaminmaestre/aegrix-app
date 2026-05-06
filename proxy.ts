@@ -14,8 +14,9 @@ export function proxy(request: NextRequest) {
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = 'es'; // Default locale
+    const normalizedPathname = pathname === '/' ? '' : pathname;
     return NextResponse.redirect(
-      new URL(`/${locale}/${pathname}`, request.url)
+      new URL(`/${locale}${normalizedPathname}`, request.url)
     );
   }
 }

@@ -1,9 +1,17 @@
 import type { Metadata } from 'next';
 import { Sora, Manrope } from 'next/font/google';
+import { notFound } from 'next/navigation';
 import '../globals.css';
 import Navbar from '@/components/Navbar';
 import CookieBanner from '@/components/CookieBanner';
 import { getDictionary } from '@/lib/get-dictionary';
+
+const locales = ['es', 'en'] as const;
+type Locale = typeof locales[number];
+
+function isValidLocale(lang: string): lang is Locale {
+  return locales.includes(lang as Locale);
+}
 
 const sora = Sora({
   subsets: ['latin'],
@@ -21,6 +29,13 @@ const manrope = Manrope({
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
+  
+  if (!isValidLocale(lang)) {
+    return {
+      title: 'AEGRIX',
+    };
+  }
+
   const isEn = lang === 'en';
 
   const title = isEn 
@@ -69,10 +84,15 @@ export default async function RootLayout({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const dict = await getDictionary(lang as 'en' | 'es');
+
+  if (!isValidLocale(lang)) {
+    notFound();
+  }
+  
+  const dict = await getDictionary(lang);
   
   return (
-    <html lang={lang || 'es'} className={`${sora.variable} ${manrope.variable}`}>
+    <html lang={lang} className={`${sora.variable} ${manrope.variable}`}>
       <body className="bg-aegrix-bg text-white font-manrope selection:bg-aegrix-cyan/20">
         <script
           type="application/ld+json"
@@ -91,9 +111,9 @@ export default async function RootLayout({
             })
           }}
         />
-        <Navbar lang={lang as 'en' | 'es'} dict={dict.navbar} />
+        <Navbar lang={lang} dict={dict.navbar} />
         {children}
-        <CookieBanner lang={lang as 'en' | 'es'} dict={dict.cookies} />
+        <CookieBanner lang={lang} dict={dict.cookies} />
       </body>
     </html>
   );

@@ -1,0 +1,101 @@
+﻿
+> aegrix-app@0.1.0 lint
+> eslint
+
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\app\[lang]\page.tsx
+  2:8  warning  'Navbar' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\app\[lang]\privacidad\page.tsx
+  150:25  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\app\[lang]\seguridad\page.tsx
+   93:57   error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  110:132  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\app\[lang]\terminos\page.tsx
+  189:83  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  201:52  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\CommandCenter.tsx
+    7:10  warning  'Shield' is defined but never used                               @typescript-eslint/no-unused-vars
+    7:55  warning  'Globe' is defined but never used                                @typescript-eslint/no-unused-vars
+  152:17  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  152:56  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\ContactSection.tsx
+    5:31   warning  'Phone' is defined but never used                                @typescript-eslint/no-unused-vars
+  167:210  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\CookieBanner.tsx
+  17:25  warning  'lang' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\DiagnosticSection.tsx
+  8:10  warning  'Shield' is defined but never used      @typescript-eslint/no-unused-vars
+  8:18  warning  'Globe' is defined but never used       @typescript-eslint/no-unused-vars
+  8:25  warning  'Cpu' is defined but never used         @typescript-eslint/no-unused-vars
+  8:44  warning  'ArrowRight' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\DigitalEvolution.tsx
+   5:37  warning  'UserCheck' is defined but never used                            @typescript-eslint/no-unused-vars
+   5:48  warning  'ShieldAlert' is defined but never used                          @typescript-eslint/no-unused-vars
+   5:61  warning  'ShieldCheck' is defined but never used                          @typescript-eslint/no-unused-vars
+  67:19  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  67:41  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\FinalCTA.tsx
+  5:10  warning  'ArrowRight' is defined but never used     @typescript-eslint/no-unused-vars
+  5:22  warning  'MessageSquare' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\Footer.tsx
+  7:10  warning  'Linkedin' is defined but never used  @typescript-eslint/no-unused-vars
+  7:20  warning  'Twitter' is defined but never used   @typescript-eslint/no-unused-vars
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\Hero.tsx
+  8:10  warning  'WHATSAPP_URL' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\LegalPageLayout.tsx
+  2:10  warning  'motion' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\Navbar.tsx
+  9:10  warning  'navItems' is defined but never used      @typescript-eslint/no-unused-vars
+  9:20  warning  'WHATSAPP_URL' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\PlatformSection.tsx
+  5:10  warning  'platformBlocks' is defined but never used  @typescript-eslint/no-unused-vars
+  8:10  warning  'ArrowRight' is defined but never used      @typescript-eslint/no-unused-vars
+  8:22  warning  'Layers' is defined but never used          @typescript-eslint/no-unused-vars
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\ProblemSection.tsx
+  9:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\ProcessSection.tsx
+  7:10  warning  'ArrowRight' is defined but never used    @typescript-eslint/no-unused-vars
+  7:22  warning  'ChevronRight' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\ProductDivisions.tsx
+   8:51  warning  'ArrowRight' is defined but never used                           @typescript-eslint/no-unused-vars
+  10:29  error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  91:13  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  91:56  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\SectorSection.tsx
+  5:41  warning  'ArrowRight' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\SectorsSection.tsx
+   6:19  warning  'Shield' is defined but never used        @typescript-eslint/no-unused-vars
+   6:27  warning  'Globe' is defined but never used         @typescript-eslint/no-unused-vars
+   6:34  warning  'Cpu' is defined but never used           @typescript-eslint/no-unused-vars
+   6:39  warning  'BarChart3' is defined but never used     @typescript-eslint/no-unused-vars
+  12:31  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\UseCasesSection.tsx
+  7:10  warning  'ExternalLink' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\BOne\.gemini\antigravity\scratch\aegrix-app\components\WebGrowthSection.tsx
+  7:10  warning  'Globe' is defined but never used       @typescript-eslint/no-unused-vars
+  7:17  warning  'Zap' is defined but never used         @typescript-eslint/no-unused-vars
+  7:30  warning  'TrendingUp' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 50 problems (15 errors, 35 warnings)
+

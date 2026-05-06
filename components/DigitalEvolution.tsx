@@ -64,7 +64,7 @@ const DigitalEvolution = () => {
                   <Zap size={20} />
                 </div>
                 <div className="text-sm font-medium text-white italic">
-                  "{scenario.impactText}"
+                  &quot;{scenario.impactText}&quot;
                 </div>
               </div>
             </motion.div>

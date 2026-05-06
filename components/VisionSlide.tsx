@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Share2, Rocket, Cpu, Layout, Globe } from 'lucide-react';
+import { Shield, Cpu, Layout, Globe, type LucideIcon } from 'lucide-react';
 import { WHATSAPP_URL } from '@/lib/data';
 
 const CYAN = '#00D4D4';
@@ -237,7 +237,14 @@ const VisionSlide = () => {
   );
 };
 
-const NodeCard = ({ icon: Icon, title, status, color }: { icon: any, title: string, status: string, color: string }) => (
+type NodeCardProps = {
+  icon: LucideIcon;
+  title: string;
+  status: string;
+  color: string;
+};
+
+const NodeCard = ({ icon: Icon, title, status, color }: NodeCardProps) => (
   <div className="bg-white/3 border border-white/10 rounded-xl p-3 md:p-4 flex items-center gap-4 hover:bg-white/5 transition-colors relative overflow-hidden group">
     <div className="absolute inset-0 bg-linear-to-r from-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
     <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center shadow-lg relative z-10" style={{ backgroundColor: `${color}15`, color }}>

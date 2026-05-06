@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { productDivisions, WHATSAPP_URL } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
-import { Shield, Globe, Cpu, Heart, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Shield, Globe, Cpu, Heart, CheckCircle2, ArrowRight, type LucideIcon } from 'lucide-react';
 
-const icons: Record<string, any> = {
+const icons: Record<string, LucideIcon> = {
   shield: Shield,
   web: Globe,
   'data-ai': Cpu,
@@ -88,7 +88,7 @@ const ProductDivisions = () => {
 
         <div className="mt-20 text-center">
           <p className="text-aegrix-muted italic font-medium mb-8">
-            "Menos caos operativo. Más control digital."
+            &quot;Menos caos operativo. Más control digital.&quot;
           </p>
           <div className="inline-flex items-center gap-8 px-8 py-4 rounded-full bg-white/2 border border-white/5 grayscale opacity-50">
             <span className="text-[10px] font-bold uppercase tracking-widest text-white">Next.js</span>

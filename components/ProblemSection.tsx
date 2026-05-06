@@ -4,9 +4,9 @@ import React from 'react';
 import { problemCards } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
-import { Database, Globe, Clock, Lock, AlertCircle } from 'lucide-react';
+import { Database, Globe, Clock, Lock, AlertCircle, type LucideIcon } from 'lucide-react';
 
-const icons: Record<string, any> = {
+const icons: Record<string, LucideIcon> = {
   Database,
   Globe,
   Clock,

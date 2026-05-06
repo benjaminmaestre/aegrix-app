@@ -24,7 +24,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
 
   // Auto-switch main slides with dynamic timing
   useEffect(() => {
-    const duration = currentSlide === 0 ? 25000 : 22000;
+    const duration = currentSlide === 0 ? 25000 : 30000;
     const timer = setTimeout(() => {
       setCurrentSlide((prev) => (prev === 0 ? 1 : 0));
     }, duration);
