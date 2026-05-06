@@ -131,11 +131,29 @@ export default async function CookiesPolicyPage({
           <h2>8. Management and Deactivation</h2>
           <p>You can accept, reject, or delete cookies from your browser settings. Note that blocking them may affect the functionality and stability of the website.</p>
 
+          <h2>9. Browser Configuration</h2>
+          <p>You can manage cookies in the Privacy or Security sections of Google Chrome, Mozilla Firefox, Safari, or Microsoft Edge.</p>
+
+          <h2>10. Consent and Withdrawal</h2>
+          <p>You can withdraw or modify your consent at any time by manually deleting cookies from your browser or adjusting your preferences in our settings panel if available.</p>
+
           <h2>11. Personal Data Treatment</h2>
           <p>Any information associated with cookies that constitutes personal data will be treated according to our Privacy Policy and Law 1581 of 2012.</p>
 
+          <h2>12. Transfer to Third Parties</h2>
+          <p>Analytical information may be processed by national or international technological providers that comply with reasonable security standards.</p>
+
           <h2>13. Conservation</h2>
           <p>Duration varies by purpose: some expire at session close, while others remain to remember preferences for future visits.</p>
+
+          <h2>14. Mobile Devices</h2>
+          <p>The same rules apply on mobile devices, and cookies can be managed from the mobile browser or the operating system&apos;s privacy settings.</p>
+
+          <h2>15. User Responsibility</h2>
+          <p>The user is responsible for configuring their browsing environment according to their privacy needs.</p>
+
+          <h2>16. Limitation of Liability</h2>
+          <p>AEGRIX is not responsible for restrictive user configurations that limit the site, nor for cookies installed by third parties under their own policies.</p>
 
           <h2>17. Updates</h2>
           <p>This policy may be modified to adapt to legal or technical changes, always publishing the most recent version on this website.</p>
