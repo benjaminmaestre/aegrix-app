@@ -51,8 +51,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
             "relative flex items-center transition-all duration-500",
             scrolled ? "h-16" : "h-20"
           )}>
-            {/* Glow effect centered behind logo */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-aegrix-cyan/20 blur-2xl rounded-full scale-50 group-hover:scale-110 transition-transform duration-500" />
+
             
             <Image 
               src="/AEGRIX_hero_vector.svg" 

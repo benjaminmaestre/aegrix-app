@@ -17,7 +17,7 @@ const WebGrowthSection = () => {
             "order-2 lg:order-1 transition-all duration-1000",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
           )}>
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-lg group">
               <div className="absolute inset-0 bg-linear-to-br from-aegrix-cyan/20 to-transparent mix-blend-overlay opacity-50" />
               <div className="absolute inset-0 grid-bg opacity-20" />
               
@@ -40,7 +40,7 @@ const WebGrowthSection = () => {
                   </div>
                 </div>
                 <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-                  <div className="h-full bg-aegrix-cyan w-[98%] shadow-[0_0_10px_#00C2FF]" />
+                  <div className="h-full bg-aegrix-cyan w-[98%]" />
                 </div>
               </div>
             </div>

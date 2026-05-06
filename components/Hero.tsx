@@ -104,7 +104,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
             className="w-full min-h-screen flex flex-col relative pt-28 md:pt-36 pb-32"
           >
             <div className="container-width w-full mt-8 md:my-auto h-full flex flex-col">
-              <div className="w-full flex-1 min-h-[500px] md:min-h-[600px] rounded-[40px] overflow-hidden shadow-3xl border border-white/5 relative">
+              <div className="w-full flex-1 min-h-[500px] md:min-h-[600px] rounded-[40px] overflow-hidden border border-white/5 relative bg-aegrix-surface/20">
                 <VisionSlide />
               </div>
             </div>
@@ -113,32 +113,36 @@ const Hero = ({ lang, dict }: HeroProps) => {
       </AnimatePresence>
 
       {/* Slide Navigation Controls */}
-      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8 z-40">
+      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-12 z-40">
         <button 
           onClick={() => setCurrentSlide(0)}
-          className="group flex flex-col items-start gap-2"
+          className="group flex flex-col items-start gap-3"
         >
           <span className={cn(
-            "text-[10px] font-bold uppercase tracking-[0.2em] transition-colors",
-            currentSlide === 0 ? "text-aegrix-cyan" : "text-white/30"
-          )}>Engineering</span>
+            "text-[10px] font-bold uppercase tracking-[0.25em] transition-colors",
+            currentSlide === 0 ? "text-aegrix-cyan" : "text-white/20 group-hover:text-white/40"
+          )}>
+            {lang === 'es' ? 'Control Digital' : 'Digital Control'}
+          </span>
           <div className={cn(
-            "h-0.5 rounded-full transition-all duration-500",
-            currentSlide === 0 ? "w-16 bg-aegrix-cyan" : "w-8 bg-white/10 group-hover:bg-white/30"
+            "h-[1.5px] rounded-full transition-all duration-700",
+            currentSlide === 0 ? "w-12 bg-aegrix-cyan" : "w-0 bg-white/10 group-hover:w-6"
           )} />
         </button>
 
         <button 
           onClick={() => setCurrentSlide(1)}
-          className="group flex flex-col items-start gap-2"
+          className="group flex flex-col items-start gap-3"
         >
           <span className={cn(
-            "text-[10px] font-bold uppercase tracking-[0.2em] transition-colors",
-            currentSlide === 1 ? "text-aegrix-cyan" : "text-white/30"
-          )}>AI Vision</span>
+            "text-[10px] font-bold uppercase tracking-[0.25em] transition-colors",
+            currentSlide === 1 ? "text-aegrix-cyan" : "text-white/20 group-hover:text-white/40"
+          )}>
+            {lang === 'es' ? 'Visión Estratégica' : 'Strategic Vision'}
+          </span>
           <div className={cn(
-            "h-0.5 rounded-full transition-all duration-500",
-            currentSlide === 1 ? "w-16 bg-aegrix-cyan" : "w-8 bg-white/10 group-hover:bg-white/30"
+            "h-[1.5px] rounded-full transition-all duration-700",
+            currentSlide === 1 ? "w-12 bg-aegrix-cyan" : "w-0 bg-white/10 group-hover:w-6"
           )} />
         </button>
       </div>

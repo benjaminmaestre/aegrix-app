@@ -16,9 +16,9 @@
   --font-sora:    var(--font-sora), sans-serif;
   --font-manrope: var(--font-manrope), sans-serif;
 
-  --shadow-cyan-sm: 0 0 20px rgba(0,194,255,0.05);
-  --shadow-cyan-md: 0 0 40px rgba(0,194,255,0.1);
-  --shadow-cyan-lg: 0 0 60px rgba(0,194,255,0.05);
+  --shadow-cyan-sm: 0 4px 20px rgba(0,194,255,0.02);
+  --shadow-cyan-md: 0 8px 30px rgba(0,194,255,0.04);
+  --shadow-cyan-lg: 0 12px 40px rgba(0,194,255,0.06);
 
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-fade-in:    fadeIn 0.8s ease forwards;
@@ -34,6 +34,7 @@
 /* ── Base ── */
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -46,12 +47,11 @@ body {
 
 
 /* ── Scrollbar Enterprise ── */
-::-webkit-scrollbar       { width: 10px; }
+::-webkit-scrollbar       { width: 8px; }
 ::-webkit-scrollbar-track { background: #05070D; }
 ::-webkit-scrollbar-thumb { 
   background: #1C2333; 
-  border-radius: 5px;
-  border: 2px solid #05070D;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover { background: #00C2FF; }
 
@@ -76,76 +76,51 @@ body {
   .label-tag        { @apply font-manrope text-[10px] font-bold uppercase tracking-[0.2em] text-aegrix-cyan px-3 py-1.5 bg-aegrix-surface/50 border border-aegrix-border rounded-sm inline-flex items-center gap-2; }
   
   .card-base        { @apply bg-aegrix-surface border border-aegrix-border rounded-xl p-8; }
-  .card-hover       { @apply transition-all duration-500 hover:border-aegrix-cyan/30 hover:shadow-cyan-sm hover:-translate-y-1; }
+  .card-hover       { @apply transition-all duration-500 hover:border-aegrix-cyan/20 hover:shadow-cyan-sm hover:-translate-y-1; }
   
-  /* ── SISTEMA DE BOTONES AEGRIX LIQUID GLASS PREMIUM ── */
+  /* ── SISTEMA DE BOTONES AEGRIX PREMIUM MINIMAL ── */
   
   .btn-primary { 
-    @apply inline-flex items-center justify-center gap-3 rounded-2xl px-8 py-4
+    @apply inline-flex items-center justify-center gap-3 rounded-xl px-8 py-4
     font-manrope text-[13px] font-bold uppercase tracking-widest
     text-[#031018] transition-all duration-300
-    border border-cyan-200/70;
-    background: linear-gradient(180deg, #8EF1FF 0%, #00C2FF 48%, #008FC7 100%);
-    box-shadow: 
-      inset 0 1px 0 rgba(255, 255, 255, 0.65),
-      inset 0 -10px 18px rgba(0, 52, 78, 0.28),
-      0 14px 34px rgba(0, 194, 255, 0.24),
-      0 8px 24px rgba(0, 0, 0, 0.34);
+    border border-cyan-400/30;
+    background: linear-gradient(180deg, #00D4FF 0%, #00A3D7 100%);
+    box-shadow: 0 4px 12px rgba(0, 194, 255, 0.15);
   }
   
   .btn-primary:hover {
     @apply brightness-110 -translate-y-0.5;
-    box-shadow: 
-      inset 0 1px 0 rgba(255, 255, 255, 0.75),
-      inset 0 -10px 18px rgba(0, 52, 78, 0.22),
-      0 18px 40px rgba(0, 194, 255, 0.32),
-      0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 24px rgba(0, 194, 255, 0.25);
   }
 
   .btn-primary:active { @apply translate-y-px brightness-100 transition-none; }
 
   .btn-secondary { 
-    @apply inline-flex items-center justify-center gap-3 rounded-2xl px-8 py-4
+    @apply inline-flex items-center justify-center gap-3 rounded-xl px-8 py-4
     font-manrope text-[13px] font-bold uppercase tracking-widest
     text-white/90 transition-all duration-500
-    border border-white/20 relative overflow-hidden;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
-    box-shadow: 
-      inset 0 1px 0 rgba(255, 255, 255, 0.2),
-      inset 0 -8px 16px rgba(0, 0, 0, 0.4),
-      0 12px 28px rgba(0, 0, 0, 0.5),
-      0 0 15px rgba(0, 194, 255, 0.03);
+    border border-white/10 relative overflow-hidden;
+    background: rgba(255, 255, 255, 0.03);
   }
 
   .btn-secondary:hover {
-    @apply border-aegrix-cyan/50 text-aegrix-cyan bg-white/5 -translate-y-0.5;
-    box-shadow: 
-      inset 0 1px 0 rgba(255, 255, 255, 0.25),
-      inset 0 -8px 16px rgba(0, 0, 0, 0.3),
-      0 20px 40px rgba(0, 0, 0, 0.6),
-      0 0 20px rgba(0, 194, 255, 0.15);
+    @apply border-aegrix-cyan/40 text-aegrix-cyan bg-white/5 -translate-y-0.5;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   }
 
   .btn-secondary:active { @apply translate-y-px transition-none; }
 
   .btn-nav {
-    @apply inline-flex items-center justify-center rounded-2xl px-6 py-2.5
+    @apply inline-flex items-center justify-center rounded-xl px-6 py-2.5
     font-manrope text-[13px] font-bold uppercase tracking-widest
     text-white transition-all duration-500
-    border border-aegrix-cyan/40;
-    background: linear-gradient(180deg, rgba(0, 194, 255, 0.25) 0%, rgba(0, 194, 255, 0.05) 100%);
-    box-shadow: 
-      inset 0 1px 0 rgba(255, 255, 255, 0.15),
-      0 8px 24px rgba(0, 0, 0, 0.4),
-      0 0 20px rgba(0, 194, 255, 0.1);
+    border border-aegrix-cyan/30;
+    background: rgba(0, 194, 255, 0.05);
   }
 
   .btn-nav:hover {
-    @apply border-aegrix-cyan/70 text-aegrix-cyan bg-aegrix-cyan/15 scale-[1.02];
-    box-shadow: 
-      inset 0 1px 0 rgba(255, 255, 255, 0.25),
-      0 12px 30px rgba(0, 0, 0, 0.5),
-      0 0 30px rgba(0, 194, 255, 0.25);
+    @apply border-aegrix-cyan/60 text-aegrix-cyan bg-aegrix-cyan/10;
   }
 
   .btn-ghost {
@@ -164,16 +139,13 @@ body {
   }
 
   .footer-social-link {
-    @apply flex items-center justify-center w-12 h-12 rounded-2xl
-    bg-[#031018] border border-white/5 text-aegrix-muted
+    @apply flex items-center justify-center w-12 h-12 rounded-xl
+    bg-white/5 border border-white/5 text-aegrix-muted
     transition-all duration-300 relative overflow-hidden;
-    box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.6);
   }
 
   .footer-social-link:hover {
-    @apply text-white border-aegrix-cyan/30 -translate-y-1;
-    box-shadow: 
-      0 10px 20px rgba(0, 0, 0, 0.4),
-      0 0 15px rgba(0, 194, 255, 0.15);
+    @apply text-white border-aegrix-cyan/20 -translate-y-1;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
 }

@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 const controlLayers = [
   {
     id: 'cybersecurity',
-    label: 'Cybersecurity Layer',
+    label: 'Sistema de Ciberseguridad',
     description: 'Riesgos, accesos y superficie de ataque bajo control operativo total.',
     icon: Shield,
     tags: ['Hardening', 'Access Control', 'Threat Review'],
@@ -19,7 +19,7 @@ const controlLayers = [
   },
   {
     id: 'web-growth',
-    label: 'Web Growth Layer',
+    label: 'Infraestructura Web',
     description: 'Infraestructura web de alto rendimiento diseñada para la conversión.',
     icon: Globe,
     tags: ['SEO Técnico', 'Performance', 'Conversion Tracking'],
@@ -30,7 +30,7 @@ const controlLayers = [
   },
   {
     id: 'data-intelligence',
-    label: 'Data Intelligence Layer',
+    label: 'Inteligencia de Datos',
     description: 'Dashboards y reportes ejecutivos para decisiones basadas en evidencia.',
     icon: BarChart3,
     tags: ['KPIs', 'Power BI', 'Executive Reports'],
@@ -41,7 +41,7 @@ const controlLayers = [
   },
   {
     id: 'ai-automation',
-    label: 'AI Automation Layer',
+    label: 'Automatización Inteligente',
     description: 'Inteligencia artificial aplicada para automatizar procesos críticos.',
     icon: Cpu,
     tags: ['Workflows', 'AI Reports', 'Smart Operations'],
@@ -70,14 +70,14 @@ const HeroControlLayer = () => {
       {/* Dynamic Glow that follows active layer theme (subtle) */}
       <div className="absolute -inset-10 bg-aegrix-cyan/5 blur-[100px] rounded-full opacity-30 pointer-events-none" />
       
-      <div className="relative grid grid-cols-1 md:grid-cols-12 bg-[#0A0F1A]/80 border border-white/10 rounded-2xl md:rounded-3xl overflow-hidden backdrop-blur-xl shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+      <div className="relative grid grid-cols-1 md:grid-cols-12 bg-[#0A0F1A]/80 border border-white/10 rounded-2xl md:rounded-3xl overflow-hidden backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
         
         {/* Left Panel: Layer List */}
         <div className="md:col-span-5 border-b md:border-b-0 md:border-r border-white/5 p-4 md:p-6 bg-black/40">
           <div className="flex items-center justify-between mb-8 px-2">
             <div className="flex items-center gap-2.5">
-              <div className="w-2 h-2 rounded-full bg-aegrix-cyan animate-pulse shadow-[0_0_10px_#00C2FF]" />
-              <span className="text-[10px] font-bold text-white/90 uppercase tracking-widest">Control Center</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-aegrix-cyan animate-pulse" />
+              <span className="text-[10px] font-bold text-white/70 uppercase tracking-widest">Centro de Control</span>
             </div>
             <div className="text-[9px] font-mono text-white/20 tracking-tighter">NODE_X-01</div>
           </div>
@@ -107,7 +107,7 @@ const HeroControlLayer = () => {
                   <div className="flex items-center gap-2 mt-1.5">
                     <div className={cn(
                       "w-1.5 h-1.5 rounded-full transition-all duration-500",
-                      activeIndex === idx ? "bg-aegrix-green shadow-[0_0_8px_#22C55E]" : "bg-white/10"
+                      activeIndex === idx ? "bg-aegrix-green" : "bg-white/10"
                     )} />
                     <span className="text-[9px] text-white/30 font-mono uppercase tracking-tighter">
                       {activeIndex === idx ? 'Operational' : 'Standby'}
@@ -162,8 +162,7 @@ const HeroControlLayer = () => {
               </div>
 
               <h3 className="text-3xl md:text-4xl font-sora font-bold text-white mb-6 leading-tight tracking-tight">
-                {activeLayer.label.replace(' Layer', '')}
-                <span className="text-white/20 ml-2">Layer</span>
+                {activeLayer.label}
               </h3>
               
               <p className="text-aegrix-muted text-base md:text-lg leading-relaxed mb-10 max-w-sm opacity-80">
@@ -193,7 +192,7 @@ const HeroControlLayer = () => {
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
               transition={{ duration: 4, ease: "linear" }}
-              className={cn("h-full shadow-[0_0_10px_currentColor]", activeLayer.color.replace('text', 'bg'))}
+              className={cn("h-full", activeLayer.color.replace('text', 'bg'))}
             />
           </div>
         </div>

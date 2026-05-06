@@ -37,13 +37,13 @@ const VisionSlide = () => {
             exit={{ opacity: 0 }}
             className="absolute inset-0 bg-[#F5F5F0] flex flex-col items-center justify-center p-8 md:p-12"
           >
-            <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-6 md:p-8 border border-black/5">
+            <div className="w-full max-w-2xl bg-white rounded-3xl shadow-lg p-6 md:p-8 border border-black/5">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-black/5">
                 <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white">
                   <Cpu size={20} />
                 </div>
                 <div className="font-sora font-bold text-black uppercase tracking-widest text-xs">
-                  AEGRIX Intelligence
+                  Núcleo de Control AEGRIX
                 </div>
               </div>
               <motion.div
@@ -138,7 +138,7 @@ const VisionSlide = () => {
                     className="w-24 h-24 rounded-full p-px mb-6"
                     style={{ background: `linear-gradient(135deg, ${pillar.from}, ${pillar.to})` }}
                   >
-                    <div className="w-full h-full rounded-full bg-[#0A192F] flex items-center justify-center text-white shadow-2xl relative overflow-hidden">
+                    <div className="w-full h-full rounded-full bg-[#0A192F] flex items-center justify-center text-white border border-white/5 relative overflow-hidden">
                       <pillar.icon size={32} />
                       <motion.div
                         animate={{ rotate: 360 }}
@@ -206,7 +206,7 @@ const VisionSlide = () => {
                       rel="noopener noreferrer"
                       className="btn-primary inline-block px-10 py-4 font-sora font-extrabold uppercase tracking-widest text-[13px] transition-all transform hover:-translate-y-1"
                       style={{
-                        boxShadow: `0 20px 40px -10px ${CYAN}80`,
+                        boxShadow: `0 12px 24px -8px ${CYAN}40`,
                       }}
                     >
                       Evaluar Infraestructura AEGRIX
@@ -247,13 +247,13 @@ type NodeCardProps = {
 const NodeCard = ({ icon: Icon, title, status, color }: NodeCardProps) => (
   <div className="bg-white/3 border border-white/10 rounded-xl p-3 md:p-4 flex items-center gap-4 hover:bg-white/5 transition-colors relative overflow-hidden group">
     <div className="absolute inset-0 bg-linear-to-r from-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center shadow-lg relative z-10" style={{ backgroundColor: `${color}15`, color }}>
+    <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center relative z-10" style={{ backgroundColor: `${color}10`, color }}>
       <Icon size={20} className="md:w-6 md:h-6" />
     </div>
     <div className="relative z-10">
       <div className="text-[9px] md:text-[10px] font-mono text-slate-400 uppercase tracking-wider">{title}</div>
       <div className="text-xs md:text-sm font-bold text-white tracking-wide flex items-center gap-2">
-        <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: color, boxShadow: `0 0 10px ${color}` }} />
+        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} />
         {status}
       </div>
     </div>
@@ -265,7 +265,7 @@ const AegrixCoreEngine = () => (
   <motion.div
     initial={{ y: 40, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
-    className="relative w-full max-w-4xl aspect-4/3 sm:aspect-16/11 md:aspect-16/10 bg-[#0A0F1A] rounded-t-3xl border-x-4 md:border-x-[6px] border-t-4 md:border-t-[6px] border-slate-800 overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,212,212,0.25)] flex flex-col"
+    className="relative w-full max-w-4xl aspect-4/3 sm:aspect-16/11 md:aspect-16/10 bg-[#0A0F1A] rounded-t-3xl border-x-4 md:border-x-[6px] border-t-4 md:border-t-[6px] border-slate-800 overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.4)] flex flex-col"
   >
     {/* Mac-style Window Header */}
     <div className="h-8 md:h-10 bg-slate-900 flex items-center px-4 md:px-6 gap-2 border-b border-white/5 relative shrink-0">
@@ -334,10 +334,10 @@ const AegrixCoreEngine = () => (
              <motion.div 
                animate={{ scale: [1, 1.2, 1], opacity: [0.6, 0, 0.6] }}
                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-               className="absolute w-20 h-20 md:w-32 md:h-32 rounded-full border border-purple-500/40" 
+               className="absolute w-20 h-20 md:w-32 md:h-32 rounded-full border border-purple-500/30" 
              />
-             <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-cyan-500/20 blur-xl absolute animate-pulse" />
-             <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-cyan-500/50 flex items-center justify-center relative z-10 bg-[#0A0F1A] shadow-[0_0_30px_rgba(0,212,212,0.3)] group-hover:scale-110 transition-transform duration-500">
+             <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-cyan-500/10 blur-xl absolute animate-pulse" />
+             <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-cyan-500/30 flex items-center justify-center relative z-10 bg-[#0A0F1A] group-hover:scale-110 transition-transform duration-500">
                 <Layout className="text-cyan-400 w-5 h-5 md:w-6 md:h-6" />
              </div>
            </div>

@@ -40,8 +40,8 @@ const ProcessSection = () => {
                 style={{ transitionDelay: `${idx * 200}ms` }}
               >
                 <div className="relative mb-8 group">
-                  <div className="absolute inset-0 bg-aegrix-cyan/20 blur-xl rounded-full scale-0 group-hover:scale-100 transition-transform duration-500" />
-                  <div className="w-16 h-16 rounded-2xl bg-aegrix-surface border border-aegrix-border flex items-center justify-center text-aegrix-cyan shadow-2xl relative z-10 transition-all duration-300 group-hover:border-aegrix-cyan/50">
+                  <div className="absolute inset-0 bg-aegrix-cyan/5 blur-xl rounded-full scale-0 group-hover:scale-100 transition-transform duration-700" />
+                  <div className="w-16 h-16 rounded-2xl bg-aegrix-surface border border-aegrix-border flex items-center justify-center text-aegrix-cyan relative z-10 transition-all duration-300 group-hover:border-aegrix-cyan/40">
                     <span className="font-sora font-bold text-xl">{step.number}</span>
                   </div>
                 </div>
