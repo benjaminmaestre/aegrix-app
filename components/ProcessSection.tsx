@@ -16,7 +16,7 @@ const ProcessSection = () => {
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
           <div className="label-tag mb-6">Metodología de Control</div>
-          <h2 className="heading-lg mb-8 text-white">
+          <h2 className="heading-lg mb-8 text-aegrix-text">
             Un proceso de despliegue <br />
             <span className="text-aegrix-cyan">preciso y sin fricciones.</span>
           </h2>
@@ -46,7 +46,7 @@ const ProcessSection = () => {
                   </div>
                 </div>
 
-                <h3 className="font-sora font-bold text-lg text-white mb-4 uppercase tracking-tight">{step.title}</h3>
+                <h3 className="font-sora font-bold text-lg text-aegrix-text mb-4 uppercase tracking-tight">{step.title}</h3>
                 <p className="body-md text-xs leading-relaxed max-w-[200px]">{step.description}</p>
               </div>
             ))}

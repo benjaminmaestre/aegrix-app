@@ -33,10 +33,10 @@ const steps = [
 
 const MethodologySection = () => {
   return (
-    <section id="metodologia" className="section-padding bg-black/20 relative overflow-hidden">
+    <section id="metodologia" className="section-padding bg-aegrix-bg relative overflow-hidden">
       <div className="container-width">
         <div className="max-w-3xl mb-20">
-          <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-white mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-6 leading-tight">
             Un método diseñado para el <br />
             <span className="text-aegrix-cyan">control total de tu empresa.</span>
           </h2>
@@ -53,16 +53,17 @@ const MethodologySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-8 rounded-3xl bg-white/2 border border-white/5 hover:border-aegrix-cyan/20 transition-all group h-full flex flex-col"
+              className="p-8 rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all duration-500 group h-full flex flex-col shadow-sm hover:shadow-xl relative overflow-hidden"
             >
-              <div className="w-14 h-14 rounded-2xl bg-aegrix-cyan/10 flex items-center justify-center text-aegrix-cyan mb-8 group-hover:scale-110 transition-transform">
-                <step.icon size={28} />
+              <div className="absolute inset-0 grid-bg opacity-[0.02] pointer-events-none" />
+              <div className="relative z-10 w-14 h-14 rounded-2xl bg-aegrix-cyan/5 border border-aegrix-cyan/10 flex items-center justify-center text-aegrix-cyan mb-8 group-hover:scale-110 group-hover:bg-aegrix-cyan/10 transition-all duration-500">
+                <step.icon size={24} />
               </div>
-              <h3 className="text-xl font-sora font-bold text-white mb-4">{step.title}</h3>
+              <h3 className="text-xl font-sora font-bold text-aegrix-text mb-4">{step.title}</h3>
               <p className="text-sm text-aegrix-muted leading-relaxed mb-6 grow">
                 {step.description}
               </p>
-              <div className="pt-4 border-t border-white/5 mt-auto">
+              <div className="pt-4 border-t border-aegrix-border mt-auto">
                 <span className="text-[10px] font-bold text-aegrix-cyan uppercase tracking-widest">
                   Resultado: {step.benefit}
                 </span>

@@ -22,7 +22,7 @@ export default async function SecurityPage({
           <p>Esta Política de Seguridad describe los lineamientos generales que AEGRIX adopta para proteger su sitio web, sus canales digitales, la información recibida de usuarios, clientes, prospectos y aliados, así como los entornos tecnológicos relacionados con la prestación de servicios de ingeniería de software, desarrollo web, ciberseguridad, analítica de datos, inteligencia artificial, capacitación y consultoría digital.</p>
           <p>Esta política debe leerse en conjunto con la Política de Privacidad, la Política de Cookies y los Términos y Condiciones de Servicio de AEGRIX.</p>
 
-          <hr className="border-white/5 my-8" />
+          <hr className="border-aegrix-border my-8" />
 
           <h2>1. Alcance</h2>
           <p>Esta Política de Seguridad aplica al sitio web <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>, a los canales digitales oficiales de AEGRIX, a los formularios de contacto, comunicaciones comerciales, procesos de diagnóstico, propuestas, servicios contratados, información técnica suministrada por clientes y cualquier interacción digital relacionada con AEGRIX.</p>
@@ -94,7 +94,7 @@ export default async function SecurityPage({
           <p>This Security Policy describes the general guidelines AEGRIX adopts to protect its website, digital channels, and information received from users and clients in relation to our software engineering, cybersecurity, AI, and consulting services.</p>
           <p>This policy should be read alongside AEGRIX&apos;s Privacy Policy, Cookies Policy, and Terms and Conditions.</p>
 
-          <hr className="border-white/5 my-8" />
+          <hr className="border-aegrix-border my-8" />
 
           <h2>1. Scope</h2>
           <p>This policy applies to <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>, official digital channels, contact forms, commercial communications, and all digital interactions related to AEGRIX.</p>

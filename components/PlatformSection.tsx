@@ -17,7 +17,7 @@ const PlatformSection = () => {
             "transition-all duration-1000",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
           )}>
-            <h2 className="heading-lg mb-8 text-white">
+            <h2 className="heading-lg mb-8 text-aegrix-text">
               Una sola capa para proteger, <br />
               <span className="text-aegrix-cyan">medir y acelerar tu operación.</span>
             </h2>
@@ -31,7 +31,7 @@ const PlatformSection = () => {
                 { icon: Zap, text: "Infraestructura web optimizada para alta conversión." },
                 { icon: BarChart3, text: "Analítica inteligente para decisiones basadas en datos." },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-4 text-white/80 font-medium">
+                <div key={i} className="flex items-center gap-4 text-aegrix-text/80 font-medium">
                   <div className="text-aegrix-cyan">
                     <item.icon size={20} />
                   </div>
@@ -62,7 +62,7 @@ const PlatformSection = () => {
                 ].map((layer, i) => (
                   <div 
                     key={i}
-                    className="group relative bg-aegrix-surface border border-white/10 p-6 rounded-xl shadow-2xl transition-all duration-500 hover:border-aegrix-cyan/50 hover:-translate-y-1"
+                    className="group relative bg-aegrix-surface border border-aegrix-border p-6 rounded-xl shadow-2xl transition-all duration-500 hover:border-aegrix-cyan/50 hover:-translate-y-1"
                     style={{ 
                       zIndex: 4 - i,
                       marginLeft: `${i * 20}px`,
@@ -74,7 +74,7 @@ const PlatformSection = () => {
                         <div className={cn("p-2 rounded-lg text-white", layer.color)}>
                           <layer.icon size={18} />
                         </div>
-                        <span className="font-sora font-bold text-white text-sm md:text-base">{layer.name}</span>
+                        <span className="font-sora font-bold text-aegrix-text text-sm md:text-base">{layer.name}</span>
                       </div>
                       <div className="w-2 h-2 rounded-full bg-aegrix-green shadow-[0_0_8px_#22C55E]" />
                     </div>

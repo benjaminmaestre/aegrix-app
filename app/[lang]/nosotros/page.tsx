@@ -28,7 +28,7 @@ export default async function NosotrosPage({
             <span className="inline-block px-4 py-1.5 rounded-full bg-aegrix-cyan/10 border border-aegrix-cyan/20 text-aegrix-cyan text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
               {about.subtitle}
             </span>
-            <h1 className="text-5xl md:text-7xl font-sora font-extrabold text-white mb-8 leading-[1.1] tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-sora font-extrabold text-aegrix-text mb-8 leading-[1.1] tracking-tight">
               {about.title}
             </h1>
             <p className="text-xl text-aegrix-muted leading-relaxed max-w-2xl">
@@ -40,11 +40,11 @@ export default async function NosotrosPage({
         {/* Mission & Vision Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
           <FadeIn x={-20} y={0} delay={0.2}>
-            <div className="glass-card p-10 rounded-3xl border border-white/5 relative group overflow-hidden h-full">
+            <div className="glass-card p-10 rounded-3xl border border-aegrix-border relative group overflow-hidden h-full shadow-lg">
               <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                 <Target size={120} />
               </div>
-              <h3 className="text-2xl font-sora font-bold text-white mb-4 flex items-center gap-3">
+              <h3 className="text-2xl font-sora font-bold text-aegrix-text mb-4 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-aegrix-cyan/10 flex items-center justify-center text-aegrix-cyan">
                   <Target size={20} />
                 </div>
@@ -57,11 +57,11 @@ export default async function NosotrosPage({
           </FadeIn>
 
           <FadeIn x={20} y={0} delay={0.3}>
-            <div className="glass-card p-10 rounded-3xl border border-white/5 relative group overflow-hidden h-full">
+            <div className="glass-card p-10 rounded-3xl border border-aegrix-border relative group overflow-hidden h-full shadow-lg">
               <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                 <Zap size={120} />
               </div>
-              <h3 className="text-2xl font-sora font-bold text-white mb-4 flex items-center gap-3">
+              <h3 className="text-2xl font-sora font-bold text-aegrix-text mb-4 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-aegrix-blue/10 flex items-center justify-center text-aegrix-blue">
                   <Zap size={20} />
                 </div>
@@ -77,7 +77,9 @@ export default async function NosotrosPage({
         {/* Values Grid */}
         <div className="mb-24">
           <FadeIn delay={0.4}>
-            <h2 className="text-3xl font-sora font-bold text-white mb-12 text-center">Nuestros Valores Core</h2>
+            <h2 className="text-3xl font-sora font-bold text-aegrix-text mb-12 text-center">
+              {lang === 'es' ? 'Nuestros Valores Core' : 'Our Core Values'}
+            </h2>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -86,11 +88,11 @@ export default async function NosotrosPage({
               { icon: Zap, title: about.values.innovation, color: 'text-aegrix-blue' }
             ].map((value, idx) => (
               <FadeIn key={idx} delay={0.1 * idx + 0.5}>
-                <div className="p-8 rounded-2xl bg-white/2 border border-white/5 hover:border-white/10 transition-all text-center group h-full">
-                  <div className={`w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mx-auto mb-6 ${value.color} group-hover:scale-110 transition-transform`}>
+                <div className="p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all text-center group h-full shadow-sm">
+                  <div className={`w-12 h-12 rounded-xl bg-aegrix-bg-2 border border-aegrix-border flex items-center justify-center mx-auto mb-6 ${value.color} group-hover:scale-110 transition-transform`}>
                     <value.icon size={24} />
                   </div>
-                  <h4 className="text-lg font-bold text-white uppercase tracking-wider">{value.title}</h4>
+                  <h4 className="text-lg font-bold text-aegrix-text uppercase tracking-wider">{value.title}</h4>
                 </div>
               </FadeIn>
             ))}
@@ -101,9 +103,11 @@ export default async function NosotrosPage({
         <ScaleIn delay={0.6}>
           <div className="relative p-12 md:p-20 rounded-[40px] overflow-hidden text-center">
             <div className="absolute inset-0 bg-linear-to-br from-aegrix-cyan/20 to-aegrix-blue/20 -z-10" />
-            <h2 className="text-3xl md:text-5xl font-sora font-extrabold text-white mb-8">¿Listo para blindar tu futuro?</h2>
+            <h2 className="text-3xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-8">
+              {lang === 'es' ? '¿Listo para blindar tu futuro?' : 'Ready to secure your future?'}
+            </h2>
             <Link href={`/${lang}#diagnostico`} className="btn-primary inline-flex items-center gap-3">
-              Empezar Diagnóstico 360
+              {lang === 'es' ? 'Empezar Diagnóstico 360' : 'Start 360 Diagnostic'}
               <ChevronRight size={18} />
             </Link>
           </div>

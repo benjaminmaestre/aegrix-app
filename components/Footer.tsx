@@ -50,7 +50,7 @@ const Footer = () => {
 
           {/* Links 1: Plataforma */}
           <div>
-            <h4 className="text-xs font-bold text-white uppercase tracking-[0.2em] mb-8">Plataforma</h4>
+            <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-8">Plataforma</h4>
             <ul className="space-y-4">
               {[
                 { name: 'AEGRIX Shield', href: `/${lang}#servicios` },
@@ -70,7 +70,7 @@ const Footer = () => {
 
           {/* Links 2: Empresa */}
           <div>
-            <h4 className="text-xs font-bold text-white uppercase tracking-[0.2em] mb-8">Empresa</h4>
+            <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-8">Empresa</h4>
             <ul className="space-y-4">
               {[
                 { name: 'Diagnóstico 360', href: `/${lang}#diagnostico` },
@@ -89,7 +89,7 @@ const Footer = () => {
 
           {/* Office Info */}
           <div>
-            <h4 className="text-xs font-bold text-white uppercase tracking-[0.2em] mb-8">Contacto</h4>
+            <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-8">Contacto</h4>
             <div className="space-y-4 text-sm text-aegrix-muted">
               <p>Medellín, Colombia</p>
               <a href="mailto:info@aegrix.com" className="block hover:text-aegrix-cyan transition-colors">info@aegrix.com</a>
@@ -103,15 +103,15 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-xs text-white/30 font-medium">
+        <div className="pt-12 border-t border-aegrix-border flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-xs text-aegrix-text/30 font-medium">
             © {currentYear} AEGRIX Technology Firm. Todos los derechos reservados.
           </div>
-          <div className="flex items-center gap-8 text-[10px] font-bold text-white/30 uppercase tracking-widest">
-            <Link href={`/${lang}/privacidad`} className="hover:text-white transition-colors">Privacidad</Link>
-            <Link href={`/${lang}/terminos`} className="hover:text-white transition-colors">Términos</Link>
-            <Link href={`/${lang}/cookies`} className="hover:text-white transition-colors">Cookies</Link>
-            <Link href={`/${lang}/seguridad`} className="hover:text-white transition-colors">Seguridad</Link>
+          <div className="flex items-center gap-8 text-[10px] font-bold text-aegrix-text/30 uppercase tracking-widest">
+            <Link href={`/${lang}/privacidad`} className="hover:text-aegrix-text transition-colors">Privacidad</Link>
+            <Link href={`/${lang}/terminos`} className="hover:text-aegrix-text transition-colors">Términos</Link>
+            <Link href={`/${lang}/cookies`} className="hover:text-aegrix-text transition-colors">Cookies</Link>
+            <Link href={`/${lang}/seguridad`} className="hover:text-aegrix-text transition-colors">Seguridad</Link>
           </div>
         </div>
       </div>

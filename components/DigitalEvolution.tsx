@@ -25,10 +25,10 @@ const scenarios = [
 
 const DigitalEvolution = () => {
   return (
-    <section className="section-padding bg-aegrix-bg-2 border-y border-white/5 relative overflow-hidden">
+    <section className="section-padding bg-aegrix-bg-2 border-y border-aegrix-border relative overflow-hidden">
       <div className="container-width relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-6">
             La diferencia entre <br />
             <span className="text-aegrix-cyan">existir y dominar.</span>
           </h2>
@@ -45,13 +45,16 @@ const DigitalEvolution = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="card-base bg-black/40 border-white/5 p-10 flex flex-col h-full"
+              className="group relative bg-aegrix-surface border border-aegrix-border p-10 flex flex-col h-full rounded-[32px] shadow-sm hover:shadow-xl hover:border-aegrix-cyan/20 transition-all duration-500"
             >
-              <h3 className="text-2xl font-sora font-bold text-white mb-8">{scenario.title}</h3>
+              {/* Subtle Grid Background */}
+              <div className="absolute inset-0 grid-bg opacity-[0.03] rounded-[32px] pointer-events-none" />
               
-              <div className="bg-red-500/5 border border-red-500/20 p-6 rounded-2xl mb-8">
-                <div className="flex items-center gap-3 text-red-500 font-bold mb-3 uppercase tracking-widest text-xs">
-                  <scenario.impactIcon size={18} />
+              <h3 className="text-2xl font-sora font-bold text-aegrix-text mb-8 relative z-10">{scenario.title}</h3>
+              
+              <div className="relative z-10 bg-linear-to-br from-red-500/3 to-red-500/8 border border-red-500/10 p-6 rounded-2xl mb-8 group-hover:border-red-500/20 transition-colors">
+                <div className="flex items-center gap-3 text-red-500/80 font-bold mb-3 uppercase tracking-[0.2em] text-[10px]">
+                  <scenario.impactIcon size={14} />
                   {scenario.riskTitle}
                 </div>
                 <p className="text-sm text-aegrix-muted leading-relaxed">
@@ -59,11 +62,11 @@ const DigitalEvolution = () => {
                 </p>
               </div>
 
-              <div className="mt-auto pt-8 border-t border-white/5 flex items-center gap-4">
-                <div className="p-3 rounded-full bg-aegrix-cyan/10 text-aegrix-cyan">
-                  <Zap size={20} />
+              <div className="relative z-10 mt-auto pt-8 border-t border-aegrix-border flex items-center gap-4">
+                <div className="p-3 rounded-xl bg-aegrix-cyan/5 text-aegrix-cyan border border-aegrix-cyan/10">
+                  <Zap size={18} />
                 </div>
-                <div className="text-sm font-medium text-white italic">
+                <div className="text-sm font-medium text-aegrix-text italic opacity-80">
                   &quot;{scenario.impactText}&quot;
                 </div>
               </div>
@@ -73,7 +76,7 @@ const DigitalEvolution = () => {
 
         <div className="mt-20 text-center">
           <div className="inline-block p-px rounded-full bg-linear-to-r from-transparent via-aegrix-cyan to-transparent mb-12 w-full max-w-lg" />
-          <h3 className="text-2xl font-sora font-bold text-white mb-8">
+          <h3 className="text-2xl font-sora font-bold text-aegrix-text mb-8">
             ¿Quieres saber cuánto está perdiendo tu negocio hoy?
           </h3>
           <p className="text-aegrix-muted mb-10 max-w-xl mx-auto">

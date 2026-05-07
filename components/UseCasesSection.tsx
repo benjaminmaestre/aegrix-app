@@ -37,7 +37,7 @@ const UseCasesSection = () => {
           "max-w-3xl mb-20 transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
-          <h2 className="heading-lg mb-8 text-white">
+          <h2 className="heading-lg mb-8 text-aegrix-text">
             Soluciones reales para <br />
             <span className="text-aegrix-cyan">desafíos complejos.</span>
           </h2>
@@ -51,7 +51,7 @@ const UseCasesSection = () => {
             <div 
               key={idx}
               className={cn(
-                "group card-base bg-aegrix-surface/30 border-white/5 p-8 hover:bg-aegrix-surface transition-all duration-700",
+                "group card-base bg-aegrix-surface/30 border-aegrix-border p-8 hover:bg-aegrix-surface transition-all duration-700 shadow-sm",
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               )}
               style={{ transitionDelay: `${idx * 200}ms` }}
@@ -59,7 +59,7 @@ const UseCasesSection = () => {
               <div className="text-[10px] font-bold text-aegrix-cyan uppercase tracking-widest mb-4">
                 {useCase.category}
               </div>
-              <h3 className="text-xl font-sora font-bold text-white mb-6 group-hover:text-aegrix-cyan transition-colors">
+              <h3 className="text-xl font-sora font-bold text-aegrix-text mb-6 group-hover:text-aegrix-cyan transition-colors">
                 {useCase.title}
               </h3>
               <p className="text-sm text-aegrix-muted leading-relaxed mb-8">
@@ -67,7 +67,7 @@ const UseCasesSection = () => {
               </p>
               <div className="flex flex-wrap gap-2 mb-8">
                 {useCase.tags.map((tag, i) => (
-                  <span key={i} className="text-[9px] font-bold text-white/40 uppercase tracking-tighter border border-white/10 px-2 py-1 rounded">
+                  <span key={i} className="text-[9px] font-bold text-aegrix-text/40 uppercase tracking-tighter border border-aegrix-border px-2 py-1 rounded">
                     {tag}
                   </span>
                 ))}

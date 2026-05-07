@@ -29,7 +29,7 @@ const SectorsSection = () => {
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
           <div className="label-tag mb-6">Expertise por sector</div>
-          <h2 className="heading-lg mb-8 text-white">
+          <h2 className="heading-lg mb-8 text-aegrix-text">
             Soluciones para empresas que necesitan <br />
             <span className="text-aegrix-cyan">seguridad, claridad y crecimiento.</span>
           </h2>
@@ -45,15 +45,16 @@ const SectorsSection = () => {
               <div 
                 key={sector.name}
                 className={cn(
-                  "card-base card-hover p-10 flex flex-col items-center text-center group transition-all duration-700 bg-aegrix-surface/50 border-white/5",
+                  "relative p-10 flex flex-col items-center text-center group transition-all duration-700 bg-aegrix-surface border border-aegrix-border rounded-[32px] shadow-sm hover:shadow-xl hover:border-aegrix-cyan/20 overflow-hidden",
                   inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
                 )}
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
-                <div className="w-16 h-16 rounded-2xl bg-white/3 border border-white/5 flex items-center justify-center text-aegrix-cyan mb-6 group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
-                  {Icon && <Icon size={32} />}
+                <div className="absolute inset-0 grid-bg opacity-[0.02] pointer-events-none" />
+                <div className="relative z-10 w-16 h-16 rounded-2xl bg-aegrix-bg-2 border border-aegrix-border flex items-center justify-center text-aegrix-cyan mb-6 group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500 shadow-sm">
+                  {Icon && <Icon size={30} />}
                 </div>
-                <h3 className="font-sora font-bold text-white text-xl tracking-tight">{sector.name}</h3>
+                <h3 className="relative z-10 font-sora font-bold text-aegrix-text text-xl tracking-tight">{sector.name}</h3>
               </div>
             );
           })}

@@ -17,7 +17,7 @@ const ContactSection = () => {
           
           {/* Left: Info & Context */}
           <div>
-            <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-white mb-8 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-8 tracking-tight">
               ¿Listo para dar el <br />
               <span className="text-aegrix-cyan">siguiente paso?</span>
             </h2>
@@ -30,12 +30,12 @@ const ContactSection = () => {
                 href="mailto:contacto@aegrix.co" 
                 className="flex items-center gap-6 group"
               >
-                <div className="w-14 h-14 rounded-2xl bg-white/2 border border-white/5 flex items-center justify-center text-aegrix-cyan group-hover:bg-aegrix-cyan group-hover:text-black transition-all duration-500">
+                <div className="w-14 h-14 rounded-2xl bg-aegrix-surface border border-aegrix-border flex items-center justify-center text-aegrix-cyan group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
                   <Mail size={24} />
                 </div>
                 <div>
                   <div className="text-xs font-bold text-aegrix-muted uppercase tracking-widest mb-1">Email Corporativo</div>
-                  <div className="text-lg font-semibold text-white">contacto@aegrix.co</div>
+                  <div className="text-lg font-semibold text-aegrix-text">contacto@aegrix.co</div>
                 </div>
               </a>
 
@@ -45,12 +45,12 @@ const ContactSection = () => {
                 rel="noopener noreferrer" 
                 className="flex items-center gap-6 group"
               >
-                <div className="w-14 h-14 rounded-2xl bg-white/2 border border-white/5 flex items-center justify-center text-aegrix-cyan group-hover:bg-aegrix-cyan group-hover:text-black transition-all duration-500">
+                <div className="w-14 h-14 rounded-2xl bg-aegrix-surface border border-aegrix-border flex items-center justify-center text-aegrix-cyan group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
                   <MessageSquare size={24} />
                 </div>
                 <div>
                   <div className="text-xs font-bold text-aegrix-muted uppercase tracking-widest mb-1">Respuesta Inmediata</div>
-                  <div className="text-lg font-semibold text-white">WhatsApp Directo</div>
+                  <div className="text-lg font-semibold text-aegrix-text">WhatsApp Directo</div>
                 </div>
               </a>
             </div>
@@ -61,7 +61,7 @@ const ContactSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="p-10 rounded-[32px] bg-white/2 border border-white/5 relative overflow-hidden group"
+            className="p-10 rounded-[32px] bg-aegrix-surface border border-aegrix-border relative overflow-hidden group shadow-xl"
           >
             <form className="space-y-6 relative z-10">
               <div className="grid md:grid-cols-2 gap-6">
@@ -70,7 +70,7 @@ const ContactSection = () => {
                   <input 
                     type="text" 
                     placeholder="Ej. Juan Pérez"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-aegrix-cyan/50 transition-all"
+                    className="w-full bg-aegrix-bg-2 border border-aegrix-border rounded-xl px-4 py-4 text-aegrix-text focus:outline-none focus:border-aegrix-cyan/50 transition-all"
                   />
                 </div>
                 <div className="space-y-2">
@@ -78,7 +78,7 @@ const ContactSection = () => {
                   <input 
                     type="text" 
                     placeholder="Nombre de tu empresa"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-aegrix-cyan/50 transition-all"
+                    className="w-full bg-aegrix-bg-2 border border-aegrix-border rounded-xl px-4 py-4 text-aegrix-text focus:outline-none focus:border-aegrix-cyan/50 transition-all"
                   />
                 </div>
               </div>
@@ -88,7 +88,7 @@ const ContactSection = () => {
                 <input 
                   type="email" 
                   placeholder="juan@empresa.com"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-aegrix-cyan/50 transition-all"
+                  className="w-full bg-aegrix-bg-2 border border-aegrix-border rounded-xl px-4 py-4 text-aegrix-text focus:outline-none focus:border-aegrix-cyan/50 transition-all"
                 />
               </div>
 
@@ -97,7 +97,7 @@ const ContactSection = () => {
                 <textarea 
                   rows={4}
                   placeholder="¿En qué podemos ayudarte?"
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-aegrix-cyan/50 transition-all resize-none"
+                  className="w-full bg-aegrix-bg-2 border border-aegrix-border rounded-xl px-4 py-4 text-aegrix-text focus:outline-none focus:border-aegrix-cyan/50 transition-all resize-none"
                 />
               </div>
 
@@ -108,7 +108,7 @@ const ContactSection = () => {
                       type="checkbox" 
                       id="privacy-consent" 
                       required 
-                      className="w-4 h-4 rounded border-white/10 bg-white/5 text-aegrix-cyan focus:ring-aegrix-cyan/30"
+                      className="w-4 h-4 rounded border-aegrix-border bg-aegrix-bg-2 text-aegrix-cyan focus:ring-aegrix-cyan/30"
                     />
                   </div>
                   <label htmlFor="privacy-consent" className="text-[11px] text-aegrix-muted leading-relaxed cursor-pointer">
@@ -130,7 +130,7 @@ const ContactSection = () => {
                       type="checkbox" 
                       id="terms-consent" 
                       required 
-                      className="w-4 h-4 rounded border-white/10 bg-white/5 text-aegrix-cyan focus:ring-aegrix-cyan/30"
+                      className="w-4 h-4 rounded border-aegrix-border bg-aegrix-bg-2 text-aegrix-cyan focus:ring-aegrix-cyan/30"
                     />
                   </div>
                   <label htmlFor="terms-consent" className="text-[11px] text-aegrix-muted leading-relaxed cursor-pointer">
@@ -155,7 +155,7 @@ const ContactSection = () => {
                 <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
 
-              <div className="mt-6 flex items-start gap-2 p-4 rounded-xl bg-white/2 border border-white/5">
+              <div className="mt-6 flex items-start gap-2 p-4 rounded-xl bg-aegrix-bg-2 border border-aegrix-border">
                 <ShieldCheck size={14} className="text-aegrix-cyan shrink-0 mt-0.5" />
                 <p className="text-[10px] text-aegrix-muted leading-relaxed italic">
                   {lang === 'es' ? (
@@ -172,7 +172,7 @@ const ContactSection = () => {
             </form>
 
             {/* Decorative background for the form */}
-            <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-aegrix-cyan/5 blur-[80px] rounded-full pointer-events-none group-hover:bg-aegrix-cyan/10 transition-all duration-700" />
+            <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-aegrix-cyan/2 blur-[60px] rounded-full pointer-events-none group-hover:bg-aegrix-cyan/4 transition-all duration-700" />
           </motion.div>
         </div>
       </div>

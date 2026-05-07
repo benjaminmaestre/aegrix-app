@@ -20,7 +20,7 @@ const FinalCTA = () => {
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
           <div className="label-tag mb-8 border-aegrix-cyan/20">The Final Step</div>
-          <h2 className="heading-lg mb-8 text-white">
+          <h2 className="heading-lg mb-8 text-aegrix-text">
             Construye una empresa más <br />
             <span className="text-aegrix-cyan">segura, medible e inteligente.</span>
           </h2>
@@ -45,17 +45,17 @@ const FinalCTA = () => {
             </a>
           </div>
 
-          <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-12 text-white/40">
+          <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-12 text-aegrix-text/40">
             <div className="flex flex-col items-center gap-2">
               <span className="text-[10px] font-bold uppercase tracking-widest">Seguridad</span>
               <span className="text-xs">Diseñada para durar</span>
             </div>
-            <div className="w-px h-8 bg-white/5 hidden md:block" />
+            <div className="w-px h-8 bg-aegrix-border hidden md:block" />
             <div className="flex flex-col items-center gap-2">
               <span className="text-[10px] font-bold uppercase tracking-widest">Control</span>
               <span className="text-xs">Visibilidad absoluta</span>
             </div>
-            <div className="w-px h-8 bg-white/5 hidden md:block" />
+            <div className="w-px h-8 bg-aegrix-border hidden md:block" />
             <div className="flex flex-col items-center gap-2">
               <span className="text-[10px] font-bold uppercase tracking-widest">Escala</span>
               <span className="text-xs">Arquitectura de futuro</span>

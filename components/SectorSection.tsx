@@ -34,7 +34,7 @@ const SectorSection = () => {
       <div className="container-width">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 gap-8">
           <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-6">
               Experticia aplicada a <br />
               <span className="text-aegrix-cyan">industrias de alto riesgo.</span>
             </h2>
@@ -52,13 +52,13 @@ const SectorSection = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-10 rounded-[32px] bg-white/2 border border-white/5 hover:bg-white/4 transition-all group relative overflow-hidden"
+              className="p-10 rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:bg-aegrix-surface/80 transition-all group relative overflow-hidden"
             >
-              <div className={`w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 ${item.color} group-hover:scale-110 transition-transform`}>
+              <div className={`w-16 h-16 rounded-2xl bg-aegrix-bg-2 border border-aegrix-border flex items-center justify-center mb-8 ${item.color} group-hover:scale-110 transition-transform`}>
                 <item.icon size={32} />
               </div>
               
-              <h3 className="text-2xl font-sora font-bold text-white mb-6">{item.title}</h3>
+              <h3 className="text-2xl font-sora font-bold text-aegrix-text mb-6">{item.title}</h3>
               
               <div className="space-y-6">
                 <div>
@@ -67,7 +67,7 @@ const SectorSection = () => {
                 </div>
                 <div>
                   <span className="text-[10px] font-bold text-aegrix-green uppercase tracking-widest block mb-2">Impacto AEGRIX</span>
-                  <p className="text-white/90 text-sm">{item.solution}</p>
+                  <p className="text-aegrix-text/80 text-sm">{item.solution}</p>
                 </div>
               </div>
             </motion.div>

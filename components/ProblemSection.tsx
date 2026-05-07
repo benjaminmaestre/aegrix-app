@@ -17,7 +17,7 @@ const ProblemSection = () => {
   const { ref, inView } = useInView();
 
   return (
-    <section ref={ref} className="section-padding bg-aegrix-bg-2 relative overflow-hidden">
+    <section ref={ref} className="section-padding bg-aegrix-bg relative overflow-hidden">
       {/* Subtle Background Mark */}
       <div className="absolute top-0 right-0 p-24 opacity-[0.02] pointer-events-none">
         <AlertCircle size={400} />
@@ -31,7 +31,7 @@ const ProblemSection = () => {
           <div className="label-tag mb-6 text-red-500 bg-red-500/5 border-red-500/20">
             Diagnosis: Lack of System
           </div>
-          <h2 className="heading-lg mb-8 text-white">
+          <h2 className="heading-lg mb-8 text-aegrix-text">
             El problema no es la falta de tecnología. <br />
             <span className="text-aegrix-muted">Es la falta de sistema.</span>
           </h2>
@@ -47,15 +47,16 @@ const ProblemSection = () => {
               <div 
                 key={card.id}
                 className={cn(
-                  "group p-8 rounded-2xl bg-aegrix-surface border border-white/5 transition-all duration-700",
+                  "group relative p-8 rounded-[32px] bg-aegrix-surface border border-aegrix-border transition-all duration-700 shadow-sm hover:shadow-xl hover:border-aegrix-cyan/20 overflow-hidden",
                   inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
                 )}
                 style={{ transitionDelay: `${idx * 150}ms` }}
               >
-                <div className="mb-8 p-3 w-fit rounded-lg bg-white/3 border border-white/5 text-aegrix-muted group-hover:text-red-500 group-hover:border-red-500/20 transition-colors">
-                  <Icon size={24} />
+                <div className="absolute inset-0 grid-bg opacity-[0.02] pointer-events-none" />
+                <div className="relative z-10 mb-8 p-3 w-fit rounded-xl bg-aegrix-bg-2 border border-aegrix-border text-aegrix-muted group-hover:text-red-500 group-hover:border-red-500/20 transition-all duration-500">
+                  <Icon size={22} />
                 </div>
-                <h3 className="text-xl font-sora font-bold text-white mb-4">{card.title}</h3>
+                <h3 className="text-xl font-sora font-bold text-aegrix-text mb-4">{card.title}</h3>
                 <p className="text-sm text-aegrix-muted leading-relaxed">
                   {card.description}
                 </p>
@@ -65,14 +66,14 @@ const ProblemSection = () => {
         </div>
 
         <div className={cn(
-          "mt-20 p-8 rounded-2xl bg-linear-to-r from-aegrix-surface to-transparent border border-white/5 flex flex-col md:flex-row items-center gap-8 transition-all duration-1000 delay-700",
+          "mt-20 p-8 rounded-2xl bg-linear-to-r from-aegrix-surface to-transparent border border-aegrix-border flex flex-col md:flex-row items-center gap-8 transition-all duration-1000 delay-700",
           inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
         )}>
           <div className="p-4 rounded-full bg-red-500/10 text-red-500">
             <AlertCircle size={32} />
           </div>
           <div>
-            <div className="text-lg font-sora font-bold text-white mb-2">Pérdida de control digital</div>
+            <div className="text-lg font-sora font-bold text-aegrix-text mb-2">Pérdida de control digital</div>
             <div className="text-sm text-aegrix-muted max-w-2xl">
               Cuando la infraestructura web, la seguridad y los datos no están conectados, la empresa pierde capacidad de reacción y escala con ineficiencias heredadas.
             </div>

@@ -24,7 +24,7 @@ const ProductDivisions = () => {
           "text-center max-w-3xl mx-auto mb-20 transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
-          <h2 className="heading-lg mb-8 text-white">
+          <h2 className="heading-lg mb-8 text-aegrix-text">
             Diseñamos sistemas digitales <br />
             <span className="text-aegrix-cyan">seguros, medibles e inteligentes.</span>
           </h2>
@@ -40,22 +40,23 @@ const ProductDivisions = () => {
               <div 
                 key={division.id}
                 className={cn(
-                  "card-base bg-[#0C121E] border-white/3 hover:border-aegrix-cyan/20 transition-all duration-700 flex flex-col",
+                  "relative p-10 rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all duration-700 flex flex-col shadow-sm hover:shadow-xl overflow-hidden",
                   inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 )}
                 style={{ transitionDelay: `${idx * 150}ms` }}
               >
+                <div className="absolute inset-0 grid-bg opacity-[0.02] pointer-events-none" />
                 <div className="flex items-start justify-between mb-8">
-                  <div className="p-4 rounded-xl bg-white/2 border border-white/5 text-aegrix-cyan">
+                  <div className="p-4 rounded-xl bg-aegrix-bg-2 border border-aegrix-border text-aegrix-cyan">
                     <Icon size={32} />
                   </div>
-                  <div className="text-[10px] font-bold text-white/20 uppercase tracking-[0.3em]">
+                  <div className="text-[10px] font-bold text-aegrix-text/20 uppercase tracking-[0.3em]">
                     AEGRIX Division
                   </div>
                 </div>
 
                 <div className="mb-10">
-                  <h3 className="heading-md text-white mb-3">{division.title}</h3>
+                  <h3 className="heading-md text-aegrix-text mb-3">{division.title}</h3>
                   <div className="text-sm font-bold text-aegrix-cyan uppercase tracking-widest mb-4">
                     {division.tagline}
                   </div>
@@ -64,9 +65,9 @@ const ProductDivisions = () => {
                   </p>
                 </div>
 
-                <div className="grow mb-10">
+                <div className="grow mb-10 space-y-3">
                   {division.features.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-3 text-sm text-white/70">
+                    <div key={i} className="flex items-center gap-3 text-sm text-aegrix-text/70">
                       <CheckCircle2 size={16} className="text-aegrix-cyan" />
                       {feature}
                     </div>
@@ -90,12 +91,12 @@ const ProductDivisions = () => {
           <p className="text-aegrix-muted italic font-medium mb-8">
             &quot;Menos caos operativo. Más control digital.&quot;
           </p>
-          <div className="inline-flex items-center gap-8 px-8 py-4 rounded-full bg-white/2 border border-white/5 grayscale opacity-50">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white">Next.js</span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white">React</span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white">Tailwind</span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white">AWS</span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white">Azure</span>
+          <div className="inline-flex items-center gap-8 px-8 py-4 rounded-full bg-aegrix-surface border border-aegrix-border grayscale opacity-50">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text">Next.js</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text">React</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text">Tailwind</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text">AWS</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text">Azure</span>
           </div>
         </div>
       </div>

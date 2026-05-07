@@ -45,9 +45,9 @@ const Hero = ({ lang, dict }: HeroProps) => {
           >
             {/* Background Ambience */}
             <div className="absolute inset-0 z-0 pointer-events-none">
-              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(0,194,255,0.05),transparent_50%)]" />
-              <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.05),transparent_50%)]" />
-              <div className="absolute inset-0 grid-bg opacity-[0.08]" />
+              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(0,194,255,0.03),transparent_50%)]" />
+              <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.03),transparent_50%)]" />
+              <div className="absolute inset-0 grid-bg opacity-[0.06]" />
             </div>
 
             <div className="container-width relative z-10 mt-8 md:my-auto">
@@ -59,7 +59,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
                   className="flex flex-col text-left z-20 lg:col-span-5 xl:col-span-5"
                 >
                   <div className="max-w-[720px]">
-                    <h1 className="font-sora font-bold text-3xl md:text-5xl lg:text-5xl xl:text-6xl text-white mb-6 leading-tight tracking-tight">
+                    <h1 className="font-sora font-bold text-3xl md:text-5xl lg:text-5xl xl:text-6xl text-aegrix-text mb-6 leading-tight tracking-tight">
                       {dict.title_part1} <br />
                       <span className="text-aegrix-cyan">{dict.title_highlight}</span>
                     </h1>
@@ -88,7 +88,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
                   <div className="w-full max-w-[720px]">
                     <HeroControlLayer />
                   </div>
-                  <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-aegrix-cyan/5 blur-[120px] rounded-full pointer-events-none" />
+                  <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-aegrix-cyan/2 blur-[100px] rounded-full pointer-events-none" />
                 </motion.div>
               </div>
             </div>
@@ -104,7 +104,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
             className="w-full min-h-screen flex flex-col relative pt-28 md:pt-36 pb-32"
           >
             <div className="container-width w-full mt-8 md:my-auto h-full flex flex-col">
-              <div className="w-full flex-1 min-h-[500px] md:min-h-[600px] rounded-[40px] overflow-hidden border border-white/5 relative bg-aegrix-surface/20">
+              <div className="w-full flex-1 min-h-[500px] md:min-h-[600px] rounded-[40px] overflow-hidden border border-aegrix-border relative bg-aegrix-surface/20">
                 <VisionSlide />
               </div>
             </div>
@@ -120,13 +120,13 @@ const Hero = ({ lang, dict }: HeroProps) => {
         >
           <span className={cn(
             "text-[10px] font-bold uppercase tracking-[0.25em] transition-colors",
-            currentSlide === 0 ? "text-aegrix-cyan" : "text-white/20 group-hover:text-white/40"
+            currentSlide === 0 ? "text-aegrix-cyan" : "text-aegrix-text/20 group-hover:text-aegrix-text/40"
           )}>
             {lang === 'es' ? 'Control Digital' : 'Digital Control'}
           </span>
           <div className={cn(
             "h-[1.5px] rounded-full transition-all duration-700",
-            currentSlide === 0 ? "w-12 bg-aegrix-cyan" : "w-0 bg-white/10 group-hover:w-6"
+            currentSlide === 0 ? "w-12 bg-aegrix-cyan" : "w-0 bg-aegrix-text/10 group-hover:w-6"
           )} />
         </button>
 
@@ -136,13 +136,13 @@ const Hero = ({ lang, dict }: HeroProps) => {
         >
           <span className={cn(
             "text-[10px] font-bold uppercase tracking-[0.25em] transition-colors",
-            currentSlide === 1 ? "text-aegrix-cyan" : "text-white/20 group-hover:text-white/40"
+            currentSlide === 1 ? "text-aegrix-cyan" : "text-aegrix-text/20 group-hover:text-aegrix-text/40"
           )}>
             {lang === 'es' ? 'Visión Estratégica' : 'Strategic Vision'}
           </span>
           <div className={cn(
             "h-[1.5px] rounded-full transition-all duration-700",
-            currentSlide === 1 ? "w-12 bg-aegrix-cyan" : "w-0 bg-white/10 group-hover:w-6"
+            currentSlide === 1 ? "w-12 bg-aegrix-cyan" : "w-0 bg-aegrix-text/10 group-hover:w-6"
           )} />
         </button>
       </div>

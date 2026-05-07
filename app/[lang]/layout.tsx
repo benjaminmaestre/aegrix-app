@@ -94,8 +94,21 @@ export default async function RootLayout({
   const dict = await getDictionary(lang);
   
   return (
-    <html lang={lang} className={`${sora.variable} ${manrope.variable}`}>
-      <body className="bg-aegrix-bg text-white font-manrope selection:bg-aegrix-cyan/20">
+    <html lang={lang} className={`${sora.variable} ${manrope.variable}`} data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const savedTheme = localStorage.getItem('aegrix-theme');
+                const theme = savedTheme || 'dark';
+                document.documentElement.dataset.theme = theme;
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="bg-aegrix-bg text-aegrix-text font-manrope selection:bg-aegrix-cyan/20">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

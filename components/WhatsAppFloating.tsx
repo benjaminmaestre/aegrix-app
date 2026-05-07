@@ -15,7 +15,7 @@ const WhatsAppFloating = () => {
       animate={{ opacity: 1, scale: 1, y: 0 }}
       whileHover={{ scale: 1.1, y: -5 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-8 right-8 z-60 flex items-center justify-center w-14 h-14 rounded-2xl border border-cyan-200/50 text-[#031018] shadow-2xl transition-all duration-300"
+      className="fixed bottom-8 right-8 z-60 flex items-center justify-center w-14 h-14 rounded-2xl border border-aegrix-border text-aegrix-bg shadow-2xl transition-all duration-300"
       style={{
         background: 'linear-gradient(180deg, #8EF1FF 0%, #00C2FF 48%, #008FC7 100%)',
         boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 10px 30px rgba(0, 194, 255, 0.3)'
@@ -25,7 +25,7 @@ const WhatsAppFloating = () => {
       <MessageCircle size={28} fill="currentColor" strokeWidth={1} />
       
       {/* Active pulse effect */}
-      <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 border-2 border-[#031018] rounded-full">
+      <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 border-2 border-aegrix-bg rounded-full">
         <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-75" />
       </span>
     </motion.a>

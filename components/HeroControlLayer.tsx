@@ -68,18 +68,18 @@ const HeroControlLayer = () => {
   return (
     <div className="relative w-full">
       {/* Dynamic Glow that follows active layer theme (subtle) */}
-      <div className="absolute -inset-10 bg-aegrix-cyan/5 blur-[100px] rounded-full opacity-30 pointer-events-none" />
+      <div className="absolute -inset-10 bg-aegrix-cyan/2 blur-[80px] rounded-full opacity-20 pointer-events-none" />
       
-      <div className="relative grid grid-cols-1 md:grid-cols-12 bg-[#0A0F1A]/80 border border-white/10 rounded-2xl md:rounded-3xl overflow-hidden backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+      <div className="relative grid grid-cols-1 md:grid-cols-12 bg-aegrix-surface/80 border border-aegrix-border rounded-2xl md:rounded-3xl overflow-hidden backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
         
         {/* Left Panel: Layer List */}
-        <div className="md:col-span-5 border-b md:border-b-0 md:border-r border-white/5 p-4 md:p-6 bg-black/40">
+        <div className="md:col-span-5 border-b md:border-b-0 md:border-r border-aegrix-border p-4 md:p-6 bg-aegrix-bg-2/30">
           <div className="flex items-center justify-between mb-8 px-2">
             <div className="flex items-center gap-2.5">
               <div className="w-1.5 h-1.5 rounded-full bg-aegrix-cyan animate-pulse" />
-              <span className="text-[10px] font-bold text-white/70 uppercase tracking-widest">Centro de Control</span>
+              <span className="text-[10px] font-bold text-aegrix-text/70 uppercase tracking-widest">Centro de Control</span>
             </div>
-            <div className="text-[9px] font-mono text-white/20 tracking-tighter">NODE_X-01</div>
+            <div className="text-[9px] font-mono text-aegrix-text/20 tracking-tighter">NODE_X-01</div>
           </div>
 
           <div className="space-y-2.5">
@@ -90,26 +90,26 @@ const HeroControlLayer = () => {
                 className={cn(
                   "w-full flex items-center gap-4 p-3.5 rounded-xl border transition-all duration-500 text-left group",
                   activeIndex === idx 
-                    ? cn("bg-white/[0.07] border-white/10 shadow-lg scale-[1.02]", layer.borderColor.replace('/30', '/10'))
-                    : "bg-transparent border-transparent opacity-30 hover:opacity-100 hover:bg-white/3"
+                    ? cn("bg-aegrix-surface border-aegrix-border shadow-lg scale-[1.02]", layer.borderColor.replace('/30', '/10'))
+                    : "bg-transparent border-transparent opacity-40 hover:opacity-100 hover:bg-aegrix-surface/50"
                 )}
               >
                 <div className={cn(
                   "p-2.5 rounded-lg transition-all duration-500",
-                  activeIndex === idx ? layer.bgColor + " " + layer.color : "bg-white/5 text-white/20"
+                  activeIndex === idx ? layer.bgColor + " " + layer.color : "bg-aegrix-surface text-aegrix-text/20"
                 )}>
                   <layer.icon size={20} />
                 </div>
                 <div className="flex-1 overflow-hidden">
-                  <div className="text-[11px] font-bold text-white uppercase tracking-tight truncate group-hover:text-white transition-colors">
+                  <div className="text-[11px] font-bold text-aegrix-text uppercase tracking-tight truncate group-hover:text-aegrix-cyan transition-colors">
                     {layer.label}
                   </div>
                   <div className="flex items-center gap-2 mt-1.5">
                     <div className={cn(
                       "w-1.5 h-1.5 rounded-full transition-all duration-500",
-                      activeIndex === idx ? "bg-aegrix-green" : "bg-white/10"
+                      activeIndex === idx ? "bg-aegrix-green" : "bg-aegrix-text/10"
                     )} />
-                    <span className="text-[9px] text-white/30 font-mono uppercase tracking-tighter">
+                    <span className="text-[9px] text-aegrix-text/30 font-mono uppercase tracking-tighter">
                       {activeIndex === idx ? 'Operational' : 'Standby'}
                     </span>
                   </div>
@@ -119,12 +119,12 @@ const HeroControlLayer = () => {
           </div>
 
           {/* Bottom System Stats */}
-          <div className="mt-8 pt-6 border-t border-white/5 hidden md:block">
+          <div className="mt-8 pt-6 border-t border-aegrix-border hidden md:block">
             <div className="flex justify-between items-center mb-3">
-              <span className="text-[9px] text-white/30 uppercase tracking-widest">System Load</span>
+              <span className="text-[9px] text-aegrix-text/30 uppercase tracking-widest">System Load</span>
               <span className="text-[9px] font-mono text-aegrix-cyan">0.02ms</span>
             </div>
-            <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+            <div className="h-1 w-full bg-aegrix-bg-2 rounded-full overflow-hidden">
               <motion.div 
                 className="h-full bg-aegrix-cyan"
                 animate={{ width: ['20%', '60%', '45%', '80%', '30%'] }}
@@ -158,10 +158,10 @@ const HeroControlLayer = () => {
                 )}>
                   {activeLayer.status}
                 </div>
-                <div className="text-[10px] font-mono text-white/10 uppercase tracking-[0.4em]">Node_{activeIndex + 1}</div>
+                <div className="text-[10px] font-mono text-aegrix-text/10 uppercase tracking-[0.4em]">Node_{activeIndex + 1}</div>
               </div>
 
-              <h3 className="text-3xl md:text-4xl font-sora font-bold text-white mb-6 leading-tight tracking-tight">
+              <h3 className="text-3xl md:text-4xl font-sora font-bold text-aegrix-text mb-6 leading-tight tracking-tight">
                 {activeLayer.label}
               </h3>
               
@@ -170,14 +170,14 @@ const HeroControlLayer = () => {
               </p>
 
               <div className="mt-auto">
-                <div className="text-[10px] font-bold text-white/30 uppercase tracking-[0.3em] mb-6 border-b border-white/5 pb-2">Technical Indicators</div>
+                <div className="text-[10px] font-bold text-aegrix-text/30 uppercase tracking-[0.3em] mb-6 border-b border-aegrix-border pb-2">Technical Indicators</div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
                   {activeLayer.tags.map((tag, i) => (
                     <div key={i} className="flex items-center gap-3.5 group/tag">
                       <div className={cn("transition-transform duration-300 group-hover/tag:scale-110", activeLayer.color)}>
                         <CheckCircle2 size={18} />
                       </div>
-                      <span className="text-[13px] text-white/80 font-medium tracking-tight">{tag}</span>
+                      <span className="text-[13px] text-aegrix-text/80 font-medium tracking-tight">{tag}</span>
                     </div>
                   ))}
                 </div>
@@ -186,7 +186,7 @@ const HeroControlLayer = () => {
           </AnimatePresence>
           
           {/* Progress Bar (Sequential) */}
-          <div className="absolute bottom-0 left-0 w-full h-1.5 bg-white/5">
+          <div className="absolute bottom-0 left-0 w-full h-1.5 bg-aegrix-bg-2">
             <motion.div 
               key={activeIndex}
               initial={{ width: "0%" }}

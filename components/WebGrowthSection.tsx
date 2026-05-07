@@ -17,13 +17,13 @@ const WebGrowthSection = () => {
             "order-2 lg:order-1 transition-all duration-1000",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
           )}>
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-lg group">
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-aegrix-border shadow-lg group">
               <div className="absolute inset-0 bg-linear-to-br from-aegrix-cyan/20 to-transparent mix-blend-overlay opacity-50" />
-              <div className="absolute inset-0 grid-bg opacity-20" />
+              <div className="absolute inset-0 grid-bg opacity-10" />
               
               {/* Floating Performance Indicator */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                <div className="text-[120px] font-sora font-bold text-white/5 tracking-tighter">100</div>
+                <div className="text-[120px] font-sora font-bold text-aegrix-text/5 tracking-tighter">100</div>
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
                   <div className="w-24 h-24 rounded-full border-4 border-aegrix-cyan border-t-transparent animate-spin" />
                   <div className="absolute inset-0 flex items-center justify-center text-aegrix-cyan font-sora font-bold text-xl">
@@ -32,14 +32,14 @@ const WebGrowthSection = () => {
                 </div>
               </div>
 
-              <div className="absolute bottom-8 left-8 right-8 p-6 bg-aegrix-surface/80 backdrop-blur-md border border-white/10 rounded-xl">
+              <div className="absolute bottom-8 left-8 right-8 p-6 bg-aegrix-surface/80 backdrop-blur-md border border-aegrix-border rounded-xl">
                 <div className="flex justify-between items-center mb-4">
                   <div className="text-[10px] font-bold text-aegrix-cyan uppercase tracking-widest">Performance Score</div>
                   <div className="flex gap-1">
                     {[1, 2, 3, 4, 5].map(i => <div key={i} className="w-1.5 h-1.5 rounded-full bg-aegrix-cyan" />)}
                   </div>
                 </div>
-                <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                <div className="h-2 w-full bg-aegrix-bg-2 rounded-full overflow-hidden">
                   <div className="h-full bg-aegrix-cyan w-[98%]" />
                 </div>
               </div>
@@ -51,7 +51,7 @@ const WebGrowthSection = () => {
             inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
           )}>
             <div className="label-tag mb-8">AEGRIX Web</div>
-            <h2 className="heading-lg mb-8 text-white">
+            <h2 className="heading-lg mb-8 text-aegrix-text">
               Tu web no debe existir: <br />
               <span className="text-aegrix-cyan">debe trabajar.</span>
             </h2>
@@ -61,7 +61,7 @@ const WebGrowthSection = () => {
 
             <div className="grid sm:grid-cols-2 gap-6 mb-12">
               {webBenefits.map((benefit, i) => (
-                <div key={i} className="p-6 rounded-xl bg-white/2 border border-white/5 hover:border-aegrix-cyan/20 transition-all">
+                <div key={i} className="p-6 rounded-xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all">
                   <div className="text-aegrix-cyan mb-4 font-sora font-bold text-sm tracking-widest uppercase">{benefit.title}</div>
                   <p className="text-xs text-aegrix-muted leading-relaxed">{benefit.desc}</p>
                 </div>
@@ -69,7 +69,7 @@ const WebGrowthSection = () => {
             </div>
 
             <div className="p-8 rounded-2xl bg-aegrix-cyan/5 border border-aegrix-cyan/20">
-              <div className="flex items-center gap-4 text-white font-sora font-bold text-lg mb-4">
+              <div className="flex items-center gap-4 text-aegrix-text font-sora font-bold text-lg mb-4">
                 <Target size={24} className="text-aegrix-cyan" />
                 Enfoque en Conversión
               </div>
