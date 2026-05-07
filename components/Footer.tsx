@@ -17,13 +17,22 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           {/* Brand Info */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-8">
+            <Link href="/" className="inline-block mb-8 relative group">
+              {/* Logo for Dark Theme */}
               <Image 
                 src="/AEGRIX_hero_vector.svg" 
                 alt="AEGRIX" 
                 width={140} 
                 height={38}
-                className="h-12 w-auto object-contain brightness-110"
+                className="h-12 w-auto object-contain hidden dark:block brightness-110 transition-all duration-500 group-hover:scale-105"
+              />
+              {/* Logo for Light Theme */}
+              <Image 
+                src="/AEGRIX_vector.svg" 
+                alt="AEGRIX" 
+                width={140} 
+                height={38}
+                className="h-12 w-auto object-contain dark:hidden transition-all duration-500 group-hover:scale-105"
               />
             </Link>
             <p className="text-sm text-aegrix-muted leading-relaxed mb-8 max-w-xs">

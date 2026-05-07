@@ -6,17 +6,19 @@ import { getTheme, setTheme, Theme } from '@/lib/theme';
 import { cn } from '@/lib/utils';
 
 export const ThemeToggle = () => {
-  const [theme, setInternalTheme] = useState<Theme | null>(() => {
-    if (typeof window !== 'undefined') return getTheme();
-    return null;
-  });
+  const [mounted, setMounted] = useState(false);
+  const [theme, setInternalTheme] = useState<Theme | null>(null);
 
   useEffect(() => {
-    // Sync theme with document attribute on mount if needed
-    if (theme) {
+    setMounted(true);
+    setInternalTheme(getTheme());
+  }, []);
+
+  useEffect(() => {
+    if (theme && mounted) {
       document.documentElement.dataset.theme = theme;
     }
-  }, [theme]);
+  }, [theme, mounted]);
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
@@ -24,7 +26,7 @@ export const ThemeToggle = () => {
     setTheme(newTheme);
   };
 
-  if (!theme) return <div className="w-8 h-8" />; // Placeholder to avoid layout shift
+  if (!mounted || !theme) return <div className="w-8 h-8" />; // Placeholder to avoid layout shift
 
   return (
     <button

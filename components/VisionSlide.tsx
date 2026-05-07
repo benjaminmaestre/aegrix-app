@@ -54,18 +54,18 @@ const VisionSlide = () => {
                 className="overflow-hidden whitespace-nowrap"
                 style={{ borderRight: `2px solid ${CYAN}`, paddingRight: 4 }}
               >
-                <p className="text-xl md:text-2xl font-manrope font-medium text-slate-800">
+                <p className="text-xl md:text-2xl font-manrope font-medium text-aegrix-text">
                   Orquestando ecosistema: Inteligencia Artificial, Ciberseguridad y Desarrollo Web...
                 </p>
               </motion.div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <div className="px-4 py-2 rounded-full bg-aegrix-bg text-[10px] font-bold uppercase tracking-widest text-aegrix-muted border border-aegrix-border">
+                <div className="px-4 py-2 rounded-full bg-aegrix-cyan/10 text-[10px] font-bold uppercase tracking-widest text-aegrix-cyan border border-aegrix-cyan/20">
                   Threat Intelligence
                 </div>
-                <div className="px-4 py-2 rounded-full bg-aegrix-bg text-[10px] font-bold uppercase tracking-widest text-aegrix-muted border border-aegrix-border">
+                <div className="px-4 py-2 rounded-full bg-aegrix-cyan/10 text-[10px] font-bold uppercase tracking-widest text-aegrix-cyan border border-aegrix-cyan/20">
                   Web Performance
                 </div>
-                <div className="px-4 py-2 rounded-full bg-aegrix-bg text-[10px] font-bold uppercase tracking-widest text-aegrix-muted border border-aegrix-border">
+                <div className="px-4 py-2 rounded-full bg-aegrix-cyan/10 text-[10px] font-bold uppercase tracking-widest text-aegrix-cyan border border-aegrix-cyan/20">
                   Machine Learning
                 </div>
               </div>
@@ -87,14 +87,21 @@ const VisionSlide = () => {
             <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-aegrix-cyan/20 to-transparent" />
             
             {/* Subtle Isotype Watermark */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] dark:opacity-[0.07] pointer-events-none scale-150 transition-all duration-1000">
-              <Image 
-                src="/AEGRIX_right_logo_icon.svg" 
-                alt="" 
-                width={600} 
-                height={600} 
-                className="dark:invert dark:brightness-200"
-              />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04] dark:opacity-[0.03] pointer-events-none scale-[2] transition-all duration-1000">
+              <svg width="700" height="700" viewBox="300 230 650 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g fillRule="evenodd">
+                  {/* Base Isotype */}
+                  <path 
+                    d="M 775 526 L 740 564 L 736 570 L 736 576 L 832 743 L 904 744 L 777 527 Z M 628 275 L 350 743 L 351 744 L 421 744 L 627 398 L 629 399 L 696 512 L 698 512 L 746 477 Z" 
+                    className="fill-black dark:fill-white"
+                  />
+                  {/* Orange Slash Accent */}
+                  <path 
+                    d="M 863 408 L 817 443 L 585 629 L 545 660 L 499 763 L 513 752 L 579 692 L 688 588 L 801 475 Z" 
+                    fill="#FF4D00"
+                  />
+                </g>
+              </svg>
             </div>
             
             <div className="absolute top-8 left-8 flex items-center gap-2">
@@ -102,8 +109,8 @@ const VisionSlide = () => {
               <span className="text-[10px] font-bold text-aegrix-cyan uppercase tracking-[0.3em] opacity-40">AEGRIX CONTROL LAYER</span>
             </div>
 
-            <div className="absolute top-0 right-0 w-96 h-96 bg-orange-400/5 blur-[80px] rounded-full translate-x-1/3 -translate-y-1/3" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-400/5 blur-[80px] rounded-full -translate-x-1/3 translate-y-1/3" />
+            <div className="absolute top-0 right-0 w-96 h-96 bg-orange-400/15 dark:bg-orange-400/5 blur-[100px] rounded-full translate-x-1/3 -translate-y-1/3" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-400/15 dark:bg-purple-400/5 blur-[100px] rounded-full -translate-x-1/3 translate-y-1/3" />
 
             <div className="relative z-10 text-center">
               <motion.h2

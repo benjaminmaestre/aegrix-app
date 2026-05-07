@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import HeroControlLayer from './HeroControlLayer';
 import VisionSlide from './VisionSlide';
@@ -48,6 +49,24 @@ const Hero = ({ lang, dict }: HeroProps) => {
               <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(0,194,255,0.03),transparent_50%)]" />
               <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.03),transparent_50%)]" />
               <div className="absolute inset-0 grid-bg opacity-[0.06]" />
+              
+              {/* Large Isotype Watermark for Hero */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04] dark:opacity-[0.03] pointer-events-none scale-[2] transition-all duration-1000">
+                <svg width="700" height="700" viewBox="300 230 650 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g fillRule="evenodd">
+                    {/* Base Isotype */}
+                    <path 
+                      d="M 775 526 L 740 564 L 736 570 L 736 576 L 832 743 L 904 744 L 777 527 Z M 628 275 L 350 743 L 351 744 L 421 744 L 627 398 L 629 399 L 696 512 L 698 512 L 746 477 Z" 
+                      className="fill-black dark:fill-white"
+                    />
+                    {/* Orange Slash Accent */}
+                    <path 
+                      d="M 863 408 L 817 443 L 585 629 L 545 660 L 499 763 L 513 752 L 579 692 L 688 588 L 801 475 Z" 
+                      fill="#FF4D00"
+                    />
+                  </g>
+                </svg>
+              </div>
             </div>
 
             <div className="container-width relative z-10 mt-8 md:my-auto">

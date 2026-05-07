@@ -78,6 +78,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
+import Script from 'next/script';
+
 export default async function RootLayout({
   children,
   params,
@@ -96,7 +98,9 @@ export default async function RootLayout({
   return (
     <html lang={lang} className={`${sora.variable} ${manrope.variable}`} data-theme="dark" suppressHydrationWarning>
       <head>
-        <script
+        <Script
+          id="theme-initializer"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               try {
@@ -109,8 +113,10 @@ export default async function RootLayout({
         />
       </head>
       <body className="bg-aegrix-bg text-aegrix-text font-manrope selection:bg-aegrix-cyan/20">
-        <script
+        <Script
+          id="json-ld"
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
