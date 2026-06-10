@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { productDivisions, WHATSAPP_URL } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
@@ -13,6 +14,13 @@ const icons: Record<string, LucideIcon> = {
   web: Globe,
   'data-ai': Cpu,
   care: Heart,
+};
+
+const cardImages: Record<string, string> = {
+  shield: '/images/aegrix-card-shield.avif',
+  web: '/images/aegrix-card-software-web.avif',
+  'data-ai': '/images/aegrix-card-data-ai.avif',
+  care: '/images/aegrix-card-care.avif',
 };
 
 const ProductDivisions = () => {
@@ -47,43 +55,59 @@ const ProductDivisions = () => {
                 )}
                 style={{ transitionDelay: `${idx * 150}ms` }}
               >
-                <div className="absolute inset-0 grid-bg opacity-[0.02] pointer-events-none" />
-                <div className="flex items-start justify-between mb-8">
-                  <div className="p-4 rounded-xl bg-aegrix-bg-2 border border-aegrix-border text-aegrix-cyan">
-                    <Icon size={32} />
-                  </div>
-                  <div className="text-[10px] font-bold text-aegrix-text/20 uppercase tracking-[0.3em]">
-                    AEGRIX Division
-                  </div>
+                {/* Background image decoration */}
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                  <div className="absolute inset-0 bg-white/90 dark:bg-aegrix-surface/90" />
+                  <div className="absolute inset-0 bg-linear-to-br from-white via-white/95 to-white/85 dark:from-aegrix-surface dark:via-aegrix-surface/95 dark:to-aegrix-surface/85" />
+                  <Image
+                    src={cardImages[division.id]}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-center opacity-[0.18] dark:opacity-[0.12]"
+                  />
+                  <div className="absolute inset-0 grid-bg opacity-[0.02]" />
                 </div>
 
-                <div className="mb-10">
-                  <h3 className="heading-md text-aegrix-text mb-3">{division.title}</h3>
-                  <div className="text-sm font-bold text-aegrix-cyan uppercase tracking-widest mb-4">
-                    {division.tagline}
-                  </div>
-                  <p className="body-md text-aegrix-muted leading-relaxed">
-                    {division.description}
-                  </p>
-                </div>
-
-                <div className="grow mb-10 space-y-3">
-                  {division.features.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-3 text-sm text-aegrix-text/70">
-                      <CheckCircle2 size={16} className="text-aegrix-cyan" />
-                      {feature}
+                {/* Content Layer */}
+                <div className="relative z-10 flex flex-col h-full grow">
+                  <div className="flex items-start justify-between mb-8">
+                    <div className="p-4 rounded-xl bg-aegrix-bg-2 border border-aegrix-border text-aegrix-cyan">
+                      <Icon size={32} />
                     </div>
-                  ))}
-                </div>
+                    <div className="text-[10px] font-bold text-aegrix-text/20 uppercase tracking-[0.3em]">
+                      AEGRIX Division
+                    </div>
+                  </div>
 
-                <Link 
-                  href={WHATSAPP_URL} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary w-full"
-                >
-                  Saber más sobre {division.id === 'web' ? 'Infraestructura Web' : division.title.split(' ')[1]}
-                </Link>
+                  <div className="mb-10">
+                    <h3 className="heading-md text-aegrix-text mb-3">{division.title}</h3>
+                    <div className="text-sm font-bold text-aegrix-cyan uppercase tracking-widest mb-4">
+                      {division.tagline}
+                    </div>
+                    <p className="body-md text-aegrix-muted leading-relaxed">
+                      {division.description}
+                    </p>
+                  </div>
+
+                  <div className="grow mb-10 space-y-3">
+                    {division.features.map((feature, i) => (
+                      <div key={i} className="flex items-center gap-3 text-sm text-aegrix-text/70">
+                        <CheckCircle2 size={16} className="text-aegrix-cyan" />
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
+
+                  <Link 
+                    href={WHATSAPP_URL} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary w-full"
+                  >
+                    Saber más sobre {division.id === 'web' ? 'Infraestructura Web' : division.title.split(' ')[1]}
+                  </Link>
+                </div>
               </div>
             );
           })}

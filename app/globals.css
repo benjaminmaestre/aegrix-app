@@ -65,8 +65,8 @@ html[data-theme="light"] {
   --aegrix-bg-2:     #EAF1F8;
   --aegrix-surface:  #FFFFFF;
   --aegrix-charcoal: #DCE6F2;
-  --aegrix-text:     #0B1320;
-  --aegrix-muted:    #526174;
+  --aegrix-text:     #171717; /* Gris neutro oscurísimo (estilo Vercel/Linear) en lugar de negro absoluto o azul */
+  --aegrix-muted:    #52525B; /* Gris neutro suave */
   --aegrix-border:   rgba(15, 23, 42, 0.10);
   --aegrix-cyan:     #008FC7;
   --aegrix-blue:     #1D4ED8;
