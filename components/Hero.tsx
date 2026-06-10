@@ -46,6 +46,16 @@ const Hero = ({ lang, dict }: HeroProps) => {
           >
             {/* Background Ambience */}
             <div className="absolute inset-0 z-0 pointer-events-none">
+              <Image
+                src="/images/aegrix-hero-command-center.avif"
+                alt=""
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-center opacity-35"
+              />
+              <div className="absolute inset-0 bg-aegrix-bg/75" />
+              <div className="absolute inset-0 bg-linear-to-r from-aegrix-bg via-aegrix-bg/80 to-aegrix-bg/40" />
               <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(0,194,255,0.03),transparent_50%)]" />
               <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.03),transparent_50%)]" />
               <div className="absolute inset-0 grid-bg opacity-[0.06]" />
