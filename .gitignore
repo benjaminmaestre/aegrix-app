@@ -47,3 +47,4 @@ lint_results*.txt
 *build*.log
 
 .vercel
+.env*.local

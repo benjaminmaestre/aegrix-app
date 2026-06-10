@@ -6,6 +6,7 @@ import { productDivisions, WHATSAPP_URL } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
 import { Shield, Globe, Cpu, Heart, CheckCircle2, type LucideIcon } from 'lucide-react';
+import BrandMarquee from './BrandMarquee';
 
 const icons: Record<string, LucideIcon> = {
   shield: Shield,
@@ -33,7 +34,7 @@ const ProductDivisions = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="flex lg:grid overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory lg:snap-none gap-8 lg:grid-cols-2 pb-6 lg:pb-0 -mx-6 px-6 lg:mx-0 lg:px-0 scrollbar-none">
           {productDivisions.map((division, idx) => {
             const Icon = icons[division.id];
             return (
@@ -41,6 +42,7 @@ const ProductDivisions = () => {
                 key={division.id}
                 className={cn(
                   "relative p-10 rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all duration-700 flex flex-col shadow-sm hover:shadow-xl overflow-hidden",
+                  "w-[85%] sm:w-[50%] lg:w-auto shrink-0 snap-align-start",
                   inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 )}
                 style={{ transitionDelay: `${idx * 150}ms` }}
@@ -87,17 +89,11 @@ const ProductDivisions = () => {
           })}
         </div>
 
-        <div className="mt-20 text-center">
-          <p className="text-aegrix-muted italic font-medium mb-8">
+        <div className="mt-20">
+          <p className="text-center text-aegrix-muted italic font-medium mb-12">
             &quot;Menos caos operativo. Más control digital.&quot;
           </p>
-          <div className="inline-flex items-center gap-8 px-8 py-4 rounded-full bg-aegrix-surface border border-aegrix-border grayscale opacity-50">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text">Next.js</span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text">React</span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text">Tailwind</span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text">AWS</span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text">Azure</span>
-          </div>
+          <BrandMarquee />
         </div>
       </div>
     </section>

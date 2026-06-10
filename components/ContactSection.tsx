@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MessageSquare, Send, ShieldCheck } from 'lucide-react';
+import { Mail, Send, ShieldCheck } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { WHATSAPP_URL } from '@/lib/data';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
@@ -46,11 +47,11 @@ const ContactSection = () => {
                 className="flex items-center gap-6 group"
               >
                 <div className="w-14 h-14 rounded-2xl bg-aegrix-surface border border-aegrix-border flex items-center justify-center text-aegrix-cyan group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
-                  <MessageSquare size={24} />
+                  <WhatsAppIcon size={24} />
                 </div>
                 <div>
                   <div className="text-xs font-bold text-aegrix-muted uppercase tracking-widest mb-1">Respuesta Inmediata</div>
-                  <div className="text-lg font-semibold text-aegrix-text">WhatsApp Directo</div>
+                  <div className="text-lg font-semibold text-aegrix-text">+57 310 737 9163</div>
                 </div>
               </a>
             </div>

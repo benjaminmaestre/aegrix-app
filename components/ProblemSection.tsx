@@ -40,7 +40,7 @@ const ProblemSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-6 md:grid-cols-2 lg:grid-cols-4 pb-6 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-none">
           {problemCards.map((card, idx) => {
             const Icon = icons[card.icon];
             return (
@@ -48,6 +48,7 @@ const ProblemSection = () => {
                 key={card.id}
                 className={cn(
                   "group relative p-8 rounded-[32px] bg-aegrix-surface border border-aegrix-border transition-all duration-700 shadow-sm hover:shadow-xl hover:border-aegrix-cyan/20 overflow-hidden",
+                  "w-[85%] sm:w-[50%] md:w-auto shrink-0 snap-align-start",
                   inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
                 )}
                 style={{ transitionDelay: `${idx * 150}ms` }}

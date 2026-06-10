@@ -50,7 +50,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
         <Link href={`/${lang}`} className="relative z-50 flex items-center group">
           <div className={cn(
             "relative flex items-center justify-center transition-all duration-500",
-            scrolled ? "h-10 w-28" : "h-16 w-36"
+            scrolled ? "h-8 w-24 md:h-10 md:w-28" : "h-10 w-28 md:h-16 md:w-36"
           )}>
             {/* Logo for Dark Theme */}
             <Image 

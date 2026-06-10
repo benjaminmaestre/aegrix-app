@@ -36,9 +36,9 @@ const VisionSlide = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-aegrix-bg-2 flex flex-col items-center justify-center p-8 md:p-12"
+            className="absolute inset-0 bg-aegrix-bg-2 flex flex-col items-center justify-center p-4 sm:p-8 md:p-12"
           >
-            <div className="w-full max-w-2xl bg-aegrix-surface rounded-3xl shadow-lg p-6 md:p-8 border border-aegrix-border">
+            <div className="w-full max-w-2xl bg-aegrix-surface rounded-3xl shadow-lg p-4 sm:p-6 md:p-8 border border-aegrix-border">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-aegrix-border">
                 <div className="w-10 h-10 rounded-full bg-aegrix-bg flex items-center justify-center text-aegrix-text">
                   <Cpu size={20} />
@@ -80,7 +80,7 @@ const VisionSlide = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-aegrix-surface flex items-center justify-center p-8 overflow-hidden"
+            className="absolute inset-0 bg-aegrix-surface flex items-center justify-center p-4 sm:p-8 overflow-hidden"
           >
             {/* Fine Technical Details */}
             <div className="absolute inset-0 grid-bg opacity-5 dark:opacity-10" />
@@ -142,14 +142,14 @@ const VisionSlide = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-aegrix-bg flex flex-col items-center justify-center p-8"
+            className="absolute inset-0 bg-aegrix-bg flex flex-col items-center justify-center p-4 sm:p-8"
           >
-            <h2 className="text-lg sm:text-3xl md:text-5xl font-sora font-bold text-aegrix-text mb-6 md:mb-16 text-center">
+            <h2 className="text-sm sm:text-2xl md:text-5xl font-sora font-bold text-aegrix-text mb-4 sm:mb-6 md:mb-16 text-center">
               Domina tu industria con <br />
               <span style={{ color: `${CYAN}99` }}>nuestros tres pilares estratégicos...</span>
             </h2>
 
-            <div className="grid grid-cols-3 gap-3 md:gap-12 w-full max-w-5xl">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-12 w-full max-w-5xl px-2">
               {[
                 { icon: Shield, label: 'Ciberseguridad', from: '#1E3A8A', to: '#3B82F6' },
                 { icon: Globe, label: 'Desarrollo Web', from: '#00D4D4', to: '#2DD4BF' },
@@ -163,11 +163,11 @@ const VisionSlide = () => {
                   className="flex flex-col items-center"
                 >
                   <div
-                    className="w-14 h-14 sm:w-24 sm:h-24 rounded-full p-px mb-3 sm:mb-6"
+                    className="w-12 h-12 sm:w-20 md:w-24 sm:h-20 md:h-24 rounded-full p-px mb-2 sm:mb-6"
                     style={{ background: `linear-gradient(135deg, ${pillar.from}, ${pillar.to})` }}
                   >
                     <div className="w-full h-full rounded-full bg-aegrix-bg flex items-center justify-center text-aegrix-text border border-aegrix-border relative overflow-hidden">
-                      <pillar.icon size={20} className="sm:w-8 sm:h-8" />
+                      <pillar.icon size={16} className="sm:w-6 md:w-8 sm:h-6 md:h-8" />
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
@@ -175,7 +175,7 @@ const VisionSlide = () => {
                       />
                     </div>
                   </div>
-                  <div className="text-[10px] sm:text-xl font-bold text-aegrix-text tracking-widest uppercase text-center">
+                  <div className="text-[8px] sm:text-[10px] md:text-xl font-bold text-aegrix-text tracking-wide md:tracking-widest uppercase text-center wrap-break-word max-w-full">
                     {pillar.label}
                   </div>
                 </motion.div>
@@ -191,9 +191,9 @@ const VisionSlide = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-aegrix-bg-2 flex flex-col items-center justify-center p-8 md:p-12"
+            className="absolute inset-0 bg-aegrix-bg-2 flex flex-col items-center justify-center p-4 sm:p-8 md:p-12"
           >
-            <div className="text-center mb-8 md:mb-12 relative h-20 md:h-24 w-full flex items-center justify-center">
+            <div className="text-center mb-4 sm:mb-8 md:mb-12 relative h-12 sm:h-20 md:h-24 w-full flex items-center justify-center">
               <AnimatePresence mode="wait">
                 {step === 3 ? (
                   <motion.h2
@@ -201,7 +201,7 @@ const VisionSlide = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute text-lg sm:text-3xl md:text-5xl font-sora font-bold text-aegrix-text leading-tight w-full"
+                    className="absolute text-sm sm:text-3xl md:text-5xl font-sora font-bold text-aegrix-text leading-tight w-full"
                   >
                     Integramos las 3 capas <br /> en un solo entorno de control.
                   </motion.h2>
@@ -210,7 +210,7 @@ const VisionSlide = () => {
                     key="title4"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute text-lg sm:text-3xl md:text-5xl font-sora font-bold text-aegrix-text leading-tight w-full"
+                    className="absolute text-sm sm:text-3xl md:text-5xl font-sora font-bold text-aegrix-text leading-tight w-full"
                   >
                     Lleva tu infraestructura al siguiente nivel.
                   </motion.h2>
@@ -220,7 +220,7 @@ const VisionSlide = () => {
             
             <AegrixCoreEngine />
             
-            <div className="h-20 mt-8 flex items-center justify-center">
+            <div className="h-12 mt-4 sm:h-20 sm:mt-8 flex items-center justify-center">
               <AnimatePresence>
                 {step === 4 && (
                   <motion.div

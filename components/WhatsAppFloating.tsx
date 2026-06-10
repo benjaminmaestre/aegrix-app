@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { WHATSAPP_URL } from '@/lib/data';
 
 const WhatsAppFloating = () => {
@@ -22,7 +22,7 @@ const WhatsAppFloating = () => {
       }}
       aria-label="WhatsApp Contact"
     >
-      <MessageCircle size={28} fill="currentColor" strokeWidth={1} />
+      <WhatsAppIcon size={28} />
       
       {/* Active pulse effect */}
       <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 border-2 border-aegrix-bg rounded-full">

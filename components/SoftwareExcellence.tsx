@@ -54,7 +54,7 @@ const SoftwareExcellence = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-8 md:grid-cols-2 lg:grid-cols-3 pb-6 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-none">
           {capabilities.map((cap, idx) => (
             <motion.div
               key={idx}
@@ -62,7 +62,7 @@ const SoftwareExcellence = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all group"
+              className="p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all group w-[85%] sm:w-[50%] md:w-auto shrink-0 snap-align-start"
             >
               <div className="w-12 h-12 rounded-xl bg-aegrix-cyan/5 flex items-center justify-center text-aegrix-cyan mb-6 group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
                 <cap.icon size={24} />

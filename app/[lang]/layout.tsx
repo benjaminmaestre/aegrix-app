@@ -127,7 +127,7 @@ export default async function RootLayout({
             __html: `
               try {
                 const savedTheme = localStorage.getItem('aegrix-theme');
-                const theme = savedTheme || 'dark';
+                const theme = savedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
                 document.documentElement.dataset.theme = theme;
               } catch (e) {}
             `,

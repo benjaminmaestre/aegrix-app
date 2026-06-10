@@ -42,7 +42,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full min-h-screen flex flex-col relative pt-20 md:pt-32 pb-16 md:pb-32"
+            className="w-full min-h-screen flex flex-col relative pt-32 md:pt-32 pb-16 md:pb-32"
           >
             {/* Background Ambience */}
             <div className="absolute inset-0 z-0 pointer-events-none">
@@ -83,8 +83,11 @@ const Hero = ({ lang, dict }: HeroProps) => {
                       <span className="text-aegrix-cyan">{dict.title_highlight}</span>
                     </h1>
 
-                    <p className="body-lg mb-6 md:mb-12 text-aegrix-muted max-w-xl opacity-80">
-                      {dict.description}
+                    <p className="font-manrope text-sm sm:text-base md:text-lg mb-6 md:mb-12 text-aegrix-muted max-w-xl opacity-80 leading-relaxed">
+                      <span>{dict.description.split('. ')[0]}.</span>
+                      {dict.description.split('. ').length > 1 && (
+                        <span className="hidden md:inline"> {dict.description.split('. ').slice(1).join('. ')}</span>
+                      )}
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
@@ -120,7 +123,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full min-h-screen flex flex-col relative pt-20 md:pt-36 pb-16 md:pb-32"
+            className="w-full min-h-screen flex flex-col relative pt-32 md:pt-36 pb-16 md:pb-32"
           >
             <div className="container-width w-full mt-4 md:my-auto h-full flex flex-col">
               <div className="w-full flex-1 min-h-[500px] md:min-h-[600px] rounded-3xl md:rounded-[40px] overflow-hidden border border-aegrix-border relative bg-aegrix-surface/20">

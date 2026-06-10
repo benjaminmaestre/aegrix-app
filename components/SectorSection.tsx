@@ -44,7 +44,7 @@ const SectorSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="flex lg:grid overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory lg:snap-none gap-8 lg:grid-cols-3 pb-6 lg:pb-0 -mx-6 px-6 lg:mx-0 lg:px-0 scrollbar-none">
           {industries.map((item, idx) => (
             <motion.div
               key={idx}
@@ -52,7 +52,7 @@ const SectorSection = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-10 rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:bg-aegrix-surface/80 transition-all group relative overflow-hidden"
+              className="p-10 rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:bg-aegrix-surface/80 transition-all group relative overflow-hidden w-[85%] sm:w-[50%] lg:w-auto shrink-0 snap-align-start"
             >
               <div className={`w-16 h-16 rounded-2xl bg-aegrix-bg-2 border border-aegrix-border flex items-center justify-center mb-8 ${item.color} group-hover:scale-110 transition-transform`}>
                 <item.icon size={32} />

@@ -45,7 +45,7 @@ const MethodologySection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-6 md:grid-cols-2 lg:grid-cols-4 pb-6 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-none">
           {steps.map((step, idx) => (
             <motion.div
               key={idx}
@@ -53,7 +53,7 @@ const MethodologySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-8 rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all duration-500 group h-full flex flex-col shadow-sm hover:shadow-xl relative overflow-hidden"
+              className="p-8 rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all duration-500 group h-full flex flex-col shadow-sm hover:shadow-xl relative overflow-hidden w-[85%] sm:w-[50%] md:w-auto shrink-0 snap-align-start"
             >
               <div className="absolute inset-0 grid-bg opacity-[0.02] pointer-events-none" />
               <div className="relative z-10 w-14 h-14 rounded-2xl bg-aegrix-cyan/5 border border-aegrix-cyan/10 flex items-center justify-center text-aegrix-cyan mb-8 group-hover:scale-110 group-hover:bg-aegrix-cyan/10 transition-all duration-500">

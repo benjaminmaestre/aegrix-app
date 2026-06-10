@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { Instagram, ArrowUpRight } from 'lucide-react';
+import { WHATSAPP_URL } from '@/lib/data';
 
 const Footer = () => {
   const params = useParams();
@@ -102,6 +103,7 @@ const Footer = () => {
             <div className="space-y-4 text-sm text-aegrix-muted">
               <p>Medellín, Colombia</p>
               <a href="mailto:info@aegrix.com.co" className="block hover:text-aegrix-cyan transition-colors">info@aegrix.com.co</a>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="block hover:text-aegrix-cyan transition-colors">+57 310 737 9163</a>
               <div className="pt-4">
                 <div className="flex items-center gap-2 text-[10px] font-bold text-aegrix-green uppercase tracking-widest">
                   <span className="w-1.5 h-1.5 rounded-full bg-aegrix-green animate-pulse" />
