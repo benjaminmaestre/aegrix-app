@@ -80,9 +80,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       siteName: 'AEGRIX',
       images: [
         {
-          url: '/AEGRIX_right_logo_icon.svg',
-          width: 800,
-          height: 600,
+          url: '/AEGRIX_preview.png',
+          width: 1200,
+          height: 630,
           alt: 'AEGRIX Logo',
         },
       ],
@@ -91,7 +91,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       card: 'summary_large_image',
       title,
       description,
-      images: ['/AEGRIX_right_logo_icon.svg'],
+      images: ['/AEGRIX_preview.png'],
     },
     robots: { index: true, follow: true },
     icons: {
