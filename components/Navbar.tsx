@@ -26,8 +26,8 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navItems = [
-    { label: dict.services, href: `/${lang}#servicios` },
     { label: dict.nosotros, href: `/${lang}/nosotros` },
+    { label: dict.services, href: `/${lang}#servicios` },
     { label: dict.sectors, href: `/${lang}#sectores` },
     { label: dict.methodology, href: `/${lang}#metodologia` },
     { label: dict.contact, href: `/${lang}#contacto` },
