@@ -24,7 +24,7 @@ const VisionSlide = () => {
 
   return (
     <div
-      className="relative w-full h-full min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-hidden rounded-[40px] z-20 border border-aegrix-border shadow-xl"
+      className="relative w-full h-full min-h-[440px] md:min-h-[600px] flex items-center justify-center overflow-hidden rounded-3xl md:rounded-[40px] z-20 border border-aegrix-border shadow-xl"
       style={{ backgroundColor: 'var(--aegrix-surface)', opacity: 1 }}
     >
       <AnimatePresence mode="wait">
@@ -116,7 +116,7 @@ const VisionSlide = () => {
               <motion.h2
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                className="text-5xl md:text-7xl font-sora font-extrabold text-aegrix-text leading-tight"
+                className="text-3xl sm:text-5xl md:text-7xl font-sora font-extrabold text-aegrix-text leading-tight"
               >
                 AEGRIX <br />
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-500 via-purple-500 to-blue-500">
@@ -127,7 +127,7 @@ const VisionSlide = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="mt-8 text-xl text-aegrix-muted font-manrope tracking-[0.3em] uppercase font-bold"
+                className="mt-4 md:mt-8 text-[10px] sm:text-xl text-aegrix-muted font-manrope tracking-[0.3em] uppercase font-bold"
               >
                 La convergencia entre Inteligencia, Seguridad y Código
               </motion.p>
@@ -144,12 +144,12 @@ const VisionSlide = () => {
             exit={{ opacity: 0 }}
             className="absolute inset-0 bg-aegrix-bg flex flex-col items-center justify-center p-8"
           >
-            <h2 className="text-2xl md:text-5xl font-sora font-bold text-aegrix-text mb-10 md:mb-16 text-center">
+            <h2 className="text-lg sm:text-3xl md:text-5xl font-sora font-bold text-aegrix-text mb-6 md:mb-16 text-center">
               Domina tu industria con <br />
               <span style={{ color: `${CYAN}99` }}>nuestros tres pilares estratégicos...</span>
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-5xl">
+            <div className="grid grid-cols-3 gap-3 md:gap-12 w-full max-w-5xl">
               {[
                 { icon: Shield, label: 'Ciberseguridad', from: '#1E3A8A', to: '#3B82F6' },
                 { icon: Globe, label: 'Desarrollo Web', from: '#00D4D4', to: '#2DD4BF' },
@@ -163,11 +163,11 @@ const VisionSlide = () => {
                   className="flex flex-col items-center"
                 >
                   <div
-                    className="w-24 h-24 rounded-full p-px mb-6"
+                    className="w-14 h-14 sm:w-24 sm:h-24 rounded-full p-px mb-3 sm:mb-6"
                     style={{ background: `linear-gradient(135deg, ${pillar.from}, ${pillar.to})` }}
                   >
                     <div className="w-full h-full rounded-full bg-aegrix-bg flex items-center justify-center text-aegrix-text border border-aegrix-border relative overflow-hidden">
-                      <pillar.icon size={32} />
+                      <pillar.icon size={20} className="sm:w-8 sm:h-8" />
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
@@ -175,7 +175,7 @@ const VisionSlide = () => {
                       />
                     </div>
                   </div>
-                  <div className="text-xl font-bold text-aegrix-text tracking-widest uppercase">
+                  <div className="text-[10px] sm:text-xl font-bold text-aegrix-text tracking-widest uppercase text-center">
                     {pillar.label}
                   </div>
                 </motion.div>
@@ -201,7 +201,7 @@ const VisionSlide = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute text-2xl md:text-5xl font-sora font-bold text-aegrix-text leading-tight w-full"
+                    className="absolute text-lg sm:text-3xl md:text-5xl font-sora font-bold text-aegrix-text leading-tight w-full"
                   >
                     Integramos las 3 capas <br /> en un solo entorno de control.
                   </motion.h2>
@@ -210,7 +210,7 @@ const VisionSlide = () => {
                     key="title4"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute text-2xl md:text-5xl font-sora font-bold text-aegrix-text leading-tight w-full"
+                    className="absolute text-lg sm:text-3xl md:text-5xl font-sora font-bold text-aegrix-text leading-tight w-full"
                   >
                     Lleva tu infraestructura al siguiente nivel.
                   </motion.h2>
@@ -232,7 +232,7 @@ const VisionSlide = () => {
                       href={WHATSAPP_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-primary inline-block px-10 py-4 font-sora font-extrabold uppercase tracking-widest text-[13px] transition-all transform hover:-translate-y-1"
+                      className="btn-primary inline-block px-6 py-2.5 sm:px-10 sm:py-4 font-sora font-extrabold uppercase tracking-widest text-xs sm:text-[13px] transition-all transform hover:-translate-y-1"
                       style={{
                         boxShadow: `0 12px 24px -8px ${CYAN}40`,
                       }}
@@ -249,7 +249,7 @@ const VisionSlide = () => {
       </AnimatePresence>
 
       {/* Progress indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-50">
+      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-50">
         {[0, 1, 2, 3, 4].map(i => (
           <div
             key={i}
@@ -273,16 +273,16 @@ type NodeCardProps = {
 };
 
 const NodeCard = ({ icon: Icon, title, status, color }: NodeCardProps) => (
-  <div className="bg-aegrix-bg/20 border border-aegrix-border rounded-xl p-3 md:p-4 flex items-center gap-4 hover:bg-aegrix-bg/40 transition-colors relative overflow-hidden group shadow-sm">
+  <div className="bg-aegrix-bg/20 border border-aegrix-border rounded-lg sm:rounded-xl p-1.5 sm:p-4 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-1.5 sm:gap-4 hover:bg-aegrix-bg/40 transition-colors relative overflow-hidden group shadow-sm">
     <div className="absolute inset-0 bg-linear-to-r from-transparent to-aegrix-text/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-    <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center relative z-10" style={{ backgroundColor: `${color}10`, color }}>
-      <Icon size={20} className="md:w-6 md:h-6" />
+    <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-md sm:rounded-lg flex items-center justify-center relative z-10 shrink-0" style={{ backgroundColor: `${color}10`, color }}>
+      <Icon size={14} className="sm:w-6 sm:h-6" />
     </div>
-    <div className="relative z-10">
-      <div className="text-[9px] md:text-[10px] font-mono text-aegrix-muted uppercase tracking-wider">{title}</div>
-      <div className="text-xs md:text-sm font-bold text-aegrix-text tracking-wide flex items-center gap-2">
-        <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }} />
-        {status}
+    <div className="relative z-10 min-w-0 w-full overflow-hidden">
+      <div className="text-[8px] sm:text-[10px] font-mono text-aegrix-muted uppercase tracking-wider truncate">{title}</div>
+      <div className="text-[9px] sm:text-sm font-bold text-aegrix-text tracking-wide flex items-center justify-center sm:justify-start gap-1 sm:gap-2">
+        <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full shrink-0" style={{ backgroundColor: color }} />
+        <span className="truncate">{status}</span>
       </div>
     </div>
   </div>
@@ -293,27 +293,27 @@ const AegrixCoreEngine = () => (
   <motion.div
     initial={{ y: 40, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
-    className="relative w-full max-w-4xl aspect-4/3 sm:aspect-16/11 md:aspect-16/10 bg-aegrix-bg rounded-t-3xl border-x-4 md:border-x-[6px] border-t-4 md:border-t-[6px] border-aegrix-surface overflow-hidden shadow-xl shadow-blue-900/5 dark:shadow-[0_20px_40px_rgba(0,0,0,0.4)] flex flex-col"
+    className="relative w-full max-w-4xl h-[260px] sm:h-auto sm:aspect-16/11 md:aspect-16/10 bg-aegrix-bg rounded-t-2xl sm:rounded-t-3xl border-x-4 md:border-x-[6px] border-t-4 md:border-t-[6px] border-aegrix-surface overflow-hidden shadow-xl shadow-blue-900/5 dark:shadow-[0_20px_40px_rgba(0,0,0,0.4)] flex flex-col"
   >
     {/* Mac-style Window Header */}
     <div className="h-8 md:h-10 bg-aegrix-surface flex items-center px-4 md:px-6 gap-2 border-b border-aegrix-border relative shrink-0">
-      <div className="flex gap-2">
-        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500/80" />
-        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500/80" />
-        <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500/80" />
+      <div className="flex gap-1.5 sm:gap-2">
+        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500/80" />
+        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500/80" />
+        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500/80" />
       </div>
-      <div className="absolute left-1/2 -translate-x-1/2 text-[9px] md:text-[10px] text-aegrix-muted font-mono tracking-widest uppercase">
+      <div className="absolute left-1/2 -translate-x-1/2 text-[8px] sm:text-[10px] text-aegrix-muted font-mono tracking-widest uppercase">
         AEGRIX // CORE_ENGINE
       </div>
     </div>
     
     {/* Main content */}
-    <div className="flex-1 p-4 md:p-8 flex flex-col gap-4 md:gap-6 relative">
+    <div className="flex-1 p-3 sm:p-8 flex flex-col gap-3 sm:gap-6 relative min-h-0">
       {/* Background glowing orb */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-cyan-500/5 blur-[80px] md:blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] bg-cyan-500/5 blur-[60px] sm:blur-[100px] rounded-full pointer-events-none" />
       
       {/* Top 3 Nodes (The Triad) */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-6 relative z-10 shrink-0">
+      <div className="grid grid-cols-3 gap-1.5 sm:gap-6 relative z-10 shrink-0">
         <NodeCard icon={Shield} title="Cybersecurity" status="Active" color="#3B82F6" />
         <NodeCard icon={Globe} title="Web Dev" status="Optimized" color="#00D4D4" />
         <NodeCard icon={Cpu} title="AI Engine" status="Learning" color="#A855F7" />
@@ -321,8 +321,8 @@ const AegrixCoreEngine = () => (
 
       {/* Bottom section: Logs and Chart */}
       <div className="flex flex-col sm:flex-row gap-4 md:gap-6 flex-1 relative z-10 min-h-0">
-        {/* Terminal logs */}
-        <div className="w-full sm:w-1/3 bg-aegrix-bg/60 rounded-xl border border-aegrix-border p-4 md:p-5 font-mono text-[9px] md:text-[11px] text-aegrix-text/80 overflow-hidden flex flex-col justify-end relative shadow-inner">
+        {/* Terminal logs (Desktop only) */}
+        <div className="hidden sm:flex sm:flex-col sm:w-1/3 bg-aegrix-bg/60 rounded-xl border border-aegrix-border p-4 md:p-5 font-mono text-[9px] md:text-[11px] text-aegrix-text/80 overflow-hidden justify-end relative shadow-inner">
           <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-aegrix-cyan/30 to-transparent opacity-50" />
           <div className="space-y-1 md:space-y-2 opacity-90">
              <p className="text-aegrix-muted">&gt; sys.init(aegrix_core)</p>
@@ -348,12 +348,12 @@ const AegrixCoreEngine = () => (
         </div>
         
         {/* Central Visualization */}
-        <div className="flex-1 bg-aegrix-surface/40 rounded-xl border border-aegrix-border p-4 md:p-6 flex items-center justify-center relative overflow-hidden group">
+        <div className="flex-1 bg-aegrix-surface/40 rounded-xl border border-aegrix-border p-3 sm:p-6 flex items-center justify-center relative overflow-hidden group min-h-0">
            {/* Grid background */}
-           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[20px_20px] md:bg-size-[30px_30px] opacity-10" />
+           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[15px_15px] sm:bg-size-[30px_30px] opacity-10" />
            
            {/* Radar / Pulsing core */}
-           <div className="relative flex items-center justify-center">
+           <div className="relative flex items-center justify-center scale-75 sm:scale-100">
              <motion.div 
                animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}

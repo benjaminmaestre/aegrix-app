@@ -101,7 +101,7 @@ const Footer = () => {
             <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-8">Contacto</h4>
             <div className="space-y-4 text-sm text-aegrix-muted">
               <p>Medellín, Colombia</p>
-              <a href="mailto:info@aegrix.com" className="block hover:text-aegrix-cyan transition-colors">info@aegrix.com</a>
+              <a href="mailto:info@aegrix.com.co" className="block hover:text-aegrix-cyan transition-colors">info@aegrix.com.co</a>
               <div className="pt-4">
                 <div className="flex items-center gap-2 text-[10px] font-bold text-aegrix-green uppercase tracking-widest">
                   <span className="w-1.5 h-1.5 rounded-full bg-aegrix-green animate-pulse" />

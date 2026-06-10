@@ -26,8 +26,8 @@ export default async function TermsPage({
           <h2>1. Identificación de AEGRIX</h2>
           <p>AEGRIX es una marca dedicada a la prestación de servicios de ingeniería de software, desarrollo web, ciberseguridad, analítica de datos, inteligencia artificial, capacitación tecnológica, consultoría digital y acompañamiento estratégico para empresas.</p>
           <p>
-            Sitio web: <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a><br />
-            Correo electrónico: <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a><br />
+            Sitio web: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a><br />
+            Correo electrónico: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
             Canal comercial: WhatsApp habilitado en el sitio web.
           </p>
 
@@ -120,8 +120,8 @@ export default async function TermsPage({
 
           <h2>31. Contacto</h2>
           <p>
-            Correo electrónico: <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a><br />
-            Sitio web: <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>
+            Correo electrónico: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
+            Sitio web: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>
           </p>
         </>
       ) : (
@@ -134,8 +134,8 @@ export default async function TermsPage({
           <h2>1. Identification of AEGRIX</h2>
           <p>AEGRIX is a brand dedicated to providing software engineering, web development, cybersecurity, data analytics, artificial intelligence, technological training, digital consulting, and strategic accompaniment for companies.</p>
           <p>
-            Website: <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a><br />
-            Email: <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a><br />
+            Website: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a><br />
+            Email: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
             Commercial channel: WhatsApp enabled on the website.
           </p>
 
@@ -228,8 +228,8 @@ export default async function TermsPage({
 
           <h2>31. Contact</h2>
           <p>
-            Email: <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a><br />
-            Website: <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>
+            Email: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
+            Website: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>
           </p>
         </>
       )}

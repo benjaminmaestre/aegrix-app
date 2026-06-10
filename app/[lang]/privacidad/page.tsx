@@ -28,8 +28,8 @@ export default async function PrivacyPage({
           <p>
             <strong>AEGRIX</strong><br />
             Actividad: servicios de ingeniería de software, desarrollo web, ciberseguridad, analítica de datos, inteligencia artificial, capacitación, consultoría tecnológica y acompañamiento digital.<br />
-            Sitio web: <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a><br />
-            Correo electrónico de contacto: <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a><br />
+            Sitio web: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a><br />
+            Correo electrónico de contacto: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
             Canal de contacto adicional: WhatsApp empresarial dispuesto en el sitio web.
           </p>
 
@@ -56,7 +56,7 @@ export default async function PrivacyPage({
           <p>Los titulares tienen derecho a conocer, actualizar y rectificar sus datos personales, solicitar prueba de la autorización, ser informados sobre el uso de sus datos, presentar quejas ante la SIC y revocar la autorización o solicitar la supresión del dato cuando proceda.</p>
 
           <h2>6. Procedimiento para consultas, reclamos y solicitudes</h2>
-          <p>El titular podrá ejercer sus derechos enviando una comunicación escrita a <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a> incluyendo su nombre, medio de contacto y descripción clara de su solicitud.</p>
+          <p>El titular podrá ejercer sus derechos enviando una comunicación escrita a <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a> incluyendo su nombre, medio de contacto y descripción clara de su solicitud.</p>
 
           <h2>7. Seguridad de la información</h2>
           <p>AEGRIX adopta medidas técnicas y organizacionales para proteger los datos. El titular reconoce que ningún sistema es infalible, pero AEGRIX se compromete a implementar medidas proporcionales para reducir riesgos.</p>
@@ -93,8 +93,8 @@ export default async function PrivacyPage({
 
           <h2>18. Contacto</h2>
           <p>
-            <strong>Correo electrónico:</strong> <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a><br />
-            <strong>Sitio web:</strong> <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>
+            <strong>Correo electrónico:</strong> <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
+            <strong>Sitio web:</strong> <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>
           </p>
         </>
       ) : (
@@ -109,8 +109,8 @@ export default async function PrivacyPage({
           <p>
             <strong>AEGRIX</strong><br />
             Activity: software engineering, web development, cybersecurity, data analytics, AI, training, and digital consulting services.<br />
-            Website: <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a><br />
-            Contact Email: <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a>
+            Website: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a><br />
+            Contact Email: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a>
           </p>
 
           <h2>2. Personal Data We May Collect</h2>
@@ -126,7 +126,7 @@ export default async function PrivacyPage({
           <p>Holders have the right to know, update, and rectify data, request proof of authorization, be informed of use, and request data suppression when applicable.</p>
 
           <h2>6. Procedures</h2>
-          <p>Rights can be exercised by writing to <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a> with clear details of the request.</p>
+          <p>Rights can be exercised by writing to <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a> with clear details of the request.</p>
 
           <h2>7. Information Security</h2>
           <p>AEGRIX implements technical and organizational measures to protect data. While no system is infallible, we are committed to reducing risks through proportional measures.</p>
@@ -163,8 +163,8 @@ export default async function PrivacyPage({
 
           <h2>18. Contact</h2>
           <p>
-            <strong>Email:</strong> <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a><br />
-            <strong>Website:</strong> <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>
+            <strong>Email:</strong> <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
+            <strong>Website:</strong> <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>
           </p>
         </>
       )}

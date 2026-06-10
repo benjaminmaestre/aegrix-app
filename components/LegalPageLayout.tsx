@@ -42,7 +42,7 @@ const LegalPageLayout = ({ title, lastUpdated, children }: LegalPageLayoutProps)
             </div>
             <div>
               <p className="text-sm text-aegrix-text font-medium mb-1">Confianza y Seguridad</p>
-              <p className="text-xs text-aegrix-muted">Si tienes alguna duda sobre nuestros documentos legales, puedes contactarnos en info@aegrix.com.</p>
+              <p className="text-xs text-aegrix-muted">Si tienes alguna duda sobre nuestros documentos legales, puedes contactarnos en info@aegrix.com.co.</p>
             </div>
           </div>
         </div>

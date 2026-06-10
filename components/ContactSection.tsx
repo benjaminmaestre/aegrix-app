@@ -27,7 +27,7 @@ const ContactSection = () => {
 
             <div className="space-y-8">
               <a 
-                href="mailto:contacto@aegrix.co" 
+                href="mailto:contacto@aegrix.com.co" 
                 className="flex items-center gap-6 group"
               >
                 <div className="w-14 h-14 rounded-2xl bg-aegrix-surface border border-aegrix-border flex items-center justify-center text-aegrix-cyan group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
@@ -35,7 +35,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <div className="text-xs font-bold text-aegrix-muted uppercase tracking-widest mb-1">Email Corporativo</div>
-                  <div className="text-lg font-semibold text-aegrix-text">contacto@aegrix.co</div>
+                  <div className="text-lg font-semibold text-aegrix-text">contacto@aegrix.com.co</div>
                 </div>
               </a>
 

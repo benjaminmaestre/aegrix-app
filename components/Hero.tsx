@@ -42,7 +42,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full min-h-screen flex flex-col relative pt-28 md:pt-32 pb-32"
+            className="w-full min-h-screen flex flex-col relative pt-20 md:pt-32 pb-16 md:pb-32"
           >
             {/* Background Ambience */}
             <div className="absolute inset-0 z-0 pointer-events-none">
@@ -69,7 +69,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
               </div>
             </div>
 
-            <div className="container-width relative z-10 mt-8 md:my-auto">
+            <div className="container-width relative z-10 mt-4 md:my-auto">
               <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
@@ -83,11 +83,11 @@ const Hero = ({ lang, dict }: HeroProps) => {
                       <span className="text-aegrix-cyan">{dict.title_highlight}</span>
                     </h1>
 
-                    <p className="body-lg mb-12 text-aegrix-muted max-w-xl opacity-80">
+                    <p className="body-lg mb-6 md:mb-12 text-aegrix-muted max-w-xl opacity-80">
                       {dict.description}
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center gap-5">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
                       <Link href={`/${lang}#diagnostico`} className="btn-primary w-full sm:w-auto">
                         {dict.cta_primary}
                       </Link>
@@ -120,10 +120,10 @@ const Hero = ({ lang, dict }: HeroProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full min-h-screen flex flex-col relative pt-28 md:pt-36 pb-32"
+            className="w-full min-h-screen flex flex-col relative pt-20 md:pt-36 pb-16 md:pb-32"
           >
-            <div className="container-width w-full mt-8 md:my-auto h-full flex flex-col">
-              <div className="w-full flex-1 min-h-[500px] md:min-h-[600px] rounded-[40px] overflow-hidden border border-aegrix-border relative bg-aegrix-surface/20">
+            <div className="container-width w-full mt-4 md:my-auto h-full flex flex-col">
+              <div className="w-full flex-1 min-h-[500px] md:min-h-[600px] rounded-3xl md:rounded-[40px] overflow-hidden border border-aegrix-border relative bg-aegrix-surface/20">
                 <VisionSlide />
               </div>
             </div>
@@ -132,7 +132,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
       </AnimatePresence>
 
       {/* Slide Navigation Controls */}
-      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-12 z-40">
+      <div className="absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-12 z-40">
         <button 
           onClick={() => setCurrentSlide(0)}
           className="group flex flex-col items-start gap-3"

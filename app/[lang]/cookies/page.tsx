@@ -18,7 +18,7 @@ export default async function CookiesPolicyPage({
     <LegalPageLayout title={cookies.title} lastUpdated={lastUpdated}>
       {lang === 'es' ? (
         <>
-          <p>La presente Política de Cookies explica cómo AEGRIX utiliza cookies, tecnologías similares, herramientas de medición, analítica, seguimiento y almacenamiento local cuando los usuarios acceden o navegan en el sitio web <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>.</p>
+          <p>La presente Política de Cookies explica cómo AEGRIX utiliza cookies, tecnologías similares, herramientas de medición, analítica, seguimiento y almacenamiento local cuando los usuarios acceden o navegan en el sitio web <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>.</p>
           <p>Al acceder, navegar o continuar utilizando este sitio web, el usuario reconoce haber leído esta Política de Cookies y acepta el uso de cookies conforme a las condiciones aquí descritas.</p>
 
           <hr className="border-white/5 my-8" />
@@ -26,8 +26,8 @@ export default async function CookiesPolicyPage({
           <h2>1. Responsable del sitio web</h2>
           <p>
             <strong>AEGRIX</strong><br />
-            Sitio web: <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a><br />
-            Correo electrónico: <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a><br />
+            Sitio web: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a><br />
+            Correo electrónico: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
             Actividad: ingeniería de software, ciberseguridad, analítica de datos e inteligencia artificial.
           </p>
 
@@ -87,13 +87,13 @@ export default async function CookiesPolicyPage({
 
           <h2>18. Contacto</h2>
           <p>
-            Correo electrónico: <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a><br />
-            Sitio web: <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>
+            Correo electrónico: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
+            Sitio web: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>
           </p>
         </>
       ) : (
         <>
-          <p>This Cookies Policy explains how AEGRIX uses cookies, similar technologies, measurement tools, analytics, tracking, and local storage when users access or browse the website <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>.</p>
+          <p>This Cookies Policy explains how AEGRIX uses cookies, similar technologies, measurement tools, analytics, tracking, and local storage when users access or browse the website <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>.</p>
           <p>By accessing or continuing to use this website, the user acknowledges having read this Policy and accepts the use of cookies under the conditions described here.</p>
 
           <hr className="border-white/5 my-8" />
@@ -101,8 +101,8 @@ export default async function CookiesPolicyPage({
           <h2>1. Data Controller</h2>
           <p>
             <strong>AEGRIX</strong><br />
-            Website: <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a><br />
-            Email: <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a><br />
+            Website: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a><br />
+            Email: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
             Activity: software engineering, cybersecurity, data analytics, and artificial intelligence.
           </p>
 
@@ -162,8 +162,8 @@ export default async function CookiesPolicyPage({
 
           <h2>18. Contact</h2>
           <p>
-            Email: <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a><br />
-            Website: <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>
+            Email: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
+            Website: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>
           </p>
         </>
       )}

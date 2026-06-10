@@ -35,6 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   if (!isValidLocale(lang)) {
     return {
       title: 'AEGRIX',
+      metadataBase: new URL('https://aegrix.com.co'),
     };
   }
 
@@ -51,6 +52,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     title,
     description,
+    metadataBase: new URL('https://aegrix.com.co'),
+    alternates: {
+      languages: {
+        'es': '/es',
+        'en': '/en',
+      },
+    },
     keywords: [
       'ciberseguridad para empresas',
       'desarrollo de software robusto',
@@ -68,8 +76,22 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description,
       type: 'website',
       locale: isEn ? 'en_US' : 'es_CO',
-      url: `https://aegrix.co/${lang}`,
+      url: `https://aegrix.com.co/${lang}`,
       siteName: 'AEGRIX',
+      images: [
+        {
+          url: '/AEGRIX_right_logo_icon.svg',
+          width: 800,
+          height: 600,
+          alt: 'AEGRIX Logo',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['/AEGRIX_right_logo_icon.svg'],
     },
     robots: { index: true, follow: true },
     icons: {
@@ -122,8 +144,8 @@ export default async function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "AEGRIX",
-              "url": "https://aegrix.co",
-              "logo": "https://aegrix.co/AEGRIX_right_logo_icon.svg",
+              "url": "https://aegrix.com.co",
+              "logo": "https://aegrix.com.co/AEGRIX_right_logo_icon.svg",
               "sameAs": [
                 "https://www.linkedin.com/company/aegrix",
                 "https://x.com/aegrix"

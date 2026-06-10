@@ -38,7 +38,7 @@ const FinalCTA = () => {
               Solicitar Diagnóstico 360
             </Link>
             <a 
-              href="mailto:contacto@aegrix.com" 
+              href="mailto:contacto@aegrix.com.co" 
               className="btn-secondary w-full sm:w-auto"
             >
               Escribir por correo

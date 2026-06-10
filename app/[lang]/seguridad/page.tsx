@@ -25,7 +25,7 @@ export default async function SecurityPage({
           <hr className="border-aegrix-border my-8" />
 
           <h2>1. Alcance</h2>
-          <p>Esta Política de Seguridad aplica al sitio web <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>, a los canales digitales oficiales de AEGRIX, a los formularios de contacto, comunicaciones comerciales, procesos de diagnóstico, propuestas, servicios contratados, información técnica suministrada por clientes y cualquier interacción digital relacionada con AEGRIX.</p>
+          <p>Esta Política de Seguridad aplica al sitio web <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>, a los canales digitales oficiales de AEGRIX, a los formularios de contacto, comunicaciones comerciales, procesos de diagnóstico, propuestas, servicios contratados, información técnica suministrada por clientes y cualquier interacción digital relacionada con AEGRIX.</p>
 
           <h2>2. Principios de seguridad</h2>
           <p>AEGRIX orienta su gestión de seguridad bajo los siguientes principios: Confidencialidad, Integridad, Disponibilidad, Mínimo privilegio, Necesidad y proporcionalidad, Responsabilidad compartida y Mejora continua.</p>
@@ -62,7 +62,7 @@ export default async function SecurityPage({
           <p>AEGRIX utiliza proveedores externos confiables para hosting, nube y CRM, pero no controla totalmente sus sistemas ni responde por incidentes atribuibles exclusivamente a dichos proveedores.</p>
 
           <h2>13. Notificación de incidentes</h2>
-          <p>Si AEGRIX identifica un incidente relevante, lo gestionará según su impacto y obligaciones legales. El cliente debe notificar sospechas de incidentes a <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a>.</p>
+          <p>Si AEGRIX identifica un incidente relevante, lo gestionará según su impacto y obligaciones legales. El cliente debe notificar sospechas de incidentes a <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a>.</p>
 
           <h2>14. Reporte responsable de vulnerabilidades</h2>
           <p>AEGRIX valora el reporte ético. No está autorizado explotar vulnerabilidades, acceder a información de terceros o realizar ataques de denegación de servicio durante el reporte.</p>
@@ -84,8 +84,8 @@ export default async function SecurityPage({
 
           <h2>20. Contacto de seguridad</h2>
           <p>
-            Correo electrónico: <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a><br />
-            Sitio web: <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>
+            Correo electrónico: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
+            Sitio web: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>
           </p>
         </>
       ) : (
@@ -97,7 +97,7 @@ export default async function SecurityPage({
           <hr className="border-aegrix-border my-8" />
 
           <h2>1. Scope</h2>
-          <p>This policy applies to <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>, official digital channels, contact forms, commercial communications, and all digital interactions related to AEGRIX.</p>
+          <p>This policy applies to <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>, official digital channels, contact forms, commercial communications, and all digital interactions related to AEGRIX.</p>
 
           <h2>2. Security Principles</h2>
           <p>AEGRIX guides its security management under the principles of Confidentiality, Integrity, Availability, Least Privilege, Necessity and Proportionality, Shared Responsibility, and Continuous Improvement.</p>
@@ -133,7 +133,7 @@ export default async function SecurityPage({
           <p>AEGRIX uses reliable external providers but is not responsible for incidents exclusively attributable to these third parties.</p>
 
           <h2>13. Incident Notification</h2>
-          <p>Relevant incidents will be managed based on impact and legal duties. Suspected incidents should be reported to <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a>.</p>
+          <p>Relevant incidents will be managed based on impact and legal duties. Suspected incidents should be reported to <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a>.</p>
 
           <h2>14. Responsible Vulnerability Disclosure</h2>
           <p>Ethical reporting is valued. Vulnerability exploitation and access to third-party data are not authorized during reporting.</p>
@@ -155,8 +155,8 @@ export default async function SecurityPage({
 
           <h2>20. Security Contact</h2>
           <p>
-            Email: <a href="mailto:contacto@aegrix.co" className="text-aegrix-cyan">contacto@aegrix.co</a><br />
-            Website: <a href="https://aegrix.co" className="text-aegrix-cyan">https://aegrix.co</a>
+            Email: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
+            Website: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>
           </p>
         </>
       )}
