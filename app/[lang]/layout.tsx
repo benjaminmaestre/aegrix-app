@@ -104,6 +104,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 }
 
 import Script from 'next/script';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export default async function RootLayout({
   children,
@@ -123,9 +124,8 @@ export default async function RootLayout({
   return (
     <html lang={lang} className={`${sora.variable} ${manrope.variable}`} data-theme="dark" suppressHydrationWarning>
       <head>
-        <Script
+        <script
           id="theme-initializer"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               try {
@@ -160,6 +160,7 @@ export default async function RootLayout({
         <Navbar lang={lang} dict={dict.navbar} />
         {children}
         <CookieBanner lang={lang} dict={dict.cookies} />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'} />
       </body>
     </html>
   );

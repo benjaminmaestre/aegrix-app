@@ -6,6 +6,7 @@ import ProblemSection from '@/components/ProblemSection';
 import DigitalEvolution from '@/components/DigitalEvolution';
 import MethodologySection from '@/components/MethodologySection';
 import ProductDivisions from '@/components/ProductDivisions';
+import TrustSection from '@/components/TrustSection';
 import SoftwareExcellence from '@/components/SoftwareExcellence';
 import SectorSection from '@/components/SectorSection';
 import PlatformSection from '@/components/PlatformSection';
@@ -33,6 +34,7 @@ export default async function Home({
         <DigitalEvolution />
         <MethodologySection />
         <ProductDivisions />
+        <TrustSection />
         <SoftwareExcellence />
         <SectorSection />
         <PlatformSection />
