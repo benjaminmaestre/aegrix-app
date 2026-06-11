@@ -81,7 +81,7 @@ const ProductDivisions = () => {
                   </div>
 
                   <div className="mb-10">
-                    <h3 className="heading-md text-aegrix-text mb-3">{division.title}</h3>
+                    <div className="heading-md text-aegrix-text mb-3">{division.title}</div>
                     <div className="text-sm font-bold text-aegrix-cyan uppercase tracking-widest mb-4">
                       {division.tagline}
                     </div>
