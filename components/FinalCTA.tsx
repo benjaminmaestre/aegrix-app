@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
 import { WHATSAPP_URL } from '@/lib/data';
+import ObfuscatedEmail from './ObfuscatedEmail';
 
 const FinalCTA = () => {
   const { ref, inView } = useInView();
@@ -37,12 +38,11 @@ const FinalCTA = () => {
             >
               Solicitar Diagnóstico 360
             </Link>
-            <a 
-              href="mailto:contacto@aegrix.com.co" 
-              className="btn-secondary w-full sm:w-auto"
-            >
-              Escribir por correo
-            </a>
+            <ObfuscatedEmail 
+              email="contacto@aegrix.com.co" 
+              label="Escribir por correo"
+              className="btn-secondary w-full sm:w-auto text-center"
+            />
           </div>
 
           <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-12 text-aegrix-text/40">

@@ -7,6 +7,7 @@ import { WhatsAppIcon } from './WhatsAppIcon';
 import { WHATSAPP_URL } from '@/lib/data';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import ObfuscatedEmail from './ObfuscatedEmail';
 
 const ContactSection = () => {
   const params = useParams();
@@ -92,18 +93,15 @@ const ContactSection = () => {
             </p>
 
             <div className="space-y-8">
-              <a 
-                href="mailto:contacto@aegrix.com.co" 
-                className="flex items-center gap-6 group"
-              >
+              <div className="flex items-center gap-6 group">
                 <div className="w-14 h-14 rounded-2xl bg-aegrix-surface border border-aegrix-border flex items-center justify-center text-aegrix-cyan group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
                   <Mail size={24} />
                 </div>
                 <div>
                   <div className="text-xs font-bold text-aegrix-muted uppercase tracking-widest mb-1">Email Corporativo</div>
-                  <div className="text-lg font-semibold text-aegrix-text">contacto@aegrix.com.co</div>
+                  <div className="text-lg font-semibold text-aegrix-text"><ObfuscatedEmail email="contacto@aegrix.com.co" /></div>
                 </div>
-              </a>
+              </div>
 
               <a 
                 href={WHATSAPP_URL} 

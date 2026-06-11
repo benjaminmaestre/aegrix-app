@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   if (!isValidLocale(lang)) {
     return {
       title: 'AEGRIX',
-      metadataBase: new URL('https://aegrix.com.co'),
+      metadataBase: new URL('https://www.aegrix.com.co'),
     };
   }
 
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     title,
     description,
-    metadataBase: new URL('https://aegrix.com.co'),
+    metadataBase: new URL('https://www.aegrix.com.co'),
     alternates: {
       canonical: `/${lang}`,
       languages: {
