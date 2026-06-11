@@ -1,8 +1,14 @@
 export const runtime = 'edge';
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Sora, Manrope } from 'next/font/google';
 import { notFound } from 'next/navigation';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
 import '../globals.css';
 import Navbar from '@/components/Navbar';
 import CookieBanner from '@/components/CookieBanner';
@@ -46,8 +52,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     : 'AEGRIX | Ingeniería de Software, Ciberseguridad e IA';
     
   const description = isEn
-    ? 'AEGRIX helps companies achieve digital dominance through robust software development, advanced cybersecurity, and strategic AI training.'
-    : 'AEGRIX impulsa el dominio digital empresarial mediante desarrollo de software robusto, ciberseguridad avanzada y capacitación estratégica en IA.';
+    ? 'AEGRIX helps companies achieve digital dominance through robust software, advanced cybersecurity, and strategic AI training.'
+    : 'AEGRIX impulsa el dominio digital con desarrollo de software robusto, ciberseguridad avanzada y capacitación estratégica en IA.';
 
   return {
     title,
@@ -136,12 +142,9 @@ export default async function RootLayout({
             `,
           }}
         />
-      </head>
-      <body className="bg-aegrix-bg text-aegrix-text font-manrope selection:bg-aegrix-cyan/20">
-        <Script
+        <script
           id="json-ld"
           type="application/ld+json"
-          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -157,6 +160,8 @@ export default async function RootLayout({
             })
           }}
         />
+      </head>
+      <body className="bg-aegrix-bg text-aegrix-text font-manrope selection:bg-aegrix-cyan/20">
         <Navbar lang={lang} dict={dict.navbar} />
         {children}
         <CookieBanner lang={lang} dict={dict.cookies} />
