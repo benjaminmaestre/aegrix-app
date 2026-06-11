@@ -61,7 +61,7 @@ const ProductDivisions = () => {
                   <div className="absolute inset-0 bg-linear-to-br from-white via-white/95 to-white/85 dark:from-aegrix-surface dark:via-aegrix-surface/95 dark:to-aegrix-surface/85" />
                   <Image
                     src={cardImages[division.id]}
-                    alt=""
+                    alt={`Ilustración de fondo para la división ${division.title}`}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-center opacity-[0.18] dark:opacity-[0.12]"

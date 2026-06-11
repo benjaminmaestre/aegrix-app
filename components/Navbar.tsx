@@ -102,7 +102,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
                 <div className="w-4 h-4 rounded-full overflow-hidden relative border border-white/10 shadow-sm transition-transform group-hover:scale-110">
                   <Image 
                     src={lang === 'es' ? "/Flag_of_the_United_States.svg" : "/Flag_of_Spain.svg"} 
-                    alt="" 
+                    alt={lang === 'es' ? "Switch to English" : "Cambiar a Español"} 
                     fill 
                     className="object-cover" 
                   />
@@ -136,7 +136,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
             <div className="w-4 h-4 rounded-full overflow-hidden relative">
               <Image 
                 src={lang === 'es' ? "/Flag_of_the_United_States.svg" : "/Flag_of_Spain.svg"} 
-                alt="" 
+                alt={lang === 'es' ? "Switch to English" : "Cambiar a Español"} 
                 fill 
                 className="object-cover" 
               />

@@ -38,7 +38,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
           src={heroBg}
-          alt=""
+          alt={lang === 'es' ? "Fondo del centro de mando digital de AEGRIX" : "AEGRIX Digital Command Center Background"}
           fill
           priority
           className="object-cover object-center opacity-80"

@@ -42,8 +42,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const isEn = lang === 'en';
 
   const title = isEn 
-    ? 'AEGRIX | Software Engineering, Cybersecurity & AI Solutions' 
-    : 'AEGRIX | Ingeniería de Software, Ciberseguridad y Soluciones de IA';
+    ? 'AEGRIX | Software Engineering, Cybersecurity & AI' 
+    : 'AEGRIX | Ingeniería de Software, Ciberseguridad e IA';
     
   const description = isEn
     ? 'AEGRIX helps companies achieve digital dominance through robust software development, advanced cybersecurity, and strategic AI training.'
@@ -54,6 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description,
     metadataBase: new URL('https://aegrix.com.co'),
     alternates: {
+      canonical: `/${lang}`,
       languages: {
         'es': '/es',
         'en': '/en',
@@ -96,6 +97,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     robots: { index: true, follow: true },
     icons: {
       icon: '/AEGRIX_right_logo_icon.svg',
+      apple: '/AEGRIX_right_logo_icon.svg',
     },
   };
 }
