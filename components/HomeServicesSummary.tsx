@@ -48,7 +48,7 @@ const HomeServicesSummary = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: idx * 0.1, duration: 0.8 }}
               className={cn(
-                "p-6 md:p-8 rounded-2xl bg-aegrix-surface border transition-all duration-500 hover:bg-aegrix-surface/80 group",
+                "p-5 md:p-8 rounded-2xl bg-aegrix-surface border transition-all duration-500 hover:bg-aegrix-surface/80 group",
                 service.borderColor
               )}
             >

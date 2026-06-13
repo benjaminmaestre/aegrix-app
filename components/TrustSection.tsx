@@ -12,7 +12,7 @@ export default function TrustSection() {
     <section ref={ref} className="section-padding bg-aegrix-bg border-y border-aegrix-border/50">
       <div className="container-width">
         <div className={cn(
-          "text-center max-w-3xl mx-auto mb-16 transition-all duration-1000",
+          "text-center max-w-3xl mx-auto mb-10 md:mb-16 transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
           <h2 className="heading-lg mb-6 text-aegrix-text">
@@ -44,7 +44,7 @@ export default function TrustSection() {
             <div 
               key={idx}
               className={cn(
-                "p-8 rounded-3xl bg-aegrix-surface border border-aegrix-border text-center flex flex-col items-center transition-all duration-700",
+                "p-5 sm:p-7 md:p-8 rounded-2xl md:rounded-3xl bg-aegrix-surface border border-aegrix-border text-center flex flex-col items-center transition-all duration-700",
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               )}
               style={{ transitionDelay: `${idx * 200}ms` }}

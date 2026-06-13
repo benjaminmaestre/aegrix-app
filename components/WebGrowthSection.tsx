@@ -61,14 +61,14 @@ const WebGrowthSection = () => {
 
             <div className="grid sm:grid-cols-2 gap-6 mb-12">
               {webBenefits.map((benefit, i) => (
-                <div key={i} className="p-6 rounded-xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all">
+                <div key={i} className="p-5 sm:p-6 rounded-xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all">
                   <div className="text-aegrix-cyan mb-4 font-sora font-bold text-sm tracking-widest uppercase">{benefit.title}</div>
                   <p className="text-xs text-aegrix-muted leading-relaxed">{benefit.desc}</p>
                 </div>
               ))}
             </div>
 
-            <div className="p-8 rounded-2xl bg-aegrix-cyan/5 border border-aegrix-cyan/20">
+            <div className="p-5 sm:p-8 rounded-2xl bg-aegrix-cyan/5 border border-aegrix-cyan/20">
               <div className="flex items-center gap-4 text-aegrix-text font-sora font-bold text-lg mb-4">
                 <Target size={24} className="text-aegrix-cyan" />
                 Enfoque en Conversión

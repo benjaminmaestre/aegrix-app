@@ -14,12 +14,12 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-aegrix-bg border-t border-aegrix-border pt-24 pb-12">
+    <footer className="bg-aegrix-bg border-t border-aegrix-border pt-16 md:pt-24 pb-12">
       <div className="container-width">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-8 md:gap-16 mb-10 md:mb-20">
           {/* Brand Info */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-block mb-8 relative group">
+            <Link href="/" className="inline-block mb-6 md:mb-8 relative group">
               {/* Logo for Dark Theme */}
               <Image 
                 src="/AEGRIX_hero_vector.svg" 
@@ -37,7 +37,7 @@ const Footer = () => {
                 className="h-12 w-auto object-contain dark:hidden transition-all duration-500 group-hover:scale-105"
               />
             </Link>
-            <p className="text-sm text-aegrix-muted leading-relaxed mb-8 max-w-xs">
+            <p className="text-sm text-aegrix-muted leading-relaxed mb-6 md:mb-8 max-w-xs">
               Diseñamos la capa de control digital que protege tu empresa, convierte tu web en un canal comercial y transforma tus datos en decisiones.
             </p>
             <div className="flex items-center gap-4">
@@ -61,8 +61,8 @@ const Footer = () => {
 
           {/* Links 1: Plataforma */}
           <div>
-            <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-8">Plataforma</h4>
-            <ul className="space-y-4">
+            <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4 md:mb-8">Plataforma</h4>
+            <ul className="space-y-3 md:space-y-4">
               {[
                 { name: 'AEGRIX Shield', href: `/${lang}#servicios` },
                 { name: 'AEGRIX Web', href: `/${lang}#servicios` },
@@ -81,8 +81,8 @@ const Footer = () => {
 
           {/* Links 2: Empresa */}
           <div>
-            <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-8">Empresa</h4>
-            <ul className="space-y-4">
+            <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4 md:mb-8">Empresa</h4>
+            <ul className="space-y-3 md:space-y-4">
               {[
                 { name: 'Diagnóstico 360', href: `/${lang}#diagnostico` },
                 { name: 'Casos de Uso', href: `/${lang}#casos` },
@@ -100,7 +100,7 @@ const Footer = () => {
 
           {/* Office Info */}
           <div>
-            <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-8">Contacto</h4>
+            <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4 md:mb-8">Contacto</h4>
             <div className="space-y-4 text-sm text-aegrix-muted">
               <p>Medellín, Colombia</p>
               <ObfuscatedEmail email="info@aegrix.com.co" className="block hover:text-aegrix-cyan transition-colors" />
@@ -115,11 +115,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-12 border-t border-aegrix-border flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-xs text-aegrix-text/30 font-medium">
+        <div className="pt-8 md:pt-12 border-t border-aegrix-border flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-xs text-aegrix-text/30 font-medium text-center md:text-left">
             © {currentYear} AEGRIX Technology Firm. Todos los derechos reservados.
           </div>
-          <div className="flex items-center gap-8 text-[10px] font-bold text-aegrix-text/30 uppercase tracking-widest">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[10px] font-bold text-aegrix-text/30 uppercase tracking-widest md:justify-end">
             <Link href={`/${lang}/privacidad`} className="hover:text-aegrix-text transition-colors">Privacidad</Link>
             <Link href={`/${lang}/terminos`} className="hover:text-aegrix-text transition-colors">Términos</Link>
             <Link href={`/${lang}/cookies`} className="hover:text-aegrix-text transition-colors">Cookies</Link>

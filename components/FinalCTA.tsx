@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
 import { WHATSAPP_URL } from '@/lib/data';
@@ -9,6 +10,8 @@ import ObfuscatedEmail from './ObfuscatedEmail';
 
 const FinalCTA = () => {
   const { ref, inView } = useInView();
+  const params = useParams();
+  const lang = (params?.lang as string) || 'es';
 
   return (
     <section id="contacto" ref={ref} className="section-padding bg-aegrix-bg relative overflow-hidden">
@@ -20,12 +23,14 @@ const FinalCTA = () => {
           "max-w-4xl mx-auto text-center transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
-          <div className="label-tag mb-8 border-aegrix-cyan/20">The Final Step</div>
+          <div className="label-tag mb-8 border-aegrix-cyan/20">
+            {lang === 'en' ? 'The Final Step' : 'El Paso Final'}
+          </div>
           <h2 className="heading-lg mb-8 text-aegrix-text">
             Construye una empresa más <br />
             <span className="text-aegrix-cyan">segura, medible e inteligente.</span>
           </h2>
-          <p className="body-lg mb-12 text-aegrix-muted max-w-2xl mx-auto">
+          <p className="body-lg mb-8 md:mb-12 text-aegrix-muted max-w-2xl mx-auto">
             No importa en qué etapa tecnológica se encuentre tu empresa. Puedes empezar por lo más urgente y escalar tu Capa de Control Digital por fases.
           </p>
 
@@ -45,7 +50,7 @@ const FinalCTA = () => {
             />
           </div>
 
-          <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-12 text-aegrix-text/40">
+          <div className="mt-10 md:mt-16 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-aegrix-text/40">
             <div className="flex flex-col items-center gap-2">
               <span className="text-[10px] font-bold uppercase tracking-widest">Seguridad</span>
               <span className="text-xs">Diseñada para durar</span>

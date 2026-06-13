@@ -12,7 +12,7 @@ const PlatformSection = () => {
   return (
     <section id="arquitectura" ref={ref} className="section-padding bg-aegrix-bg relative">
       <div className="container-width">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           <div className={cn(
             "transition-all duration-1000",
             inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
@@ -21,11 +21,11 @@ const PlatformSection = () => {
               Una sola capa para proteger, <br />
               <span className="text-aegrix-cyan">medir y acelerar tu operación.</span>
             </h2>
-            <p className="body-lg mb-10 text-aegrix-muted">
+            <p className="body-lg mb-8 md:mb-10 text-aegrix-muted">
               AEGRIX conecta ciberseguridad, infraestructura web, analítica e inteligencia artificial en una estrategia coherente para que tu empresa opere con más control, confianza y velocidad.
             </p>
             
-            <div className="space-y-6 mb-12">
+            <div className="space-y-6 mb-8 md:mb-12">
               {[
                 { icon: ShieldCheck, text: "Seguridad integrada en cada nivel del sistema." },
                 { icon: Zap, text: "Infraestructura web optimizada para alta conversión." },
@@ -62,11 +62,15 @@ const PlatformSection = () => {
                 ].map((layer, i) => (
                   <div 
                     key={i}
-                    className="group relative bg-aegrix-surface border border-aegrix-border p-6 rounded-xl shadow-2xl transition-all duration-500 hover:border-aegrix-cyan/50 hover:-translate-y-1"
+                    className={cn(
+                      "group relative bg-aegrix-surface border border-aegrix-border p-5 md:p-6 rounded-xl shadow-2xl transition-all duration-500 hover:border-aegrix-cyan/50 hover:-translate-y-1",
+                      i === 0 ? "ml-0 mr-6 md:mr-[60px]" : "",
+                      i === 1 ? "ml-2 md:ml-[20px] mr-4 md:mr-[40px]" : "",
+                      i === 2 ? "ml-4 md:ml-[40px] mr-2 md:mr-[20px]" : "",
+                      i === 3 ? "ml-6 md:ml-[60px] mr-0" : ""
+                    )}
                     style={{ 
-                      zIndex: 4 - i,
-                      marginLeft: `${i * 20}px`,
-                      marginRight: `${(3-i) * 20}px`
+                      zIndex: 4 - i
                     }}
                   >
                     <div className="flex items-center justify-between">

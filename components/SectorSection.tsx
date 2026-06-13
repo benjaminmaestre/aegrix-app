@@ -32,7 +32,7 @@ const SectorSection = () => {
   return (
     <section id="sectores" className="section-padding bg-aegrix-bg relative overflow-hidden">
       <div className="container-width">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 gap-8">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 md:mb-20 gap-8">
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-6">
               Experticia aplicada a <br />
@@ -44,7 +44,7 @@ const SectorSection = () => {
           </div>
         </div>
 
-        <div className="flex lg:grid overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory lg:snap-none gap-8 lg:grid-cols-3 pb-6 lg:pb-0 -mx-6 px-6 lg:mx-0 lg:px-0 scrollbar-none">
+        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-8 md:grid-cols-3 pb-6 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
           {industries.map((item, idx) => (
             <motion.div
               key={idx}
@@ -52,9 +52,9 @@ const SectorSection = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-10 rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:bg-aegrix-surface/80 transition-all group relative overflow-hidden w-[85%] sm:w-[50%] lg:w-auto shrink-0 snap-align-start"
+              className="p-5 sm:p-8 md:p-10 rounded-2xl md:rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:bg-aegrix-surface/80 transition-all group relative overflow-hidden w-[90%] sm:w-[50%] md:w-auto shrink-0 snap-align-start"
             >
-              <div className={`w-16 h-16 rounded-2xl bg-aegrix-bg-2 border border-aegrix-border flex items-center justify-center mb-8 ${item.color} group-hover:scale-110 transition-transform`}>
+              <div className={`w-16 h-16 rounded-2xl bg-aegrix-bg-2 border border-aegrix-border flex items-center justify-center mb-6 md:mb-8 ${item.color} group-hover:scale-110 transition-transform`}>
                 <item.icon size={32} />
               </div>
               

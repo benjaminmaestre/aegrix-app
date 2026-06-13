@@ -80,7 +80,7 @@ const ContactSection = () => {
   return (
     <section id="contacto" className="section-padding bg-aegrix-bg relative overflow-hidden">
       <div className="container-width relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20">
           
           {/* Left: Info & Context */}
           <div>
@@ -88,7 +88,7 @@ const ContactSection = () => {
               ¿Listo para dar el <br />
               <span className="text-aegrix-cyan">siguiente paso?</span>
             </h2>
-            <p className="text-lg text-aegrix-muted mb-12 max-w-md">
+            <p className="text-lg text-aegrix-muted mb-8 md:mb-12 max-w-md">
               Estamos aquí para resolver tus dudas y ayudarte a construir la infraestructura digital que tu empresa merece.
             </p>
 
@@ -125,7 +125,7 @@ const ContactSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="p-10 rounded-[32px] bg-aegrix-surface border border-aegrix-border relative overflow-hidden group shadow-xl"
+            className="p-5 sm:p-8 md:p-10 rounded-[32px] bg-aegrix-surface border border-aegrix-border relative overflow-hidden group shadow-xl"
           >
             {submitStatus === 'success' ? (
               <div className="flex flex-col items-center justify-center text-center py-12 space-y-6 relative z-10">

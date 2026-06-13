@@ -44,7 +44,7 @@ const SoftwareExcellence = () => {
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,194,255,0.03),transparent_70%)] pointer-events-none" />
       
       <div className="container-width relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-24">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-24">
           <h2 className="text-4xl md:text-6xl font-sora font-extrabold text-aegrix-text mb-8 tracking-tight">
             Ingeniería de Software <br />
             <span className="text-aegrix-cyan">sin compromisos.</span>
@@ -54,7 +54,7 @@ const SoftwareExcellence = () => {
           </p>
         </div>
 
-        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-8 md:grid-cols-2 lg:grid-cols-3 pb-6 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-none">
+        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-8 md:grid-cols-2 lg:grid-cols-3 pb-6 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
           {capabilities.map((cap, idx) => (
             <motion.div
               key={idx}
@@ -62,7 +62,7 @@ const SoftwareExcellence = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all group w-[85%] sm:w-[50%] md:w-auto shrink-0 snap-align-start"
+              className="p-5 sm:p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all group w-[85%] sm:w-[50%] md:w-auto shrink-0 snap-align-start"
             >
               <div className="w-12 h-12 rounded-xl bg-aegrix-cyan/5 flex items-center justify-center text-aegrix-cyan mb-6 group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
                 <cap.icon size={24} />
@@ -75,7 +75,7 @@ const SoftwareExcellence = () => {
           ))}
         </div>
 
-        <div className="mt-20 p-1 bg-linear-to-r from-transparent via-aegrix-cyan/20 to-transparent" />
+        <div className="mt-12 md:mt-20 p-1 bg-linear-to-r from-transparent via-aegrix-cyan/20 to-transparent" />
       </div>
     </section>
   );

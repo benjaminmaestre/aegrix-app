@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useParams } from 'next/navigation';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
 import { Database, Globe, Clock, Lock, AlertCircle } from 'lucide-react';
@@ -70,6 +71,8 @@ const cardsData = [
 
 const ProblemSection = () => {
   const { ref, inView } = useInView();
+  const params = useParams();
+  const lang = (params?.lang as string) || 'es';
 
   return (
     <section ref={ref} className="section-padding bg-aegrix-bg relative overflow-hidden">
@@ -80,11 +83,11 @@ const ProblemSection = () => {
 
       <div className="container-width relative z-10">
         <div className={cn(
-          "max-w-3xl mb-20 transition-all duration-1000",
+          "max-w-3xl mb-12 md:mb-20 transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
           <div className="label-tag mb-6 text-red-500 bg-red-500/5 border-red-500/20">
-            Diagnosis: Lack of System
+            {lang === 'en' ? 'Diagnosis: Lack of System' : 'Diagnóstico: Falta de Sistema'}
           </div>
           <h2 className="heading-lg mb-8 text-aegrix-text">
             El problema no es la falta de tecnología. <br />
@@ -97,7 +100,7 @@ const ProblemSection = () => {
 
         {/* Monolithic Diagnostic Console Grid */}
         <div className={cn(
-          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 rounded-[32px] bg-aegrix-surface border border-aegrix-border overflow-hidden transition-all duration-1000",
+          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 rounded-2xl md:rounded-[32px] bg-aegrix-surface border border-aegrix-border overflow-hidden transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
           {cardsData.map((card, idx) => {
@@ -106,7 +109,7 @@ const ProblemSection = () => {
               <div 
                 key={card.id}
                 className={cn(
-                  "relative group p-10 flex flex-col justify-between transition-all duration-500",
+                  "relative group p-5 sm:p-8 md:p-10 flex flex-col justify-between transition-all duration-500",
                   card.hoverBgClass,
                   "border-b border-aegrix-border/40 last:border-b-0",
                   "md:nth-1:border-b md:nth-2:border-b md:nth-3:border-b-0 md:nth-4:border-b-0 md:even:border-l md:odd:border-l-0",
@@ -167,7 +170,7 @@ const ProblemSection = () => {
           inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
         )}>
           {/* Inner Content Box */}
-          <div className="p-8 md:p-10 rounded-[23px] bg-aegrix-surface flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+          <div className="p-5 sm:p-8 md:p-10 rounded-[23px] bg-aegrix-surface flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
             {/* Grid / Dots Pattern */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.015)_1px,transparent_1px)] bg-size-[20px_20px] opacity-35 pointer-events-none" />
 

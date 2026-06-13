@@ -78,7 +78,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-10">
+        <div className="hidden xl:flex items-center gap-10">
           <div className="flex items-center gap-8 mr-4">
             {navItems.map((item) => (
               <Link 
@@ -127,7 +127,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
         </div>
 
         {/* Compact Mobile Toggle */}
-        <div className="lg:hidden flex items-center gap-3 relative z-50">
+        <div className="xl:hidden flex items-center gap-3 relative z-50">
           {/* Language Switcher Mobile */}
           <Link
             href={lang === 'es' ? '/en' : '/es'}
@@ -159,7 +159,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
 
         <div 
           className={cn(
-            "fixed inset-0 bg-aegrix-bg z-40 lg:hidden flex flex-col pt-32 px-8 transition-all duration-500 ease-in-out",
+            "fixed inset-0 bg-aegrix-bg z-40 xl:hidden flex flex-col pt-32 px-8 transition-all duration-500 ease-in-out",
             menuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           )}
         >

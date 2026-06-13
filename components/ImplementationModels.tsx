@@ -31,7 +31,7 @@ const ImplementationModels = () => {
             <div 
               key={idx}
               className={cn(
-                "card-base bg-aegrix-surface border border-aegrix-border p-10 hover:border-aegrix-cyan/20 transition-all duration-700 shadow-sm",
+                "card-base bg-aegrix-surface border border-aegrix-border p-5 sm:p-8 md:p-10 hover:border-aegrix-cyan/20 transition-all duration-700 shadow-sm",
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               )}
               style={{ transitionDelay: `${idx * 200}ms` }}

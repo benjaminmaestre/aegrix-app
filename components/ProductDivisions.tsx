@@ -30,7 +30,7 @@ const ProductDivisions = () => {
     <section id="servicios" ref={ref} className="section-padding bg-aegrix-bg-2">
       <div className="container-width">
         <div className={cn(
-          "text-center max-w-3xl mx-auto mb-20 transition-all duration-1000",
+          "text-center max-w-3xl mx-auto mb-12 md:mb-20 transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
           <h2 className="heading-lg mb-8 text-aegrix-text">
@@ -42,15 +42,15 @@ const ProductDivisions = () => {
           </p>
         </div>
 
-        <div className="flex lg:grid overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory lg:snap-none gap-8 lg:grid-cols-2 pb-6 lg:pb-0 -mx-6 px-6 lg:mx-0 lg:px-0 scrollbar-none">
+        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-8 md:grid-cols-2 pb-6 md:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
           {productDivisions.map((division, idx) => {
             const Icon = icons[division.id];
             return (
               <div 
                 key={division.id}
                 className={cn(
-                  "relative p-10 rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all duration-700 flex flex-col shadow-sm hover:shadow-xl overflow-hidden",
-                  "w-[85%] sm:w-[50%] lg:w-auto shrink-0 snap-align-start",
+                  "relative p-5 sm:p-8 md:p-10 rounded-2xl md:rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all duration-700 flex flex-col shadow-sm hover:shadow-xl overflow-hidden",
+                  "w-[90%] sm:w-[50%] md:w-auto shrink-0 md:shrink snap-align-start",
                   inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 )}
                 style={{ transitionDelay: `${idx * 150}ms` }}
@@ -71,7 +71,7 @@ const ProductDivisions = () => {
 
                 {/* Content Layer */}
                 <div className="relative z-10 flex flex-col h-full grow">
-                  <div className="flex items-start justify-between mb-8">
+                  <div className="flex items-start justify-between mb-6 md:mb-8">
                     <div className="p-4 rounded-xl bg-aegrix-bg-2 border border-aegrix-border text-aegrix-cyan">
                       <Icon size={32} />
                     </div>
@@ -80,7 +80,7 @@ const ProductDivisions = () => {
                     </div>
                   </div>
 
-                  <div className="mb-10">
+                  <div className="mb-8 md:mb-10">
                     <div className="heading-md text-aegrix-text mb-3">{division.title}</div>
                     <div className="text-sm font-bold text-aegrix-cyan uppercase tracking-widest mb-4">
                       {division.tagline}
@@ -90,7 +90,7 @@ const ProductDivisions = () => {
                     </p>
                   </div>
 
-                  <div className="grow mb-10 space-y-3">
+                  <div className="grow mb-8 md:mb-10 space-y-3">
                     {division.features.map((feature, i) => (
                       <div key={i} className="flex items-center gap-3 text-sm text-aegrix-text/70">
                         <CheckCircle2 size={16} className="text-aegrix-cyan" />
@@ -105,7 +105,7 @@ const ProductDivisions = () => {
                     rel="noopener noreferrer"
                     className="btn-secondary w-full"
                   >
-                    Saber más sobre {division.id === 'web' ? 'Infraestructura Web' : division.title.split(' ')[1]}
+                    Saber más
                   </Link>
                 </div>
               </div>
@@ -113,8 +113,8 @@ const ProductDivisions = () => {
           })}
         </div>
 
-        <div className="mt-20">
-          <p className="text-center text-aegrix-muted italic font-medium mb-12">
+        <div className="mt-12 md:mt-20">
+          <p className="text-center text-aegrix-muted italic font-medium mb-8 md:mb-12">
             &quot;Menos caos operativo. Más control digital.&quot;
           </p>
           <BrandMarquee />

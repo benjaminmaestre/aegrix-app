@@ -40,8 +40,8 @@ export default async function NosotrosPage({
         {/* Mission & Vision Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
           <FadeIn x={-20} y={0} delay={0.2}>
-            <div className="glass-card p-10 rounded-3xl border border-aegrix-border relative group overflow-hidden h-full shadow-lg">
-              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+            <div className="glass-card p-5 sm:p-8 md:p-10 rounded-3xl border border-aegrix-border relative group overflow-hidden h-full shadow-lg">
+              <div className="absolute top-0 right-0 p-5 sm:p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                 <Target size={120} />
               </div>
               <h3 className="text-2xl font-sora font-bold text-aegrix-text mb-4 flex items-center gap-3">
@@ -57,8 +57,8 @@ export default async function NosotrosPage({
           </FadeIn>
 
           <FadeIn x={20} y={0} delay={0.3}>
-            <div className="glass-card p-10 rounded-3xl border border-aegrix-border relative group overflow-hidden h-full shadow-lg">
-              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+            <div className="glass-card p-5 sm:p-8 md:p-10 rounded-3xl border border-aegrix-border relative group overflow-hidden h-full shadow-lg">
+              <div className="absolute top-0 right-0 p-5 sm:p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                 <Zap size={120} />
               </div>
               <h3 className="text-2xl font-sora font-bold text-aegrix-text mb-4 flex items-center gap-3">
@@ -88,7 +88,7 @@ export default async function NosotrosPage({
               { icon: Zap, title: about.values.innovation, color: 'text-aegrix-blue' }
             ].map((value, idx) => (
               <FadeIn key={idx} delay={0.1 * idx + 0.5}>
-                <div className="p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all text-center group h-full shadow-sm">
+                <div className="p-5 sm:p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all text-center group h-full shadow-sm">
                   <div className={`w-12 h-12 rounded-xl bg-aegrix-bg-2 border border-aegrix-border flex items-center justify-center mx-auto mb-6 ${value.color} group-hover:scale-110 transition-transform`}>
                     <value.icon size={24} />
                   </div>
@@ -101,7 +101,7 @@ export default async function NosotrosPage({
 
         {/* CTA Section */}
         <ScaleIn delay={0.6}>
-          <div className="relative p-12 md:p-20 rounded-[40px] overflow-hidden text-center">
+          <div className="relative p-6 sm:p-12 md:p-20 rounded-[40px] overflow-hidden text-center">
             <div className="absolute inset-0 bg-linear-to-br from-aegrix-cyan/20 to-aegrix-blue/20 -z-10" />
             <h2 className="text-3xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-8">
               {lang === 'es' ? '¿Listo para blindar tu futuro?' : 'Ready to secure your future?'}

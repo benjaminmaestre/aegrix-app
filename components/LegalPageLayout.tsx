@@ -30,13 +30,13 @@ const LegalPageLayout = ({ title, lastUpdated, children }: LegalPageLayoutProps)
             </div>
           </div>
 
-          <div className="p-8 md:p-12 rounded-[32px] border border-aegrix-border bg-aegrix-surface shadow-sm">
+          <div className="p-5 sm:p-8 md:p-12 rounded-[32px] border border-aegrix-border bg-aegrix-surface shadow-sm">
             <div className="prose prose-slate data-[theme=dark]:prose-invert max-w-none prose-h2:font-sora prose-h2:text-aegrix-text prose-h2:mt-12 prose-h2:mb-6 prose-p:text-aegrix-muted prose-p:leading-relaxed prose-li:text-aegrix-muted">
               {children}
             </div>
           </div>
           
-          <div className="mt-12 p-8 rounded-2xl bg-aegrix-cyan/5 border border-aegrix-cyan/10 flex items-start gap-4">
+          <div className="mt-12 p-5 sm:p-8 rounded-2xl bg-aegrix-cyan/5 border border-aegrix-cyan/10 flex items-start gap-4">
             <div className="p-2 rounded-lg bg-aegrix-cyan/10 text-aegrix-cyan">
               <Shield size={20} />
             </div>

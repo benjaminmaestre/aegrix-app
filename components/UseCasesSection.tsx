@@ -51,7 +51,7 @@ const UseCasesSection = () => {
             <div 
               key={idx}
               className={cn(
-                "group card-base bg-aegrix-surface/30 border-aegrix-border p-8 hover:bg-aegrix-surface transition-all duration-700 shadow-sm",
+                "group card-base bg-aegrix-surface/30 border-aegrix-border p-5 sm:p-8 hover:bg-aegrix-surface transition-all duration-700 shadow-sm",
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               )}
               style={{ transitionDelay: `${idx * 200}ms` }}

@@ -27,7 +27,7 @@ const DigitalEvolution = () => {
   return (
     <section className="section-padding bg-aegrix-bg-2 border-y border-aegrix-border relative overflow-hidden">
       <div className="container-width relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20">
           <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-6">
             La diferencia entre <br />
             <span className="text-aegrix-cyan">existir y dominar.</span>
@@ -37,7 +37,7 @@ const DigitalEvolution = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {scenarios.map((scenario, idx) => (
             <motion.div
               key={idx}
@@ -45,10 +45,10 @@ const DigitalEvolution = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="group relative bg-aegrix-surface border border-aegrix-border p-10 flex flex-col h-full rounded-[32px] shadow-sm hover:shadow-xl hover:border-aegrix-cyan/20 transition-all duration-500"
+              className="group relative bg-aegrix-surface border border-aegrix-border p-5 sm:p-8 md:p-10 flex flex-col h-full rounded-2xl md:rounded-[32px] shadow-sm hover:shadow-xl hover:border-aegrix-cyan/20 transition-all duration-500"
             >
               {/* Subtle Grid Background */}
-              <div className="absolute inset-0 grid-bg opacity-[0.03] rounded-[32px] pointer-events-none" />
+              <div className="absolute inset-0 grid-bg opacity-[0.03] rounded-2xl md:rounded-[32px] pointer-events-none" />
               
               <h3 className="text-2xl font-sora font-bold text-aegrix-text mb-8 relative z-10">{scenario.title}</h3>
               
@@ -74,12 +74,12 @@ const DigitalEvolution = () => {
           ))}
         </div>
 
-        <div className="mt-20 text-center">
-          <div className="inline-block p-px rounded-full bg-linear-to-r from-transparent via-aegrix-cyan to-transparent mb-12 w-full max-w-lg" />
+        <div className="mt-12 md:mt-20 text-center">
+          <div className="inline-block p-px rounded-full bg-linear-to-r from-transparent via-aegrix-cyan to-transparent mb-8 md:mb-12 w-full max-w-lg" />
           <h3 className="text-2xl font-sora font-bold text-aegrix-text mb-8">
             ¿Quieres saber cuánto está perdiendo tu negocio hoy?
           </h3>
-          <p className="text-aegrix-muted mb-10 max-w-xl mx-auto">
+          <p className="text-aegrix-muted mb-8 md:mb-10 max-w-xl mx-auto">
             Realizamos una auditoría técnica de 360° para evaluar tu velocidad, seguridad y potencial de conversión sin costo inicial.
           </p>
           <a 
