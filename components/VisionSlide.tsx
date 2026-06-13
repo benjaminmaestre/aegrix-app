@@ -220,7 +220,7 @@ const VisionSlide = () => {
             
             <AegrixCoreEngine />
             
-            <div className="h-12 mt-4 sm:h-20 sm:mt-8 flex items-center justify-center">
+            <div className="h-auto min-h-12 mt-4 sm:h-20 sm:mt-8 flex items-center justify-center">
               <AnimatePresence>
                 {step === 4 && (
                   <motion.div
@@ -232,7 +232,7 @@ const VisionSlide = () => {
                       href={WHATSAPP_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-primary inline-block px-6 py-2.5 sm:px-10 sm:py-4 font-sora font-extrabold uppercase tracking-widest text-xs sm:text-[13px] transition-all transform hover:-translate-y-1"
+                      className="btn-primary flex items-center justify-center text-center px-4 py-2.5 sm:px-10 sm:py-4 font-sora font-extrabold uppercase tracking-wider sm:tracking-widest text-[10px] sm:text-[13px] transition-all transform hover:-translate-y-1"
                       style={{
                         boxShadow: `0 12px 24px -8px ${CYAN}40`,
                       }}
