@@ -16,8 +16,10 @@ const Footer = () => {
   return (
     <footer className="bg-aegrix-bg border-t border-aegrix-border px-4 pt-10 pb-28 sm:px-6 lg:px-12 lg:pt-20 lg:pb-10">
       <div className="mx-auto max-w-7xl">
-        {/* Brand Info */}
-        <div className="flex flex-col lg:block mb-8 lg:mb-20">
+        {/* Top Section: Brand Info + Links */}
+        <div className="flex flex-col lg:flex-row lg:justify-between mb-8 lg:mb-20">
+          {/* Brand Info */}
+          <div className="flex flex-col lg:block mb-8 lg:mb-0 lg:max-w-sm">
           <div className="flex items-center gap-4 lg:block">
             <Link href="/" className="inline-block relative group shrink-0">
               {/* Logo for Dark Theme */}
@@ -64,7 +66,7 @@ const Footer = () => {
         </div>
 
         {/* Links Section */}
-        <div className="grid grid-cols-2 gap-8 lg:absolute lg:top-20 lg:right-12 lg:grid-cols-3 lg:gap-16">
+        <div className="grid grid-cols-2 gap-8 lg:grid-cols-3 lg:gap-16">
           {/* Links 1: Plataforma */}
           <div>
             <h4 className="text-[10px] sm:text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4 lg:mb-8">Plataforma</h4>
@@ -113,6 +115,7 @@ const Footer = () => {
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="block hover:text-aegrix-cyan transition-colors">+57 310 737 9163</a>
             </div>
           </div>
+        </div>
         </div>
 
         {/* Contacto Mobile (Card style) */}

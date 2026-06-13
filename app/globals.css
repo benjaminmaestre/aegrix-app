@@ -123,7 +123,7 @@ body {
   /* ── SISTEMA DE BOTONES AEGRIX CORPORATE PREMIUM ── */
   
   .btn-primary { 
-    @apply inline-flex items-center justify-center gap-3 rounded-lg px-8 py-3.5
+    @apply inline-flex items-center justify-center gap-3 rounded-full px-8 py-3.5
     font-manrope text-[13px] font-bold uppercase tracking-widest
     transition-all duration-300
     border border-aegrix-cyan/20;
@@ -140,7 +140,7 @@ body {
   .btn-primary:active { @apply translate-y-px brightness-100 transition-none; }
 
   .btn-secondary { 
-    @apply inline-flex items-center justify-center gap-3 rounded-lg px-8 py-3.5
+    @apply inline-flex items-center justify-center gap-3 rounded-full px-8 py-3.5
     font-manrope text-[13px] font-bold uppercase tracking-widest
     text-aegrix-text transition-all duration-500
     border border-aegrix-border relative overflow-hidden;
@@ -177,7 +177,7 @@ body {
   }
 
   .footer-social-link {
-    @apply flex items-center justify-center w-11 h-11 rounded-lg
+    @apply flex items-center justify-center w-11 h-11 rounded-full
     bg-aegrix-surface border border-aegrix-border text-aegrix-muted
     transition-all duration-300 relative overflow-hidden;
   }
