@@ -15,7 +15,7 @@ const WhatsAppFloating = () => {
       animate={{ opacity: 1, scale: 1, y: 0 }}
       whileHover={{ scale: 1.1, y: -5 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-8 right-8 z-60 flex items-center justify-center w-14 h-14 rounded-2xl border border-aegrix-border text-aegrix-bg shadow-2xl transition-all duration-300"
+      className="fixed bottom-6 right-4 sm:bottom-8 sm:right-8 z-60 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl border border-aegrix-border text-aegrix-bg shadow-2xl transition-all duration-300"
       style={{
         background: 'linear-gradient(180deg, #8EF1FF 0%, #00C2FF 48%, #008FC7 100%)',
         boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 10px 30px rgba(0, 194, 255, 0.3)'

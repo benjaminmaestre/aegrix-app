@@ -33,7 +33,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
   }, [currentSlide]);
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden flex flex-col">
+    <section className="relative w-full min-h-auto lg:min-h-screen overflow-hidden flex flex-col">
       {/* Background Ambience */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
@@ -77,7 +77,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full min-h-screen flex flex-col relative pt-32 md:pt-32 pb-16 md:pb-32"
+            className="w-full min-h-auto lg:min-h-screen flex flex-col relative pt-28 sm:pt-32 pb-12 sm:pb-16 md:pb-32"
           >
 
             <div className="container-width relative z-10 mt-4 md:my-auto">
@@ -134,7 +134,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full min-h-screen flex flex-col relative pt-32 md:pt-36 pb-16 md:pb-32"
+            className="w-full min-h-auto lg:min-h-screen flex flex-col relative pt-28 sm:pt-32 md:pt-36 pb-12 sm:pb-16 md:pb-32"
           >
             <div className="container-width w-full mt-4 md:my-auto h-full flex flex-col">
               <div className="w-full flex-1 min-h-[500px] md:min-h-[600px] rounded-3xl md:rounded-[40px] overflow-hidden border border-aegrix-border relative bg-aegrix-surface/20">

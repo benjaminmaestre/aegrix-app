@@ -9,7 +9,7 @@ interface LegalPageLayoutProps {
 
 const LegalPageLayout = ({ title, lastUpdated, children }: LegalPageLayoutProps) => {
   return (
-    <div className="pt-32 pb-24 min-h-screen relative overflow-hidden">
+    <div className="pt-24 pb-16 sm:pt-32 sm:pb-24 min-h-auto lg:min-h-screen relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-aegrix-cyan/3 blur-[100px] rounded-full -z-10" />
       <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-aegrix-blue/3 blur-[80px] rounded-full -z-10" />

@@ -25,7 +25,7 @@ const SectorsSection = () => {
     <section id="sectores" ref={ref} className="section-padding bg-aegrix-bg-2">
       <div className="container-width">
         <div className={cn(
-          "text-center max-w-3xl mx-auto mb-20 transition-all duration-1000",
+          "text-center max-w-3xl mx-auto mb-12 md:mb-20 transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
           <div className="label-tag mb-6">Expertise por sector</div>
@@ -45,7 +45,7 @@ const SectorsSection = () => {
               <div 
                 key={sector.name}
                 className={cn(
-                  "relative p-10 flex flex-col items-center text-center group transition-all duration-700 bg-aegrix-surface border border-aegrix-border rounded-[32px] shadow-sm hover:shadow-xl hover:border-aegrix-cyan/20 overflow-hidden",
+                  "relative p-6 sm:p-8 md:p-10 flex flex-col items-center text-center group transition-all duration-700 bg-aegrix-surface border border-aegrix-border rounded-[32px] shadow-sm hover:shadow-xl hover:border-aegrix-cyan/20 overflow-hidden",
                   inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
                 )}
                 style={{ transitionDelay: `${idx * 100}ms` }}

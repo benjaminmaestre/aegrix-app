@@ -34,7 +34,7 @@ const UseCasesSection = () => {
     <section id="casos" ref={ref} className="section-padding bg-aegrix-bg">
       <div className="container-width">
         <div className={cn(
-          "max-w-3xl mb-20 transition-all duration-1000",
+          "max-w-3xl mb-12 md:mb-20 transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
           <h2 className="heading-lg mb-8 text-aegrix-text">

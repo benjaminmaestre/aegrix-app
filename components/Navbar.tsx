@@ -159,11 +159,11 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
 
         <div 
           className={cn(
-            "fixed inset-0 bg-aegrix-bg z-40 xl:hidden flex flex-col pt-32 px-8 transition-all duration-500 ease-in-out",
+            "fixed inset-0 bg-aegrix-bg z-40 xl:hidden flex flex-col pt-24 sm:pt-32 px-6 sm:px-8 transition-all duration-500 ease-in-out",
             menuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"
           )}
         >
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-4 sm:gap-8">
             {navItems.map((item) => (
               <Link 
                 key={item.label} 

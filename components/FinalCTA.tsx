@@ -34,7 +34,7 @@ const FinalCTA = () => {
             No importa en qué etapa tecnológica se encuentre tu empresa. Puedes empezar por lo más urgente y escalar tu Capa de Control Digital por fases.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
             <Link 
               href={WHATSAPP_URL} 
               target="_blank" 
@@ -50,19 +50,19 @@ const FinalCTA = () => {
             />
           </div>
 
-          <div className="mt-10 md:mt-16 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-aegrix-text/40">
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-[10px] font-bold uppercase tracking-widest">Seguridad</span>
+          <div className="mt-8 sm:mt-12 md:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 md:gap-12 text-aegrix-text/40">
+            <div className="flex flex-col items-center gap-1 sm:gap-2 bg-white/2 sm:bg-transparent border border-white/5 sm:border-transparent rounded-xl sm:rounded-none w-full sm:w-auto p-4 sm:p-0">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text/60 sm:text-aegrix-text/40">Seguridad</span>
               <span className="text-xs">Diseñada para durar</span>
             </div>
-            <div className="w-px h-8 bg-aegrix-border hidden md:block" />
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-[10px] font-bold uppercase tracking-widest">Control</span>
+            <div className="w-px h-8 bg-aegrix-border hidden sm:block" />
+            <div className="flex flex-col items-center gap-1 sm:gap-2 bg-white/2 sm:bg-transparent border border-white/5 sm:border-transparent rounded-xl sm:rounded-none w-full sm:w-auto p-4 sm:p-0">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text/60 sm:text-aegrix-text/40">Control</span>
               <span className="text-xs">Visibilidad absoluta</span>
             </div>
-            <div className="w-px h-8 bg-aegrix-border hidden md:block" />
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-[10px] font-bold uppercase tracking-widest">Escala</span>
+            <div className="w-px h-8 bg-aegrix-border hidden sm:block" />
+            <div className="flex flex-col items-center gap-1 sm:gap-2 bg-white/2 sm:bg-transparent border border-white/5 sm:border-transparent rounded-xl sm:rounded-none w-full sm:w-auto p-4 sm:p-0">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text/60 sm:text-aegrix-text/40">Escala</span>
               <span className="text-xs">Arquitectura de futuro</span>
             </div>
           </div>

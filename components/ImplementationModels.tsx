@@ -13,7 +13,7 @@ const ImplementationModels = () => {
     <section className="section-padding bg-aegrix-bg-2">
       <div className="container-width">
         <div ref={ref} className={cn(
-          "max-w-3xl mb-20 transition-all duration-1000",
+          "max-w-3xl mb-12 md:mb-20 transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
           <div className="label-tag mb-6">Modelos de Implementación</div>
