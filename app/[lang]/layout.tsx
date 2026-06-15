@@ -2,6 +2,7 @@ export const runtime = 'edge';
 
 import type { Metadata, Viewport } from 'next';
 import { Sora, Manrope } from 'next/font/google';
+import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 
 export const viewport: Viewport = {
@@ -38,10 +39,13 @@ const manrope = Manrope({
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   
+  const headersList = await headers();
+  const pathname = headersList.get('x-pathname') || `/${lang}`;
+  
   if (!isValidLocale(lang)) {
     return {
       title: 'AEGRIX',
-      metadataBase: new URL('https://www.aegrix.com.co'),
+      metadataBase: new URL('https://aegrix.com.co'),
     };
   }
 
@@ -58,13 +62,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     title,
     description,
-    metadataBase: new URL('https://www.aegrix.com.co'),
+    metadataBase: new URL('https://aegrix.com.co'),
     alternates: {
-      canonical: `/${lang}`,
+      canonical: pathname,
       languages: {
-        'es': '/es',
-        'en': '/en',
-        'x-default': '/es',
+        'es': pathname.replace(/^\/en/, '/es'),
+        'en': pathname.replace(/^\/es/, '/en'),
+        'x-default': pathname.replace(/^\/en/, '/es'),
       },
     },
     keywords: [
@@ -103,7 +107,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     },
     robots: { index: true, follow: true },
     icons: {
-      icon: '/AEGRIX_right_logo_icon.svg',
+      icon: '/favicon.ico',
       apple: '/AEGRIX_right_logo_icon.svg',
     },
   };
