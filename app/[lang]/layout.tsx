@@ -56,8 +56,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     : 'AEGRIX | Ingeniería de Software, Ciberseguridad e IA';
     
   const description = isEn
-    ? 'AEGRIX helps companies achieve digital dominance through robust software, advanced cybersecurity, and strategic AI training.'
-    : 'AEGRIX impulsa el dominio digital con desarrollo de software robusto, ciberseguridad avanzada y capacitación estratégica en IA.';
+    ? 'AEGRIX builds the digital layer your company needs to sell, automate, and protect itself with web dev, AI, data analytics, and cybersecurity.'
+    : 'AEGRIX construye la capa digital que tu empresa necesita para vender, automatizar y protegerse con desarrollo web, IA, analítica y ciberseguridad.';
 
   return {
     title,
@@ -86,6 +86,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       'desarrollo de software Medellin',
       'empresa ciberseguridad Barranquilla',
       'desarrollo de software Barranquilla',
+      'empresa ciberseguridad Cartagena',
+      'desarrollo de software Cartagena',
       'agentes de inteligencia artificial',
       'IA para empresas',
       'consultoría tecnológica',

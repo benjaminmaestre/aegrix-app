@@ -117,8 +117,9 @@ const Footer = () => {
             {/* Contacto Desktop (Oculto en móvil) */}
             <div className="hidden lg:block">
               <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-5">Contacto</h4>
-              <div className="space-y-3 text-sm text-aegrix-muted">
-                <p>Colombia (Presencia Nacional)</p>
+              <div className="space-y-2 text-sm text-aegrix-muted">
+                <p className="text-aegrix-text font-semibold">Colombia</p>
+                <p className="text-[11px] leading-relaxed text-aegrix-muted/60 mb-2">Bogotá • Medellín • Cali • Barranquilla • Cartagena</p>
                 <ObfuscatedEmail email="info@aegrix.com.co" className="block hover:text-aegrix-cyan transition-colors" />
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="block hover:text-aegrix-cyan transition-colors">+57 310 737 9163</a>
               </div>
@@ -129,8 +130,9 @@ const Footer = () => {
         {/* Contacto Mobile (Card style) */}
         <div className="mt-8 rounded-2xl border border-aegrix-border bg-white/2 p-5 lg:hidden">
           <h4 className="text-[10px] font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4">Contacto</h4>
-          <div className="space-y-3 text-[13px] text-aegrix-muted">
-            <p>Colombia (Presencia Nacional)</p>
+          <div className="space-y-2 text-[13px] text-aegrix-muted">
+            <p className="text-aegrix-text font-semibold">Colombia</p>
+            <p className="text-[10px] leading-relaxed text-aegrix-muted/60 mb-1">Bogotá • Medellín • Cali • Barranquilla • Cartagena</p>
             <ObfuscatedEmail email="info@aegrix.com.co" className="block hover:text-aegrix-cyan transition-colors" />
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="block hover:text-aegrix-cyan transition-colors">+57 310 737 9163</a>
           </div>
