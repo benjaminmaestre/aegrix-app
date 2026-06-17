@@ -74,7 +74,7 @@ const Footer = () => {
           </div>
 
           {/* Links Section */}
-          <div className="grid grid-cols-2 gap-8 lg:grid-cols-3 lg:gap-16">
+          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-8">
             {/* Links 1: Plataforma */}
             <div>
               <h4 className="text-[10px] sm:text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4 lg:mb-5">Plataforma</h4>
@@ -95,7 +95,30 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Links 2: Empresa */}
+            {/* Links 2: Industrias */}
+            <div>
+              <h4 className="text-[10px] sm:text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4 lg:mb-5">
+                {lang === 'en' ? 'Industries' : 'Industrias'}
+              </h4>
+              <ul className="space-y-3 lg:space-y-3">
+                {[
+                  { name: lang === 'en' ? 'Health Premium' : 'Salud Premium', href: `/${lang}/health-premium` },
+                  { name: lang === 'en' ? 'Real Estate' : 'Real Estate & Proyectos', href: `/${lang}/real-estate` },
+                  { name: lang === 'en' ? 'Construction & Services' : 'Constructoras & Servicios', href: `/${lang}/construction-tech` },
+                  { name: lang === 'en' ? 'Legal & Professional' : 'Legal & Professional', href: `/${lang}/legal-tech` },
+                  { name: lang === 'en' ? 'Logistics & Wholesale' : 'Distribución & Logística', href: `/${lang}/industrial-logistica` },
+                  { name: lang === 'en' ? 'Corporate Training' : 'Capacitación Corporativa', href: `/${lang}/education-corporate` }
+                ].map((link) => (
+                  <li key={link.name}>
+                    <Link href={link.href} className="text-[13px] sm:text-sm text-aegrix-muted hover:text-aegrix-cyan transition-colors">
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Links 3: Empresa */}
             <div>
               <h4 className="text-[10px] sm:text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4 lg:mb-5">Empresa</h4>
               <ul className="space-y-3 lg:space-y-3">
@@ -115,7 +138,7 @@ const Footer = () => {
             </div>
 
             {/* Contacto Desktop (Oculto en móvil) */}
-            <div className="hidden lg:block">
+            <div className="hidden lg:block col-span-1">
               <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-5">Contacto</h4>
               <div className="space-y-2 text-sm text-aegrix-muted">
                 <p className="text-aegrix-text font-semibold">Colombia</p>

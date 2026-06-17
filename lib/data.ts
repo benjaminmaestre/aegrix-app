@@ -71,12 +71,12 @@ export const diagnosticChecklist = [
 ];
 
 export const sectors = [
-  { name: 'Fintech & Legal', icon: 'Building2' },
-  { name: 'E-commerce & Retail', icon: 'Package' },
-  { name: 'Servicios Profesionales', icon: 'Briefcase' },
-  { name: 'Educación & Instituciones', icon: 'GraduationCap' },
-  { name: 'Salud & Bienestar', icon: 'Activity' },
-  { name: 'Real Estate', icon: 'Home' },
+  { name: 'Fintech & Legal', icon: 'Building2', path: 'legal-tech' },
+  { name: 'E-commerce & Logística', icon: 'Package', path: 'industrial-logistica' },
+  { name: 'Constructoras & Servicios', icon: 'Briefcase', path: 'construction-tech' },
+  { name: 'Educación & Corporativo', icon: 'GraduationCap', path: 'education-corporate' },
+  { name: 'Salud Premium', icon: 'Activity', path: 'health-premium' },
+  { name: 'Real Estate & Proyectos', icon: 'Home', path: 'real-estate' },
 ];
 
 export const commandMetrics = [
