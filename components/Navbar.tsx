@@ -78,8 +78,8 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden xl:flex items-center gap-10">
-          <div className="flex items-center gap-8 mr-4">
+        <div className="hidden xl:flex items-center gap-8 ml-16">
+          <div className="flex items-center gap-6 mr-4">
             {navItems.map((item) => (
               <Link 
                 key={item.label} 

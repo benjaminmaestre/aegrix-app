@@ -30,6 +30,8 @@ interface NicheLandingTemplateProps {
   heroTitleHighlight: string;
   heroDescription: string;
   heroWhatsAppUrl: string;
+  heroImageBaseName?: string;
+  heroImageAlt?: string;
   
   // Problems Section
   problemsSectionTitle: string;
@@ -55,6 +57,8 @@ const NicheLandingTemplate = ({
   heroTitleHighlight,
   heroDescription,
   heroWhatsAppUrl,
+  heroImageBaseName,
+  heroImageAlt,
   problemsSectionTitle,
   problemsSectionDesc,
   problems,
@@ -70,6 +74,31 @@ const NicheLandingTemplate = ({
     <div className="relative min-h-screen bg-aegrix-bg overflow-x-hidden">
       {/* ── 1. HERO SECTION ── */}
       <section className="relative w-full min-h-[85vh] flex flex-col justify-center pt-32 pb-20">
+        {/* Background Image Overlay */}
+        {heroImageBaseName && (
+          <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+            <picture className="w-full h-full">
+              {/* Mobile size */}
+              <source media="(max-width: 640px)" srcSet={`/images/landings/${heroImageBaseName}-mobile.avif`} type="image/avif" />
+              
+              {/* Tablet size */}
+              <source media="(max-width: 1024px)" srcSet={`/images/landings/${heroImageBaseName}-tablet.avif`} type="image/avif" />
+              
+              {/* Desktop fallback */}
+              <img 
+                src={`/images/landings/${heroImageBaseName}.avif`} 
+                alt={heroImageAlt || "AEGRIX"}
+                className="w-full h-full object-cover object-center lg:object-right opacity-[0.65] transition-opacity duration-700" 
+              />
+            </picture>
+            
+            {/* Custom dark gradient overlay (horizontal on desktop, vertical on mobile) to ensure text contrast */}
+            <div className="absolute inset-0 bg-linear-to-r from-aegrix-bg/95 via-aegrix-bg/50 to-transparent hidden lg:block" />
+            <div className="absolute inset-0 bg-linear-to-b from-aegrix-bg/35 via-aegrix-bg/70 to-aegrix-bg lg:hidden" />
+            <div className="absolute inset-0 bg-linear-to-b from-transparent to-aegrix-bg" />
+          </div>
+        )}
+
         {/* Background ambience */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(0,194,255,0.02),transparent_50%)]" />
@@ -78,60 +107,62 @@ const NicheLandingTemplate = ({
         </div>
 
         <div className="container-width relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Tagline */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="label-tag mb-6 border-aegrix-cyan/20 text-aegrix-cyan"
-            >
-              {heroTagline}
-            </motion.div>
-
-            {/* Title */}
-            <motion.h1
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="font-sora font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-aegrix-text mb-8 leading-[1.15] tracking-tight"
-            >
-              {heroTitlePart1} <br />
-              <span className="text-aegrix-cyan">{heroTitleHighlight}</span>
-            </motion.h1>
-
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-manrope text-base sm:text-lg md:text-xl text-aegrix-muted max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed opacity-90"
-            >
-              {heroDescription}
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6"
-            >
-              <Link 
-                href={heroWhatsAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary w-full sm:w-auto text-center"
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-6 xl:col-span-6 text-center lg:text-left">
+              {/* Tagline */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="label-tag mb-6 border-aegrix-cyan/20 text-aegrix-cyan w-fit mx-auto lg:mx-0"
               >
-                Solicitar diagnóstico 360
-              </Link>
-              <Link 
-                href="#soluciones" 
-                className="btn-secondary w-full sm:w-auto text-center"
+                {heroTagline}
+              </motion.div>
+
+              {/* Title */}
+              <motion.h1
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="font-sora font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-5xl text-aegrix-text mb-8 leading-[1.15] tracking-tight"
               >
-                Ver soluciones para mi empresa
-              </Link>
-            </motion.div>
+                {heroTitlePart1} <br />
+                <span className="text-aegrix-cyan">{heroTitleHighlight}</span>
+              </motion.h1>
+
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="font-manrope text-base sm:text-lg md:text-xl text-aegrix-muted max-w-2xl mx-auto lg:mx-0 mb-10 md:mb-12 leading-relaxed opacity-90"
+              >
+                {heroDescription}
+              </motion.p>
+
+              {/* CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6"
+              >
+                <Link 
+                  href={heroWhatsAppUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary w-full sm:w-auto text-center"
+                >
+                  Solicitar diagnóstico 360
+                </Link>
+                <Link 
+                  href="#soluciones" 
+                  className="btn-secondary w-full sm:w-auto text-center"
+                >
+                  Ver soluciones para mi empresa
+                </Link>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>

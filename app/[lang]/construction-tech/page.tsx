@@ -90,6 +90,8 @@ export default function ConstructionTechPage() {
         ? "Integrated software solutions to track project budgets, eliminate Excel cost chaos, and automate contractor communications in real time."
         : "Sistemas de software integrados para el control presupuestal de obras, eliminación del caos de Excels de costos y automatización de reportes de contratistas."}
       heroWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20digital%20para%20mi%20constructora%20o%20empresa%20de%20servicios%20t%C3%A9cnicos."
+      heroImageBaseName="hero-construction-bogota"
+      heroImageAlt={isEn ? "Construction professionals reviewing a modern project in Bogota." : "Profesionales de construcción revisando un proyecto moderno en Bogotá."}
       problemsSectionTitle={isEn ? "Does your construction or technical service company face these bottlenecks?" : "¿Tu constructora o empresa de servicios técnicos tiene alguno de estos problemas?"}
       problemsSectionDesc={isEn
         ? "Construction and technical operations require absolute coordination. Scattered logs, manual expense entry, and disconnected software lead to critical project delays."

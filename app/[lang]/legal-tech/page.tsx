@@ -90,6 +90,8 @@ export default function LegalFinancePage() {
         ? "Penetration testing, encryption of confidential records, and secure workflow automation for high-value client onboarding and document management."
         : "Auditorías de penetración, encriptación de datos confidenciales y flujos de automatización seguros para el registro y gestión de clientes de alto valor."}
       heroWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20de%20seguridad%20digital%20para%20mi%20firma%20o%20empresa%20financiera."
+      heroImageBaseName="hero-legal-medellin"
+      heroImageAlt={isEn ? "Legal executive meeting with view of downtown Medellin and the Coltejer building." : "Reunión ejecutiva legal con vista al centro de Medellín y el edificio Coltejer."}
       problemsSectionTitle={isEn ? "Does your corporate firm face any of these challenges?" : "¿Tu firma corporativa o financiera tiene alguno de estos problemas?"}
       problemsSectionDesc={isEn
         ? "Your clients trust is your most valuable asset. However, poor security practices and legacy software expose sensitive details."

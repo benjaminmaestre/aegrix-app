@@ -90,6 +90,8 @@ export default function RealEstatePremiumPage() {
         ? "Interactive landing pages for luxury projects, high-ticket lead funnel automation, and real-time sales dashboard analytics."
         : "Landings interactivas de proyectos inmobiliarios, automatización del embudo de leads de alto ticket y dashboards de analítica de ventas en tiempo real."}
       heroWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20digital%20para%20mi%20constructora%20o%20inmobiliaria."
+      heroImageBaseName="hero-realestate-cartagena"
+      heroImageAlt={isEn ? "Luxury apartment in Cartagena with ocean view and real estate agent." : "Apartamento de lujo en Cartagena con vista al mar y asesor inmobiliario."}
       problemsSectionTitle={isEn ? "Does your real estate company face any of these challenges?" : "¿Tu inmobiliaria o constructora tiene alguno de estos problemas?"}
       problemsSectionDesc={isEn
         ? "Selling premium properties demands a frictionless experience. However, software inefficiencies and lead clutter cool down prospective buyers."

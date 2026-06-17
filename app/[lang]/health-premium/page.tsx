@@ -90,6 +90,8 @@ export default function HealthPremiumPage() {
         ? "Premium medical web, patient funnels, WhatsApp automation, commercial analytics, and sensitive data protection."
         : "Web médica premium, embudos de pacientes, automatización por WhatsApp, analítica comercial y protección de datos sensibles."}
       heroWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20de%20salud%20digital%20para%20mi%20cl%C3%ADnica%20premium."
+      heroImageBaseName="hero-health-medellin"
+      heroImageAlt={isEn ? "Premium clinic in Medellin with panoramic view of the city." : "Clínica premium en Medellín con vista panorámica de la ciudad."}
       problemsSectionTitle={isEn ? "Does your clinic face any of these challenges?" : "¿Tu clínica tiene alguno de estos problemas?"}
       problemsSectionDesc={isEn
         ? "High-end medical centers handle high-value patients and extremely sensitive data, but often experience information leaks and slow processes."
