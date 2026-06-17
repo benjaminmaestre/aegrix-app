@@ -125,7 +125,7 @@ body {
   .btn-primary { 
     @apply inline-flex items-center justify-center gap-3 rounded-full px-8 py-3.5
     font-manrope text-[13px] font-bold uppercase tracking-widest
-    transition-all duration-300
+    transition-all duration-300 whitespace-nowrap
     border border-aegrix-cyan/20;
     background: var(--aegrix-cyan);
     color: var(--aegrix-bg);
@@ -142,7 +142,7 @@ body {
   .btn-secondary { 
     @apply inline-flex items-center justify-center gap-3 rounded-full px-8 py-3.5
     font-manrope text-[13px] font-bold uppercase tracking-widest
-    text-aegrix-text transition-all duration-500
+    text-aegrix-text transition-all duration-500 whitespace-nowrap
     border border-aegrix-border relative overflow-hidden;
     background: rgba(128, 128, 128, 0.05);
   }

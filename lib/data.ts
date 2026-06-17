@@ -122,4 +122,6 @@ export const webBenefits = [
   { title: 'Full Tracking', desc: 'Medición real desde el clic hasta la conversión.' },
 ];
 
-export const WHATSAPP_URL = "https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20AEGRIX%20360";
+export const WHATSAPP_URL = "https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20digital%20360%20para%20mi%20empresa.";
+export const WHATSAPP_URL_WEB = "https://wa.me/573107379163?text=Hola,%20quiero%20revisar%20si%20mi%20p%C3%A1gina%20web%20est%C3%A1%20perdiendo%20clientes.";
+export const WHATSAPP_URL_AI = "https://wa.me/573107379163?text=Hola,%20quiero%20automatizar%20procesos%20con%20IA%20en%20mi%20empresa.";

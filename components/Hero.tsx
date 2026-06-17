@@ -86,10 +86,10 @@ const Hero = ({ lang, dict }: HeroProps) => {
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex flex-col text-left z-20 lg:col-span-5 xl:col-span-5"
+                  className="flex flex-col text-left z-20 lg:col-span-6 xl:col-span-6"
                 >
                   <div className="max-w-[720px]">
-                    <h1 className="font-sora font-bold text-3xl md:text-5xl lg:text-5xl xl:text-6xl text-aegrix-text mb-6 leading-tight tracking-tight">
+                    <h1 className="font-sora font-bold text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl text-aegrix-text mb-6 leading-tight tracking-tight">
                       {dict.title_part1} <br />
                       <span className="text-aegrix-cyan">{dict.title_highlight}</span>
                     </h1>
@@ -101,7 +101,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
                       )}
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
+                    <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-5">
                       <Link href={`/${lang}#diagnostico`} className="btn-primary w-full sm:w-auto">
                         {dict.cta_primary}
                       </Link>
@@ -116,7 +116,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
                   initial={{ opacity: 0, scale: 0.95, x: 30 }}
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                  className="w-full relative flex justify-center lg:justify-end lg:col-span-7 xl:col-span-7"
+                  className="w-full relative flex justify-center lg:justify-end lg:col-span-6 xl:col-span-6"
                 >
                   <div className="w-full max-w-[720px]">
                     <HeroControlLayer />

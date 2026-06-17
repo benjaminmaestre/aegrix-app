@@ -56,8 +56,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     : 'AEGRIX | Ingeniería de Software, Ciberseguridad e IA';
     
   const description = isEn
-    ? 'AEGRIX builds the digital layer your company needs to sell, automate, and protect itself with web dev, AI, data analytics, and cybersecurity.'
-    : 'AEGRIX construye la capa digital que tu empresa necesita para vender, automatizar y protegerse con desarrollo web, IA, analítica y ciberseguridad.';
+    ? 'At AEGRIX we diagnose, build, and optimize the digital layer of your business (web, AI, data, automation, and cybersecurity) to help you sell more, operate better, and protect yourself.'
+    : 'En AEGRIX diagnosticamos, construimos y optimizamos la capa digital de tu negocio (web, IA, datos, automatización y ciberseguridad) para vender más, operar mejor y protegerse mejor.';
 
   return {
     title,

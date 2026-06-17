@@ -175,7 +175,7 @@ const HeroControlLayer = () => {
         </div>
 
         {/* Right Panel: Active Layer Detail */}
-        <div className="md:col-span-7 p-5 md:p-12 min-h-[280px] md:min-h-[420px] flex flex-col relative overflow-hidden">
+        <div className="md:col-span-7 p-5 md:p-8 lg:p-10 min-h-[280px] md:min-h-[420px] flex flex-col relative overflow-hidden">
           {/* Animated Background Technical Marks */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-[0.02] pointer-events-none scale-150">
             <Activity size="100%" strokeWidth={0.5} />
@@ -201,7 +201,7 @@ const HeroControlLayer = () => {
                 <div className="text-[10px] font-mono text-aegrix-text/10 uppercase tracking-[0.4em]">Node_{activeIndex + 1}</div>
               </div>
 
-              <h3 className="text-xl md:text-4xl font-sora font-bold text-aegrix-text mb-3 md:mb-6 leading-tight tracking-tight">
+              <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-sora font-bold text-aegrix-text mb-3 md:mb-6 leading-tight tracking-tight">
                 {activeLayer.label}
               </h3>
               

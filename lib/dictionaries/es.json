@@ -1,10 +1,10 @@
 {
   "hero": {
-    "title_part1": "Construimos la capa digital que tu empresa necesita para",
-    "title_highlight": "vender, automatizar y protegerse.",
-    "description": "Desarrollo web, inteligencia artificial, analítica de datos y ciberseguridad para empresas que quieren operar con más control.",
-    "cta_primary": "Iniciar Evolución",
-    "cta_secondary": "Ver arquitectura"
+    "title_part1": "Tu empresa puede vender más, operar mejor y",
+    "title_highlight": "protegerse mejor con tecnología bien implementada.",
+    "description": "En AEGRIX diagnosticamos, construimos y optimizamos la capa digital de tu negocio: web, IA, datos, automatización y ciberseguridad.",
+    "cta_primary": "Solicitar diagnóstico 360",
+    "cta_secondary": "Ver soluciones para mi empresa"
   },
   "navbar": {
     "services": "Servicios",
