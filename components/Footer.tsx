@@ -105,7 +105,7 @@ const Footer = () => {
                   { name: lang === 'en' ? 'Health Premium' : 'Salud Premium', href: `/${lang}/health-premium` },
                   { name: lang === 'en' ? 'Real Estate' : 'Real Estate & Proyectos', href: `/${lang}/real-estate` },
                   { name: lang === 'en' ? 'Construction & Services' : 'Constructoras & Servicios', href: `/${lang}/construction-tech` },
-                  { name: lang === 'en' ? 'Legal & Professional' : 'Legal & Professional', href: `/${lang}/legal-tech` },
+                  { name: lang === 'en' ? 'Legal & Professional' : 'Legal & Firmas Profesionales', href: `/${lang}/legal-tech` },
                   { name: lang === 'en' ? 'Logistics & Wholesale' : 'Distribución & Logística', href: `/${lang}/industrial-logistica` },
                   { name: lang === 'en' ? 'Corporate Training' : 'Capacitación Corporativa', href: `/${lang}/education-corporate` }
                 ].map((link) => (
