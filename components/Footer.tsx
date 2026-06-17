@@ -17,9 +17,9 @@ const Footer = () => {
     <footer className="bg-aegrix-bg border-t border-aegrix-border px-4 pt-10 pb-28 sm:px-6 lg:px-16 lg:pt-12 lg:pb-12">
       <div className="mx-auto max-w-7xl">
         {/* Top Section: Brand Info + Links */}
-        <div className="flex flex-col lg:flex-row lg:justify-between mb-8 lg:mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-8 lg:mb-10">
           {/* Brand Info */}
-          <div className="flex flex-col lg:block mb-8 lg:mb-0 lg:max-w-sm">
+          <div className="flex flex-col lg:block mb-8 lg:mb-0 lg:col-span-4">
             <div className="flex items-center gap-4 lg:block">
               <Link href="/" className="inline-block relative group shrink-0">
                 {/* Logo for Dark Theme */}
@@ -74,7 +74,7 @@ const Footer = () => {
           </div>
 
           {/* Links Section */}
-          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-8">
+          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-8 lg:col-span-8 lg:pl-4">
             {/* Links 1: Plataforma */}
             <div>
               <h4 className="text-[10px] sm:text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4 lg:mb-5">Plataforma</h4>
