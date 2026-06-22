@@ -118,6 +118,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     icons: {
       icon: [
         { url: '/AEGRIX_right_logo_icon.svg', type: 'image/svg+xml' },
+        { url: '/icon.png', type: 'image/png', sizes: '96x96' },
         { url: '/favicon.ico', type: 'image/x-icon', sizes: 'any' },
       ],
       shortcut: '/favicon.ico',
