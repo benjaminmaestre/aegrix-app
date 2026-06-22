@@ -122,7 +122,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         { url: '/favicon.ico', type: 'image/x-icon', sizes: 'any' },
       ],
       shortcut: '/favicon.ico',
-      apple: '/AEGRIX_right_logo_icon.svg',
+      apple: '/apple-icon.png',
     },
   };
 }
