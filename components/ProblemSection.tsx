@@ -133,7 +133,7 @@ const ProblemSection = () => {
 
         {/* Monolithic Diagnostic Console Grid (3 columns for 6 items) */}
         <div className={cn(
-          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 transition-all duration-1000",
+          "flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:pb-0 md:overflow-visible transition-all duration-1000",
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         )}>
           {cardsData.map((card, idx) => {
@@ -142,7 +142,7 @@ const ProblemSection = () => {
               <div 
                 key={card.id}
                 className={cn(
-                  "relative group p-6 sm:p-8 rounded-[24px] md:rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 flex flex-col justify-between transition-all duration-500",
+                  "w-[80vw] shrink-0 snap-center md:w-auto relative group p-6 sm:p-8 rounded-[24px] md:rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 flex flex-col justify-between transition-all duration-500",
                   card.hoverBgClass,
                   inView ? "opacity-100" : "opacity-0"
                 )}
