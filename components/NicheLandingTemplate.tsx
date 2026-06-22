@@ -183,7 +183,7 @@ const NicheLandingTemplate = ({
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 hide-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] md:grid md:grid-cols-2 xl:grid-cols-4 md:gap-8 md:pb-0 md:overflow-visible">
             {problems.map((card, idx) => {
               const Icon = card.icon;
               return (
@@ -194,7 +194,7 @@ const NicheLandingTemplate = ({
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className={cn(
-                    "relative group p-6 sm:p-8 rounded-[24px] md:rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 flex flex-col justify-between transition-all duration-500",
+                    "w-[85vw] shrink-0 snap-center md:w-auto relative group p-6 sm:p-8 rounded-[24px] md:rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 flex flex-col justify-between transition-all duration-500",
                     card.hoverBgClass || "hover:bg-white/1"
                   )}
                 >
@@ -248,7 +248,7 @@ const NicheLandingTemplate = ({
           </div>
 
           {/* Solutions Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6 hide-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] lg:grid lg:grid-cols-3 md:gap-8 md:pb-0 md:overflow-visible">
             {solutions.map((sol, idx) => (
               <motion.div
                 key={idx}
@@ -256,7 +256,7 @@ const NicheLandingTemplate = ({
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="p-6 sm:p-8 rounded-[24px] md:rounded-[32px] bg-aegrix-surface border border-aegrix-border flex flex-col justify-between"
+                className="w-[85vw] shrink-0 snap-center lg:w-auto p-6 sm:p-8 rounded-[24px] md:rounded-[32px] bg-aegrix-surface border border-aegrix-border flex flex-col justify-between"
               >
                 <div>
                   <h3 className="text-xl font-sora font-bold text-aegrix-text mb-4 border-b border-aegrix-border pb-3">

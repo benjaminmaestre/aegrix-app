@@ -44,7 +44,8 @@ const Hero = ({ lang, dict }: HeroProps) => {
           className="object-cover object-center opacity-80"
         />
         <div className="absolute inset-0 bg-aegrix-bg/30" />
-        <div className="absolute inset-0 bg-linear-to-r from-aegrix-bg via-aegrix-bg/80 to-aegrix-bg/40" />
+        <div className="absolute inset-0 bg-linear-to-r from-aegrix-bg via-aegrix-bg/80 to-aegrix-bg/40 hidden lg:block" />
+        <div className="absolute inset-0 bg-linear-to-b from-aegrix-bg via-aegrix-bg/80 to-aegrix-bg/95 lg:hidden" />
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(0,194,255,0.03),transparent_50%)]" />
         <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.03),transparent_50%)]" />
         <div className="absolute inset-0 grid-bg opacity-[0.06]" />
@@ -86,9 +87,9 @@ const Hero = ({ lang, dict }: HeroProps) => {
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex flex-col text-left z-20 lg:col-span-6 xl:col-span-6"
+                  className="flex flex-col text-center lg:text-left z-20 lg:col-span-6 xl:col-span-6"
                 >
-                  <div className="max-w-[720px]">
+                  <div className="max-w-[720px] mx-auto lg:mx-0">
                     <h1 className="font-sora font-bold text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl text-aegrix-text mb-6 leading-tight tracking-tight">
                       {dict.title_part1} <br />
                       <span className="text-aegrix-cyan">{dict.title_highlight}</span>
@@ -101,7 +102,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
                       )}
                     </p>
 
-                    <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-5">
+                    <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start items-stretch sm:items-center gap-3 sm:gap-5">
                       <Link href={`/${lang}#diagnostico`} className="btn-primary w-full sm:w-auto">
                         {dict.cta_primary}
                       </Link>
