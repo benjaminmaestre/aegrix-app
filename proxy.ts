@@ -30,6 +30,13 @@ export function proxy(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname;
 
+  // Redirect index pages (e.g. /index.html -> /, /es/index.html -> /es)
+  const indexMatch = pathname.match(/^(.*)\/(index\.(?:html|php|htm)|default\.(?:html|aspx))$/i);
+  if (indexMatch) {
+    const cleanPath = indexMatch[1] || '/';
+    return NextResponse.redirect(new URL(cleanPath, request.url), 301);
+  }
+
   // Check if there is any supported locale in the pathname
   const pathnameIsMissingLocale = locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
