@@ -218,11 +218,11 @@ const ContactSection = () => {
                     <label htmlFor="privacy-consent" className="text-[11px] text-aegrix-muted leading-relaxed cursor-pointer">
                       {lang === 'es' ? (
                         <>
-                          He leído y acepto la <Link href={`/${lang}/privacidad`} className="text-aegrix-cyan hover:underline">Política de Privacidad</Link>.
+                          He leído y acepto la <Link href="/es/privacidad" className="text-aegrix-cyan hover:underline">Política de Privacidad</Link>.
                         </>
                       ) : (
                         <>
-                          I have read and accept the <Link href={`/${lang}/privacidad`} className="text-aegrix-cyan hover:underline">Privacy Policy</Link>.
+                          I have read and accept the <Link href="/en/privacy" className="text-aegrix-cyan hover:underline">Privacy Policy</Link>.
                         </>
                       )}
                     </label>
@@ -240,11 +240,11 @@ const ContactSection = () => {
                     <label htmlFor="terms-consent" className="text-[11px] text-aegrix-muted leading-relaxed cursor-pointer">
                       {lang === 'es' ? (
                         <>
-                          He leído y acepto los <Link href={`/${lang}/terminos`} className="text-aegrix-cyan hover:underline">Términos y Condiciones de Servicio</Link>.
+                          He leído y acepto los <Link href="/es/terminos" className="text-aegrix-cyan hover:underline">Términos y Condiciones de Servicio</Link>.
                         </>
                       ) : (
                         <>
-                          I have read and accept the <Link href={`/${lang}/terminos`} className="text-aegrix-cyan hover:underline">Terms and Conditions of Service</Link>.
+                          I have read and accept the <Link href="/en/terms" className="text-aegrix-cyan hover:underline">Terms and Conditions of Service</Link>.
                         </>
                       )}
                     </label>

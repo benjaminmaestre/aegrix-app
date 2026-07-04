@@ -175,10 +175,16 @@ const Footer = () => {
             © {currentYear} AEGRIX Technology Firm. Todos los derechos reservados.
           </div>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[10px] font-bold text-aegrix-text/30 uppercase tracking-widest lg:justify-end lg:pr-24">
-            <Link href={`/${lang}/privacidad`} className="hover:text-aegrix-text transition-colors">Privacidad</Link>
-            <Link href={`/${lang}/terminos`} className="hover:text-aegrix-text transition-colors">Términos</Link>
+            <Link href={lang === 'es' ? '/es/privacidad' : '/en/privacy'} className="hover:text-aegrix-text transition-colors">
+              {lang === 'es' ? 'Privacidad' : 'Privacy'}
+            </Link>
+            <Link href={lang === 'es' ? '/es/terminos' : '/en/terms'} className="hover:text-aegrix-text transition-colors">
+              {lang === 'es' ? 'Términos' : 'Terms'}
+            </Link>
             <Link href={`/${lang}/cookies`} className="hover:text-aegrix-text transition-colors">Cookies</Link>
-            <Link href={`/${lang}/seguridad`} className="hover:text-aegrix-text transition-colors">Seguridad</Link>
+            <Link href={lang === 'es' ? '/es/seguridad' : '/en/security'} className="hover:text-aegrix-text transition-colors">
+              {lang === 'es' ? 'Seguridad' : 'Security'}
+            </Link>
           </div>
         </div>
       </div>

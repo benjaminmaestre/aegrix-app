@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { ROUTE_MAPPINGS, REVERSE_MAPPINGS } from './lib/navigation';
 
 const locales = ['en', 'es'];
 
@@ -44,7 +45,39 @@ export function proxy(request: NextRequest) {
     );
   }
 
+  // Parse path: /locale/slug
+  const segments = pathname.split('/').filter(Boolean);
+  const locale = segments[0];
+  const pageSlug = segments[1];
+  const rest = segments.slice(2).join('/');
+
   const requestHeaders = new Headers(request.headers);
+
+  // Apply routing mappings for English locale
+  if (locale === 'en' && pageSlug) {
+    // 1. Redirect hybrid / Spanish URLs under /en to their clean English counterparts (301)
+    if (REVERSE_MAPPINGS[pageSlug]) {
+      const cleanSlug = REVERSE_MAPPINGS[pageSlug];
+      const targetPath = `/en/${cleanSlug}${rest ? '/' + rest : ''}`;
+      return NextResponse.redirect(new URL(targetPath, request.url), 301);
+    }
+
+    // 2. Rewrite clean English URLs to the physical Spanish folder names internally
+    if (ROUTE_MAPPINGS[pageSlug]) {
+      const internalSlug = ROUTE_MAPPINGS[pageSlug];
+      // Set the header to the original PUBLIC pathname (e.g. /en/privacy)
+      requestHeaders.set('x-pathname', pathname);
+      
+      url.pathname = `/en/${internalSlug}${rest ? '/' + rest : ''}`;
+      return NextResponse.rewrite(url, {
+        request: {
+          headers: requestHeaders,
+        },
+      });
+    }
+  }
+
+  // Default path: set original public pathname header
   requestHeaders.set('x-pathname', pathname);
 
   return NextResponse.next({

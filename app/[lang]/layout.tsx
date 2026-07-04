@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from 'next';
 import { Sora, Manrope } from 'next/font/google';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
+import { getLocalizedPath } from '@/lib/navigation';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -40,7 +41,17 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const { lang } = await params;
   
   const headersList = await headers();
-  const pathname = headersList.get('x-pathname') || `/${lang}`;
+  const pathname = headersList.get('x-pathname');
+  
+  if (!pathname) {
+    const errorMsg = 'CRITICAL: The x-pathname header is missing. Verify that middleware.ts is correctly running and injecting it.';
+    if (process.env.NODE_ENV === 'development') {
+      throw new Error(errorMsg);
+    }
+    console.error(errorMsg);
+  }
+  
+  const finalPathname = pathname || `/${lang}`;
   
   if (!isValidLocale(lang)) {
     return {
@@ -64,11 +75,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     description,
     metadataBase: new URL('https://aegrix.com.co'),
     alternates: {
-      canonical: pathname,
+      canonical: finalPathname,
       languages: {
-        'es': pathname.replace(/^\/en/, '/es'),
-        'en': pathname.replace(/^\/es/, '/en'),
-        'x-default': pathname.replace(/^\/en/, '/es'),
+        'es': getLocalizedPath(finalPathname, 'es'),
+        'en': getLocalizedPath(finalPathname, 'en'),
+        'x-default': getLocalizedPath(finalPathname, 'es'),
       },
     },
     keywords: [

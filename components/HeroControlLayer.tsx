@@ -15,7 +15,12 @@ const controlLayers = [
     status: 'Protección activa',
     color: 'text-aegrix-cyan',
     bgColor: 'bg-aegrix-cyan/10',
-    borderColor: 'border-aegrix-cyan/30'
+    borderColor: 'border-aegrix-cyan/30',
+    telemetry: {
+      status: 'SECURED',
+      speed: '12ms latency',
+      efficiency: '99.9%'
+    }
   },
   {
     id: 'web-growth',
@@ -26,7 +31,12 @@ const controlLayers = [
     status: 'Performance optimizada',
     color: 'text-blue-500',
     bgColor: 'bg-blue-500/10',
-    borderColor: 'border-blue-500/30'
+    borderColor: 'border-blue-500/30',
+    telemetry: {
+      status: 'OPTIMIZED',
+      speed: '98/100 index',
+      efficiency: '99.99% uptime'
+    }
   },
   {
     id: 'data-intelligence',
@@ -37,7 +47,12 @@ const controlLayers = [
     status: 'Datos conectados',
     color: 'text-purple-500',
     bgColor: 'bg-purple-500/10',
-    borderColor: 'border-purple-500/30'
+    borderColor: 'border-purple-500/30',
+    telemetry: {
+      status: 'SYNCED',
+      speed: '0.05s query',
+      efficiency: '12 sources'
+    }
   },
   {
     id: 'ai-automation',
@@ -48,7 +63,12 @@ const controlLayers = [
     status: 'Automatización lista',
     color: 'text-aegrix-green',
     bgColor: 'bg-aegrix-green/10',
-    borderColor: 'border-aegrix-green/30'
+    borderColor: 'border-aegrix-green/30',
+    telemetry: {
+      status: 'LEARNING',
+      speed: '45ms response',
+      efficiency: '98.4% accuracy'
+    }
   }
 ];
 
@@ -74,33 +94,33 @@ const HeroControlLayer = () => {
         
         {/* Mobile Header and Tabs */}
         <div className="md:hidden flex flex-col border-b border-aegrix-border bg-aegrix-bg-2/30">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-aegrix-border/50">
-            <div className="flex items-center gap-2.5">
+          <div className="flex items-center justify-between px-4 py-2.5 border-b border-aegrix-border/50">
+            <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-aegrix-cyan animate-pulse" />
-              <span className="text-[9px] font-bold text-aegrix-text/70 uppercase tracking-widest">Centro de Control</span>
+              <span className="text-[8.5px] font-bold text-aegrix-text/70 uppercase tracking-widest">Centro de Control</span>
             </div>
             <div className="text-[8px] font-mono text-aegrix-text/20 tracking-tighter">NODE_X-01</div>
           </div>
-          <div className="grid grid-cols-4 gap-1 p-2">
+          <div className="grid grid-cols-4 gap-1.5 p-2 bg-aegrix-bg/40">
             {controlLayers.map((layer, idx) => (
               <button
                 key={layer.id}
                 onClick={() => setActiveIndex(idx)}
                 className={cn(
-                  "flex flex-col items-center justify-center p-2 rounded-lg border transition-all duration-300",
+                  "flex flex-col items-center justify-center py-1.5 px-1 rounded-lg border transition-all duration-300",
                   activeIndex === idx 
-                    ? cn("bg-aegrix-surface border-aegrix-border shadow-md", layer.borderColor.replace('/30', '/15'))
+                    ? cn("bg-aegrix-surface border-aegrix-cyan/20 shadow-[0_0_8px_rgba(0,194,255,0.08)]", layer.borderColor.replace('/30', '/10'))
                     : "bg-transparent border-transparent opacity-40 hover:opacity-100"
                 )}
               >
                 <div className={cn(
-                  "p-1.5 rounded-md mb-1 transition-all duration-300",
+                  "p-1 rounded-md mb-0.5 transition-all duration-300",
                   activeIndex === idx ? layer.bgColor + " " + layer.color : "text-aegrix-text/40"
                 )}>
-                  <layer.icon size={16} />
+                  <layer.icon size={13} />
                 </div>
                 <span className={cn(
-                  "text-[8px] font-bold tracking-tighter truncate max-w-full text-center uppercase transition-colors",
+                  "text-[7.5px] font-bold tracking-tighter truncate max-w-full text-center uppercase transition-colors",
                   activeIndex === idx ? layer.color : "text-aegrix-text/40"
                 )}>
                   {layer.id === 'cybersecurity' ? 'Seguridad' : 
@@ -175,7 +195,7 @@ const HeroControlLayer = () => {
         </div>
 
         {/* Right Panel: Active Layer Detail */}
-        <div className="md:col-span-7 p-5 md:p-8 lg:p-10 min-h-[280px] md:min-h-[420px] flex flex-col relative overflow-hidden">
+        <div className="md:col-span-7 p-4 sm:p-5 md:p-8 lg:p-10 min-h-[235px] md:min-h-[420px] flex flex-col relative overflow-hidden justify-between">
           {/* Animated Background Technical Marks */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-[0.02] pointer-events-none scale-150">
             <Activity size="100%" strokeWidth={0.5} />
@@ -188,36 +208,54 @@ const HeroControlLayer = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 h-full flex flex-col"
+              className="relative z-10 h-full flex flex-col justify-between"
             >
-              <div className="mb-4 md:mb-8 flex items-center justify-between">
-                <div className={cn(
-                  "px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-[0.2em] border",
-                  activeLayer.color,
-                  activeLayer.borderColor.replace('/30', '/10')
-                )}>
-                  {activeLayer.status}
+              <div>
+                <div className="mb-3 md:mb-6 flex items-center justify-between">
+                  <div className={cn(
+                    "px-2.5 py-0.5 rounded-full text-[8px] md:text-[9px] font-bold uppercase tracking-[0.15em] border backdrop-blur-sm",
+                    activeLayer.color,
+                    activeLayer.borderColor.replace('/30', '/10')
+                  )}>
+                    {activeLayer.status}
+                  </div>
+                  <div className="text-[8px] md:text-[10px] font-mono text-aegrix-text/15 uppercase tracking-[0.3em]">Node_0{activeIndex + 1}</div>
                 </div>
-                <div className="text-[10px] font-mono text-aegrix-text/10 uppercase tracking-[0.4em]">Node_{activeIndex + 1}</div>
+
+                <h3 className="text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-sora font-bold text-aegrix-text mb-2 md:mb-6 leading-tight tracking-tight">
+                  {activeLayer.label}
+                </h3>
+                
+                <p className="text-aegrix-muted text-[11px] sm:text-sm md:text-lg leading-relaxed mb-4 md:mb-10 max-w-sm opacity-80">
+                  {activeLayer.description}
+                </p>
               </div>
 
-              <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-sora font-bold text-aegrix-text mb-3 md:mb-6 leading-tight tracking-tight">
-                {activeLayer.label}
-              </h3>
-              
-              <p className="text-aegrix-muted text-sm md:text-lg leading-relaxed mb-5 md:mb-10 max-w-sm opacity-80">
-                {activeLayer.description}
-              </p>
+              {/* Telemetry Block */}
+              <div className="grid grid-cols-3 gap-2 px-3 py-2 rounded-lg bg-aegrix-bg/40 border border-aegrix-border font-mono text-[8px] md:text-[9px] text-aegrix-text/60 mb-4 md:mb-6 shadow-inner shrink-0">
+                <div>
+                  <div className="text-[7px] md:text-[8px] text-aegrix-muted uppercase tracking-wider font-semibold">STATUS</div>
+                  <div className={cn("font-bold mt-0.5 tracking-tight", activeLayer.color)}>{activeLayer.telemetry.status}</div>
+                </div>
+                <div>
+                  <div className="text-[7px] md:text-[8px] text-aegrix-muted uppercase tracking-wider font-semibold">SPEED</div>
+                  <div className="font-bold text-aegrix-text/90 mt-0.5 tracking-tight">{activeLayer.telemetry.speed}</div>
+                </div>
+                <div>
+                  <div className="text-[7px] md:text-[8px] text-aegrix-muted uppercase tracking-wider font-semibold">METRIC</div>
+                  <div className="font-bold text-aegrix-text/90 mt-0.5 tracking-tight">{activeLayer.telemetry.efficiency}</div>
+                </div>
+              </div>
 
               <div className="mt-auto">
-                <div className="text-[9px] md:text-[10px] font-bold text-aegrix-text/30 uppercase tracking-[0.3em] mb-3 md:mb-6 border-b border-aegrix-border pb-2">Technical Indicators</div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 md:gap-y-4 gap-x-6">
+                <div className="text-[8px] md:text-[10px] font-bold text-aegrix-text/30 uppercase tracking-[0.3em] mb-2 md:mb-6 border-b border-aegrix-border pb-1.5">Technical Indicators</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-1.5 md:gap-y-4 gap-x-6">
                   {activeLayer.tags.map((tag, i) => (
-                    <div key={i} className="flex items-center gap-3.5 group/tag">
-                      <div className={cn("transition-transform duration-300 group-hover/tag:scale-110", activeLayer.color)}>
-                        <CheckCircle2 size={16} className="md:w-[18px] md:h-[18px]" />
+                    <div key={i} className="flex items-center gap-2.5 group/tag">
+                      <div className={cn("transition-transform duration-300 group-hover/tag:scale-110 shrink-0", activeLayer.color)}>
+                        <CheckCircle2 size={13} className="md:w-[18px] md:h-[18px]" />
                       </div>
-                      <span className="text-xs md:text-[13px] text-aegrix-text/80 font-medium tracking-tight">{tag}</span>
+                      <span className="text-[10px] sm:text-xs md:text-[13px] text-aegrix-text/80 font-medium tracking-tight truncate">{tag}</span>
                     </div>
                   ))}
                 </div>

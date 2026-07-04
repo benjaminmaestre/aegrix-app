@@ -41,17 +41,17 @@ const Hero = ({ lang, dict }: HeroProps) => {
           alt={lang === 'es' ? "Fondo del centro de mando digital de AEGRIX" : "AEGRIX Digital Command Center Background"}
           fill
           priority
-          className="object-cover object-center opacity-80"
+          className="object-cover object-center opacity-70 lg:opacity-60 transition-opacity duration-500"
         />
-        <div className="absolute inset-0 bg-aegrix-bg/30" />
+        <div className="absolute inset-0 bg-aegrix-bg/40" />
         <div className="absolute inset-0 bg-linear-to-r from-aegrix-bg via-aegrix-bg/80 to-aegrix-bg/40 hidden lg:block" />
-        <div className="absolute inset-0 bg-linear-to-b from-aegrix-bg via-aegrix-bg/80 to-aegrix-bg/95 lg:hidden" />
+        <div className="absolute inset-0 bg-linear-to-b from-aegrix-bg/80 via-aegrix-bg/30 to-aegrix-bg/95 lg:hidden" />
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(0,194,255,0.03),transparent_50%)]" />
         <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.03),transparent_50%)]" />
         <div className="absolute inset-0 grid-bg opacity-[0.06]" />
         
         {/* Large Isotype Watermark for Hero */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04] dark:opacity-[0.03] pointer-events-none scale-[2] transition-all duration-1000">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] lg:opacity-[0.04] dark:opacity-[0.01] dark:lg:opacity-[0.03] pointer-events-none scale-[1.2] lg:scale-[2] transition-all duration-1000">
           <svg width="700" height="700" viewBox="300 230 650 560" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g fillRule="evenodd">
               {/* Base Isotype */}
@@ -78,10 +78,10 @@ const Hero = ({ lang, dict }: HeroProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full min-h-auto lg:min-h-screen flex flex-col relative pt-28 sm:pt-32 pb-28 md:pb-32"
+            className="w-full min-h-[85vh] lg:min-h-screen flex flex-col justify-center relative pt-24 pb-28 lg:pt-32 lg:pb-32"
           >
 
-            <div className="container-width relative z-10 mt-4 md:my-auto">
+            <div className="container-width relative z-10">
               <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
@@ -90,23 +90,49 @@ const Hero = ({ lang, dict }: HeroProps) => {
                   className="flex flex-col text-center lg:text-left z-20 lg:col-span-6 xl:col-span-6"
                 >
                   <div className="max-w-[720px] mx-auto lg:mx-0">
-                    <h1 className="font-sora font-bold text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl text-aegrix-text mb-6 leading-tight tracking-tight">
+                    {/* Premium Badge */}
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-aegrix-cyan/5 border border-aegrix-cyan/15 backdrop-blur-md mb-5 md:mb-6 hover:bg-aegrix-cyan/10 transition-colors duration-300 mx-auto lg:mx-0">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-aegrix-cyan opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-aegrix-cyan"></span>
+                      </span>
+                      <span className="text-[9px] sm:text-[10px] font-bold text-aegrix-cyan tracking-[0.25em] uppercase font-manrope">
+                        {lang === 'es' ? 'Infraestructura Tecnológica de Élite' : 'Elite Technological Infrastructure'}
+                      </span>
+                    </div>
+
+                    <h1 className="font-sora font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl text-aegrix-text mb-6 leading-tight tracking-tight">
                       {dict.title_part1} <br />
-                      <span className="text-aegrix-cyan">{dict.title_highlight}</span>
+                      <span className="text-transparent bg-clip-text bg-linear-to-r from-aegrix-cyan via-blue-400 to-indigo-500">
+                        {dict.title_highlight}
+                      </span>
                     </h1>
 
-                    <p className="font-manrope text-sm sm:text-base md:text-lg mb-6 md:mb-12 text-aegrix-muted max-w-xl opacity-80 leading-relaxed">
-                      <span>{dict.description.split('. ')[0]}.</span>
-                      {dict.description.split('. ').length > 1 && (
-                        <span className="hidden md:inline"> {dict.description.split('. ').slice(1).join('. ')}</span>
-                      )}
-                    </p>
+                    {(() => {
+                      const sentences = dict.description.split(/\.\s+/);
+                      const firstSentence = sentences[0] ? (sentences[0].endsWith('.') ? sentences[0] : sentences[0] + '.') : '';
+                      const remainingSentences = sentences.slice(1).join('. ');
+                      return (
+                        <p className="font-manrope text-sm sm:text-base md:text-lg mb-6 md:mb-12 text-aegrix-muted max-w-xl mx-auto lg:mx-0 opacity-80 leading-relaxed">
+                          <span>{firstSentence}</span>
+                          {remainingSentences && (
+                            <span className="hidden md:inline"> {remainingSentences.endsWith('.') ? remainingSentences : remainingSentences + '.'}</span>
+                          )}
+                        </p>
+                      );
+                    })()}
 
-                    <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start items-stretch sm:items-center gap-3 sm:gap-5">
-                      <Link href={`/${lang}#diagnostico`} className="btn-primary w-full sm:w-auto">
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center lg:justify-start items-center sm:items-center gap-3 sm:gap-5 w-full sm:w-auto">
+                      <Link 
+                        href={`/${lang}#diagnostico`} 
+                        className="btn-primary w-full sm:w-auto text-center justify-center max-w-[280px] sm:max-w-none"
+                      >
                         {dict.cta_primary}
                       </Link>
-                      <Link href="#arquitectura" className="btn-secondary w-full sm:w-auto">
+                      <Link 
+                        href="#arquitectura" 
+                        className="btn-secondary w-full sm:w-auto text-center justify-center max-w-[280px] sm:max-w-none"
+                      >
                         {dict.cta_secondary}
                       </Link>
                     </div>
@@ -117,7 +143,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
                   initial={{ opacity: 0, scale: 0.95, x: 30 }}
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                  className="w-full relative flex justify-center lg:justify-end lg:col-span-6 xl:col-span-6"
+                  className="w-full relative hidden lg:flex justify-end lg:col-span-6 xl:col-span-6"
                 >
                   <div className="w-full max-w-[720px]">
                     <HeroControlLayer />

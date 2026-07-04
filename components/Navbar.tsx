@@ -3,11 +3,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useScrolled } from '@/hooks/useScrolled';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from './ThemeToggle';
+import { getLocalizedPath } from '@/lib/navigation';
 
 interface NavbarProps {
   lang: 'en' | 'es';
@@ -24,9 +26,10 @@ interface NavbarProps {
 const Navbar = ({ lang, dict }: NavbarProps) => {
   const scrolled = useScrolled(40);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navItems = [
-    { label: dict.nosotros, href: `/${lang}/nosotros` },
+    { label: dict.nosotros, href: lang === 'es' ? '/es/nosotros' : '/en/about' },
     { label: dict.services, href: `/${lang}#servicios` },
     { label: dict.sectors, href: `/${lang}#sectores` },
     { label: dict.methodology, href: `/${lang}#metodologia` },
@@ -96,7 +99,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
             {/* Integrated Controls Group */}
             <div className="flex items-center p-1 h-10 rounded-full bg-aegrix-bg/50 backdrop-blur-md border border-aegrix-border shadow-sm">
               <Link
-                href={lang === 'es' ? '/en' : '/es'}
+                href={pathname ? getLocalizedPath(pathname, lang === 'es' ? 'en' : 'es') : (lang === 'es' ? '/en' : '/es')}
                 className="flex items-center gap-2 px-3 h-full rounded-full hover:bg-aegrix-cyan/5 transition-all group"
               >
                 <div className="w-4 h-4 rounded-full overflow-hidden relative border border-white/10 shadow-sm transition-transform group-hover:scale-110">
@@ -130,7 +133,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
         <div className="xl:hidden flex items-center gap-3 relative z-50">
           {/* Language Switcher Mobile */}
           <Link
-            href={lang === 'es' ? '/en' : '/es'}
+            href={pathname ? getLocalizedPath(pathname, lang === 'es' ? 'en' : 'es') : (lang === 'es' ? '/en' : '/es')}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-aegrix-bg/50 backdrop-blur-md border border-aegrix-border"
           >
             <div className="w-4 h-4 rounded-full overflow-hidden relative">
