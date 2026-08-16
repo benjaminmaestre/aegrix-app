@@ -125,7 +125,7 @@ const ContactSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="p-5 sm:p-8 md:p-10 rounded-[32px] bg-aegrix-surface border border-aegrix-border relative overflow-hidden group shadow-xl"
+            className="p-5 sm:p-8 md:p-10 rounded-4xl bg-aegrix-surface border border-aegrix-border relative overflow-hidden group shadow-xl"
           >
             {submitStatus === 'success' ? (
               <div className="flex flex-col items-center justify-center text-center py-12 space-y-6 relative z-10">

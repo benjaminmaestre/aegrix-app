@@ -74,7 +74,7 @@ const CookieBanner = ({ lang, dict }: CookieBannerProps) => {
           exit={{ y: 50, opacity: 0 }}
           className="fixed bottom-4 left-4 right-4 z-100 flex justify-center pointer-events-none"
         >
-          <div className="w-full max-w-3xl bg-aegrix-surface/95 backdrop-blur-md border border-aegrix-border p-4 rounded-2xl shadow-2xl pointer-events-auto relative overflow-hidden">
+          <div className="w-full max-w-3xl bg-aegrix-surface/60 backdrop-blur-md border border-aegrix-border/50 p-4 rounded-2xl shadow-2xl pointer-events-auto relative overflow-hidden">
             <div className="flex flex-col md:flex-row items-center gap-4 relative z-10">
               <div className="flex-1 flex items-start gap-3">
                 <Cookie className="text-aegrix-cyan shrink-0 mt-0.5" size={16} />

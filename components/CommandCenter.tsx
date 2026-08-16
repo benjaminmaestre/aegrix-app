@@ -1,14 +1,30 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
 import { commandMetrics } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { Activity, Zap, BarChart3, Lock, Cpu, ArrowUpRight } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const CommandCenter = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 0.45, 0.55, 1], [0.93, 1, 1, 0.93]);
+  const opacity = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [0.6, 1, 1, 0.6]);
+  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
+
   return (
-    <div className="bg-aegrix-surface border border-aegrix-border rounded-2xl overflow-hidden shadow-2xl">
+    <motion.div 
+      ref={containerRef}
+      style={{ scale, opacity, y }}
+      className="bg-aegrix-surface border border-aegrix-border rounded-2xl overflow-hidden shadow-2xl"
+    >
       {/* Top Bar - Operating System Feel */}
       <div className="bg-aegrix-bg-2 border-b border-aegrix-border px-6 py-3 flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -156,7 +172,7 @@ const CommandCenter = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

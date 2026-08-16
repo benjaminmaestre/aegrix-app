@@ -24,7 +24,7 @@ const VisionSlide = () => {
 
   return (
     <div
-      className="relative w-full h-full min-h-[440px] md:min-h-[600px] flex items-center justify-center overflow-hidden rounded-3xl md:rounded-[40px] z-20 border border-aegrix-border shadow-xl"
+      className="relative w-full h-full min-h-110 md:min-h-150 flex items-center justify-center overflow-hidden rounded-3xl md:rounded-[40px] z-20 border border-aegrix-border shadow-xl"
       style={{ backgroundColor: 'var(--aegrix-surface)', opacity: 1 }}
     >
       <AnimatePresence mode="wait">
@@ -293,7 +293,7 @@ const AegrixCoreEngine = () => (
   <motion.div
     initial={{ y: 40, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
-    className="relative w-full max-w-4xl h-[260px] sm:h-auto sm:aspect-16/11 md:aspect-16/10 bg-aegrix-bg rounded-t-2xl sm:rounded-t-3xl border-x-4 md:border-x-[6px] border-t-4 md:border-t-[6px] border-aegrix-surface overflow-hidden shadow-xl shadow-blue-900/5 dark:shadow-[0_20px_40px_rgba(0,0,0,0.4)] flex flex-col"
+    className="relative w-full max-w-4xl h-65 sm:h-auto sm:aspect-16/11 md:aspect-16/10 bg-aegrix-bg rounded-t-2xl sm:rounded-t-3xl border-x-4 md:border-x-[6px] border-t-4 md:border-t-[6px] border-aegrix-surface overflow-hidden shadow-xl shadow-blue-900/5 dark:shadow-[0_20px_40px_rgba(0,0,0,0.4)] flex flex-col"
   >
     {/* Mac-style Window Header */}
     <div className="h-8 md:h-10 bg-aegrix-surface flex items-center px-4 md:px-6 gap-2 border-b border-aegrix-border relative shrink-0">
@@ -310,7 +310,7 @@ const AegrixCoreEngine = () => (
     {/* Main content */}
     <div className="flex-1 p-3 sm:p-8 flex flex-col gap-3 sm:gap-6 relative min-h-0">
       {/* Background glowing orb */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] bg-cyan-500/5 blur-[60px] sm:blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-50 sm:w-100 h-50 sm:h-100 bg-cyan-500/5 blur-[60px] sm:blur-[100px] rounded-full pointer-events-none" />
       
       {/* Top 3 Nodes (The Triad) */}
       <div className="grid grid-cols-3 gap-1.5 sm:gap-6 relative z-10 shrink-0">

@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Code2, Cpu, Globe2, Server, Database, Smartphone } from 'lucide-react';
 
 const capabilities = [
@@ -38,41 +38,67 @@ const capabilities = [
 ];
 
 const SoftwareExcellence = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Header parallax
+  const headerY = useTransform(scrollYProgress, [0, 1], [-20, 20]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
+
+  // Staggered column parallax on desktop
+  const yCol0 = useTransform(scrollYProgress, [0, 1], [30, -30]);
+  const yCol1 = useTransform(scrollYProgress, [0, 1], [0, 0]);
+  const yCol2 = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+
+  const columnYTransforms = [yCol0, yCol1, yCol2];
+
   return (
-    <section className="section-padding bg-aegrix-bg relative overflow-hidden">
+    <section ref={sectionRef} className="section-padding bg-aegrix-bg relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,194,255,0.03),transparent_70%)] pointer-events-none" />
       
       <div className="container-width relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-24">
-          <h2 className="text-4xl md:text-6xl font-sora font-extrabold text-aegrix-text mb-8 tracking-tight">
+        <motion.div 
+          style={{ y: headerY, opacity: headerOpacity }}
+          className="text-center max-w-3xl mx-auto mb-12 md:mb-24"
+        >
+          <h2 className="text-4xl md:text-6xl font-sora font-extrabold text-aegrix-text mb-8 tracking-tighter leading-none">
             Ingeniería de Software <br />
             <span className="text-aegrix-cyan">sin compromisos.</span>
           </h2>
           <p className="text-lg text-aegrix-muted leading-relaxed">
             No somos una agencia de marketing; somos una firma de ingeniería. Construimos soluciones digitales sólidas, seguras y preparadas para el futuro.
           </p>
-        </div>
+        </motion.div>
 
         <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-8 md:grid-cols-2 lg:grid-cols-3 pb-6 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
-          {capabilities.map((cap, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-5 sm:p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all group w-[85%] sm:w-[50%] md:w-auto shrink-0 snap-align-start"
-            >
-              <div className="w-12 h-12 rounded-xl bg-aegrix-cyan/5 flex items-center justify-center text-aegrix-cyan mb-6 group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
-                <cap.icon size={24} />
-              </div>
-              <h3 className="text-xl font-sora font-bold text-aegrix-text mb-3">{cap.title}</h3>
-              <p className="text-sm text-aegrix-muted leading-relaxed">
-                {cap.desc}
-              </p>
-            </motion.div>
-          ))}
+          {capabilities.map((cap, idx) => {
+            // Apply column transformations based on index (0,1,2 layout on desktop)
+            const yTransform = columnYTransforms[idx % 3];
+            return (
+              <motion.div
+                key={idx}
+                style={{ y: yTransform }}
+                initial={{ opacity: 0, scale: 0.97 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: (idx % 3) * 0.1 }}
+                className="p-5 sm:p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all group w-[85%] sm:w-[50%] md:w-auto shrink-0 snap-align-start shadow-sm"
+              >
+                <div className="w-12 h-12 rounded-xl bg-aegrix-cyan/5 flex items-center justify-center text-aegrix-cyan mb-6 group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
+                  <cap.icon size={24} />
+                </div>
+                <h3 className="text-xl font-sora font-bold text-aegrix-text mb-3 tracking-tight">{cap.title}</h3>
+                <p className="text-sm text-aegrix-muted leading-relaxed">
+                  {cap.desc}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
 
         <div className="mt-12 md:mt-20 p-1 bg-linear-to-r from-transparent via-aegrix-cyan/20 to-transparent" />

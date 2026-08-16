@@ -41,7 +41,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled 
-          ? "bg-aegrix-bg/80 backdrop-blur-xl border-b border-aegrix-border py-3" 
+          ? "bg-aegrix-bg/60 backdrop-blur-md border-b border-aegrix-border/50 py-3 shadow-[0_4px_30px_rgba(0,0,0,0.03)]" 
           : "bg-transparent py-5"
       )}
     >

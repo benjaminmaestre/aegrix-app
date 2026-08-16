@@ -28,7 +28,7 @@ const Footer = () => {
                   alt="AEGRIX" 
                   width={112} 
                   height={30}
-                  className="w-28 h-auto object-contain hidden dark:block brightness-110 transition-all duration-500 group-hover:scale-105 lg:w-[130px] lg:mb-5"
+                  className="w-28 h-auto object-contain hidden dark:block brightness-110 transition-all duration-500 group-hover:scale-105 lg:w-32.5 lg:mb-5"
                 />
                 {/* Logo for Light Theme */}
                 <Image 
@@ -36,7 +36,7 @@ const Footer = () => {
                   alt="AEGRIX" 
                   width={112} 
                   height={30}
-                  className="w-28 h-auto object-contain dark:hidden transition-all duration-500 group-hover:scale-105 lg:w-[130px] lg:mb-5"
+                  className="w-28 h-auto object-contain dark:hidden transition-all duration-500 group-hover:scale-105 lg:w-32.5 lg:mb-5"
                 />
               </Link>
               <p className="text-xs sm:text-sm leading-relaxed text-aegrix-muted lg:hidden max-w-xs">
@@ -55,12 +55,12 @@ const Footer = () => {
                 </svg>
               </a>
               <a href="https://x.com/aegrix" target="_blank" rel="noopener noreferrer" className="footer-social-link w-8 h-8 lg:w-10 lg:h-10">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="lg:w-[18px] lg:h-[18px]">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="lg:w-4.5 lg:h-4.5">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
               </a>
               <a href="https://instagram.com/aegrix" target="_blank" rel="noopener noreferrer" className="footer-social-link w-8 h-8 lg:w-10 lg:h-10">
-                <Instagram size={18} className="lg:w-[22px] lg:h-[22px]" />
+                <Instagram size={18} className="lg:w-5.5 lg:h-5.5" />
               </a>
             </div>
 

@@ -9,6 +9,11 @@ import VisionSlide from './VisionSlide';
 import { cn } from '@/lib/utils';
 import heroBg from '@/public/images/aegrix-hero-command-center.avif';
 
+interface HeroBackground {
+  videoMp4: string;
+  poster: string;
+}
+
 interface HeroProps {
   lang: 'en' | 'es';
   dict: {
@@ -18,9 +23,10 @@ interface HeroProps {
     cta_primary: string;
     cta_secondary: string;
   };
+  activeBackground: HeroBackground;
 }
 
-const Hero = ({ lang, dict }: HeroProps) => {
+const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // Auto-switch main slides with dynamic timing
@@ -36,16 +42,20 @@ const Hero = ({ lang, dict }: HeroProps) => {
     <section className="relative w-full min-h-auto lg:min-h-screen overflow-hidden flex flex-col">
       {/* Background Ambience */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <Image
-          src={heroBg}
-          alt={lang === 'es' ? "Fondo del centro de mando digital de AEGRIX" : "AEGRIX Digital Command Center Background"}
-          fill
-          priority
-          className="object-cover object-center opacity-70 lg:opacity-60 transition-opacity duration-500"
-        />
-        <div className="absolute inset-0 bg-aegrix-bg/40" />
-        <div className="absolute inset-0 bg-linear-to-r from-aegrix-bg via-aegrix-bg/80 to-aegrix-bg/40 hidden lg:block" />
-        <div className="absolute inset-0 bg-linear-to-b from-aegrix-bg/80 via-aegrix-bg/30 to-aegrix-bg/95 lg:hidden" />
+        <video
+          key={activeBackground.videoMp4}
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={activeBackground.poster}
+          className="absolute inset-0 w-full h-full object-cover object-center scale-[1.04] origin-center opacity-90 lg:opacity-80 transition-opacity duration-500"
+        >
+          <source src={activeBackground.videoMp4} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-aegrix-bg/10" />
+        <div className="absolute inset-0 bg-linear-to-r from-aegrix-bg via-aegrix-bg/50 to-transparent hidden lg:block" />
+        <div className="absolute inset-0 bg-linear-to-b from-aegrix-bg/60 via-aegrix-bg/10 to-aegrix-bg/95 lg:hidden" />
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(0,194,255,0.03),transparent_50%)]" />
         <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.03),transparent_50%)]" />
         <div className="absolute inset-0 grid-bg opacity-[0.06]" />
@@ -89,7 +99,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
                   transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                   className="flex flex-col text-center lg:text-left z-20 lg:col-span-6 xl:col-span-6"
                 >
-                  <div className="max-w-[720px] mx-auto lg:mx-0">
+                  <div className="max-w-180 mx-auto lg:mx-0">
                     {/* Premium Badge */}
                     <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-aegrix-cyan/5 border border-aegrix-cyan/15 backdrop-blur-md mb-5 md:mb-6 hover:bg-aegrix-cyan/10 transition-colors duration-300 mx-auto lg:mx-0">
                       <span className="relative flex h-2 w-2">
@@ -125,13 +135,13 @@ const Hero = ({ lang, dict }: HeroProps) => {
                     <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center lg:justify-start items-center sm:items-center gap-3 sm:gap-5 w-full sm:w-auto">
                       <Link 
                         href={`/${lang}#diagnostico`} 
-                        className="btn-primary w-full sm:w-auto text-center justify-center max-w-[280px] sm:max-w-none"
+                        className="btn-primary w-full sm:w-auto text-center justify-center max-w-70 sm:max-w-none"
                       >
                         {dict.cta_primary}
                       </Link>
                       <Link 
                         href="#arquitectura" 
-                        className="btn-secondary w-full sm:w-auto text-center justify-center max-w-[280px] sm:max-w-none"
+                        className="btn-secondary w-full sm:w-auto text-center justify-center max-w-70 sm:max-w-none"
                       >
                         {dict.cta_secondary}
                       </Link>
@@ -145,7 +155,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
                   transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                   className="w-full relative hidden lg:flex justify-end lg:col-span-6 xl:col-span-6"
                 >
-                  <div className="w-full max-w-[720px]">
+                  <div className="w-full max-w-180">
                     <HeroControlLayer />
                   </div>
                   <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-aegrix-cyan/2 blur-[100px] rounded-full pointer-events-none" />
@@ -164,7 +174,7 @@ const Hero = ({ lang, dict }: HeroProps) => {
             className="w-full min-h-auto lg:min-h-screen flex flex-col relative pt-28 sm:pt-32 md:pt-36 pb-28 md:pb-32"
           >
             <div className="container-width w-full mt-4 md:my-auto h-full flex flex-col">
-              <div className="w-full flex-1 min-h-[500px] md:min-h-[600px] rounded-3xl md:rounded-[40px] overflow-hidden border border-aegrix-border relative bg-aegrix-surface/20">
+              <div className="w-full flex-1 min-h-125 md:min-h-150 rounded-3xl md:rounded-[40px] overflow-hidden border border-aegrix-border relative bg-aegrix-surface/20">
                 <VisionSlide />
               </div>
             </div>

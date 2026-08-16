@@ -49,7 +49,7 @@ const ProductDivisions = () => {
               <div 
                 key={division.id}
                 className={cn(
-                  "relative p-5 sm:p-8 md:p-10 rounded-2xl md:rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all duration-700 flex flex-col shadow-sm hover:shadow-xl overflow-hidden",
+                  "relative p-5 sm:p-8 md:p-10 rounded-2xl md:rounded-4xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all duration-700 flex flex-col shadow-sm hover:shadow-xl overflow-hidden",
                   "w-[90%] sm:w-[50%] md:w-auto shrink-0 md:shrink snap-align-start",
                   inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 )}
@@ -81,8 +81,8 @@ const ProductDivisions = () => {
                   </div>
 
                   <div className="mb-8 md:mb-10">
-                    <div className="heading-md text-aegrix-text mb-3">{division.title}</div>
-                    <div className="text-sm font-bold text-aegrix-cyan uppercase tracking-widest mb-4">
+                    <div className="heading-md text-aegrix-text mb-3 tracking-tight font-extrabold">{division.title}</div>
+                    <div className="text-[11px] font-extrabold text-aegrix-cyan/95 uppercase tracking-[0.25em] mb-4">
                       {division.tagline}
                     </div>
                     <p className="body-md text-aegrix-muted leading-relaxed">
