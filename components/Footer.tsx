@@ -11,6 +11,7 @@ import ObfuscatedEmail from './ObfuscatedEmail';
 const Footer = () => {
   const params = useParams();
   const lang = (params?.lang as string) || 'es';
+  const isEn = lang === 'en';
   const currentYear = new Date().getFullYear();
 
   return (
@@ -40,12 +41,12 @@ const Footer = () => {
                 />
               </Link>
               <p className="text-xs sm:text-sm leading-relaxed text-aegrix-muted lg:hidden max-w-xs">
-                Seguridad, Web, Data & AI para empresas más inteligentes.
+                {isEn ? 'Security, Web, Data & AI for smarter companies.' : 'Seguridad, Web, Data & AI para empresas más inteligentes.'}
               </p>
             </div>
             
             <p className="hidden lg:block text-sm text-aegrix-muted leading-relaxed mb-5 max-w-xs">
-              Diseñamos la capa de control digital que protege tu empresa, convierte tu web en un canal comercial y transforma tus datos en decisiones.
+              {isEn ? 'We design the digital control layer that protects your company, turns your website into a commercial channel, and transforms data into decisions.' : 'Diseñamos la capa de control digital que protege tu empresa, convierte tu web en un canal comercial y transforma tus datos en decisiones.'}
             </p>
 
             <div className="flex items-center gap-3 mt-5 lg:mt-0 lg:gap-4">
@@ -68,7 +69,7 @@ const Footer = () => {
             <div className="hidden lg:flex mt-6">
               <div className="inline-flex items-center gap-2 rounded-full bg-aegrix-green/10 px-4 py-2 text-[10px] lg:text-[11px] font-bold tracking-[0.16em] text-aegrix-green uppercase">
                 <span className="w-1.5 h-1.5 rounded-full bg-aegrix-green animate-pulse" />
-                Sistemas Monitoreados 24/7
+                {isEn ? 'Systems monitored 24/7' : 'Sistemas Monitoreados 24/7'}
               </div>
             </div>
           </div>
@@ -77,13 +78,14 @@ const Footer = () => {
           <div className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-8 lg:col-span-8 lg:pl-4">
             {/* Links 1: Plataforma */}
             <div>
-              <h4 className="text-[10px] sm:text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4 lg:mb-5">Plataforma</h4>
+              <h4 className="text-[10px] sm:text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4 lg:mb-5">{isEn ? 'Platform' : 'Plataforma'}</h4>
               <ul className="space-y-3 lg:space-y-3">
                 {[
                   { name: 'AEGRIX Shield', href: `/${lang}#servicios` },
                   { name: 'AEGRIX Web', href: `/${lang}#servicios` },
                   { name: 'AEGRIX Data & AI', href: `/${lang}#servicios` },
-                  { name: 'AEGRIX Care', href: `/${lang}#servicios` }
+                  { name: 'AEGRIX Care', href: `/${lang}#servicios` },
+                  { name: 'AEGRIX 360', href: `/${lang}/aegrix-360` }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link href={link.href} className="text-[13px] sm:text-sm text-aegrix-muted hover:text-aegrix-cyan transition-colors flex items-center gap-1 group">
@@ -120,13 +122,13 @@ const Footer = () => {
 
             {/* Links 3: Empresa */}
             <div>
-              <h4 className="text-[10px] sm:text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4 lg:mb-5">Empresa</h4>
+              <h4 className="text-[10px] sm:text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4 lg:mb-5">{isEn ? 'Company' : 'Empresa'}</h4>
               <ul className="space-y-3 lg:space-y-3">
                 {[
-                  { name: 'Diagnóstico 360', href: `/${lang}#diagnostico` },
-                  { name: 'Casos de Uso', href: `/${lang}#casos` },
-                  { name: 'Metodología', href: `/${lang}#metodologia` },
-                  { name: 'Contacto', href: `/${lang}#contacto` }
+                  { name: isEn ? '360 Diagnostic' : 'Diagnóstico 360', href: `/${lang}#diagnostico` },
+                  { name: isEn ? 'Use Cases' : 'Casos de Uso', href: `/${lang}#casos` },
+                  { name: isEn ? 'Methodology' : 'Metodología', href: `/${lang}#metodologia` },
+                  { name: isEn ? 'Contact' : 'Contacto', href: `/${lang}#contacto` }
                 ].map((link) => (
                   <li key={link.name}>
                     <Link href={link.href} className="text-[13px] sm:text-sm text-aegrix-muted hover:text-aegrix-cyan transition-colors">
@@ -139,7 +141,7 @@ const Footer = () => {
 
             {/* Contacto Desktop (Oculto en móvil) */}
             <div className="hidden lg:block col-span-1">
-              <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-5">Contacto</h4>
+              <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.2em] mb-5">{isEn ? 'Contact' : 'Contacto'}</h4>
               <div className="space-y-2 text-sm text-aegrix-muted">
                 <p className="text-aegrix-text font-semibold">Colombia</p>
                 <p className="text-[11px] leading-relaxed text-aegrix-muted/60 mb-2">Bogotá • Medellín • Cali • Barranquilla • Cartagena</p>
@@ -152,7 +154,7 @@ const Footer = () => {
 
         {/* Contacto Mobile (Card style) */}
         <div className="mt-8 rounded-2xl border border-aegrix-border bg-white/2 p-5 lg:hidden">
-          <h4 className="text-[10px] font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4">Contacto</h4>
+          <h4 className="text-[10px] font-bold text-aegrix-text uppercase tracking-[0.2em] mb-4">{isEn ? 'Contact' : 'Contacto'}</h4>
           <div className="space-y-2 text-[13px] text-aegrix-muted">
             <p className="text-aegrix-text font-semibold">Colombia</p>
             <p className="text-[10px] leading-relaxed text-aegrix-muted/60 mb-1">Bogotá • Medellín • Cali • Barranquilla • Cartagena</p>
@@ -165,14 +167,14 @@ const Footer = () => {
         <div className="mt-8 flex justify-center lg:hidden">
           <div className="inline-flex items-center gap-2 rounded-full bg-aegrix-green/10 px-4 py-2 text-[10px] lg:text-[11px] font-bold tracking-[0.16em] text-aegrix-green uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-aegrix-green animate-pulse" />
-            Sistemas Monitoreados 24/7
+            {isEn ? 'Systems monitored 24/7' : 'Sistemas Monitoreados 24/7'}
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="mt-8 pt-6 border-t border-aegrix-border flex flex-col lg:flex-row items-center justify-between gap-6 lg:mt-10">
           <div className="text-[11px] lg:text-xs text-aegrix-text/30 font-medium text-center lg:text-left">
-            © {currentYear} AEGRIX Technology Firm. Todos los derechos reservados.
+            © {currentYear} AEGRIX Technology Firm. {isEn ? 'All rights reserved.' : 'Todos los derechos reservados.'}
           </div>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[10px] font-bold text-aegrix-text/30 uppercase tracking-widest lg:justify-end lg:pr-24">
             <Link href={lang === 'es' ? '/es/privacidad' : '/en/privacy'} className="hover:text-aegrix-text transition-colors">

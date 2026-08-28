@@ -19,6 +19,7 @@ interface NavbarProps {
     sectors: string;
     methodology: string;
     contact: string;
+    aegrix360: string;
     cta: string;
   };
 }
@@ -33,6 +34,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
     { label: dict.services, href: `/${lang}#servicios` },
     { label: dict.sectors, href: `/${lang}#sectores` },
     { label: dict.methodology, href: `/${lang}#metodologia` },
+    { label: dict.aegrix360, href: `/${lang}/aegrix-360` },
     { label: dict.contact, href: `/${lang}#contacto` },
   ];
 
