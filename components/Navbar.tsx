@@ -23,6 +23,8 @@ interface NavbarProps {
   };
 }
 
+const PLATFORM_URL = 'https://360.aegrix.com.co/login';
+
 const Navbar = ({ lang, dict }: NavbarProps) => {
   const scrolled = useScrolled(40);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -120,6 +122,14 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
               <ThemeToggle />
             </div>
 
+            <Link
+              href={PLATFORM_URL}
+              className="font-manrope text-[11px] font-extrabold uppercase tracking-[0.16em] text-aegrix-muted hover:text-aegrix-cyan transition-colors whitespace-nowrap"
+              aria-label="Abrir AEGRIX 360"
+            >
+              AEGRIX 360
+            </Link>
+
             <Link 
               href={`/${lang}#diagnostico`}
               className="btn-nav"
@@ -177,6 +187,13 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
                 {item.label}
               </Link>
             ))}
+            <Link
+              href={PLATFORM_URL}
+              onClick={() => setMenuOpen(false)}
+              className="text-2xl font-sora font-bold text-aegrix-cyan py-2 border-b border-aegrix-border/50"
+            >
+              AEGRIX 360
+            </Link>
             <Link 
               href={`/${lang}#diagnostico`}
               onClick={() => setMenuOpen(false)}
