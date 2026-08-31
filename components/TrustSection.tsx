@@ -3,7 +3,7 @@
 import React from 'react';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
-import { ShieldCheck, Award, Users } from 'lucide-react';
+import { ShieldCheck, Award, ClipboardCheck } from 'lucide-react';
 
 export default function TrustSection() {
   const { ref, inView } = useInView();
@@ -19,7 +19,7 @@ export default function TrustSection() {
             Respaldados por la <span className="text-aegrix-cyan">Confianza</span>
           </h2>
           <p className="body-lg text-aegrix-muted">
-            Empresas líderes confían en nuestra arquitectura y metodología para asegurar su estabilidad a largo plazo.
+            Diseñamos tecnología con controles verificables, trazabilidad y evidencia para que cada decisión pueda explicarse y auditarse.
           </p>
         </div>
 
@@ -27,18 +27,18 @@ export default function TrustSection() {
           {[
             {
               icon: ShieldCheck,
-              title: "Caso de Éxito: Fintech Global",
-              desc: "Aseguramos la infraestructura de pagos procesando más de 2M de transacciones diarias sin interrupciones."
+              title: "Seguridad por diseño",
+              desc: "Autenticación multifactor, aislamiento por organización, control de acceso y registro auditable forman parte de la arquitectura de AEGRIX 360."
             },
             {
               icon: Award,
-              title: "Validación de la Industria",
-              desc: "Arquitectura auditada y certificada bajo los más altos estándares de seguridad (ISO 27001)."
+              title: "Marcos trazables",
+              desc: "Evaluaciones con referencias trazables a NIST CSF 2.0, HIPAA Security Rule e ISO/IEC 27001:2022 Readiness, sin presentar la herramienta como certificación."
             },
             {
-              icon: Users,
-              title: "Equipo Experto",
-              desc: "Un equipo de ingenieros senior, ex-consultores de ciberseguridad y arquitectos de IA."
+              icon: ClipboardCheck,
+              title: "Evidencia y seguimiento",
+              desc: "Las evaluaciones conectan respuestas, evidencia, hallazgos, remediaciones, revisión y exportaciones dentro de un mismo registro de trabajo."
             }
           ].map((item, idx) => (
             <div 
