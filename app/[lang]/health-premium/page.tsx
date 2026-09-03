@@ -6,13 +6,17 @@ import NicheLandingTemplate from '@/components/NicheLandingTemplate';
 import { Globe, Lock, Clock, MessageSquare } from 'lucide-react';
 import { buildWhatsAppUrl } from '@/lib/site-config';
 
-const HEALTH_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero evaluar la seguridad y la operación digital de mi organización de salud con AEGRIX.');
-const HEALTH_360_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero iniciar una evaluación AEGRIX 360 para mi organización de salud.');
+const HEALTH_WHATSAPP_URL_ES = buildWhatsAppUrl('Hola, quiero evaluar la seguridad y la operación digital de mi organización de salud con AEGRIX.');
+const HEALTH_WHATSAPP_URL_EN = buildWhatsAppUrl('Hello, I want to assess the security and digital operations of my healthcare organization with AEGRIX.');
+const HEALTH_360_WHATSAPP_URL_ES = buildWhatsAppUrl('Hola, quiero iniciar una evaluación AEGRIX 360 para mi organización de salud.');
+const HEALTH_360_WHATSAPP_URL_EN = buildWhatsAppUrl('Hello, I want to start an AEGRIX 360 assessment for my healthcare organization.');
 
 export default function HealthPremiumPage() {
   const params = useParams();
   const lang = (params?.lang as 'es' | 'en') || 'es';
   const isEn = lang === 'en';
+  const healthWhatsAppUrl = isEn ? HEALTH_WHATSAPP_URL_EN : HEALTH_WHATSAPP_URL_ES;
+  const health360WhatsAppUrl = isEn ? HEALTH_360_WHATSAPP_URL_EN : HEALTH_360_WHATSAPP_URL_ES;
 
   const problems = [
     {
@@ -92,7 +96,7 @@ export default function HealthPremiumPage() {
       heroDescription={isEn
         ? 'High-performance medical web, patient journeys, automation, analytics and security assessment for sensitive health information.'
         : 'Web médica de alto rendimiento, recorridos de pacientes, automatización, analítica y evaluación de seguridad para información sensible de salud.'}
-      heroWhatsAppUrl={HEALTH_WHATSAPP_URL}
+      heroWhatsAppUrl={healthWhatsAppUrl}
       heroImageBaseName="hero-health-medellin"
       heroImageAlt={isEn ? 'Healthcare organization in Medellin with panoramic view of the city.' : 'Organización de salud en Medellín con vista panorámica de la ciudad.'}
       problemsSectionTitle={isEn ? 'Common digital challenges in healthcare' : 'Retos digitales frecuentes en salud'}
@@ -112,7 +116,7 @@ export default function HealthPremiumPage() {
         ? 'We can structure the assessment with AEGRIX 360 and include HIPAA Security Rule readiness when it is relevant to the contracted scope.'
         : 'Podemos estructurar la evaluación con AEGRIX 360 e incluir readiness frente a HIPAA Security Rule cuando sea relevante para el alcance contratado.'}
       diagnosticBannerCta={isEn ? 'Start healthcare assessment' : 'Iniciar evaluación de salud'}
-      diagnosticWhatsAppUrl={HEALTH_360_WHATSAPP_URL}
+      diagnosticWhatsAppUrl={health360WhatsAppUrl}
     />
   );
 }
