@@ -14,7 +14,8 @@ const routePairs = [
   { es: '/education-corporate', en: '/education-corporate' },
   { es: '/health-premium', en: '/health-premium' },
   { es: '/legal-tech', en: '/legal-tech' },
-  { es: '/real-estate', en: '/real-estate' }
+  { es: '/real-estate', en: '/real-estate' },
+  { es: '/aegrix-360', en: '/aegrix-360' }
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
