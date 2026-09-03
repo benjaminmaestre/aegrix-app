@@ -4,8 +4,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Compass, Gauge, ShieldCheck } from 'lucide-react';
 import { WHATSAPP_URL } from '@/lib/data';
-
-const PORTAL_URL = 'https://360.aegrix.com.co/login';
+import { siteConfig } from '@/lib/site-config';
 
 const frameworkRoutes = [
   { slug: 'nist', name: 'NIST CSF 2.0' },
@@ -23,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: 'es
   const description = isEnglish
     ? 'AEGRIX 360 evaluates security posture, evidence, gaps and remediation across NIST CSF 2.0, ISO/IEC 27001/27002, HIPAA and GDPR through Pulse, Compass and Assurance.'
     : 'AEGRIX 360 evalúa postura, evidencia, brechas y remediación sobre NIST CSF 2.0, ISO/IEC 27001/27002, HIPAA y GDPR mediante Pulse, Compass y Assurance.';
-  const url = `https://aegrix.com.co/${lang}/aegrix-360`;
+  const url = `${siteConfig.origin}/${lang}/aegrix-360`;
 
   return {
     title,
@@ -31,8 +30,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: 'es
     alternates: {
       canonical: url,
       languages: {
-        es: 'https://aegrix.com.co/es/aegrix-360',
-        en: 'https://aegrix.com.co/en/aegrix-360',
+        es: `${siteConfig.origin}/es/aegrix-360`,
+        en: `${siteConfig.origin}/en/aegrix-360`,
       },
     },
     openGraph: {
@@ -42,13 +41,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: 'es
       siteName: 'AEGRIX',
       type: 'website',
       locale: isEnglish ? 'en_US' : 'es_CO',
-      images: [{ url: 'https://aegrix.com.co/AEGRIX_preview.png', width: 1200, height: 630, alt: 'AEGRIX 360' }],
+      images: [{ url: `${siteConfig.origin}/AEGRIX_preview.png`, width: 1200, height: 630, alt: 'AEGRIX 360' }],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: ['https://aegrix.com.co/AEGRIX_preview.png'],
+      images: [`${siteConfig.origin}/AEGRIX_preview.png`],
     },
   };
 }
@@ -129,7 +128,7 @@ export default async function Aegrix360Page({ params }: { params: Promise<{ lang
               <Link href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-primary justify-center">
                 {isEnglish ? 'Start an AEGRIX 360 assessment' : 'Iniciar evaluación con AEGRIX 360'}
               </Link>
-              <Link href={PORTAL_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary justify-center">
+              <Link href={siteConfig.portalUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary justify-center">
                 {isEnglish ? 'Open 360 Portal' : 'Abrir Portal 360'}
               </Link>
             </div>
