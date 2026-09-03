@@ -26,27 +26,27 @@ const cardImages: Record<string, string> = {
 const englishDivisions: Record<string, { title: string; tagline: string; description: string; features: string[] }> = {
   shield: {
     title: 'AEGRIX Shield',
-    tagline: 'Cybersecurity and data protection.',
-    description: 'We assess risks and controls to propose security improvements aligned with each organization’s scope and context.',
-    features: ['Risk and control assessment', 'Identity and access management', 'Configuration and vulnerability review', 'Privacy and reference frameworks according to scope'],
+    tagline: 'Cybersecurity, risk and data protection.',
+    description: 'We assess security posture, risks and controls to strengthen organizations and support evaluations against recognized frameworks when the engagement requires it.',
+    features: ['Risk and control assessment', 'Identity and access management', 'Configuration and vulnerability review', 'NIST, ISO/IEC 27001/27002, HIPAA and GDPR according to scope'],
   },
   web: {
     title: 'AEGRIX Software & Web',
-    tagline: 'Software and web experiences for specific goals.',
-    description: 'We design and build web and software solutions with a defined technical scope, performance criteria, and deliverables.',
-    features: ['Web applications and business software', 'Full-stack development', 'Landing pages and corporate websites', 'Architecture and technical performance'],
+    tagline: 'Robust, secure software built to scale.',
+    description: 'We design and build web and software solutions with architecture, security, performance, maintainability and clear delivery criteria.',
+    features: ['Web applications and business software', 'Full-stack development', 'Landing pages and corporate websites', 'Architecture, performance and scalability'],
   },
   'data-ai': {
     title: 'AEGRIX Data & AI',
     tagline: 'Data, automation and applied AI.',
-    description: 'We implement data, automation, and artificial intelligence solutions around specific processes and use cases.',
+    description: 'We implement data, automation and artificial intelligence solutions around specific processes and use cases.',
     features: ['AI agents and assistants', 'Applied AI training', 'Process automation', 'Dashboards and analytics'],
   },
   care: {
     title: 'AEGRIX Care',
-    tagline: 'Support and continuous improvement.',
-    description: 'Technical support under service plans with priorities and response times agreed in advance.',
-    features: ['Technical support according to plan', 'Periodic optimization', 'Updates and maintenance', 'Advisory support'],
+    tagline: 'Support, monitoring and continuous improvement.',
+    description: 'Technical support through service plans with defined priorities, monitoring or observability when applicable, and agreed response times.',
+    features: ['Technical support according to plan', 'Proactive monitoring according to scope', 'Updates and maintenance', 'Optimization and advisory support'],
   },
 };
 
@@ -79,7 +79,7 @@ const ProductDivisions = () => {
           </h2>
           <p className="body-lg text-aegrix-muted">
             {isEnglish
-              ? 'We combine the capabilities each project needs. Scope, deliverables, responsibilities, and success criteria are defined before implementation.'
+              ? 'We combine the capabilities each project needs. Scope, deliverables, responsibilities and success criteria are defined before implementation.'
               : 'Combinamos las capacidades que necesita cada proyecto. El alcance, los entregables, las responsabilidades y los criterios de éxito se definen antes de implementar.'}
           </p>
         </div>
@@ -151,8 +151,8 @@ const ProductDivisions = () => {
         <div className="mt-12 md:mt-20">
           <p className="text-center text-aegrix-muted font-medium mb-8 md:mb-12">
             {isEnglish
-              ? 'Technologies and ecosystems we can work with depending on the project.'
-              : 'Tecnologías y ecosistemas con los que podemos trabajar según el proyecto.'}
+              ? 'Technologies and ecosystems we work with according to project requirements.'
+              : 'Tecnologías y ecosistemas con los que trabajamos según los requisitos del proyecto.'}
           </p>
           <BrandMarquee />
         </div>
