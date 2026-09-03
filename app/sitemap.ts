@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next';
-
-const DOMAIN = 'https://aegrix.com.co';
+import { siteConfig } from '@/lib/site-config';
 
 const routePairs = [
   { es: '', en: '' },
@@ -19,43 +18,29 @@ const routePairs = [
   { es: '/education-corporate', en: '/education-corporate' },
   { es: '/health-premium', en: '/health-premium' },
   { es: '/legal-tech', en: '/legal-tech' },
-  { es: '/real-estate', en: '/real-estate' }
+  { es: '/real-estate', en: '/real-estate' },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
   for (const pair of routePairs) {
-    const today = new Date().toISOString().split('T')[0];
-    const isHome = pair.es === '';
-    const is360 = pair.es.startsWith('/aegrix-360');
-    const changeFreq = isHome || is360 ? 'weekly' as const : 'monthly' as const;
-    const priority = isHome ? 1.0 : is360 ? 0.9 : 0.8;
+    const esUrl = `${siteConfig.origin}/es${pair.es}`;
+    const enUrl = `${siteConfig.origin}/en${pair.en}`;
+    const languages = {
+      es: esUrl,
+      en: enUrl,
+      'x-default': esUrl,
+    };
 
     sitemapEntries.push({
-      url: `${DOMAIN}/es${pair.es}`,
-      lastModified: today,
-      changeFrequency: changeFreq,
-      priority,
-      alternates: {
-        languages: {
-          es: `${DOMAIN}/es${pair.es}`,
-          en: `${DOMAIN}/en${pair.en}`,
-        },
-      },
+      url: esUrl,
+      alternates: { languages },
     });
 
     sitemapEntries.push({
-      url: `${DOMAIN}/en${pair.en}`,
-      lastModified: today,
-      changeFrequency: changeFreq,
-      priority,
-      alternates: {
-        languages: {
-          es: `${DOMAIN}/es${pair.es}`,
-          en: `${DOMAIN}/en${pair.en}`,
-        },
-      },
+      url: enUrl,
+      alternates: { languages },
     });
   }
 
