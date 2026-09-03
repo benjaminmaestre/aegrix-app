@@ -10,7 +10,7 @@ export interface NicheCard {
   code: string;
   title: string;
   description: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<{ size?: number; className?: string; 'aria-hidden'?: boolean | 'true' | 'false' }>;
   colorClass: string;
   hoverBgClass?: string;
   radarColor?: string;
