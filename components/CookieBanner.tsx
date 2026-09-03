@@ -37,21 +37,22 @@ const CookieBanner = ({ lang, dict }: CookieBannerProps) => {
   const [preferences, setPreferences] = useState(defaultPreferences);
 
   useEffect(() => {
-    const saved = getCookiePreferences();
-    if (saved) {
-      setPreferences({
-        necessary: true,
-        analytics: saved.analytics,
-        marketing: saved.marketing,
-        functional: saved.functional,
-      });
-    }
+    const timer = window.setTimeout(() => {
+      const saved = getCookiePreferences();
+      if (saved) {
+        setPreferences({
+          necessary: true,
+          analytics: saved.analytics,
+          marketing: saved.marketing,
+          functional: saved.functional,
+        });
+      }
 
-    const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-    if (!consent) {
-      const timer = window.setTimeout(() => setIsVisible(true), 600);
-      return () => window.clearTimeout(timer);
-    }
+      const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+      if (!consent) setIsVisible(true);
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
