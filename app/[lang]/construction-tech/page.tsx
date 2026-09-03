@@ -6,12 +6,14 @@ import NicheLandingTemplate from '@/components/NicheLandingTemplate';
 import { Database, Clock, TrendingDown, Shield } from 'lucide-react';
 import { buildWhatsAppUrl } from '@/lib/site-config';
 
-const CONSTRUCTION_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero evaluar el control de obra, integraciones y operación digital de mi constructora o empresa de servicios técnicos con AEGRIX.');
+const CONSTRUCTION_WHATSAPP_URL_ES = buildWhatsAppUrl('Hola, quiero evaluar el control de obra, integraciones y operación digital de mi constructora o empresa de servicios técnicos con AEGRIX.');
+const CONSTRUCTION_WHATSAPP_URL_EN = buildWhatsAppUrl('Hello, I want to assess project controls, integrations and digital operations for my construction or technical services company with AEGRIX.');
 
 export default function ConstructionTechPage() {
   const params = useParams();
   const lang = (params?.lang as 'es' | 'en') || 'es';
   const isEn = lang === 'en';
+  const constructionWhatsAppUrl = isEn ? CONSTRUCTION_WHATSAPP_URL_EN : CONSTRUCTION_WHATSAPP_URL_ES;
 
   const problems = [
     {
@@ -91,7 +93,7 @@ export default function ConstructionTechPage() {
       heroDescription={isEn
         ? 'Software, project portals, ERP integrations and analytics to connect site execution with administrative and financial control.'
         : 'Software, portales de obra, integraciones ERP y analítica para conectar la ejecución en campo con el control administrativo y financiero.'}
-      heroWhatsAppUrl={CONSTRUCTION_WHATSAPP_URL}
+      heroWhatsAppUrl={constructionWhatsAppUrl}
       heroImageBaseName="hero-construction-bogota"
       heroImageAlt={isEn ? 'Construction professionals reviewing a modern project in Bogota.' : 'Profesionales de construcción revisando un proyecto moderno en Bogotá.'}
       problemsSectionTitle={isEn ? 'Common operational gaps in construction and technical services' : 'Brechas operativas frecuentes en construcción y servicios técnicos'}
@@ -111,7 +113,7 @@ export default function ConstructionTechPage() {
         ? 'We can review data sources, project workflows, integrations, access controls and reporting to prioritize improvements with a defined scope.'
         : 'Podemos revisar fuentes de datos, flujos de obra, integraciones, controles de acceso y reportes para priorizar mejoras con un alcance definido.'}
       diagnosticBannerCta={isEn ? 'Start operations assessment' : 'Iniciar evaluación de operación'}
-      diagnosticWhatsAppUrl={CONSTRUCTION_WHATSAPP_URL}
+      diagnosticWhatsAppUrl={constructionWhatsAppUrl}
     />
   );
 }
