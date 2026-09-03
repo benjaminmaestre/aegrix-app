@@ -49,21 +49,27 @@ const industriesEn = [
 const SectorSection = () => {
   const params = useParams();
   const lang = (params?.lang as string) || 'es';
-  const industries = lang === 'en' ? industriesEn : industriesEs;
+  const isEnglish = lang === 'en';
+  const industries = isEnglish ? industriesEn : industriesEs;
 
   return (
     <section id="sectores" className="section-padding bg-aegrix-bg relative overflow-hidden">
-      <div className="container-width">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_15%,rgba(0,194,255,0.035),transparent_42%)] pointer-events-none" aria-hidden="true" />
+
+      <div className="container-width relative z-10">
         <div className="max-w-3xl mb-12 md:mb-20">
-          <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-6">
-            {lang === 'en' ? 'Experience applied to' : 'Experiencia aplicada a'}
+          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">
+            {isEnglish ? 'Industry context' : 'Contexto sectorial'}
+          </span>
+          <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mt-3 mb-6">
+            {isEnglish ? 'Experience applied to' : 'Experiencia aplicada a'}
             <br />
             <span className="text-aegrix-cyan">
-              {lang === 'en' ? 'different operating contexts.' : 'contextos con necesidades distintas.'}
+              {isEnglish ? 'different operating contexts.' : 'contextos con necesidades distintas.'}
             </span>
           </h2>
           <p className="text-lg text-aegrix-muted">
-            {lang === 'en'
+            {isEnglish
               ? 'Scope changes according to the industry, the information involved, the existing infrastructure, and client requirements. That is why we start with context before recommending a solution.'
               : 'El alcance cambia según el sector, la información involucrada, la infraestructura existente y los requisitos del cliente. Por eso partimos del contexto antes de recomendar una solución.'}
           </p>
@@ -77,24 +83,32 @@ const SectorSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: index * 0.06 }}
-              className="p-6 md:p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border"
+              className="group relative p-6 md:p-8 rounded-2xl md:rounded-3xl bg-aegrix-surface border border-aegrix-border overflow-hidden shadow-sm hover:shadow-xl hover:border-aegrix-cyan/20 hover:-translate-y-0.5 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-xl bg-aegrix-bg-2 border border-aegrix-border flex items-center justify-center mb-6 text-aegrix-cyan">
-                <item.icon size={23} aria-hidden="true" />
+              <div className="absolute inset-0 grid-bg opacity-[0.018] pointer-events-none" aria-hidden="true" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-aegrix-cyan/30 to-transparent opacity-70" aria-hidden="true" />
+
+              <div className="relative z-10 flex items-start justify-between gap-4 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-aegrix-bg-2 border border-aegrix-border flex items-center justify-center text-aegrix-cyan shadow-sm">
+                  <item.icon size={23} aria-hidden="true" />
+                </div>
+                <span className="text-[9px] font-mono uppercase tracking-[0.18em] text-aegrix-text/25">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
               </div>
 
-              <h3 className="text-xl font-sora font-bold text-aegrix-text mb-6">{item.title}</h3>
+              <h3 className="relative z-10 text-xl font-sora font-bold text-aegrix-text mb-6">{item.title}</h3>
 
-              <div className="space-y-6">
-                <div>
+              <div className="relative z-10 space-y-6">
+                <div className="rounded-xl border border-aegrix-border bg-aegrix-bg-2/45 p-4">
                   <span className="text-xs font-semibold text-aegrix-muted block mb-2">
-                    {lang === 'en' ? 'Common needs' : 'Necesidades frecuentes'}
+                    {isEnglish ? 'Common needs' : 'Necesidades frecuentes'}
                   </span>
                   <p className="text-aegrix-muted text-sm leading-relaxed">{item.challenge}</p>
                 </div>
                 <div>
                   <span className="text-xs font-semibold text-aegrix-cyan block mb-2">
-                    {lang === 'en' ? 'How we approach it' : 'Cómo lo abordamos'}
+                    {isEnglish ? 'How we approach it' : 'Cómo lo abordamos'}
                   </span>
                   <p className="text-aegrix-text/80 text-sm leading-relaxed">{item.approach}</p>
                 </div>
