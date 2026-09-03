@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: 'es
       languages: {
         es: 'https://aegrix.com.co/es/health-premium',
         en: 'https://aegrix.com.co/en/health-premium',
+        'x-default': 'https://aegrix.com.co/es/health-premium',
       },
     },
     openGraph: {
