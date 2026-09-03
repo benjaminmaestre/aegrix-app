@@ -6,12 +6,14 @@ import NicheLandingTemplate from '@/components/NicheLandingTemplate';
 import { Globe, Database, Clock, TrendingDown } from 'lucide-react';
 import { buildWhatsAppUrl } from '@/lib/site-config';
 
-const EDUCATION_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero evaluar mi LMS, checkout, automatización de matrículas y analítica educativa con AEGRIX.');
+const EDUCATION_WHATSAPP_URL_ES = buildWhatsAppUrl('Hola, quiero evaluar mi LMS, checkout, automatización de matrículas y analítica educativa con AEGRIX.');
+const EDUCATION_WHATSAPP_URL_EN = buildWhatsAppUrl('Hello, I want to assess my LMS, checkout, enrollment automation and learning analytics with AEGRIX.');
 
 export default function EducationCorporatePage() {
   const params = useParams();
   const lang = (params?.lang as 'es' | 'en') || 'es';
   const isEn = lang === 'en';
+  const educationWhatsAppUrl = isEn ? EDUCATION_WHATSAPP_URL_EN : EDUCATION_WHATSAPP_URL_ES;
 
   const problems = [
     {
@@ -91,7 +93,7 @@ export default function EducationCorporatePage() {
       heroDescription={isEn
         ? 'Educational platforms, enrollment automation, payment integrations and analytics designed around the organization’s operating model and expected demand.'
         : 'Plataformas educativas, automatización de matrículas, integraciones de pago y analítica diseñadas alrededor del modelo de operación y la demanda esperada.'}
-      heroWhatsAppUrl={EDUCATION_WHATSAPP_URL}
+      heroWhatsAppUrl={educationWhatsAppUrl}
       problemsSectionTitle={isEn ? 'Common platform and enrollment gaps' : 'Brechas frecuentes de plataforma y matrícula'}
       problemsSectionDesc={isEn
         ? 'Digital education needs reliable payments, scalable delivery, integrated administration and measurements that explain student and business behavior.'
@@ -109,7 +111,7 @@ export default function EducationCorporatePage() {
         ? 'We can review payment flows, platform architecture, enrollment processes and measurement to prioritize improvements with a defined scope.'
         : 'Podemos revisar flujos de pago, arquitectura de plataforma, procesos de matrícula y medición para priorizar mejoras con un alcance definido.'}
       diagnosticBannerCta={isEn ? 'Start education assessment' : 'Iniciar evaluación educativa'}
-      diagnosticWhatsAppUrl={EDUCATION_WHATSAPP_URL}
+      diagnosticWhatsAppUrl={educationWhatsAppUrl}
     />
   );
 }
