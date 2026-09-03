@@ -18,7 +18,7 @@ Este documento registra el estado de los hallazgos técnicos, de privacidad, con
 | Claims / métricas simuladas | RESUELTO | Eliminadas telemetrías y promesas absolutas ficticias; se conserva lenguaje fuerte respaldado. |
 | AEGRIX 360 / marcos | RESUELTO | NIST, ISO 27001/27002, HIPAA y GDPR se mantienen como capacidades reales con lenguaje de assessment/readiness/assurance. |
 | Legal / identidad | IMPLEMENTADO · VALIDACIÓN EXTERNA PENDIENTE | Datos reales, PQR, plazos, proveedores, retención, retracto y responsabilidad corregidos. Falta revisión final por abogado colombiano. |
-| Seguridad del repositorio | PARCIALMENTE RESUELTO | `main` ya exige PR, 1 aprobación, conversaciones resueltas y bloquea force push/eliminación/bypass. Los workflows ya publican checks exactos `validate` y `CodeQL`; falta activarlos como required status checks en Branch Protection. |
+| Seguridad del repositorio | RESUELTO | `main` exige PR, 1 aprobación, conversaciones resueltas, rama actualizada y checks obligatorios `validate` + `CodeQL`; force push, eliminación y bypass administrativo bloqueados. |
 | Accesibilidad / móvil | RESUELTO EN ALCANCE AUDITADO | Focus visible, reduced motion y grids móviles sustituyen carruseles problemáticos. |
 | Revisión visual final | PENDIENTE DE APROBACIÓN | El PR continúa draft hasta aprobación visual y merge. |
 
@@ -102,22 +102,20 @@ Además, `.github/workflows/codeql.yml` ejecuta CodeQL:
 
 ## Seguridad del repositorio
 
-`main` ya tiene Branch Protection activa con:
+`main` tiene Branch Protection activa con:
 
 - pull request obligatorio;
 - 1 aprobación requerida;
 - resolución de conversaciones;
+- `Require status checks to pass before merging`;
+- required check `validate`;
+- required check `CodeQL`;
+- rama actualizada antes de fusionar;
 - force push bloqueado;
 - eliminación bloqueada;
 - sin bypass de administradores.
 
-Los workflows ya generan exactamente los checks `validate` y `CodeQL`. Falta únicamente activar en Branch Protection:
-
-- `Require status checks to pass before merging`;
-- required check `validate`;
-- required check `CodeQL`.
-
-Issue #5 permanece abierto hasta confirmar esa configuración.
+Los jobs `validate` y `CodeQL` fueron ejecutados exitosamente en el PR antes de fijarse como requisitos. Issue #5 cerrado como completado.
 
 ## Hardcode y secretos
 
@@ -187,9 +185,8 @@ Esto reduce configuración duplicada y evita que futuras correcciones se aplique
 
 ## Pendientes antes de merge
 
-1. Activar `Require status checks to pass before merging` en `main` con `validate` y `CodeQL` como checks obligatorios — issue #5.
-2. Revisión jurídica externa final por abogado colombiano — issue #2.
-3. Aprobación visual final del PR.
-4. Merge a `main` y smoke test de producción.
+1. Revisión jurídica externa final por abogado colombiano — issue #2.
+2. Aprobación visual final del PR.
+3. Merge a `main` y smoke test de producción.
 
-Los hallazgos críticos originales del endpoint y del navegador están mitigados en esta rama. El único control técnico de repositorio pendiente es hacer obligatorios los checks `validate` y `CodeQL` que ya publica GitHub Actions.
+Los hallazgos críticos originales del endpoint, navegador, antiabuso y repositorio están mitigados o resueltos en esta rama. No queda ningún control técnico de plataforma pendiente antes del merge.
