@@ -13,7 +13,7 @@ const capabilitiesEs = [
   {
     icon: Database,
     title: 'Sistemas robustos',
-    desc: 'Arquitecturas escalables para procesos empresariales, integraciones y crecimiento progresivo según el alcance del proyecto.',
+    desc: 'Arquitecturas seguras y escalables para procesos empresariales, integraciones y crecimiento progresivo.',
   },
   {
     icon: Cpu,
@@ -23,7 +23,7 @@ const capabilitiesEs = [
   {
     icon: Server,
     title: 'Infraestructura cloud',
-    desc: 'Despliegues con prácticas de seguridad, observabilidad, respaldo y operación acordes con la necesidad de cada solución.',
+    desc: 'Arquitecturas diseñadas para observabilidad, recuperación, alta disponibilidad y tolerancia a fallos según los requisitos del proyecto.',
   },
   {
     icon: Smartphone,
@@ -41,22 +41,22 @@ const capabilitiesEn = [
   {
     icon: Globe2,
     title: 'High-impact landing pages',
-    desc: 'Built with technical SEO, performance, and UX aligned with measurable conversion goals.',
+    desc: 'Built with technical SEO, performance and UX aligned with measurable conversion goals.',
   },
   {
     icon: Database,
     title: 'Robust systems',
-    desc: 'Scalable architectures for business processes, integrations, and progressive growth according to project scope.',
+    desc: 'Secure, scalable architectures for business processes, integrations and progressive growth.',
   },
   {
     icon: Cpu,
     title: 'Custom software',
-    desc: 'Purpose-built tools that integrate with existing processes, data, and platforms when the project requires it.',
+    desc: 'Purpose-built tools that integrate with existing processes, data and platforms when the project requires it.',
   },
   {
     icon: Server,
     title: 'Cloud infrastructure',
-    desc: 'Deployments with security, observability, backup, and operational practices appropriate to each solution.',
+    desc: 'Architectures designed for observability, recovery, high availability and fault tolerance according to project requirements.',
   },
   {
     icon: Smartphone,
@@ -66,7 +66,7 @@ const capabilitiesEn = [
   {
     icon: Code2,
     title: 'Maintainable code',
-    desc: 'Engineering practices focused on readability, testing, maintenance, documentation, and product evolution.',
+    desc: 'Engineering practices focused on readability, testing, maintenance, documentation and product evolution.',
   },
 ];
 
@@ -92,13 +92,13 @@ const SoftwareExcellence = () => {
             {isEnglish ? 'Software engineering' : 'Ingeniería de software'}
           </span>
           <h2 className="text-4xl md:text-6xl font-sora font-extrabold text-aegrix-text mt-3 mb-8 tracking-tighter leading-none">
-            {isEnglish ? 'Engineering quality,' : 'Calidad de ingeniería,'} <br />
-            <span className="text-aegrix-cyan">{isEnglish ? 'not template assembly.' : 'no ensamblaje de plantillas.'}</span>
+            {isEnglish ? 'Robust software,' : 'Software robusto,'} <br />
+            <span className="text-aegrix-cyan">{isEnglish ? 'secure and built to scale.' : 'seguro y preparado para escalar.'}</span>
           </h2>
           <p className="text-lg text-aegrix-muted leading-relaxed">
             {isEnglish
-              ? 'AEGRIX approaches software as engineering: architecture, performance, security, maintainability, measurement, and a clear delivery scope.'
-              : 'En AEGRIX abordamos el software como ingeniería: arquitectura, rendimiento, seguridad, mantenibilidad, medición y un alcance de entrega claro.'}
+              ? 'AEGRIX approaches software as engineering: architecture, performance, security, maintainability, observability and a clear delivery scope.'
+              : 'En AEGRIX abordamos el software como ingeniería: arquitectura, rendimiento, seguridad, mantenibilidad, observabilidad y un alcance de entrega claro.'}
           </p>
         </motion.div>
 
