@@ -6,12 +6,14 @@ import NicheLandingTemplate from '@/components/NicheLandingTemplate';
 import { Globe, Database, TrendingDown, MessageSquare } from 'lucide-react';
 import { buildWhatsAppUrl } from '@/lib/site-config';
 
-const REAL_ESTATE_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero evaluar la web, CRM, seguimiento de leads y analítica comercial de mi inmobiliaria o constructora con AEGRIX.');
+const REAL_ESTATE_WHATSAPP_URL_ES = buildWhatsAppUrl('Hola, quiero evaluar la web, CRM, seguimiento de leads y analítica comercial de mi inmobiliaria o constructora con AEGRIX.');
+const REAL_ESTATE_WHATSAPP_URL_EN = buildWhatsAppUrl('Hello, I want to assess the website, CRM, lead follow-up and sales analytics of my real estate company or developer with AEGRIX.');
 
 export default function RealEstatePremiumPage() {
   const params = useParams();
   const lang = (params?.lang as 'es' | 'en') || 'es';
   const isEn = lang === 'en';
+  const realEstateWhatsAppUrl = isEn ? REAL_ESTATE_WHATSAPP_URL_EN : REAL_ESTATE_WHATSAPP_URL_ES;
 
   const problems = [
     {
@@ -91,7 +93,7 @@ export default function RealEstatePremiumPage() {
       heroDescription={isEn
         ? 'High-performance project websites, lead routing, CRM integrations and analytics for real estate sales journeys that need stronger traceability.'
         : 'Webs de proyectos de alto rendimiento, asignación de leads, integraciones CRM y analítica para recorridos comerciales inmobiliarios que necesitan mayor trazabilidad.'}
-      heroWhatsAppUrl={REAL_ESTATE_WHATSAPP_URL}
+      heroWhatsAppUrl={realEstateWhatsAppUrl}
       heroImageBaseName="hero-realestate-cartagena"
       heroImageAlt={isEn ? 'Luxury apartment in Cartagena with ocean view and real estate agent.' : 'Apartamento de lujo en Cartagena con vista al mar y asesor inmobiliario.'}
       problemsSectionTitle={isEn ? 'Common commercial and digital gaps in real estate' : 'Brechas comerciales y digitales frecuentes en real estate'}
@@ -111,7 +113,7 @@ export default function RealEstatePremiumPage() {
         ? 'We can review web performance, lead routing, follow-up, integrations and measurement to define the priorities with the greatest technical and commercial impact.'
         : 'Podemos revisar rendimiento web, asignación de leads, seguimiento, integraciones y medición para definir las prioridades con mayor impacto técnico y comercial.'}
       diagnosticBannerCta={isEn ? 'Start real estate assessment' : 'Iniciar evaluación inmobiliaria'}
-      diagnosticWhatsAppUrl={REAL_ESTATE_WHATSAPP_URL}
+      diagnosticWhatsAppUrl={realEstateWhatsAppUrl}
     />
   );
 }
