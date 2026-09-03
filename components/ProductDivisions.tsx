@@ -1,12 +1,11 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import { CheckCircle2, Cpu, Globe, Heart, Shield, type LucideIcon } from 'lucide-react';
 import { productDivisions, WHATSAPP_URL } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
-import { Shield, Globe, Cpu, Heart, CheckCircle2, type LucideIcon } from 'lucide-react';
 import BrandMarquee from './BrandMarquee';
 
 const icons: Record<string, LucideIcon> = {
@@ -29,93 +28,80 @@ const ProductDivisions = () => {
   return (
     <section id="servicios" ref={ref} className="section-padding bg-aegrix-bg-2">
       <div className="container-width">
-        <div className={cn(
-          "text-center max-w-3xl mx-auto mb-12 md:mb-20 transition-all duration-1000",
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        )}>
+        <div
+          className={cn(
+            'text-center max-w-3xl mx-auto mb-12 md:mb-20 transition-all duration-700',
+            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          )}
+        >
           <h2 className="heading-lg mb-8 text-aegrix-text">
-            Diseñamos sistemas digitales <br />
-            <span className="text-aegrix-cyan">seguros, medibles e inteligentes.</span>
+            Servicios digitales con
+            <br />
+            <span className="text-aegrix-cyan">alcances y entregables definidos.</span>
           </h2>
           <p className="body-lg text-aegrix-muted">
-            No vendemos herramientas sueltas. Construimos la infraestructura digital que tu empresa necesita para operar con control absoluto.
+            Combinamos ciberseguridad, software, datos e IA según la necesidad del proyecto. Cada propuesta define qué se hará, qué se entregará y de qué depende el resultado.
           </p>
         </div>
 
-        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-8 md:grid-cols-2 pb-6 md:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
-          {productDivisions.map((division, idx) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {productDivisions.map((division, index) => {
             const Icon = icons[division.id];
             return (
-              <div 
+              <article
                 key={division.id}
                 className={cn(
-                  "relative p-5 sm:p-8 md:p-10 rounded-2xl md:rounded-4xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all duration-700 flex flex-col shadow-sm hover:shadow-xl overflow-hidden",
-                  "w-[90%] sm:w-[50%] md:w-auto shrink-0 md:shrink snap-align-start",
-                  inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                  'relative p-6 sm:p-8 md:p-10 rounded-2xl md:rounded-3xl bg-aegrix-surface border border-aegrix-border transition-all duration-500 flex flex-col overflow-hidden',
+                  inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 )}
-                style={{ transitionDelay: `${idx * 150}ms` }}
+                style={{ transitionDelay: `${index * 80}ms` }}
               >
-                {/* Background image decoration */}
                 <div className="absolute inset-0 z-0 pointer-events-none">
-                  <div className="absolute inset-0 bg-white/90 dark:bg-aegrix-surface/90" />
-                  <div className="absolute inset-0 bg-linear-to-br from-white via-white/95 to-white/85 dark:from-aegrix-surface dark:via-aegrix-surface/95 dark:to-aegrix-surface/85" />
                   <Image
                     src={cardImages[division.id]}
-                    alt={`Ilustración de fondo para la división ${division.title}`}
+                    alt=""
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-center opacity-[0.18] dark:opacity-[0.12]"
+                    className="object-cover object-center opacity-[0.07] dark:opacity-[0.06]"
                   />
-                  <div className="absolute inset-0 grid-bg opacity-[0.02]" />
+                  <div className="absolute inset-0 bg-linear-to-br from-aegrix-surface/80 via-aegrix-surface/95 to-aegrix-surface" />
                 </div>
 
-                {/* Content Layer */}
                 <div className="relative z-10 flex flex-col h-full grow">
-                  <div className="flex items-start justify-between mb-6 md:mb-8">
-                    <div className="p-4 rounded-xl bg-aegrix-bg-2 border border-aegrix-border text-aegrix-cyan">
-                      <Icon size={32} />
-                    </div>
-                    <div className="text-[10px] font-bold text-aegrix-text/20 uppercase tracking-[0.3em]">
-                      AEGRIX Division
-                    </div>
+                  <div className="w-12 h-12 rounded-xl bg-aegrix-bg-2 border border-aegrix-border text-aegrix-cyan flex items-center justify-center mb-6">
+                    <Icon size={24} aria-hidden="true" />
                   </div>
 
-                  <div className="mb-8 md:mb-10">
-                    <div className="heading-md text-aegrix-text mb-3 tracking-tight font-extrabold">{division.title}</div>
-                    <div className="text-[11px] font-extrabold text-aegrix-cyan/95 uppercase tracking-[0.25em] mb-4">
-                      {division.tagline}
-                    </div>
-                    <p className="body-md text-aegrix-muted leading-relaxed">
-                      {division.description}
-                    </p>
-                  </div>
+                  <h3 className="text-2xl font-sora font-bold text-aegrix-text mb-2">{division.title}</h3>
+                  <p className="text-xs font-semibold text-aegrix-cyan uppercase tracking-[0.16em] mb-4">{division.tagline}</p>
+                  <p className="body-md text-aegrix-muted leading-relaxed mb-7">{division.description}</p>
 
-                  <div className="grow mb-8 md:mb-10 space-y-3">
-                    {division.features.map((feature, i) => (
-                      <div key={i} className="flex items-center gap-3 text-sm text-aegrix-text/70">
-                        <CheckCircle2 size={16} className="text-aegrix-cyan" />
-                        {feature}
-                      </div>
+                  <ul className="grow mb-8 space-y-3">
+                    {division.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-3 text-sm text-aegrix-text/80">
+                        <CheckCircle2 size={16} className="text-aegrix-cyan shrink-0 mt-0.5" aria-hidden="true" />
+                        <span>{feature}</span>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
 
-                  <Link 
-                    href={WHATSAPP_URL} 
+                  <Link
+                    href={WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-secondary w-full"
+                    className="btn-secondary w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
                   >
-                    Saber más
+                    Consultar alcance
                   </Link>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>
 
         <div className="mt-12 md:mt-20">
-          <p className="text-center text-aegrix-muted italic font-medium mb-8 md:mb-12">
-            &quot;Menos caos operativo. Más control digital.&quot;
+          <p className="text-center text-aegrix-muted font-medium mb-8 md:mb-12">
+            Tecnologías y ecosistemas con los que podemos trabajar según el proyecto.
           </p>
           <BrandMarquee />
         </div>
