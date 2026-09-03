@@ -4,6 +4,10 @@ import React from 'react';
 import { useParams } from 'next/navigation';
 import NicheLandingTemplate from '@/components/NicheLandingTemplate';
 import { Database, Lock, Clock, Shield } from 'lucide-react';
+import { buildWhatsAppUrl } from '@/lib/site-config';
+
+const LEGAL_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero evaluar la seguridad digital de mi firma u organización financiera con AEGRIX.');
+const LEGAL_360_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero iniciar una evaluación AEGRIX 360 para mi firma u organización financiera.');
 
 export default function LegalFinancePage() {
   const params = useParams();
@@ -88,7 +92,7 @@ export default function LegalFinancePage() {
       heroDescription={isEn
         ? 'Security assessment, secure software, data protection, traceability and workflow automation for organizations that handle confidential information.'
         : 'Evaluación de seguridad, software seguro, protección de datos, trazabilidad y automatización de flujos para organizaciones que manejan información confidencial.'}
-      heroWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20evaluar%20la%20seguridad%20digital%20de%20mi%20firma%20u%20organizaci%C3%B3n%20financiera%20con%20AEGRIX."
+      heroWhatsAppUrl={LEGAL_WHATSAPP_URL}
       heroImageBaseName="hero-legal-medellin"
       heroImageAlt={isEn ? 'Legal executive meeting with view of downtown Medellin and the Coltejer building.' : 'Reunión ejecutiva legal con vista al centro de Medellín y el edificio Coltejer.'}
       problemsSectionTitle={isEn ? 'Common security and operational gaps' : 'Brechas frecuentes de seguridad y operación'}
@@ -108,7 +112,7 @@ export default function LegalFinancePage() {
         ? 'The assessment can include NIST or ISO/IEC 27001/27002 readiness and GDPR-related privacy and security controls when they are relevant to the contracted scope.'
         : 'La evaluación puede incluir readiness NIST o ISO/IEC 27001/27002 y controles de privacidad y seguridad relacionados con GDPR cuando sean relevantes para el alcance contratado.'}
       diagnosticBannerCta={isEn ? 'Start security assessment' : 'Iniciar evaluación de seguridad'}
-      diagnosticWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20iniciar%20una%20evaluaci%C3%B3n%20AEGRIX%20360%20para%20mi%20firma%20u%20organizaci%C3%B3n%20financiera."
+      diagnosticWhatsAppUrl={LEGAL_360_WHATSAPP_URL}
     />
   );
 }
