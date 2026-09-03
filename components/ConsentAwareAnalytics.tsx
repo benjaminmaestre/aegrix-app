@@ -7,7 +7,7 @@ import {
   COOKIE_PREFERENCES_KEY,
   getCookiePreferences,
 } from '@/lib/cookie-consent';
-import { trackEvent } from '@/lib/analytics';
+import { setAnalyticsConsent, trackEvent } from '@/lib/analytics';
 
 interface ConsentAwareAnalyticsProps {
   gaId?: string;
@@ -36,6 +36,10 @@ export default function ConsentAwareAnalytics({ gaId, nonce }: ConsentAwareAnaly
       window.removeEventListener('storage', handleStorage);
     };
   }, []);
+
+  useEffect(() => {
+    setAnalyticsConsent(enabled, gaId);
+  }, [enabled, gaId]);
 
   useEffect(() => {
     if (!enabled) return;
