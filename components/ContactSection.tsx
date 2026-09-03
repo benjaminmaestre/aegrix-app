@@ -8,6 +8,7 @@ import { WHATSAPP_URL } from '@/lib/data';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import ObfuscatedEmail from './ObfuscatedEmail';
+import { trackEvent } from '@/lib/analytics';
 
 const ContactSection = () => {
   const params = useParams();
@@ -48,6 +49,7 @@ const ContactSection = () => {
       const data = await response.json();
 
       if (response.ok && data.success) {
+        trackEvent('contact_form_submit', { language: lang });
         setSubmitStatus('success');
         setName('');
         setCompany('');

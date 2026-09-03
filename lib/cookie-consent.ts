@@ -40,4 +40,5 @@ export const setCookieConsent = (
   };
   localStorage.setItem(COOKIE_CONSENT_KEY, consent);
   localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(fullPreferences));
+  window.dispatchEvent(new Event('cookie-consent-updated'));
 };
