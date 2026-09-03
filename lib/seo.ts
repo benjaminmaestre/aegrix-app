@@ -363,10 +363,6 @@ export function buildSiteStructuredData(pathname: string, lang: SeoLocale) {
         email: siteConfig.contactEmail,
         availableLanguage: ['Spanish', 'English'],
       },
-      sameAs: [
-        'https://www.linkedin.com/company/aegrix',
-        'https://x.com/aegrix',
-      ],
     },
     {
       '@type': 'WebSite',
