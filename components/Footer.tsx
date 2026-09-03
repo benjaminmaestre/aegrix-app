@@ -15,10 +15,11 @@ const Footer = () => {
   const isEnglish = lang === 'en';
 
   const serviceLinks = [
-    { name: isEnglish ? 'Cybersecurity' : 'Ciberseguridad', href: `/${lang}#servicios` },
-    { name: isEnglish ? 'Software & Web' : 'Software & Web', href: `/${lang}#servicios` },
-    { name: isEnglish ? 'Data & AI' : 'Datos e IA', href: `/${lang}#servicios` },
-    { name: isEnglish ? 'Technology consulting' : 'Consultoría tecnológica', href: `/${lang}#contacto` },
+    { name: 'AEGRIX Shield · Cybersecurity', href: `/${lang}#servicios` },
+    { name: 'AEGRIX Software & Web', href: `/${lang}#servicios` },
+    { name: 'AEGRIX Data & AI', href: `/${lang}#servicios` },
+    { name: 'AEGRIX Care', href: `/${lang}#servicios` },
+    { name: 'AEGRIX 360 · Assessment & Assurance', href: `/${lang}/aegrix-360` },
   ];
 
   const industryLinks = [
@@ -33,7 +34,7 @@ const Footer = () => {
   const companyLinks = [
     { name: isEnglish ? 'About' : 'Nosotros', href: isEnglish ? '/en/about' : '/es/nosotros' },
     { name: isEnglish ? 'How we work' : 'Cómo trabajamos', href: `/${lang}#metodologia` },
-    { name: isEnglish ? 'Diagnostic' : 'Diagnóstico', href: `/${lang}#diagnostico` },
+    { name: 'AEGRIX 360', href: `/${lang}/aegrix-360` },
     { name: isEnglish ? 'Contact' : 'Contacto', href: `/${lang}#contacto` },
   ];
 
@@ -61,8 +62,8 @@ const Footer = () => {
 
             <p className="mt-5 text-sm text-aegrix-muted leading-relaxed max-w-sm">
               {isEnglish
-                ? 'Software engineering, cybersecurity, data and AI services designed around defined scopes and measurable deliverables.'
-                : 'Servicios de ingeniería de software, ciberseguridad, datos e IA, con alcances definidos y entregables concretos.'}
+                ? 'Elite technology engineering across software, cybersecurity, data and AI, with AEGRIX 360 for assessment, readiness and assurance.'
+                : 'Ingeniería tecnológica de élite en software, ciberseguridad, datos e IA, con AEGRIX 360 para assessment, readiness y assurance.'}
             </p>
 
             <div className="flex items-center gap-3 mt-6">
@@ -83,7 +84,7 @@ const Footer = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:col-span-8">
-            <FooterColumn title={isEnglish ? 'Services' : 'Servicios'} links={serviceLinks} />
+            <FooterColumn title={isEnglish ? 'Solutions' : 'Soluciones'} links={serviceLinks} />
             <FooterColumn title={isEnglish ? 'Industries' : 'Industrias'} links={industryLinks} />
             <FooterColumn title={isEnglish ? 'Company' : 'Empresa'} links={companyLinks} />
 
