@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: 'es
       languages: {
         es: 'https://aegrix.com.co/es/legal-tech',
         en: 'https://aegrix.com.co/en/legal-tech',
+        'x-default': 'https://aegrix.com.co/es/legal-tech',
       },
     },
     openGraph: {
