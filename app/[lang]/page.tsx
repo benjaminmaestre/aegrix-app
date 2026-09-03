@@ -1,21 +1,14 @@
 export const runtime = 'edge';
 
-import React from 'react';
 import Hero from '@/components/Hero';
 import ProblemSection from '@/components/ProblemSection';
-import DigitalEvolution from '@/components/DigitalEvolution';
-import MethodologySection from '@/components/MethodologySection';
 import ProductDivisions from '@/components/ProductDivisions';
-import TrustSection from '@/components/TrustSection';
-import SoftwareExcellence from '@/components/SoftwareExcellence';
+import MethodologySection from '@/components/MethodologySection';
 import SectorSection from '@/components/SectorSection';
-import PlatformSection from '@/components/PlatformSection';
 import DiagnosticSection from '@/components/DiagnosticSection';
 import ContactSection from '@/components/ContactSection';
-import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import WhatsAppFloating from '@/components/WhatsAppFloating';
-
 import { getDictionary } from '@/lib/get-dictionary';
 
 const HERO_BACKGROUNDS = [
@@ -41,26 +34,19 @@ export default async function Home({
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
-  // Hydration-safe server-side asset rotation by system month
   const currentMonth = new Date().getMonth();
-  const activeBackgroundIndex = currentMonth % HERO_BACKGROUNDS.length;
-  const activeBackground = HERO_BACKGROUNDS[activeBackgroundIndex];
+  const activeBackground = HERO_BACKGROUNDS[currentMonth % HERO_BACKGROUNDS.length];
 
   return (
     <main className="relative min-h-screen bg-aegrix-bg">
       <Hero lang={lang} dict={dict.hero} activeBackground={activeBackground} />
       <div className="relative z-10">
         <ProblemSection />
-        <DigitalEvolution />
-        <MethodologySection />
         <ProductDivisions />
-        <TrustSection />
-        <SoftwareExcellence />
+        <MethodologySection />
         <SectorSection />
-        <PlatformSection />
         <DiagnosticSection />
         <ContactSection />
-        <FinalCTA />
       </div>
       <Footer />
       <WhatsAppFloating />
