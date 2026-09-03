@@ -2,8 +2,8 @@
   "hero": {
     "title_part1": "Ingeniería tecnológica de élite para",
     "title_highlight": "software, ciberseguridad, datos e IA.",
-    "description": "En AEGRIX diseñamos, fortalecemos y escalamos infraestructura digital para empresas mediante desarrollo web, ciberseguridad, analítica, automatización e inteligencia artificial, con alcances y entregables definidos.",
-    "cta_primary": "Solicitar diagnóstico",
+    "description": "En AEGRIX diseñamos, fortalecemos y escalamos infraestructura digital para empresas mediante desarrollo de software, ciberseguridad, analítica, automatización e inteligencia artificial, con alcances y entregables definidos.",
+    "cta_primary": "Iniciar diagnóstico AEGRIX 360",
     "cta_secondary": "Ver servicios"
   },
   "navbar": {
@@ -12,20 +12,20 @@
     "sectors": "Sectores",
     "methodology": "Metodología",
     "contact": "Contacto",
-    "cta": "Solicitar diagnóstico"
+    "cta": "Iniciar diagnóstico"
   },
   "about": {
-    "title": "Nuestra forma de trabajar",
+    "title": "Ingeniería para sistemas que importan",
     "subtitle": "AEGRIX",
-    "description": "Somos una firma de tecnología enfocada en resolver necesidades concretas mediante ingeniería de software, ciberseguridad, datos, automatización e inteligencia artificial.",
+    "description": "Somos una firma de ingeniería tecnológica especializada en software, ciberseguridad, datos, automatización e inteligencia artificial para entornos empresariales y operaciones críticas.",
     "mission_title": "Misión",
-    "mission_text": "Diseñar e implementar soluciones tecnológicas con alcance claro, criterios técnicos y entregables verificables.",
+    "mission_text": "Diseñar e implementar soluciones tecnológicas robustas, seguras y escalables, con alcance claro, criterios técnicos y entregables verificables.",
     "vision_title": "Visión",
-    "vision_text": "Construir relaciones de largo plazo basadas en ingeniería responsable, mejora continua y resultados medibles.",
+    "vision_text": "Ser una firma latinoamericana de referencia por la calidad de su ingeniería, la profundidad de sus evaluaciones y la capacidad de resolver problemas digitales complejos.",
     "values": {
       "security": "Seguridad",
       "precision": "Rigor técnico",
-      "innovation": "Mejora continua"
+      "innovation": "Evolución"
     }
   },
   "cookies": {
