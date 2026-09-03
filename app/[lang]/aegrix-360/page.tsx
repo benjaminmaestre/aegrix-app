@@ -17,19 +17,38 @@ const frameworkRoutes = [
 export async function generateMetadata({ params }: { params: Promise<{ lang: 'es' | 'en' }> }): Promise<Metadata> {
   const { lang } = await params;
   const isEnglish = lang === 'en';
+  const title = isEnglish
+    ? 'AEGRIX 360 | Security Assessment, Readiness & Assurance'
+    : 'AEGRIX 360 | Assessment, Readiness y Assurance de Ciberseguridad';
+  const description = isEnglish
+    ? 'AEGRIX 360 evaluates security posture, evidence, gaps and remediation across NIST CSF 2.0, ISO/IEC 27001/27002, HIPAA and GDPR through Pulse, Compass and Assurance.'
+    : 'AEGRIX 360 evalúa postura, evidencia, brechas y remediación sobre NIST CSF 2.0, ISO/IEC 27001/27002, HIPAA y GDPR mediante Pulse, Compass y Assurance.';
+  const url = `https://aegrix.com.co/${lang}/aegrix-360`;
+
   return {
-    title: isEnglish
-      ? 'AEGRIX 360 | Security Assessment, Readiness & Assurance'
-      : 'AEGRIX 360 | Assessment, Readiness y Assurance de Ciberseguridad',
-    description: isEnglish
-      ? 'AEGRIX 360 evaluates security posture, evidence, gaps and remediation across NIST CSF 2.0, ISO/IEC 27001/27002, HIPAA and GDPR through Pulse, Compass and Assurance.'
-      : 'AEGRIX 360 evalúa postura, evidencia, brechas y remediación sobre NIST CSF 2.0, ISO/IEC 27001/27002, HIPAA y GDPR mediante Pulse, Compass y Assurance.',
+    title,
+    description,
     alternates: {
-      canonical: `https://aegrix.com.co/${lang}/aegrix-360`,
+      canonical: url,
       languages: {
         es: 'https://aegrix.com.co/es/aegrix-360',
         en: 'https://aegrix.com.co/en/aegrix-360',
       },
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: 'AEGRIX',
+      type: 'website',
+      locale: isEnglish ? 'en_US' : 'es_CO',
+      images: [{ url: 'https://aegrix.com.co/AEGRIX_preview.png', width: 1200, height: 630, alt: 'AEGRIX 360' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://aegrix.com.co/AEGRIX_preview.png'],
     },
   };
 }
@@ -204,9 +223,9 @@ export default async function Aegrix360Page({ params }: { params: Promise<{ lang
               {isEnglish ? 'What AEGRIX 360 does not claim' : 'Lo que AEGRIX 360 no pretende afirmar'}
             </h3>
             <ul className="space-y-4 text-aegrix-muted">
-              <li className="flex gap-3"><CheckCircle2 size={18} className="text-aegrix-cyan shrink-0 mt-0.5" />{isEnglish ? 'Readiness is not presented as third-party certification.' : 'Readiness no se presenta como certificación de tercera parte.'}</li>
-              <li className="flex gap-3"><CheckCircle2 size={18} className="text-aegrix-cyan shrink-0 mt-0.5" />{isEnglish ? 'Using the platform does not by itself guarantee legal or regulatory compliance.' : 'Usar la plataforma no garantiza por sí solo cumplimiento legal o regulatorio.'}</li>
-              <li className="flex gap-3"><CheckCircle2 size={18} className="text-aegrix-cyan shrink-0 mt-0.5" />{isEnglish ? 'Scope, evidence and conclusions remain tied to the actual organization and engagement.' : 'El alcance, la evidencia y las conclusiones dependen de la organización y del trabajo realmente realizado.'}</li>
+              <li className="flex gap-3"><CheckCircle2 size={18} className="text-aegrix-cyan shrink-0 mt-0.5" aria-hidden="true" />{isEnglish ? 'Readiness is not presented as third-party certification.' : 'Readiness no se presenta como certificación de tercera parte.'}</li>
+              <li className="flex gap-3"><CheckCircle2 size={18} className="text-aegrix-cyan shrink-0 mt-0.5" aria-hidden="true" />{isEnglish ? 'Using the platform does not by itself guarantee legal or regulatory compliance.' : 'Usar la plataforma no garantiza por sí solo cumplimiento legal o regulatorio.'}</li>
+              <li className="flex gap-3"><CheckCircle2 size={18} className="text-aegrix-cyan shrink-0 mt-0.5" aria-hidden="true" />{isEnglish ? 'Scope, evidence and conclusions remain tied to the actual organization and engagement.' : 'El alcance, la evidencia y las conclusiones dependen de la organización y del trabajo realmente realizado.'}</li>
             </ul>
           </div>
         </div>
