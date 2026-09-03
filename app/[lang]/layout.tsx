@@ -154,12 +154,14 @@ export default async function RootLayout({
 
   const dict = await getDictionary(lang);
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const nonce = (await headers()).get('x-nonce') || undefined;
 
   return (
     <html lang={lang} className={`${sora.variable} ${manrope.variable}`} data-theme="dark" suppressHydrationWarning>
       <head>
         <script
           id="theme-initializer"
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: `
               try {
@@ -173,6 +175,7 @@ export default async function RootLayout({
         <script
           id="json-ld"
           type="application/ld+json"
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
@@ -193,7 +196,7 @@ export default async function RootLayout({
         <Navbar lang={lang} dict={dict.navbar} />
         {children}
         <CookieBanner lang={lang} dict={dict.cookies} />
-        <ConsentAwareAnalytics gaId={gaId} />
+        <ConsentAwareAnalytics gaId={gaId} nonce={nonce} />
       </body>
     </html>
   );
