@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { checkBotId } from 'botid/server';
 
 const MAX_BODY_BYTES = 12_000;
 const MAX_NAME_LENGTH = 100;
@@ -148,6 +149,11 @@ export async function POST(request: Request) {
   }
 
   try {
+    const verification = await checkBotId();
+    if (verification.isBot) {
+      return jsonResponse({ error: 'Automated request denied' }, { status: 403 });
+    }
+
     const rawBody = await request.text();
     if (new TextEncoder().encode(rawBody).length > MAX_BODY_BYTES) {
       return jsonResponse({ error: 'Request too large' }, { status: 413 });
