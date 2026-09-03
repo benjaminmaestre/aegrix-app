@@ -2,19 +2,19 @@
 
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
-import { AlertTriangle, Gauge, Search } from 'lucide-react';
+import { Gauge, Search } from 'lucide-react';
 
 const scenariosEs = [
   {
     title: '¿Tu empresa aún no tiene una presencia digital sólida?',
-    label: 'Oportunidad: visibilidad y confianza',
+    label: 'Qué revisar: visibilidad y confianza',
     description: 'Una presencia digital clara ayuda a que clientes potenciales entiendan qué haces, encuentren información relevante y tengan un camino directo para contactarte.',
     icon: Search,
     note: 'Revisamos estructura, contenido, SEO técnico y recorridos de contacto antes de recomendar una solución.',
   },
   {
     title: '¿Tu web se siente lenta, antigua o difícil de usar?',
-    label: 'Oportunidad: rendimiento y conversión',
+    label: 'Qué revisar: rendimiento y conversión',
     description: 'La velocidad, la experiencia móvil y la claridad del contenido influyen en cómo una persona navega, confía y decide continuar en un sitio.',
     icon: Gauge,
     note: 'Medimos rendimiento, experiencia y puntos de fricción para priorizar cambios que tengan sentido para el negocio.',
@@ -24,14 +24,14 @@ const scenariosEs = [
 const scenariosEn = [
   {
     title: 'Does your company still lack a strong digital presence?',
-    label: 'Opportunity: visibility and trust',
+    label: 'What to review: visibility and trust',
     description: 'A clear digital presence helps potential customers understand what you do, find relevant information, and reach you through a direct contact path.',
     icon: Search,
     note: 'We review structure, content, technical SEO, and contact journeys before recommending a solution.',
   },
   {
     title: 'Does your website feel slow, outdated, or hard to use?',
-    label: 'Opportunity: performance and conversion',
+    label: 'What to review: performance and conversion',
     description: 'Speed, mobile experience, and content clarity influence how people navigate, build trust, and decide whether to continue on a website.',
     icon: Gauge,
     note: 'We measure performance, experience, and friction points to prioritize changes that make sense for the business.',
@@ -84,8 +84,7 @@ const DigitalEvolution = () => {
               </div>
 
               <div className="relative z-10 bg-aegrix-bg-2/70 border border-aegrix-border p-5 sm:p-6 rounded-2xl mb-8">
-                <div className="flex items-center gap-2 text-aegrix-cyan font-bold mb-3 uppercase tracking-[0.16em] text-[10px]">
-                  <AlertTriangle size={13} aria-hidden="true" />
+                <div className="text-aegrix-cyan font-bold mb-3 uppercase tracking-[0.16em] text-[10px]">
                   {scenario.label}
                 </div>
                 <p className="text-sm text-aegrix-muted leading-relaxed">{scenario.description}</p>
