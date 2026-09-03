@@ -10,6 +10,7 @@ export const siteConfig = {
 
 export const allowedRequestOrigins = [siteConfig.origin, siteConfig.wwwOrigin] as const;
 
-export function buildWhatsAppUrl(message: string) {
-  return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(message)}`;
+export function buildWhatsAppUrl(message?: string) {
+  const baseUrl = `https://wa.me/${siteConfig.whatsappNumber}`;
+  return message ? `${baseUrl}?text=${encodeURIComponent(message)}` : baseUrl;
 }
