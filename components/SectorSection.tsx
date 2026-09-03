@@ -1,76 +1,71 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Landmark, Activity, Briefcase } from 'lucide-react';
+import { Activity, Briefcase, Landmark } from 'lucide-react';
 
 const industries = [
   {
     icon: Landmark,
     title: 'Finanzas & Fintech',
-    problem: 'Vulnerabilidades críticas en transacciones.',
-    solution: 'Infraestructura blindada y cumplimiento normativo absoluto.',
-    color: 'text-blue-400'
+    challenge: 'Controles de acceso, trazabilidad, seguridad de aplicaciones y requisitos regulatorios según el contexto.',
+    approach: 'Evaluación del alcance y priorización de controles técnicos y operativos relevantes.',
   },
   {
     icon: Activity,
     title: 'Salud & Healthtech',
-    problem: 'Caos en gestión de datos sensibles.',
-    solution: 'Capa de control de datos protegida bajo estándares globales.',
-    color: 'text-green-400'
+    challenge: 'Tratamiento de información sensible, accesos, disponibilidad y requisitos de privacidad.',
+    approach: 'Revisión de riesgos, flujos de información y controles aplicables al servicio contratado.',
   },
   {
     icon: Briefcase,
     title: 'Corporativo & Retail',
-    problem: 'Baja conversión y fugas operativas.',
-    solution: 'Ecosistemas web de alto rendimiento y analítica predictiva.',
-    color: 'text-aegrix-cyan'
-  }
+    challenge: 'Procesos fragmentados, sitios sin medición y tareas manuales que dificultan la operación.',
+    approach: 'Software, analítica y automatización definidos alrededor de necesidades y métricas concretas.',
+  },
 ];
 
 const SectorSection = () => {
   return (
     <section id="sectores" className="section-padding bg-aegrix-bg relative overflow-hidden">
       <div className="container-width">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 md:mb-20 gap-8">
-          <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-6">
-              Experticia aplicada a <br />
-              <span className="text-aegrix-cyan">industrias de alto riesgo.</span>
-            </h2>
-            <p className="text-lg text-aegrix-muted">
-              Entendemos que cada sector tiene retos únicos. No aplicamos soluciones genéricas; diseñamos la capa de control específica para tu vertical.
-            </p>
-          </div>
+        <div className="max-w-3xl mb-12 md:mb-20">
+          <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-6">
+            Experiencia aplicada a
+            <br />
+            <span className="text-aegrix-cyan">contextos con necesidades distintas.</span>
+          </h2>
+          <p className="text-lg text-aegrix-muted">
+            El alcance cambia según el sector, la información involucrada, la infraestructura existente y los requisitos del cliente. Por eso partimos del contexto antes de recomendar una solución.
+          </p>
         </div>
 
-        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-8 md:grid-cols-3 pb-6 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
-          {industries.map((item, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {industries.map((item, index) => (
+            <motion.article
+              key={item.title}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-5 sm:p-8 md:p-10 rounded-2xl md:rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:bg-aegrix-surface/80 transition-all group relative overflow-hidden w-[90%] sm:w-[50%] md:w-auto shrink-0 snap-align-start"
+              transition={{ duration: 0.45, delay: index * 0.06 }}
+              className="p-6 md:p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border"
             >
-              <div className={`w-16 h-16 rounded-2xl bg-aegrix-bg-2 border border-aegrix-border flex items-center justify-center mb-6 md:mb-8 ${item.color} group-hover:scale-110 transition-transform`}>
-                <item.icon size={32} />
+              <div className="w-12 h-12 rounded-xl bg-aegrix-bg-2 border border-aegrix-border flex items-center justify-center mb-6 text-aegrix-cyan">
+                <item.icon size={23} aria-hidden="true" />
               </div>
-              
-              <h3 className="text-2xl font-sora font-bold text-aegrix-text mb-6">{item.title}</h3>
-              
+
+              <h3 className="text-xl font-sora font-bold text-aegrix-text mb-6">{item.title}</h3>
+
               <div className="space-y-6">
                 <div>
-                  <span className="text-[10px] font-bold text-red-400 uppercase tracking-widest block mb-2">Problema Crítico</span>
-                  <p className="text-aegrix-muted text-sm">{item.problem}</p>
+                  <span className="text-xs font-semibold text-aegrix-muted block mb-2">Necesidades frecuentes</span>
+                  <p className="text-aegrix-muted text-sm leading-relaxed">{item.challenge}</p>
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold text-aegrix-green uppercase tracking-widest block mb-2">Impacto AEGRIX</span>
-                  <p className="text-aegrix-text/80 text-sm">{item.solution}</p>
+                  <span className="text-xs font-semibold text-aegrix-cyan block mb-2">Cómo lo abordamos</span>
+                  <p className="text-aegrix-text/80 text-sm leading-relaxed">{item.approach}</p>
                 </div>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>
