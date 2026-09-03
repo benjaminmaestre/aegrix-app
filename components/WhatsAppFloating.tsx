@@ -19,7 +19,6 @@ const WhatsAppFloating = () => {
       aria-label="WhatsApp Contact"
     >
       <WhatsAppIcon size={28} />
-      <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 border-2 border-aegrix-bg rounded-full" aria-hidden="true" />
     </motion.a>
   );
 };
