@@ -20,8 +20,8 @@ export default function TrustSection() {
         },
         {
           icon: Award,
-          title: 'Recognized frameworks when they apply',
-          desc: 'When the engagement requires it, we use references such as NIST CSF 2.0, the HIPAA Security Rule, and ISO/IEC 27001:2022 readiness without presenting readiness as certification.',
+          title: 'Frameworks assessed with AEGRIX 360',
+          desc: 'AEGRIX 360 can assess readiness and maturity against NIST CSF 2.0, the HIPAA Security Rule, GDPR, ISO/IEC 27001 and ISO/IEC 27002 according to the engagement scope, without presenting readiness as certification.',
         },
         {
           icon: ClipboardCheck,
@@ -37,8 +37,8 @@ export default function TrustSection() {
         },
         {
           icon: Award,
-          title: 'Marcos reconocidos cuando aplican',
-          desc: 'Cuando el trabajo lo requiere, usamos referencias como NIST CSF 2.0, HIPAA Security Rule e ISO/IEC 27001:2022 Readiness sin presentar readiness como certificación.',
+          title: 'Marcos evaluados con AEGRIX 360',
+          desc: 'AEGRIX 360 puede evaluar preparación y madurez frente a NIST CSF 2.0, HIPAA Security Rule, GDPR, ISO/IEC 27001 e ISO/IEC 27002 según el alcance contratado, sin presentar readiness como certificación.',
         },
         {
           icon: ClipboardCheck,
