@@ -30,6 +30,13 @@ export function proxy(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname;
 
+  // RFC 9116 security.txt must live at the non-localized well-known URL.
+  // Rewrite it before the default locale redirect so scanners can resolve it.
+  if (pathname === '/.well-known/security.txt') {
+    url.pathname = '/api/securitytxt';
+    return NextResponse.rewrite(url);
+  }
+
   // Redirect index pages (e.g. /index.html -> /, /es/index.html -> /es)
   const indexMatch = pathname.match(/^(.*)\/(index\.(?:html|php|htm)|default\.(?:html|aspx))$/i);
   if (indexMatch) {
