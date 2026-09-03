@@ -16,7 +16,7 @@ export default function LegalFinancePage() {
 
   const problems = [
     {
-      code: isEn ? 'CONFIDENTIAL DATA' : 'DATOS CONFIDENCIALES',
+      label: isEn ? 'CONFIDENTIAL DATA' : 'DATOS CONFIDENCIALES',
       title: isEn ? 'Sensitive information exposure' : 'Exposición de información sensible',
       description: isEn
         ? 'Contracts, financial records and private client information may move through channels without enough access control, encryption or traceability.'
@@ -25,7 +25,7 @@ export default function LegalFinancePage() {
       colorClass: 'text-red-500',
     },
     {
-      code: isEn ? 'ONBOARDING' : 'ONBOARDING',
+      label: 'ONBOARDING',
       title: isEn ? 'Manual client onboarding' : 'Onboarding manual de clientes',
       description: isEn
         ? 'Registration, document collection, approvals and signatures depend on manual email or paper-based steps.'
@@ -34,7 +34,7 @@ export default function LegalFinancePage() {
       colorClass: 'text-orange-500',
     },
     {
-      code: isEn ? 'SECURITY POSTURE' : 'POSTURA DE SEGURIDAD',
+      label: isEn ? 'SECURITY POSTURE' : 'POSTURA DE SEGURIDAD',
       title: isEn ? 'Security controls without regular review' : 'Controles de seguridad sin revisión periódica',
       description: isEn
         ? 'Internal systems, cloud services and access paths may accumulate weaknesses when controls are not assessed and prioritized.'
@@ -43,7 +43,7 @@ export default function LegalFinancePage() {
       colorClass: 'text-blue-500',
     },
     {
-      code: isEn ? 'TRACEABILITY' : 'TRAZABILIDAD',
+      label: isEn ? 'TRACEABILITY' : 'TRAZABILIDAD',
       title: isEn ? 'Weak audit trail' : 'Trazabilidad insuficiente',
       description: isEn
         ? 'Sensitive reports or contracts are modified without a consistent record of who changed what, when and under which authorization.'

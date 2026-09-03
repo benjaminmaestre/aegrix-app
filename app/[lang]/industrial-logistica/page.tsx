@@ -4,47 +4,49 @@ import React from 'react';
 import { useParams } from 'next/navigation';
 import NicheLandingTemplate from '@/components/NicheLandingTemplate';
 import { Database, Clock, TrendingDown, RefreshCw } from 'lucide-react';
+import { buildWhatsAppUrl } from '@/lib/site-config';
+
+const INDUSTRIAL_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero evaluar integraciones, inventario y operación digital de mi empresa industrial, distribuidora o logística con AEGRIX.');
 
 export default function IndustrialLogisticaPage() {
   const params = useParams();
   const lang = (params?.lang as 'es' | 'en') || 'es';
-
   const isEn = lang === 'en';
 
   const problems = [
     {
-      code: '[WARN_CAOS_EXCEL]',
-      title: isEn ? 'Excel & Spreadsheet Chaos' : 'Caos de hojas de cálculo (Excels)',
+      label: isEn ? 'OPERATIONAL DATA' : 'DATOS OPERATIVOS',
+      title: isEn ? 'Critical information is spread across files' : 'Información crítica dispersa entre archivos',
       description: isEn
-        ? 'Operations, pricing, and stock updates depend on scattered files, causing human error and delays.'
-        : 'La operación, control de precios y actualización de stock dependen de archivos dispersos, causando errores humanos y retrasos.',
+        ? 'Pricing, inventory and operational updates depend on separate spreadsheets or manual records, increasing re-entry and reconciliation work.'
+        : 'Precios, inventario y actualizaciones operativas dependen de hojas de cálculo o registros manuales separados, aumentando redigitación y conciliación.',
       icon: TrendingDown,
       colorClass: 'text-red-500',
     },
     {
-      code: '[WARN_SISTEMAS_AISLADOS]',
-      title: isEn ? 'Isolated Systems & ERP' : 'Sistemas y ERPs aislados',
+      label: isEn ? 'INTEGRATIONS' : 'INTEGRACIONES',
+      title: isEn ? 'ERP and commercial systems are disconnected' : 'ERP y sistemas comerciales desconectados',
       description: isEn
-        ? 'Your ERP or SAP does not sync with your website or sales portal, forcing manual data entry for orders.'
-        : 'Tu ERP o SAP no se comunica con tu sitio web o portal de ventas, obligando a digitar pedidos de forma manual.',
+        ? 'Orders, stock and customer data may require manual transfer when ERP, web and sales systems do not share reliable integrations.'
+        : 'Pedidos, stock y datos de clientes pueden requerir traslado manual cuando ERP, web y ventas no comparten integraciones confiables.',
       icon: RefreshCw,
       colorClass: 'text-orange-500',
     },
     {
-      code: '[WARN_PORTAL_CLIENTES]',
-      title: isEn ? 'Manual Order Processing' : 'Toma de pedidos manual',
+      label: isEn ? 'B2B ORDERS' : 'PEDIDOS B2B',
+      title: isEn ? 'Order processing depends on manual channels' : 'Procesamiento de pedidos dependiente de canales manuales',
       description: isEn
-        ? 'B2B clients and distributors call or send emails to request products instead of placing orders in a self-service secure portal.'
-        : 'Clientes B2B y distribuidores llaman o envían correos para solicitar stock en lugar de usar un portal seguro de autogestión.',
+        ? 'Distributors and business clients rely on calls, chats or email instead of structured self-service and approval workflows.'
+        : 'Distribuidores y clientes empresariales dependen de llamadas, chats o correo en lugar de flujos estructurados de autogestión y aprobación.',
       icon: Database,
       colorClass: 'text-pink-500',
     },
     {
-      code: '[WARN_VISIBILIDAD_OPERATIVA]',
-      title: isEn ? 'Zero Real-Time Visibility' : 'Falta de visibilidad en tiempo real',
+      label: isEn ? 'VISIBILITY' : 'VISIBILIDAD',
+      title: isEn ? 'Operational decisions use delayed information' : 'Decisiones operativas con información retrasada',
       description: isEn
-        ? "Decisions are made based on yesterday's reports instead of real-time stock, transport, and fulfillment tracking."
-        : 'Decisiones basadas en informes del día anterior en lugar de stock, transporte y despachos rastreados en tiempo real.',
+        ? 'Inventory, transport and fulfillment indicators may arrive after the decision window instead of being updated from integrated sources.'
+        : 'Indicadores de inventario, transporte y despachos pueden llegar después de la ventana de decisión en vez de actualizarse desde fuentes integradas.',
       icon: Clock,
       colorClass: 'text-blue-500',
     },
@@ -52,31 +54,31 @@ export default function IndustrialLogisticaPage() {
 
   const solutions = [
     {
-      title: isEn ? 'B2B Self-Service Portals' : 'Portales de Clientes B2B',
+      title: isEn ? 'B2B Self-Service Portals' : 'Portales de Autogestión B2B',
       desc: isEn
-        ? 'Custom web portals where distributors can place orders, view invoices, and check live stock 24/7.'
-        : 'Desarrollo de portales web privados para que distribuidores realicen pedidos, descarguen facturas y vean stock en tiempo real.',
+        ? 'Private portals for orders, invoices, customer-specific pricing and inventory visibility according to the connected source systems.'
+        : 'Portales privados para pedidos, facturas, precios por cliente y visibilidad de inventario según los sistemas fuente conectados.',
       features: isEn
-        ? ['Real-time inventory lookup', 'Automated order dispatching', 'Dynamic pricing per client tier', 'Instant invoice generation']
-        : ['Consulta de stock en tiempo real', 'Envío automatizado de pedidos', 'Precios dinámicos por tipo de cliente', 'Facturación automática integrada'],
+        ? ['Inventory visibility from integrated sources', 'Structured order workflows', 'Customer-specific pricing rules', 'Integrated billing or document flows']
+        : ['Visibilidad de inventario desde fuentes integradas', 'Flujos estructurados de pedidos', 'Reglas de precio por cliente', 'Flujos integrados de facturación o documentos'],
     },
     {
-      title: isEn ? 'ERP & SAP Integrations' : 'Integraciones de Sistemas y ERP',
+      title: isEn ? 'ERP & System Integrations' : 'Integraciones de Sistemas y ERP',
       desc: isEn
-        ? 'Robust middleware connecting your custom frontends directly with SAP, Microsoft Dynamics, or custom databases.'
-        : 'Conexión segura y robusta de tu portal web con sistemas ERP (SAP, Microsoft Dynamics, SIIGO) sin duplicar bases de datos.',
+        ? 'Robust integration layers connecting portals, ERP platforms and databases according to available APIs, security requirements and data ownership.'
+        : 'Capas de integración robustas que conectan portales, ERP y bases de datos según APIs disponibles, requisitos de seguridad y propiedad de los datos.',
       features: isEn
-        ? ['Automated synchronization', 'Bi-directional data flow', 'Error log notifications', 'High-speed secure APIs']
-        : ['Sincronización automatizada', 'Flujo de datos bidireccional', 'Notificaciones de errores', 'APIs de alta velocidad y seguras'],
+        ? ['Automated synchronization', 'Bi-directional flows when supported', 'Integration error monitoring', 'Secure APIs and access controls']
+        : ['Sincronización automatizada', 'Flujos bidireccionales cuando son compatibles', 'Monitoreo de errores de integración', 'APIs seguras y controles de acceso'],
     },
     {
-      title: isEn ? 'Operational Dashboards & Analytics' : 'Dashboards Operativos e IA',
+      title: isEn ? 'Operational Dashboards & Analytics' : 'Dashboards Operativos y Analítica',
       desc: isEn
-        ? 'Real-time interactive monitoring of logistics, sales conversion, and inventory alerts to predict shortages.'
-        : 'Visualización interactiva en tiempo real del estado de despachos, rotación de inventario y alertas predictivas de desabastecimiento.',
+        ? 'Connect logistics, sales and inventory indicators to support operational decisions, forecasting and exception management.'
+        : 'Conectamos indicadores de logística, ventas e inventario para apoyar decisiones operativas, proyecciones y gestión de excepciones.',
       features: isEn
-        ? ['Custom KPI charts', 'Exportable automated reports', 'Predictive demand planning', 'Multi-warehouse monitoring']
-        : ['Gráficos de KPIs a medida', 'Reportes automatizados exportables', 'Modelos predictivos de demanda', 'Monitoreo de múltiples bodegas'],
+        ? ['Custom KPI dashboards', 'Automated reports', 'Demand analysis and forecasting when data supports it', 'Multi-warehouse visibility']
+        : ['Dashboards de KPI a medida', 'Reportes automatizados', 'Análisis y pronóstico de demanda cuando los datos lo soportan', 'Visibilidad de múltiples bodegas'],
     },
   ];
 
@@ -84,30 +86,30 @@ export default function IndustrialLogisticaPage() {
     <NicheLandingTemplate
       lang={lang}
       heroTagline="AEGRIX Industrial & Logística"
-      heroTitlePart1={isEn ? "Operational efficiency, inventory control" : "Eficiencia operativa, control de inventario"}
-      heroTitleHighlight={isEn ? "for distributors & logistics." : "para distribuidoras y logística."}
+      heroTitlePart1={isEn ? 'Integration, inventory visibility and automation' : 'Integración, visibilidad de inventario y automatización'}
+      heroTitleHighlight={isEn ? 'for industrial and logistics operations.' : 'para operaciones industriales y logísticas.'}
       heroDescription={isEn
-        ? "Custom inventory portals connected to your ERP/SAP, real-time logistics dashboards, and software solutions to eliminate Excel chaos."
-        : "Portales de autogestión para distribuidores integrados a tu ERP/SAP, control de stock y despachos en tiempo real para erradicar el caos de los Excels."}
-      heroWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20de%20tecnolog%C3%ADa%20operativa%20para%20mi%20distribuidora%20o%20empresa%20de%20log%C3%ADstica."
-      problemsSectionTitle={isEn ? "Does your distributor or logistics company face these hurdles?" : "¿Tu distribuidora o empresa de logística tiene alguno de estos problemas?"}
+        ? 'B2B portals, ERP integrations, operational dashboards and automation to connect orders, inventory, logistics and business data.'
+        : 'Portales B2B, integraciones ERP, dashboards operativos y automatización para conectar pedidos, inventario, logística y datos de negocio.'}
+      heroWhatsAppUrl={INDUSTRIAL_WHATSAPP_URL}
+      problemsSectionTitle={isEn ? 'Common integration and visibility gaps' : 'Brechas frecuentes de integración y visibilidad'}
       problemsSectionDesc={isEn
-        ? "Scale demands automation. Manual processing, isolated ERP databases, and dependency on files create expensive operational leaks."
-        : "La escala exige automatización. Los procesos manuales, ERPs desconectados y la dependencia de Excels compartidos generan costosas ineficiencias operativas."}
+        ? 'Growing operations need reliable data flows, controlled integrations and visibility that matches the speed of operational decisions.'
+        : 'Las operaciones en crecimiento necesitan flujos de datos confiables, integraciones controladas y visibilidad acorde con la velocidad de las decisiones.'}
       problems={problems}
-      solutionsSectionTitle={isEn ? "Industrial Technology Solutions" : "Soluciones de Ingeniería Industrial"}
+      solutionsSectionTitle={isEn ? 'Industrial and logistics technology engineering' : 'Ingeniería tecnológica industrial y logística'}
       solutionsSectionDesc={isEn
-        ? "We design the software infrastructure that translates complex logistics into automated, clear operational processes."
-        : "Diseñamos la infraestructura de software que traduce operaciones complejas en procesos sencillos, rápidos y completamente automatizados."}
+        ? 'We design software, integration and data architecture to reduce re-entry, improve traceability and connect the systems that support the operation.'
+        : 'Diseñamos arquitectura de software, integración y datos para reducir redigitación, mejorar trazabilidad y conectar los sistemas que soportan la operación.'}
       solutions={solutions}
       diagnosticBannerTitle={isEn
-        ? "If you check 2 or more, your logistics workflow needs an integration audit."
-        : "Si marcaste 2 o más, tu operación logística necesita una auditoría de integración."}
+        ? 'Assess integrations, inventory flows and operational visibility with AEGRIX.'
+        : 'Evalúa integraciones, flujos de inventario y visibilidad operativa con AEGRIX.'}
       diagnosticBannerDesc={isEn
-        ? "We evaluate free of charge your current inventory sync speeds, order tracking workflows, and ERP integration gaps. We deliver the report in 48 hours."
-        : "Evaluamos gratis la velocidad de sincronización de tu inventario, el flujo de procesamiento de pedidos y el estado de integración con tu ERP. Te entregamos un informe en 48 horas."}
-      diagnosticBannerCta={isEn ? "Request Free Operations Audit" : "Solicitar diagnóstico operativo gratuito"}
-      diagnosticWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20de%20tecnolog%C3%ADa%20operativa%20para%20mi%20distribuidora%20o%20empresa%20de%20log%C3%ADstica."
+        ? 'We can review systems, APIs, data flows, order processes and reporting to identify integration gaps and prioritize a realistic improvement plan.'
+        : 'Podemos revisar sistemas, APIs, flujos de datos, procesos de pedidos y reportes para identificar brechas de integración y priorizar un plan realista de mejora.'}
+      diagnosticBannerCta={isEn ? 'Start operations assessment' : 'Iniciar evaluación de operación'}
+      diagnosticWhatsAppUrl={INDUSTRIAL_WHATSAPP_URL}
     />
   );
 }

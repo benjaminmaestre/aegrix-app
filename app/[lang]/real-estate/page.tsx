@@ -4,47 +4,49 @@ import React from 'react';
 import { useParams } from 'next/navigation';
 import NicheLandingTemplate from '@/components/NicheLandingTemplate';
 import { Globe, Database, TrendingDown, MessageSquare } from 'lucide-react';
+import { buildWhatsAppUrl } from '@/lib/site-config';
+
+const REAL_ESTATE_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero evaluar la web, CRM, seguimiento de leads y analítica comercial de mi inmobiliaria o constructora con AEGRIX.');
 
 export default function RealEstatePremiumPage() {
   const params = useParams();
   const lang = (params?.lang as 'es' | 'en') || 'es';
-
   const isEn = lang === 'en';
 
   const problems = [
     {
-      code: '[WARN_LEADS_PERDIDOS]',
-      title: isEn ? 'Unassigned High-Value Leads' : 'Leads de alto valor sin atender',
+      label: 'LEADS',
+      title: isEn ? 'High-value leads wait too long for follow-up' : 'Leads de alto valor esperan demasiado seguimiento',
       description: isEn
-        ? 'High-ticket prospective buyers wait hours or days to be contacted by sales agents, cooling their purchase intent.'
-        : 'Prospectos de alto valor pasan horas o días sin ser atendidos por asesores comerciales, perdiendo interés de compra.',
+        ? 'Prospects may arrive with strong purchase intent, but assignment and follow-up are inconsistent across advisors and channels.'
+        : 'Los prospectos pueden llegar con alta intención de compra, pero la asignación y el seguimiento son inconsistentes entre asesores y canales.',
       icon: MessageSquare,
       colorClass: 'text-green-500',
     },
     {
-      code: '[WARN_DATOS_DESCONECTADOS]',
-      title: isEn ? 'Scattered Lead Channels' : 'Desconexión de canales de captura',
+      label: isEn ? 'CHANNELS' : 'CANALES',
+      title: isEn ? 'Lead sources are disconnected' : 'Fuentes de leads desconectadas',
       description: isEn
-        ? 'Leads scattered across multiple platforms (real estate portals, social ads) without a single database.'
-        : 'Prospectos dispersos en múltiples plataformas (portales inmobiliarios, anuncios) sin una base de datos centralizada.',
+        ? 'Real estate portals, advertising campaigns, web forms and messaging channels feed separate lists instead of a unified commercial flow.'
+        : 'Portales inmobiliarios, campañas, formularios web y mensajería alimentan listas separadas en lugar de un flujo comercial unificado.',
       icon: Database,
       colorClass: 'text-orange-500',
     },
     {
-      code: '[WARN_WEB_LENTA_RENDERS]',
-      title: isEn ? 'Slow Project Showcases' : 'Presentaciones de proyectos lentas',
+      label: isEn ? 'WEB EXPERIENCE' : 'EXPERIENCIA WEB',
+      title: isEn ? 'Project showcases are heavy or difficult to navigate' : 'Presentaciones de proyectos pesadas o difíciles de navegar',
       description: isEn
-        ? 'Slow websites failing to load heavy high-quality renders, hurting the premium brand experience.'
-        : 'Sitios web lentos o pesados al cargar renders de proyectos, lo cual daña la experiencia de compra de lujo.',
+        ? 'Large renders, galleries and property data need performance optimization and a clear journey from discovery to qualified contact.'
+        : 'Renders, galerías y datos de inmuebles necesitan optimización de rendimiento y un recorrido claro desde descubrimiento hasta contacto calificado.',
       icon: Globe,
       colorClass: 'text-pink-500',
     },
     {
-      code: '[WARN_SIN_ANALITICA_PAUTA]',
-      title: isEn ? 'Blind Ad Spend' : 'Inversión publicitaria a ciegas',
+      label: isEn ? 'ANALYTICS' : 'ANALÍTICA',
+      title: isEn ? 'Marketing attribution is incomplete' : 'Atribución de marketing incompleta',
       description: isEn
-        ? 'Investing in Facebook or Google ads without real tracking of which campaigns generate actual property sales.'
-        : 'Inversión en pauta publicitaria en Meta o Google sin saber qué campañas generan ventas reales de inmuebles.',
+        ? 'Campaigns generate clicks and inquiries, but the connection between source, advisor activity, opportunity and sale is not consistently measured.'
+        : 'Las campañas generan clics y consultas, pero la relación entre origen, actividad del asesor, oportunidad y venta no siempre queda medida.',
       icon: TrendingDown,
       colorClass: 'text-blue-500',
     },
@@ -52,64 +54,64 @@ export default function RealEstatePremiumPage() {
 
   const solutions = [
     {
-      title: isEn ? 'Interactive Premium Web' : 'Experiencias Web Inmobiliarias',
+      title: isEn ? 'High-Performance Real Estate Web' : 'Experiencias Web Inmobiliarias de Alto Rendimiento',
       desc: isEn
-        ? 'High-performance landings optimized for luxury projects, designed to render files and interactives instantly.'
-        : 'Desarrollo de landings optimizadas para proyectos de lujo, preparadas para cargar renders e información interactiva al instante.',
+        ? 'Interactive project pages designed for optimized media delivery, property discovery, technical SEO and measurable contact journeys.'
+        : 'Páginas interactivas de proyectos diseñadas para carga optimizada de medios, búsqueda de inmuebles, SEO técnico y recorridos de contacto medibles.',
       features: isEn
-        ? ['Optimized render loading', 'Interactive property filtering', 'Specialized real estate SEO', 'Qualified lead capture']
-        : ['Carga de renders optimizada', 'Filtrado interactivo de inmuebles', 'SEO inmobiliario especializado', 'Captación de leads cualificados'],
+        ? ['Optimized render and gallery loading', 'Interactive property filtering', 'Real estate SEO', 'Qualified lead capture flows']
+        : ['Carga optimizada de renders y galerías', 'Filtrado interactivo de inmuebles', 'SEO inmobiliario', 'Flujos de captura de leads calificados'],
     },
     {
-      title: isEn ? 'Sales CRM & Automation' : 'Automatización y CRM de Ventas',
+      title: isEn ? 'CRM & Sales Automation' : 'CRM y Automatización Comercial',
       desc: isEn
-        ? 'Direct automated routing of property leads from all portals and social networks directly to your active sales team.'
-        : 'Conexión automática de portales inmobiliarios y campañas de redes directamente con tus asesores y herramientas de seguimiento.',
+        ? 'Connect portals, campaigns and messaging channels to structured routing, follow-up and advisor workflows.'
+        : 'Conectamos portales, campañas y canales de mensajería con flujos estructurados de asignación, seguimiento y trabajo de asesores.',
       features: isEn
-        ? ['Automated lead distribution', 'Instant agent notifications', 'Customized sales funnels', 'WhatsApp automated alerts']
-        : ['Distribución automática de leads', 'Notificaciones inmediatas a asesores', 'Embudo de ventas personalizado', 'Recordatorios por WhatsApp'],
+        ? ['Automated lead routing', 'Advisor notifications', 'Custom sales stages', 'WhatsApp follow-up workflows']
+        : ['Asignación automatizada de leads', 'Notificaciones a asesores', 'Etapas comerciales personalizadas', 'Flujos de seguimiento por WhatsApp'],
     },
     {
-      title: isEn ? 'Commercial Dashboards' : 'Dashboards de Control Comercial',
+      title: isEn ? 'Commercial Analytics' : 'Analítica de Control Comercial',
       desc: isEn
-        ? 'Centralized visualization of your key marketing and sales metrics to make data-driven decisions.'
-        : 'Visualización centralizada de tus métricas clave de ventas y pauta publicitaria para tomar decisiones basadas en datos.',
+        ? 'Connect advertising, lead, advisor and inventory data to improve visibility into commercial performance and attribution.'
+        : 'Conectamos datos de pauta, leads, asesores e inventario para mejorar la visibilidad sobre rendimiento comercial y atribución.',
       features: isEn
-        ? ['Ad spend ROI tracking', 'Sales team productivity analytics', 'Live real estate inventory', 'Revenue projections']
-        : ['Retorno de Inversión (ROI) de pauta', 'Productividad del equipo comercial', 'Estado del inventario en vivo', 'Proyecciones de ventas en tiempo real'],
+        ? ['Advertising attribution and ROI analysis', 'Sales team activity analytics', 'Inventory synchronization according to source data', 'Pipeline and scenario projections when data supports them']
+        : ['Atribución y análisis de ROI publicitario', 'Analítica de actividad comercial', 'Sincronización de inventario según datos fuente', 'Proyecciones de pipeline y escenarios cuando los datos lo soportan'],
     },
   ];
 
   return (
     <NicheLandingTemplate
       lang={lang}
-      heroTagline="AEGRIX Real Estate Premium"
-      heroTitlePart1={isEn ? "Sales platforms and commercial automation" : "Plataformas de venta y automatización comercial"}
-      heroTitleHighlight={isEn ? "for luxury developers." : "para constructoras de alta gama."}
+      heroTagline="AEGRIX Real Estate"
+      heroTitlePart1={isEn ? 'Web platforms, CRM and sales automation' : 'Plataformas web, CRM y automatización comercial'}
+      heroTitleHighlight={isEn ? 'for real estate companies and developers.' : 'para inmobiliarias y constructoras.'}
       heroDescription={isEn
-        ? "Interactive landing pages for luxury projects, high-ticket lead funnel automation, and real-time sales dashboard analytics."
-        : "Landings interactivas de proyectos inmobiliarios, automatización del embudo de leads de alto ticket y dashboards de analítica de ventas en tiempo real."}
-      heroWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20digital%20para%20mi%20constructora%20o%20inmobiliaria."
+        ? 'High-performance project websites, lead routing, CRM integrations and analytics for real estate sales journeys that need stronger traceability.'
+        : 'Webs de proyectos de alto rendimiento, asignación de leads, integraciones CRM y analítica para recorridos comerciales inmobiliarios que necesitan mayor trazabilidad.'}
+      heroWhatsAppUrl={REAL_ESTATE_WHATSAPP_URL}
       heroImageBaseName="hero-realestate-cartagena"
-      heroImageAlt={isEn ? "Luxury apartment in Cartagena with ocean view and real estate agent." : "Apartamento de lujo en Cartagena con vista al mar y asesor inmobiliario."}
-      problemsSectionTitle={isEn ? "Does your real estate company face any of these challenges?" : "¿Tu inmobiliaria o constructora tiene alguno de estos problemas?"}
+      heroImageAlt={isEn ? 'Luxury apartment in Cartagena with ocean view and real estate agent.' : 'Apartamento de lujo en Cartagena con vista al mar y asesor inmobiliario.'}
+      problemsSectionTitle={isEn ? 'Common commercial and digital gaps in real estate' : 'Brechas comerciales y digitales frecuentes en real estate'}
       problemsSectionDesc={isEn
-        ? "Selling premium properties demands a frictionless experience. However, software inefficiencies and lead clutter cool down prospective buyers."
-        : "La venta de inmuebles de alta gama exige una experiencia fluida. Sin embargo, las ineficiencias de software y el desorden de prospectos enfrían a los compradores."}
+        ? 'Premium property sales depend on fast experiences, disciplined lead follow-up and measurements that connect marketing activity with commercial outcomes.'
+        : 'La venta de inmuebles de alto valor depende de experiencias rápidas, seguimiento disciplinado de leads y mediciones que conecten la actividad de marketing con resultados comerciales.'}
       problems={problems}
-      solutionsSectionTitle={isEn ? "Real Estate Tech Solutions" : "Soluciones de Ingeniería Inmobiliaria"}
+      solutionsSectionTitle={isEn ? 'Real estate technology engineering' : 'Ingeniería tecnológica inmobiliaria'}
       solutionsSectionDesc={isEn
-        ? "We build the digital control layer to scale up property sales and automate lead response times."
-        : "Estructuramos la capa de control tecnológico que tu constructora de alta gama necesita para acelerar ventas y automatizar la atención."}
+        ? 'We connect web, CRM, automation and analytics to improve lead traceability, advisor workflows and commercial visibility.'
+        : 'Conectamos web, CRM, automatización y analítica para mejorar trazabilidad de leads, flujos de asesores y visibilidad comercial.'}
       solutions={solutions}
       diagnosticBannerTitle={isEn
-        ? "If you check 2 or more, you need to evaluate your sales infrastructure."
-        : "Si marcaste 2 o más, necesitas evaluar tu infraestructura comercial."}
+        ? 'Assess your web, lead flow, CRM and commercial analytics with AEGRIX.'
+        : 'Evalúa tu web, flujo de leads, CRM y analítica comercial con AEGRIX.'}
       diagnosticBannerDesc={isEn
-        ? "We evaluate the load speed of your web showcase, the response times of your agents on WhatsApp, and the analytics tracking of your active ad spend."
-        : "Evaluamos gratis la velocidad de carga de tus proyectos web, el tiempo de respuesta de tus asesores en WhatsApp y la analítica de tus campañas de pauta. Te entregamos el informe en 48 horas."}
-      diagnosticBannerCta={isEn ? "Request Free Real Estate Diagnosis" : "Solicitar diagnóstico inmobiliario gratuito"}
-      diagnosticWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20digital%20para%20mi%20constructora%20o%20inmobiliaria."
+        ? 'We can review web performance, lead routing, follow-up, integrations and measurement to define the priorities with the greatest technical and commercial impact.'
+        : 'Podemos revisar rendimiento web, asignación de leads, seguimiento, integraciones y medición para definir las prioridades con mayor impacto técnico y comercial.'}
+      diagnosticBannerCta={isEn ? 'Start real estate assessment' : 'Iniciar evaluación inmobiliaria'}
+      diagnosticWhatsAppUrl={REAL_ESTATE_WHATSAPP_URL}
     />
   );
 }

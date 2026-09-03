@@ -7,7 +7,7 @@ import { CheckCircle2 } from 'lucide-react';
 import Footer from './Footer';
 
 export interface NicheCard {
-  code: string;
+  label: string;
   title: string;
   description: string;
   icon: React.ComponentType<{ size?: number; className?: string; 'aria-hidden'?: boolean | 'true' | 'false' }>;
@@ -120,11 +120,11 @@ const NicheLandingTemplate = ({
             {problems.map((card) => {
               const Icon = card.icon;
               return (
-                <article key={`${card.code}-${card.title}`} className="rounded-2xl bg-aegrix-surface border border-aegrix-border p-6">
+                <article key={`${card.label}-${card.title}`} className="rounded-2xl bg-aegrix-surface border border-aegrix-border p-6">
                   <div className="w-11 h-11 rounded-xl bg-aegrix-bg-2 border border-aegrix-border text-aegrix-cyan flex items-center justify-center mb-5">
                     <Icon size={21} aria-hidden="true" />
                   </div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-aegrix-muted mb-2">{card.code}</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-aegrix-muted mb-2">{card.label}</p>
                   <h3 className="text-lg font-sora font-bold text-aegrix-text mb-3">{card.title}</h3>
                   <p className="text-sm text-aegrix-muted leading-relaxed">{card.description}</p>
                 </article>

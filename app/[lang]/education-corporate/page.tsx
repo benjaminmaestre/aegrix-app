@@ -4,47 +4,49 @@ import React from 'react';
 import { useParams } from 'next/navigation';
 import NicheLandingTemplate from '@/components/NicheLandingTemplate';
 import { Globe, Database, Clock, TrendingDown } from 'lucide-react';
+import { buildWhatsAppUrl } from '@/lib/site-config';
+
+const EDUCATION_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero evaluar mi LMS, checkout, automatización de matrículas y analítica educativa con AEGRIX.');
 
 export default function EducationCorporatePage() {
   const params = useParams();
   const lang = (params?.lang as 'es' | 'en') || 'es';
-
   const isEn = lang === 'en';
 
   const problems = [
     {
-      code: '[WARN_FUGA_CHECKOUT]',
-      title: isEn ? 'Checkout Purchase Leakage' : 'Fuga de compras en el checkout',
+      label: 'CHECKOUT',
+      title: isEn ? 'Payment and checkout friction' : 'Fricción en pagos y checkout',
       description: isEn
-        ? 'Students abandon the purchase process due to slow payment gateways, lack of local methods (PSE), or complex forms.'
-        : 'Estudiantes abandonan la compra debido a pasarelas lentas, falta de métodos de pago locales (PSE) o formularios complejos.',
+        ? 'Slow steps, limited payment methods or complex forms can make enrollment harder and reduce visibility into where users abandon the process.'
+        : 'Pasos lentos, métodos de pago limitados o formularios complejos pueden dificultar la matrícula y reducir la visibilidad sobre dónde se abandona el proceso.',
       icon: TrendingDown,
       colorClass: 'text-red-500',
     },
     {
-      code: '[WARN_GESTION_MANUAL]',
-      title: isEn ? 'Manual Enrollment & Certificates' : 'Matriculación y certificados manuales',
+      label: isEn ? 'ENROLLMENT' : 'MATRÍCULAS',
+      title: isEn ? 'Enrollment and certificates depend on manual work' : 'Matrículas y certificados dependen de trabajo manual',
       description: isEn
-        ? 'Staff spends hours manually enrolling students, sending PDF invoices, and generating completion certificates.'
-        : 'El personal dedica horas a matricular estudiantes a mano, enviar facturas PDF y generar certificados de finalización de cursos.',
+        ? 'Staff may spend significant time enrolling students, sending confirmations and producing certificates without integrated workflows.'
+        : 'El personal puede dedicar mucho tiempo a matricular alumnos, enviar confirmaciones y generar certificados sin flujos integrados.',
       icon: Clock,
       colorClass: 'text-orange-500',
     },
     {
-      code: '[WARN_PLATAFORMA_LENTA]',
-      title: isEn ? 'Slow Educational Platform' : 'Plataforma educativa inestable o lenta',
+      label: isEn ? 'PLATFORM' : 'PLATAFORMA',
+      title: isEn ? 'The LMS does not match expected demand' : 'El LMS no responde al nivel de demanda esperado',
       description: isEn
-        ? 'LMS crashes when multiple students access videos or take exams simultaneously, leading to bad reviews.'
-        : 'La plataforma se cae cuando múltiples alumnos acceden a videos o exámenes en simultáneo, generando quejas y mala reputación.',
+        ? 'Video delivery, exams and concurrent access require an architecture sized for expected load, observability and recovery needs.'
+        : 'Video, exámenes y accesos concurrentes requieren una arquitectura dimensionada para la carga esperada, observabilidad y necesidades de recuperación.',
       icon: Globe,
       colorClass: 'text-pink-500',
     },
     {
-      code: '[WARN_SIN_RETENCION_DATOS]',
-      title: isEn ? 'No Student Progress Tracking' : 'Falta de analítica y retención',
+      label: isEn ? 'ANALYTICS' : 'ANALÍTICA',
+      title: isEn ? 'Limited visibility into learning and retention' : 'Poca visibilidad sobre aprendizaje y retención',
       description: isEn
-        ? 'No data on course completion rates or student dropouts, preventing optimization of the content and sales funnel.'
-        : 'Sin datos de tasa de finalización de cursos ni deserción, impidiendo optimizar el contenido y el embudo de ventas.',
+        ? 'Without consistent data on completion, engagement and dropout, it is harder to improve content, operations and the enrollment journey.'
+        : 'Sin datos consistentes de finalización, participación y deserción, es más difícil mejorar contenido, operación y recorrido de matrícula.',
       icon: Database,
       colorClass: 'text-blue-500',
     },
@@ -52,31 +54,31 @@ export default function EducationCorporatePage() {
 
   const solutions = [
     {
-      title: isEn ? 'Custom High-Converting Checkout' : 'Pasarelas de Pago & Checkout',
+      title: isEn ? 'Checkout & Payment Integrations' : 'Checkout e Integraciones de Pago',
       desc: isEn
-        ? 'Integrate high-speed, localized, and multi-currency checkouts (PSE, credit card, Stripe, ePayco) that minimize buyer friction.'
-        : 'Desarrollo de checkouts ultra rápidos con soporte para múltiples divisas y pasarelas integradas (PSE, Stripe, Wompi, ePayco) para reducir la tasa de abandono.',
+        ? 'Localized checkout flows with payment methods, currencies and tax logic selected according to the operating model and provider capabilities.'
+        : 'Flujos de checkout adaptados con métodos de pago, monedas y lógica tributaria seleccionados según el modelo de operación y capacidades del proveedor.',
       features: isEn
-        ? ['Localized fast checkout flows', 'Automated tax calculations', 'Abandonment recovery flows', 'Robust transaction security']
-        : ['Flujos rápidos adaptados a Colombia', 'Cálculo automatizado de impuestos', 'Recuperación de carritos abandonados', 'Cumplimiento y seguridad transaccional'],
+        ? ['Localized payment flows', 'Payment-provider integrations', 'Abandonment measurement and recovery workflows', 'Transaction security controls']
+        : ['Flujos de pago adaptados', 'Integraciones con proveedores de pago', 'Medición de abandono y flujos de recuperación', 'Controles de seguridad transaccional'],
     },
     {
-      title: isEn ? 'Automated Administration & LMS' : 'Automatización y LMS a Medida',
+      title: isEn ? 'Enrollment Automation & Custom LMS' : 'Automatización de Matrículas y LMS a Medida',
       desc: isEn
-        ? 'Scale up your academy operations with automated student onboarding, video content delivery, and dynamic PDF certificate generation.'
-        : 'Sistemas de automatización de matrículas inmediatas, entrega controlada de contenido de video y generación automatizada de certificados.',
+        ? 'Automate enrollment, controlled content access, notifications and certificate generation with workflows tied to the actual platform and business rules.'
+        : 'Automatizamos matrículas, acceso controlado a contenido, notificaciones y generación de certificados con flujos conectados a la plataforma y reglas reales del negocio.',
       features: isEn
-        ? ['Instant automated enrollments', 'Dynamic PDF certificate engines', 'Enterprise video hosting sync', 'Automated email onboarding sequences']
-        : ['Matrícula inmediata tras pago', 'Generador dinámico de certificados PDF', 'Sincronización con hosting de video', 'Campañas automáticas de bienvenida'],
+        ? ['Enrollment workflows after confirmed payment', 'Dynamic certificate generation', 'Video platform integrations', 'Automated onboarding communications']
+        : ['Flujos de matrícula después del pago confirmado', 'Generación dinámica de certificados', 'Integraciones con plataforma de video', 'Comunicaciones automatizadas de onboarding'],
     },
     {
-      title: isEn ? 'Corporate Analytics Dashboard' : 'Dashboards de Rendimiento Académico',
+      title: isEn ? 'Learning & Business Analytics' : 'Analítica Académica y de Negocio',
       desc: isEn
-        ? 'Custom dashboard to track sales metrics, course completion statistics, student engagement, and business accounts progress.'
-        : 'Panel centralizado para analizar ventas, tiempos de finalización de cursos, avance de alumnos corporativos y tasas de retención.',
+        ? 'Dashboards that connect enrollment, completion, engagement and sales data using defined sources and measurement rules.'
+        : 'Dashboards que conectan matrícula, finalización, participación y ventas usando fuentes y reglas de medición definidas.',
       features: isEn
-        ? ['Corporate student tracking dashboards', 'Real-time sales conversion logs', 'Custom engagement indicators', 'Exportable compliance reports']
-        : ['Monitoreo de grupos corporativos', 'Tasa de conversión de ventas en vivo', 'Métricas de retención y engagement', 'Exportación de reportes de cumplimiento'],
+        ? ['Corporate cohort tracking', 'Enrollment and conversion analytics', 'Engagement indicators', 'Exportable operational reports']
+        : ['Seguimiento de cohortes corporativas', 'Analítica de matrícula y conversión', 'Indicadores de participación', 'Reportes operativos exportables'],
     },
   ];
 
@@ -84,30 +86,30 @@ export default function EducationCorporatePage() {
     <NicheLandingTemplate
       lang={lang}
       heroTagline="AEGRIX Corporate Training & Education"
-      heroTitlePart1={isEn ? "Scalable LMS, automated checkouts" : "LMS escalable, pasarelas de pago"}
-      heroTitleHighlight={isEn ? "for business academies." : "para academias y capacitación corporativa."}
+      heroTitlePart1={isEn ? 'Scalable LMS, integrated payments and automation' : 'LMS escalable, pagos integrados y automatización'}
+      heroTitleHighlight={isEn ? 'for academies and corporate training.' : 'para academias y capacitación corporativa.'}
       heroDescription={isEn
-        ? "High-converting checkout systems, automated student administration, and custom educational platforms designed for scaling professional education."
-        : "Portales de formación profesional con automatización de matrículas, pasarelas de pago integradas sin fricciones y dashboards de analítica de alumnos corporativos."}
-      heroWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20de%20plataforma%20educativa%20o%20LMS%20para%20mi%20academia."
-      problemsSectionTitle={isEn ? "Does your academy face any of these digital bottlenecks?" : "¿Tu academia o corporación tiene alguno de estos problemas?"}
+        ? 'Educational platforms, enrollment automation, payment integrations and analytics designed around the organization’s operating model and expected demand.'
+        : 'Plataformas educativas, automatización de matrículas, integraciones de pago y analítica diseñadas alrededor del modelo de operación y la demanda esperada.'}
+      heroWhatsAppUrl={EDUCATION_WHATSAPP_URL}
+      problemsSectionTitle={isEn ? 'Common platform and enrollment gaps' : 'Brechas frecuentes de plataforma y matrícula'}
       problemsSectionDesc={isEn
-        ? "Selling education online requires reliability. When checkout steps fail, or enrollment is manual, scaling your student base becomes impossible."
-        : "Vender educación online exige confiabilidad técnica. Cuando el checkout falla o la matrícula es manual, escalar tu base de alumnos se vuelve imposible."}
+        ? 'Digital education needs reliable payments, scalable delivery, integrated administration and measurements that explain student and business behavior.'
+        : 'La educación digital necesita pagos confiables, entrega escalable, administración integrada y mediciones que expliquen el comportamiento académico y comercial.'}
       problems={problems}
-      solutionsSectionTitle={isEn ? "Educational Tech Solutions" : "Soluciones de Ingeniería Educativa"}
+      solutionsSectionTitle={isEn ? 'Education technology engineering' : 'Ingeniería tecnológica para educación'}
       solutionsSectionDesc={isEn
-        ? "We build the software architecture that turns administrative tasks into silent, automatic, and error-free background processes."
-        : "Estructuramos la capa de control tecnológico para que las tareas administrativas se ejecuten de fondo de manera silenciosa, veloz y sin errores."}
+        ? 'We design software and automation that reduce manual work, connect educational workflows and make performance easier to measure and improve.'
+        : 'Diseñamos software y automatización que reducen trabajo manual, conectan flujos educativos y facilitan medir y mejorar el rendimiento.'}
       solutions={solutions}
       diagnosticBannerTitle={isEn
-        ? "If you identify 2 or more, your academy needs an LMS audit."
-        : "Si identificas 2 o más problemas, tu academia necesita una auditoría de LMS."}
+        ? 'Assess checkout, LMS performance, enrollment automation and analytics with AEGRIX.'
+        : 'Evalúa checkout, rendimiento del LMS, automatización de matrículas y analítica con AEGRIX.'}
       diagnosticBannerDesc={isEn
-        ? "We evaluate free of charge your checkout conversion speed, video streaming loading times, and student registration automation gaps. We deliver the report in 48 hours."
-        : "Evaluamos gratis la velocidad y fricción de tu checkout, los tiempos de carga de tus videos de clases y el flujo de matrículas automatizadas. Te entregamos un informe en 48 horas."}
-      diagnosticBannerCta={isEn ? "Request Free LMS & Checkout Audit" : "Solicitar diagnóstico educativo gratuito"}
-      diagnosticWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20de%20plataforma%20educativa%20o%20LMS%20para%20mi%20academia."
+        ? 'We can review payment flows, platform architecture, enrollment processes and measurement to prioritize improvements with a defined scope.'
+        : 'Podemos revisar flujos de pago, arquitectura de plataforma, procesos de matrícula y medición para priorizar mejoras con un alcance definido.'}
+      diagnosticBannerCta={isEn ? 'Start education assessment' : 'Iniciar evaluación educativa'}
+      diagnosticWhatsAppUrl={EDUCATION_WHATSAPP_URL}
     />
   );
 }

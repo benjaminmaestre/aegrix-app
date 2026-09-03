@@ -4,47 +4,49 @@ import React from 'react';
 import { useParams } from 'next/navigation';
 import NicheLandingTemplate from '@/components/NicheLandingTemplate';
 import { Database, Clock, TrendingDown, Shield } from 'lucide-react';
+import { buildWhatsAppUrl } from '@/lib/site-config';
+
+const CONSTRUCTION_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero evaluar el control de obra, integraciones y operación digital de mi constructora o empresa de servicios técnicos con AEGRIX.');
 
 export default function ConstructionTechPage() {
   const params = useParams();
   const lang = (params?.lang as 'es' | 'en') || 'es';
-
   const isEn = lang === 'en';
 
   const problems = [
     {
-      code: '[WARN_DESVIO_PRESUPUESTO]',
-      title: isEn ? 'Budget Deviation & Overruns' : 'Desviación presupuestal y sobrecostos',
+      label: isEn ? 'COSTS & BUDGET' : 'COSTOS Y PRESUPUESTO',
+      title: isEn ? 'Budget deviations are difficult to detect early' : 'Desviaciones presupuestales difíciles de detectar a tiempo',
       description: isEn
-        ? 'Material purchases, contractor metrics, and unexpected site costs logged in scattered sheets, hiding financial leaks.'
-        : 'Compras de materiales, avance de subcontratistas y costos imprevistos registrados en planillas dispersas, ocultando fugas financieras.',
+        ? 'Material purchases, contractor progress and unexpected site costs are distributed across files or systems without a unified view.'
+        : 'Compras de materiales, avance de contratistas y costos imprevistos se distribuyen entre archivos o sistemas sin una vista unificada.',
       icon: TrendingDown,
       colorClass: 'text-red-500',
     },
     {
-      code: '[WARN_DATOS_DESCONECTADOS]',
-      title: isEn ? 'Disconnected Office & Site' : 'Desconexión entre oficina y obra',
+      label: isEn ? 'OFFICE & SITE' : 'OFICINA Y OBRA',
+      title: isEn ? 'Office and site information is disconnected' : 'Información desconectada entre oficina y obra',
       description: isEn
-        ? 'Daily logs and project progress are sent via chat or emails, slowing down administrative approvals.'
-        : 'Los reportes diarios de obra y avance de proyectos se envían por chat o correos, retrasando aprobaciones administrativas.',
+        ? 'Daily logs, progress, documents and approvals move through separate channels, making coordination and traceability harder.'
+        : 'Bitácoras, avances, documentos y aprobaciones circulan por canales separados, dificultando coordinación y trazabilidad.',
       icon: Clock,
       colorClass: 'text-orange-500',
     },
     {
-      code: '[WARN_ACCESOS_INSEGUROS]',
-      title: isEn ? 'Unsecured Blueprint Sharing' : 'Accesos inseguros de planos',
+      label: isEn ? 'ACCESS' : 'ACCESOS',
+      title: isEn ? 'Project documents need stronger access control' : 'Documentos de proyecto con controles de acceso insuficientes',
       description: isEn
-        ? 'Sharing sensitive project blueprints, client files, or financial details through public tools without access audits.'
-        : 'Compartir planos confidenciales, datos de clientes o presupuestos a través de herramientas públicas sin control de accesos.',
+        ? 'Blueprints, client files and budgets may be shared without consistent permissions, review or audit trails.'
+        : 'Planos, archivos de clientes y presupuestos pueden compartirse sin permisos, revisión o trazabilidad consistentes.',
       icon: Shield,
       colorClass: 'text-pink-500',
     },
     {
-      code: '[WARN_FALTA_TRAZABILIDAD]',
-      title: isEn ? 'No Supplier Tracking' : 'Falta de trazabilidad con proveedores',
+      label: isEn ? 'TRACEABILITY' : 'TRAZABILIDAD',
+      title: isEn ? 'Supplier and delivery records are fragmented' : 'Registros fragmentados de proveedores y entregas',
       description: isEn
-        ? 'No central log of material deliveries, leading to double billing, stock discrepancies, and delayed timelines.'
-        : 'Sin historial central de entregas de materiales, resultando en doble facturación, inconsistencias en stock y retrasos en cronograma.',
+        ? 'Material deliveries, invoices and supplier activity are harder to reconcile when records are spread across different tools.'
+        : 'Entregas de materiales, facturas y actividad de proveedores son más difíciles de conciliar cuando los registros están dispersos.',
       icon: Database,
       colorClass: 'text-blue-500',
     },
@@ -52,31 +54,31 @@ export default function ConstructionTechPage() {
 
   const solutions = [
     {
-      title: isEn ? 'Real-Time Site Portals' : 'Portales de Obra y Avance',
+      title: isEn ? 'Site Progress Portals' : 'Portales de Obra y Avance',
       desc: isEn
-        ? 'Custom web portals where site managers and contractors can upload daily logs, materials receipts, and photos instantly.'
-        : 'Desarrollo de portales web móviles para que directores de obra y contratistas reporten avances diarios y recibos de material al instante.',
+        ? 'Mobile-first portals for daily logs, materials receipts, photos, documents and project updates with controlled access.'
+        : 'Portales móviles para bitácoras, recibos de materiales, fotos, documentos y actualizaciones de proyecto con acceso controlado.',
       features: isEn
-        ? ['Mobile-first log uploads', 'Instant office-site sync', 'Photo & document archive', 'Offline support cache']
-        : ['Subida de bitácoras desde móvil', 'Sincronización instantánea con oficina', 'Archivo digital de planos y fotos', 'Soporte de carga sin internet'],
+        ? ['Mobile project logs', 'Centralized office-site updates', 'Photo and document archive', 'Low-connectivity or offline flows when required']
+        : ['Bitácoras desde móvil', 'Actualizaciones centralizadas entre oficina y obra', 'Archivo de fotos y documentos', 'Flujos para baja conectividad u offline cuando aplica'],
     },
     {
-      title: isEn ? 'Budget & ERP Middleware' : 'Middleware Presupuestal y ERP',
+      title: isEn ? 'Budget & ERP Integrations' : 'Integraciones Presupuestales y ERP',
       desc: isEn
-        ? 'Direct sync between site purchases, subcontractor progress logs, and accounting ERP (SAP, Microsoft Dynamics, SIIGO).'
-        : 'Sincronización automatizada entre compras de obra, avances de subcontratistas y tu ERP contable sin re-digitaciones manuales.',
+        ? 'Connect purchases, contractor progress and accounting or ERP systems according to available APIs, data sources and project requirements.'
+        : 'Conectamos compras, avance de contratistas y sistemas contables o ERP según las APIs, fuentes de datos y requisitos disponibles.',
       features: isEn
-        ? ['Automated cost allocation', 'Bi-directional ERP sync', 'Voucher & invoice auto-matching', 'Real-time alert engine']
-        : ['Asignación automática de costos', 'Sincronización bidireccional con ERP', 'Cruce automático de facturas', 'Alertas de desvío presupuestal'],
+        ? ['Automated cost allocation', 'Bi-directional integrations when supported', 'Invoice matching workflows', 'Budget deviation alerts']
+        : ['Asignación automatizada de costos', 'Integraciones bidireccionales cuando son compatibles', 'Flujos de conciliación de facturas', 'Alertas de desviación presupuestal'],
     },
     {
-      title: isEn ? 'Project Dashboards' : 'Dashboards de Control de Proyectos',
+      title: isEn ? 'Project Control Dashboards' : 'Dashboards de Control de Proyectos',
       desc: isEn
-        ? 'Centralized visualization of construction margins, timelines deviation, contractor efficiency, and material costs.'
-        : 'Visualización centralizada de márgenes de construcción, desviación de cronogramas, rendimiento de contratistas e insumos.',
+        ? 'Centralize project indicators for budgets, schedules, contractors and materials using the data sources available in the operation.'
+        : 'Centralizamos indicadores de presupuesto, cronograma, contratistas y materiales usando las fuentes de datos disponibles en la operación.',
       features: isEn
-        ? ['Interactive Gantt & KPI charts', 'Automated margin projections', 'Contractor payment tracking', 'Exportable compliance audits']
-        : ['Gráficos Gantt y KPI interactivos', 'Proyecciones automáticas de margen', 'Control de pagos a contratistas', 'Exportación de reportes de obra'],
+        ? ['Gantt and KPI visualization', 'Cost and margin analysis', 'Contractor payment tracking', 'Exportable project reports']
+        : ['Visualización Gantt y KPI', 'Análisis de costos y márgenes', 'Seguimiento de pagos a contratistas', 'Reportes de proyecto exportables'],
     },
   ];
 
@@ -84,32 +86,32 @@ export default function ConstructionTechPage() {
     <NicheLandingTemplate
       lang={lang}
       heroTagline="AEGRIX Construction & Tech Services"
-      heroTitlePart1={isEn ? "Operational visibility, cost control" : "Control de costos, visibilidad de obra"}
-      heroTitleHighlight={isEn ? "for developer & tech services." : "para constructoras y servicios técnicos."}
+      heroTitlePart1={isEn ? 'Project control, traceability and integration' : 'Control de obra, trazabilidad e integración'}
+      heroTitleHighlight={isEn ? 'for construction and technical services.' : 'para construcción y servicios técnicos.'}
       heroDescription={isEn
-        ? "Integrated software solutions to track project budgets, eliminate Excel cost chaos, and automate contractor communications in real time."
-        : "Sistemas de software integrados para el control presupuestal de obras, eliminación del caos de Excels de costos y automatización de reportes de contratistas."}
-      heroWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20digital%20para%20mi%20constructora%20o%20empresa%20de%20servicios%20t%C3%A9cnicos."
+        ? 'Software, project portals, ERP integrations and analytics to connect site execution with administrative and financial control.'
+        : 'Software, portales de obra, integraciones ERP y analítica para conectar la ejecución en campo con el control administrativo y financiero.'}
+      heroWhatsAppUrl={CONSTRUCTION_WHATSAPP_URL}
       heroImageBaseName="hero-construction-bogota"
-      heroImageAlt={isEn ? "Construction professionals reviewing a modern project in Bogota." : "Profesionales de construcción revisando un proyecto moderno en Bogotá."}
-      problemsSectionTitle={isEn ? "Does your construction or technical service company face these bottlenecks?" : "¿Tu constructora o empresa de servicios técnicos tiene alguno de estos problemas?"}
+      heroImageAlt={isEn ? 'Construction professionals reviewing a modern project in Bogota.' : 'Profesionales de construcción revisando un proyecto moderno en Bogotá.'}
+      problemsSectionTitle={isEn ? 'Common operational gaps in construction and technical services' : 'Brechas operativas frecuentes en construcción y servicios técnicos'}
       problemsSectionDesc={isEn
-        ? "Construction and technical operations require absolute coordination. Scattered logs, manual expense entry, and disconnected software lead to critical project delays."
-        : "La operación de obras y servicios técnicos requiere coordinación absoluta. Los reportes dispersos, digitación manual de gastos y software desconectado causan costosos retrasos."}
+        ? 'Complex projects depend on timely information, controlled access and reliable traceability between the field, administration and suppliers.'
+        : 'Los proyectos complejos dependen de información oportuna, accesos controlados y trazabilidad confiable entre campo, administración y proveedores.'}
       problems={problems}
-      solutionsSectionTitle={isEn ? "Construction Tech Solutions" : "Soluciones de Ingeniería de Obra"}
+      solutionsSectionTitle={isEn ? 'Construction technology engineering' : 'Ingeniería tecnológica para construcción'}
       solutionsSectionDesc={isEn
-        ? "We build the digital control layer that links office management with site execution, securing margins and budgets."
-        : "Estructuramos la capa de control tecnológico que une la administración con la ejecución en campo para blindar tus márgenes y presupuestos."}
+        ? 'We design the software and data layer that connects administration with field execution to improve control, traceability and decision-making.'
+        : 'Diseñamos la capa de software y datos que conecta administración y ejecución en campo para mejorar control, trazabilidad y capacidad de decisión.'}
       solutions={solutions}
       diagnosticBannerTitle={isEn
-        ? "If you identify 2 or more, your project workflows need a technological health check."
-        : "Si identificas 2 o más problemas, tu operación necesita un diagnóstico tecnológico."}
+        ? 'Assess project control, integrations and information security with AEGRIX.'
+        : 'Evalúa control de obra, integraciones y seguridad de la información con AEGRIX.'}
       diagnosticBannerDesc={isEn
-        ? "We evaluate free of charge your project cost tracking speed, system integrations, and site-to-office information security. We deliver the report in 48 hours."
-        : "Evaluamos gratis la velocidad de reporte de costos, el estado de tus integraciones de sistemas y la seguridad de información entre obra y oficina. Te entregamos un informe en 48 horas."}
-      diagnosticBannerCta={isEn ? "Request Free Operations Audit" : "Solicitar diagnóstico operativo gratuito"}
-      diagnosticWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20digital%20para%20mi%20constructora%20o%20empresa%20de%20servicios%20t%C3%A9cnicos."
+        ? 'We can review data sources, project workflows, integrations, access controls and reporting to prioritize improvements with a defined scope.'
+        : 'Podemos revisar fuentes de datos, flujos de obra, integraciones, controles de acceso y reportes para priorizar mejoras con un alcance definido.'}
+      diagnosticBannerCta={isEn ? 'Start operations assessment' : 'Iniciar evaluación de operación'}
+      diagnosticWhatsAppUrl={CONSTRUCTION_WHATSAPP_URL}
     />
   );
 }

@@ -16,7 +16,7 @@ export default function HealthPremiumPage() {
 
   const problems = [
     {
-      code: isEn ? 'PATIENT JOURNEY' : 'RECORRIDO DEL PACIENTE',
+      label: isEn ? 'PATIENT JOURNEY' : 'RECORRIDO DEL PACIENTE',
       title: isEn ? 'Untracked WhatsApp conversations' : 'Conversaciones de WhatsApp sin trazabilidad',
       description: isEn
         ? 'Patient inquiries arrive through WhatsApp but response ownership, follow-up and conversion are not consistently measured.'
@@ -25,7 +25,7 @@ export default function HealthPremiumPage() {
       colorClass: 'text-green-500',
     },
     {
-      code: isEn ? 'SENSITIVE DATA' : 'DATOS SENSIBLES',
+      label: isEn ? 'SENSITIVE DATA' : 'DATOS SENSIBLES',
       title: isEn ? 'Privacy and security gaps' : 'Brechas de privacidad y seguridad',
       description: isEn
         ? 'Clinical records, consents or other sensitive information may move through channels without sufficient access controls, evidence or traceability.'
@@ -34,7 +34,7 @@ export default function HealthPremiumPage() {
       colorClass: 'text-red-500',
     },
     {
-      code: 'WEB',
+      label: 'WEB',
       title: isEn ? 'Medical website without a clear journey' : 'Web médica sin un recorrido claro',
       description: isEn
         ? 'The site provides information but does not clearly connect discovery, trust, contact, booking and measurement.'
@@ -43,7 +43,7 @@ export default function HealthPremiumPage() {
       colorClass: 'text-pink-500',
     },
     {
-      code: isEn ? 'OPERATIONS' : 'OPERACIÓN',
+      label: isEn ? 'OPERATIONS' : 'OPERACIÓN',
       title: isEn ? 'Manual appointment coordination' : 'Coordinación manual de citas',
       description: isEn
         ? 'Administrative teams spend time coordinating appointments through calls and chats without integrated workflows.'
