@@ -1,14 +1,15 @@
 import { legalIdentity } from '@/lib/legal-identity';
+import { siteConfig } from '@/lib/site-config';
 
 export const runtime = 'edge';
 
 export function GET() {
   const body = [
     `Contact: mailto:${legalIdentity.email}`,
-    'Expires: 2027-09-03T23:59:59Z',
+    'Expires: 2027-03-03T23:59:59Z',
     'Preferred-Languages: es, en',
-    'Canonical: https://aegrix.com.co/.well-known/security.txt',
-    'Policy: https://aegrix.com.co/es/seguridad',
+    `Canonical: ${siteConfig.origin}/.well-known/security.txt`,
+    `Policy: ${siteConfig.origin}/es/seguridad`,
     '',
   ].join('\n');
 
