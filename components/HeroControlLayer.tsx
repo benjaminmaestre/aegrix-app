@@ -5,14 +5,31 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { BarChart3, CheckCircle2, Cpu, Globe, Shield } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const controlLayers = [
+type HeroControlLayerProps = {
+  lang: 'es' | 'en';
+};
+
+type ControlLayer = {
+  id: string;
+  shortLabel: string;
+  label: string;
+  description: string;
+  icon: typeof Shield;
+  tags: string[];
+  status: string;
+  color: string;
+  bgColor: string;
+  borderColor: string;
+};
+
+const controlLayersEs: ControlLayer[] = [
   {
     id: 'cybersecurity',
     shortLabel: 'Seguridad',
     label: 'Ciberseguridad',
     description: 'Evaluamos riesgos, accesos, configuraciones y superficie de ataque para fortalecer los controles que realmente necesita la organización.',
     icon: Shield,
-    tags: ['Hardening', 'Access Control', 'Risk Review'],
+    tags: ['Hardening', 'Control de acceso', 'Revisión de riesgos'],
     status: 'Evaluación y fortalecimiento',
     color: 'text-aegrix-cyan',
     bgColor: 'bg-aegrix-cyan/10',
@@ -24,7 +41,7 @@ const controlLayers = [
     label: 'Software & Web',
     description: 'Diseñamos y optimizamos productos digitales con foco en arquitectura, rendimiento, SEO técnico y recorridos de conversión medibles.',
     icon: Globe,
-    tags: ['SEO Técnico', 'Performance', 'Conversion Tracking'],
+    tags: ['SEO técnico', 'Rendimiento', 'Medición de conversión'],
     status: 'Diseño, desarrollo y rendimiento',
     color: 'text-blue-400',
     bgColor: 'bg-blue-500/10',
@@ -36,7 +53,7 @@ const controlLayers = [
     label: 'Datos & Analítica',
     description: 'Organizamos fuentes, indicadores y reportes para convertir información dispersa en una base útil para decisiones y seguimiento.',
     icon: BarChart3,
-    tags: ['KPIs', 'Power BI', 'Executive Reports'],
+    tags: ['KPIs', 'Power BI', 'Reportes ejecutivos'],
     status: 'Analítica y trazabilidad',
     color: 'text-purple-400',
     bgColor: 'bg-purple-500/10',
@@ -48,7 +65,7 @@ const controlLayers = [
     label: 'IA & Automatización',
     description: 'Aplicamos automatización e inteligencia artificial a procesos concretos donde puedan reducir trabajo repetitivo, mejorar trazabilidad o acelerar análisis.',
     icon: Cpu,
-    tags: ['Workflows', 'AI Assistants', 'Process Automation'],
+    tags: ['Flujos de trabajo', 'Asistentes de IA', 'Automatización de procesos'],
     status: 'Automatización aplicada',
     color: 'text-indigo-400',
     bgColor: 'bg-indigo-500/10',
@@ -56,8 +73,61 @@ const controlLayers = [
   },
 ];
 
-const HeroControlLayer = () => {
+const controlLayersEn: ControlLayer[] = [
+  {
+    id: 'cybersecurity',
+    shortLabel: 'Security',
+    label: 'Cybersecurity',
+    description: 'We assess risks, access, configurations and attack surface to strengthen the controls the organization actually needs.',
+    icon: Shield,
+    tags: ['Hardening', 'Access control', 'Risk review'],
+    status: 'Assessment and strengthening',
+    color: 'text-aegrix-cyan',
+    bgColor: 'bg-aegrix-cyan/10',
+    borderColor: 'border-aegrix-cyan/30',
+  },
+  {
+    id: 'web-growth',
+    shortLabel: 'Web',
+    label: 'Software & Web',
+    description: 'We design and optimize digital products with a focus on architecture, performance, technical SEO and measurable conversion journeys.',
+    icon: Globe,
+    tags: ['Technical SEO', 'Performance', 'Conversion measurement'],
+    status: 'Design, development and performance',
+    color: 'text-blue-400',
+    bgColor: 'bg-blue-500/10',
+    borderColor: 'border-blue-500/30',
+  },
+  {
+    id: 'data-intelligence',
+    shortLabel: 'Data',
+    label: 'Data & Analytics',
+    description: 'We organize sources, indicators and reports to turn scattered information into a useful foundation for decisions and follow-up.',
+    icon: BarChart3,
+    tags: ['KPIs', 'Power BI', 'Executive reports'],
+    status: 'Analytics and traceability',
+    color: 'text-purple-400',
+    bgColor: 'bg-purple-500/10',
+    borderColor: 'border-purple-500/30',
+  },
+  {
+    id: 'ai-automation',
+    shortLabel: 'AI',
+    label: 'AI & Automation',
+    description: 'We apply automation and artificial intelligence to concrete processes where they can reduce repetitive work, improve traceability or accelerate analysis.',
+    icon: Cpu,
+    tags: ['Workflows', 'AI assistants', 'Process automation'],
+    status: 'Applied automation',
+    color: 'text-indigo-400',
+    bgColor: 'bg-indigo-500/10',
+    borderColor: 'border-indigo-500/30',
+  },
+];
+
+const HeroControlLayer = ({ lang }: HeroControlLayerProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const isEnglish = lang === 'en';
+  const controlLayers = isEnglish ? controlLayersEn : controlLayersEs;
   const activeLayer = controlLayers[activeIndex];
 
   return (
@@ -67,8 +137,10 @@ const HeroControlLayer = () => {
       <div className="relative grid grid-cols-1 md:grid-cols-12 bg-aegrix-surface/80 border border-aegrix-border rounded-2xl md:rounded-3xl overflow-hidden backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
         <div className="md:hidden flex flex-col border-b border-aegrix-border bg-aegrix-bg-2/30">
           <div className="flex items-center justify-between px-4 py-2.5 border-b border-aegrix-border/50">
-            <span className="text-[8.5px] font-bold text-aegrix-text/70 uppercase tracking-widest">Mapa de capacidades</span>
-            <span className="text-[8px] font-mono text-aegrix-text/30 tracking-tighter">AEGRIX // 360</span>
+            <span className="text-[8.5px] font-bold text-aegrix-text/70 uppercase tracking-widest">
+              {isEnglish ? 'AEGRIX capabilities' : 'Capacidades AEGRIX'}
+            </span>
+            <span className="text-[8px] font-semibold text-aegrix-text/30 tracking-wide">AEGRIX 360</span>
           </div>
           <div className="grid grid-cols-4 gap-1.5 p-2 bg-aegrix-bg/40">
             {controlLayers.map((layer, index) => (
@@ -103,8 +175,10 @@ const HeroControlLayer = () => {
 
         <div className="hidden md:block md:col-span-5 border-r border-aegrix-border p-6 bg-aegrix-bg-2/30">
           <div className="flex items-center justify-between mb-8 px-2">
-            <span className="text-[10px] font-bold text-aegrix-text/70 uppercase tracking-widest">Mapa de capacidades</span>
-            <span className="text-[9px] font-mono text-aegrix-text/30 tracking-tighter">AEGRIX // 360</span>
+            <span className="text-[10px] font-bold text-aegrix-text/70 uppercase tracking-widest">
+              {isEnglish ? 'AEGRIX capabilities' : 'Capacidades AEGRIX'}
+            </span>
+            <span className="text-[9px] font-semibold text-aegrix-text/30 tracking-wide">AEGRIX 360</span>
           </div>
 
           <div className="space-y-2.5">
@@ -141,7 +215,9 @@ const HeroControlLayer = () => {
 
           <div className="mt-8 pt-6 border-t border-aegrix-border">
             <p className="text-[9px] text-aegrix-text/40 uppercase tracking-[0.16em] leading-relaxed">
-              La combinación exacta se define según el alcance y las prioridades del proyecto.
+              {isEnglish
+                ? 'The exact combination is defined by the project scope and priorities.'
+                : 'La combinación exacta se define según el alcance y las prioridades del proyecto.'}
             </p>
           </div>
         </div>
@@ -167,7 +243,9 @@ const HeroControlLayer = () => {
                   )}>
                     {activeLayer.status}
                   </div>
-                  <div className="text-[8px] md:text-[10px] font-mono text-aegrix-text/25 uppercase tracking-[0.2em]">CAPABILITY_0{activeIndex + 1}</div>
+                  <div className="text-[8px] md:text-[10px] font-semibold text-aegrix-text/25 uppercase tracking-[0.16em]">
+                    {isEnglish ? 'Capability' : 'Capacidad'} {String(activeIndex + 1).padStart(2, '0')}
+                  </div>
                 </div>
 
                 <h3 className="text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-sora font-bold text-aegrix-text mb-2 md:mb-6 leading-tight tracking-tight">
@@ -181,7 +259,7 @@ const HeroControlLayer = () => {
 
               <div className="mt-auto">
                 <div className="text-[8px] md:text-[10px] font-bold text-aegrix-text/35 uppercase tracking-[0.25em] mb-3 md:mb-6 border-b border-aegrix-border pb-2">
-                  Capacidades relacionadas
+                  {isEnglish ? 'Related capabilities' : 'Capacidades relacionadas'}
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 md:gap-y-4 gap-x-6">
                   {activeLayer.tags.map((tag) => (
