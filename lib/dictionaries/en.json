@@ -1,10 +1,10 @@
 {
   "hero": {
-    "title_part1": "We shield, optimize and scale",
-    "title_highlight": "the digital layer of your business.",
-    "description": "At AEGRIX we diagnose, build and optimize the digital layer of your business: web, AI, data, automation and cybersecurity.",
-    "cta_primary": "Request 360 Diagnostic",
-    "cta_secondary": "View solutions for my company"
+    "title_part1": "We design and improve",
+    "title_highlight": "digital systems for companies.",
+    "description": "At AEGRIX we work across software, cybersecurity, data, automation and AI with scopes and deliverables defined for each project.",
+    "cta_primary": "Request a diagnostic",
+    "cta_secondary": "View services"
   },
   "navbar": {
     "services": "Services",
@@ -12,24 +12,24 @@
     "sectors": "Sectors",
     "methodology": "Methodology",
     "contact": "Contact",
-    "cta": "Request 360 Diagnostic"
+    "cta": "Request a diagnostic"
   },
   "about": {
-    "title": "Our Philosophy",
-    "subtitle": "AEGRIX DNA",
-    "description": "We are not just a technology firm; we are architects of digital stability. At AEGRIX, we believe technology should be an invisible but indestructible layer that allows companies to operate without limits.",
+    "title": "How we work",
+    "subtitle": "AEGRIX",
+    "description": "We are a technology firm focused on solving specific business needs through software engineering, cybersecurity, data, automation and artificial intelligence.",
     "mission_title": "Mission",
-    "mission_text": "To provide the most secure and efficient digital infrastructure for companies leading the future.",
+    "mission_text": "Design and implement technology solutions with clear scope, technical criteria and verifiable deliverables.",
     "vision_title": "Vision",
-    "vision_text": "To be the global standard in the integration of security, data, and artificial intelligence.",
+    "vision_text": "Build long-term relationships based on responsible engineering, continuous improvement and measurable results.",
     "values": {
-      "security": "Total Security",
-      "precision": "Data Precision",
-      "innovation": "Constant Innovation"
+      "security": "Security",
+      "precision": "Technical rigor",
+      "innovation": "Continuous improvement"
     }
   },
   "cookies": {
-    "message": "We use our own and third-party cookies to guarantee the site's operation, improve your experience, analyze traffic, protect the platform's security, and optimize our commercial communications. By continuing to browse, you accept our Cookie Policy.",
+    "message": "We use necessary cookies for site operation. Analytics, functional or marketing cookies are activated only according to the preferences you choose.",
     "accept": "Accept All",
     "decline": "Reject Non-Essential",
     "settings": "Cookie Settings"
