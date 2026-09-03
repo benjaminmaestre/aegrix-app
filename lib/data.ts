@@ -1,3 +1,5 @@
+import { buildWhatsAppUrl } from '@/lib/site-config';
+
 export const navItems = [
   { label: 'Inicio', href: '/' },
   { label: 'Servicios', href: '/#servicios' },
@@ -141,6 +143,6 @@ export const webBenefits = [
   { title: 'Medición', desc: 'Analítica y eventos configurables según consentimiento y necesidades del proyecto.' },
 ];
 
-export const WHATSAPP_URL = 'https://wa.me/573107379163?text=Hola,%20quiero%20iniciar%20una%20evaluaci%C3%B3n%20con%20AEGRIX%20360%20para%20mi%20organizaci%C3%B3n.';
-export const WHATSAPP_URL_WEB = 'https://wa.me/573107379163?text=Hola,%20quiero%20revisar%20si%20mi%20p%C3%A1gina%20web%20est%C3%A1%20perdiendo%20clientes.';
-export const WHATSAPP_URL_AI = 'https://wa.me/573107379163?text=Hola,%20quiero%20automatizar%20procesos%20con%20IA%20en%20mi%20empresa.';
+export const WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero iniciar una evaluación con AEGRIX 360 para mi organización.');
+export const WHATSAPP_URL_WEB = buildWhatsAppUrl('Hola, quiero revisar si mi página web está perdiendo clientes.');
+export const WHATSAPP_URL_AI = buildWhatsAppUrl('Hola, quiero automatizar procesos con IA en mi empresa.');
