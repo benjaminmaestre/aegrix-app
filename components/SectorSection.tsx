@@ -8,20 +8,20 @@ const industriesEs = [
   {
     icon: Landmark,
     title: 'Finanzas & Fintech',
-    challenge: 'Controles de acceso, trazabilidad, seguridad de aplicaciones y requisitos regulatorios según el contexto.',
-    approach: 'Evaluación del alcance y priorización de controles técnicos y operativos relevantes.',
+    challenge: 'Controles de acceso, trazabilidad, seguridad de aplicaciones, gestión de riesgo y requisitos regulatorios según el contexto.',
+    approach: 'Evaluamos riesgos y controles y, cuando aplica, usamos NIST e ISO/IEC 27001/27002 como marcos de referencia para readiness y priorización de mejoras.',
   },
   {
     icon: Activity,
     title: 'Salud & Healthtech',
-    challenge: 'Tratamiento de información sensible, accesos, disponibilidad y requisitos de privacidad.',
-    approach: 'Revisión de riesgos, flujos de información y controles aplicables al servicio contratado.',
+    challenge: 'Tratamiento de información sensible, accesos, disponibilidad, trazabilidad y requisitos de privacidad.',
+    approach: 'Revisamos riesgos, flujos de información y controles de seguridad, incluyendo readiness frente a HIPAA Security Rule cuando forma parte del alcance.',
   },
   {
     icon: Briefcase,
     title: 'Corporativo & Retail',
-    challenge: 'Procesos fragmentados, sitios sin medición y tareas manuales que dificultan la operación.',
-    approach: 'Software, analítica y automatización definidos alrededor de necesidades y métricas concretas.',
+    challenge: 'Procesos fragmentados, sitios sin medición, tareas manuales y controles digitales que dificultan la operación.',
+    approach: 'Combinamos software, analítica, automatización y ciberseguridad alrededor de necesidades concretas y objetivos medibles.',
   },
 ];
 
@@ -29,20 +29,20 @@ const industriesEn = [
   {
     icon: Landmark,
     title: 'Finance & Fintech',
-    challenge: 'Access controls, traceability, application security, and regulatory requirements according to context.',
-    approach: 'Scope assessment and prioritization of the relevant technical and operational controls.',
+    challenge: 'Access controls, traceability, application security, risk management and regulatory requirements according to context.',
+    approach: 'We assess risks and controls and, when applicable, use NIST and ISO/IEC 27001/27002 as reference frameworks for readiness and improvement prioritization.',
   },
   {
     icon: Activity,
     title: 'Healthcare & Healthtech',
-    challenge: 'Sensitive information handling, access, availability, and privacy requirements.',
-    approach: 'Review of risks, information flows, and controls applicable to the contracted service.',
+    challenge: 'Sensitive information handling, access, availability, traceability and privacy requirements.',
+    approach: 'We review risks, information flows and security controls, including HIPAA Security Rule readiness when it is part of the engagement scope.',
   },
   {
     icon: Briefcase,
     title: 'Corporate & Retail',
-    challenge: 'Fragmented processes, websites without measurement, and manual tasks that make operations harder.',
-    approach: 'Software, analytics, and automation defined around specific needs and measurable objectives.',
+    challenge: 'Fragmented processes, websites without measurement, manual tasks and digital controls that make operations harder.',
+    approach: 'We combine software, analytics, automation and cybersecurity around specific needs and measurable objectives.',
   },
 ];
 
@@ -70,8 +70,8 @@ const SectorSection = () => {
           </h2>
           <p className="text-lg text-aegrix-muted">
             {isEnglish
-              ? 'Scope changes according to the industry, the information involved, the existing infrastructure, and client requirements. That is why we start with context before recommending a solution.'
-              : 'El alcance cambia según el sector, la información involucrada, la infraestructura existente y los requisitos del cliente. Por eso partimos del contexto antes de recomendar una solución.'}
+              ? 'Scope changes according to the industry, the information involved, the existing infrastructure and client requirements. We apply the engineering and frameworks that make sense for that context.'
+              : 'El alcance cambia según el sector, la información involucrada, la infraestructura existente y los requisitos del cliente. Aplicamos la ingeniería y los marcos que tienen sentido para ese contexto.'}
           </p>
         </div>
 
