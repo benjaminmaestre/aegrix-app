@@ -2,11 +2,16 @@ export const runtime = 'edge';
 
 import Hero from '@/components/Hero';
 import ProblemSection from '@/components/ProblemSection';
-import ProductDivisions from '@/components/ProductDivisions';
+import DigitalEvolution from '@/components/DigitalEvolution';
 import MethodologySection from '@/components/MethodologySection';
+import ProductDivisions from '@/components/ProductDivisions';
+import TrustSection from '@/components/TrustSection';
+import SoftwareExcellence from '@/components/SoftwareExcellence';
 import SectorSection from '@/components/SectorSection';
+import PlatformSection from '@/components/PlatformSection';
 import DiagnosticSection from '@/components/DiagnosticSection';
 import ContactSection from '@/components/ContactSection';
+import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import WhatsAppFloating from '@/components/WhatsAppFloating';
 import { getDictionary } from '@/lib/get-dictionary';
@@ -42,11 +47,16 @@ export default async function Home({
       <Hero lang={lang} dict={dict.hero} activeBackground={activeBackground} />
       <div className="relative z-10">
         <ProblemSection />
-        <ProductDivisions />
+        <DigitalEvolution />
         <MethodologySection />
+        <ProductDivisions />
+        <TrustSection />
+        <SoftwareExcellence />
         <SectorSection />
+        <PlatformSection />
         <DiagnosticSection />
         <ContactSection />
+        <FinalCTA />
       </div>
       <Footer />
       <WhatsAppFloating />
