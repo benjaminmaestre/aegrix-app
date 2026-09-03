@@ -19,11 +19,7 @@ const WhatsAppFloating = () => {
       aria-label="WhatsApp Contact"
     >
       <WhatsAppIcon size={28} />
-      
-      {/* Active pulse effect */}
-      <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 border-2 border-aegrix-bg rounded-full">
-        <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-75" />
-      </span>
+      <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 border-2 border-aegrix-bg rounded-full" aria-hidden="true" />
     </motion.a>
   );
 };
