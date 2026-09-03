@@ -1,10 +1,10 @@
 {
   "hero": {
-    "title_part1": "Blindamos, optimizamos y escalamos",
-    "title_highlight": "la capa digital de tu negocio.",
-    "description": "En AEGRIX diagnosticamos, construimos y optimizamos la capa digital de tu negocio: web, IA, datos, automatización y ciberseguridad.",
-    "cta_primary": "Solicitar diagnóstico 360",
-    "cta_secondary": "Ver soluciones para mi empresa"
+    "title_part1": "Diseñamos y mejoramos",
+    "title_highlight": "sistemas digitales para empresas.",
+    "description": "En AEGRIX trabajamos en software, ciberseguridad, datos, automatización e IA con alcances y entregables definidos según cada proyecto.",
+    "cta_primary": "Solicitar diagnóstico",
+    "cta_secondary": "Ver servicios"
   },
   "navbar": {
     "services": "Servicios",
@@ -12,24 +12,24 @@
     "sectors": "Sectores",
     "methodology": "Metodología",
     "contact": "Contacto",
-    "cta": "Solicitar diagnóstico 360"
+    "cta": "Solicitar diagnóstico"
   },
   "about": {
-    "title": "Nuestra Filosofía",
-    "subtitle": "ADN AEGRIX",
-    "description": "No somos solo una firma de tecnología; somos arquitectos de estabilidad digital. En AEGRIX, creemos que la tecnología debe ser una capa invisible pero indestructible que permita a las empresas operar sin límites.",
+    "title": "Nuestra forma de trabajar",
+    "subtitle": "AEGRIX",
+    "description": "Somos una firma de tecnología enfocada en resolver necesidades concretas mediante ingeniería de software, ciberseguridad, datos, automatización e inteligencia artificial.",
     "mission_title": "Misión",
-    "mission_text": "Proveer la infraestructura digital más segura y eficiente para las empresas que lideran el futuro.",
+    "mission_text": "Diseñar e implementar soluciones tecnológicas con alcance claro, criterios técnicos y entregables verificables.",
     "vision_title": "Visión",
-    "vision_text": "Ser el estándar global en integración de seguridad, datos e inteligencia artificial.",
+    "vision_text": "Construir relaciones de largo plazo basadas en ingeniería responsable, mejora continua y resultados medibles.",
     "values": {
-      "security": "Seguridad Total",
-      "precision": "Precisión en Datos",
-      "innovation": "Innovación Constante"
+      "security": "Seguridad",
+      "precision": "Rigor técnico",
+      "innovation": "Mejora continua"
     }
   },
   "cookies": {
-    "message": "Utilizamos cookies propias y de terceros para garantizar el funcionamiento del sitio, mejorar tu experiencia, analizar el tráfico, proteger la seguridad de la plataforma y optimizar nuestras comunicaciones comerciales. Al continuar navegando, aceptas nuestra Política de Cookies.",
+    "message": "Usamos cookies necesarias para el funcionamiento del sitio. Las cookies de analítica, funcionales o de marketing solo se activan según las preferencias que elijas.",
     "accept": "Aceptar todas",
     "decline": "Rechazar no necesarias",
     "settings": "Configurar cookies"
