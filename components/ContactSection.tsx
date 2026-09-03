@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { WhatsAppIcon } from './WhatsAppIcon';
 import ObfuscatedEmail from './ObfuscatedEmail';
 import { WHATSAPP_URL } from '@/lib/data';
+import { trackEvent } from '@/lib/analytics';
 
 const MAX_MESSAGE_LENGTH = 4000;
 
@@ -59,6 +60,7 @@ const ContactSection = () => {
       };
 
       if (response.ok && data.success) {
+        trackEvent('contact_form_submit', { language: lang });
         setSubmitStatus('success');
         setReference(data.reference || '');
         setName('');
