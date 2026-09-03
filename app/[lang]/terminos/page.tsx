@@ -3,6 +3,7 @@ export const runtime = 'edge';
 import React from 'react';
 import LegalPageLayout from '@/components/LegalPageLayout';
 import { getDictionary } from '@/lib/get-dictionary';
+import { legalIdentity } from '@/lib/legal-identity';
 
 export default async function TermsPage({
   params,
@@ -12,225 +13,207 @@ export default async function TermsPage({
   const { lang } = await params;
   const dict = await getDictionary(lang);
   const { terms } = dict.legal;
-  const lastUpdated = lang === 'es' ? '5 de mayo de 2026' : 'May 5, 2026';
+  const lastUpdated = lang === 'es' ? '3 de septiembre de 2026' : 'September 3, 2026';
 
   return (
     <LegalPageLayout title={terms.title} lastUpdated={lastUpdated}>
       {lang === 'es' ? (
         <>
-          <p>Bienvenido a AEGRIX. Al acceder, navegar, utilizar este sitio web, comunicarse con nosotros, solicitar información, contratar servicios, enviar formularios o interactuar con nuestros canales digitales, usted acepta los presentes Términos y Condiciones de Servicio.</p>
-          <p>Si no está de acuerdo con estos términos, deberá abstenerse de utilizar este sitio web, enviar información o contratar nuestros servicios.</p>
+          <p>Estos Términos y Condiciones regulan el uso del sitio web de AEGRIX y establecen reglas generales para solicitudes comerciales y servicios. Las condiciones específicas de cada proyecto se definen en la propuesta, orden de servicio o contrato aplicable y prevalecen sobre cualquier descripción general del sitio.</p>
 
           <hr className="border-white/5 my-8" />
 
-          <h2>1. Identificación de AEGRIX</h2>
-          <p>AEGRIX es una marca dedicada a la prestación de servicios de ingeniería de software, desarrollo web, ciberseguridad, analítica de datos, inteligencia artificial, capacitación tecnológica, consultoría digital y acompañamiento estratégico para empresas.</p>
+          <h2>1. Identificación</h2>
           <p>
-            Sitio web: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a><br />
-            Correo electrónico: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
-            Canal comercial: WhatsApp habilitado en el sitio web.
+            <strong>{legalIdentity.responsibleName}</strong><br />
+            {legalIdentity.roleEs}<br />
+            Marca comercial: <strong>{legalIdentity.brand}</strong><br />
+            {legalIdentity.taxIdLabelEs}: <strong>{legalIdentity.taxId}</strong><br />
+            Dirección de notificaciones: {legalIdentity.addressEs}<br />
+            Correo: <a href={`mailto:${legalIdentity.email}`} className="text-aegrix-cyan">{legalIdentity.email}</a><br />
+            Sitio web: <a href={legalIdentity.website} className="text-aegrix-cyan">{legalIdentity.website}</a>
           </p>
 
-          <h2>2. Aceptación de los términos</h2>
-          <p>El acceso y uso del sitio web de AEGRIX implica la aceptación plena, expresa e informada de estos Términos y Condiciones. El usuario declara que cuenta con capacidad legal suficiente para utilizar este sitio y actuar en nombre de una organización cuando corresponda.</p>
+          <h2>2. Naturaleza del sitio</h2>
+          <p>El sitio tiene fines informativos, comerciales y de contacto. La información pública no sustituye una propuesta, contrato, auditoría, diagnóstico formal, asesoría jurídica ni certificación.</p>
 
-          <h2>3. Naturaleza del sitio web</h2>
-          <p>El sitio web de AEGRIX tiene fines informativos, comerciales y de contacto. La información publicada no constituye asesoría técnica definitiva ni diagnóstico de seguridad completo, salvo que exista una contratación formal. AEGRIX podrá modificar contenidos sin previo aviso.</p>
+          <h2>3. Servicios</h2>
+          <p>AEGRIX presta servicios de ingeniería de software, desarrollo web, ciberseguridad, datos, automatización, inteligencia artificial, consultoría tecnológica y AEGRIX 360. El alcance, entregables, exclusiones, responsables, cronograma, criterios de aceptación y precio se definen por proyecto.</p>
 
-          <h2>4. Servicios ofrecidos</h2>
-          <p>AEGRIX ofrece servicios de desarrollo de software, desarrollo web, ciberseguridad, diagnósticos tecnológicos, analítica de datos, IA, entre otros. La descripción en el sitio web es general; el alcance específico se definirá en propuestas comerciales o contratos.</p>
+          <h2>4. AEGRIX 360, marcos y certificaciones</h2>
+          <p>AEGRIX 360 puede utilizar marcos como NIST CSF 2.0, ISO/IEC 27001, ISO/IEC 27002, HIPAA Security Rule y GDPR en procesos de assessment, readiness y assurance según el alcance contratado. Salvo indicación expresa y jurídicamente válida, AEGRIX no actúa como organismo certificador y una evaluación no constituye por sí sola certificación ni garantía de cumplimiento legal.</p>
 
-          <h2>5. Responsabilidad del usuario</h2>
-          <p>El usuario es responsable por la veracidad de la información suministrada. Se obliga a no utilizar el sitio para actividades ilícitas, no intentar acceder sin autorización a sistemas de AEGRIX y no realizar pruebas de seguridad o ataques informáticos.</p>
+          <h2>5. Información y colaboración del cliente</h2>
+          <p>El cliente debe suministrar información, accesos y decisiones necesarios de forma oportuna y contar con autorización para compartirlos. Los resultados pueden depender de la calidad, integridad y oportunidad de esa información.</p>
 
-          <h2>6. Información suministrada por el usuario</h2>
-          <p>El usuario declara tener autorización para compartir la información entregada a AEGRIX. AEGRIX no será responsable por resultados incompletos derivados de información falsa, inexacta o insuficiente suministrada por el cliente.</p>
+          <h2>6. Seguridad y diagnósticos</h2>
+          <p>Ningún servicio de ciberseguridad elimina todos los riesgos ni garantiza protección absoluta. Los hallazgos representan el estado observado dentro del alcance y momento de la evaluación. La implementación de remediaciones y controles posteriores puede ser responsabilidad de AEGRIX, del cliente o de terceros según el contrato.</p>
 
-          <h2>7. Diagnósticos, auditorías y análisis preliminares</h2>
-          <p>Se basan en la información disponible al momento. Ningún diagnóstico constituye garantía absoluta de seguridad total o eliminación definitiva de riesgos, dado que los entornos digitales cambian constantemente.</p>
+          <h2>7. Software, integraciones e infraestructura</h2>
+          <p>AEGRIX responde por el alcance contratado y por las correcciones atribuibles a sus entregables conforme al proceso de aceptación acordado. Fallas de proveedores, APIs, plataformas o infraestructura de terceros se gestionarán de acuerdo con la responsabilidad real y los compromisos asumidos en cada proyecto.</p>
 
-          <h2>8. Ciberseguridad y limitación de garantías</h2>
-          <p>Ningún servicio de ciberseguridad garantiza protección absoluta. El cliente es responsable de implementar las recomendaciones, actualizaciones y medidas de seguridad sugeridas por AEGRIX.</p>
+          <h2>8. IA, automatización y datos</h2>
+          <p>Las soluciones de IA y automatización dependen de datos, configuraciones, modelos y servicios de terceros. Cuando una decisión sea crítica o regulada, el cliente debe mantener controles humanos y profesionales adecuados.</p>
 
-          <h2>9. Desarrollo web, software e integraciones</h2>
-          <p>AEGRIX responde por el alcance expresamente contratado. El cliente es responsable de entregar información y accesos a tiempo. AEGRIX no responde por fallas de proveedores externos (hosting, APIs, etc.).</p>
+          <h2>9. SEO, analítica y resultados comerciales</h2>
+          <p>AEGRIX puede diseñar e implementar SEO técnico, analítica y optimización de conversión, pero no garantiza posiciones específicas en buscadores, ventas mínimas, tráfico determinado ni resultados que dependan de algoritmos, mercado, presupuesto o decisiones de terceros.</p>
 
-          <h2>10. Inteligencia artificial, automatización y datos</h2>
-          <p>Sujetos a limitaciones técnicas y calidad de datos. AEGRIX no es responsable por decisiones tomadas exclusivamente con base en resultados de IA sin validación humana profesional.</p>
+          <h2>10. Cotizaciones, impuestos y facturación</h2>
+          <p>Las propuestas tendrán la vigencia indicada y especificarán, cuando corresponda, impuestos, anticipos, hitos, moneda, forma de pago y condiciones de facturación. Ninguna descripción pública sustituye esas condiciones comerciales.</p>
 
-          <h2>11. SEO, marketing y resultados comerciales</h2>
-          <p>AEGRIX ejecuta actividades con criterios profesionales, pero no garantiza ventas mínimas, posición exacta en buscadores o tráfico, ya que dependen de algoritmos externos y el mercado.</p>
+          <h2>11. Pagos y mora</h2>
+          <p>El cliente debe pagar conforme al calendario acordado. Ante mora o incumplimiento material, AEGRIX podrá suspender actividades después de informar al cliente, sin eliminar las obligaciones ya causadas ni los derechos que la ley otorgue al consumidor cuando resulten aplicables.</p>
 
-          <h2>12. Pagos, cotizaciones y condiciones comerciales</h2>
-          <p>Las cotizaciones tienen la vigencia indicada. Los pagos por servicios ya iniciados no son reembolsables. Los retrasos en pagos pueden generar suspensión de servicios.</p>
+          <h2>12. Retracto, cancelaciones y reembolsos</h2>
+          <p>Cuando una relación esté sujeta al Estatuto del Consumidor y el derecho de retracto resulte aplicable a una contratación a distancia, se respetarán los términos y excepciones previstos por la legislación colombiana. En servicios cuya ejecución haya comenzado con acuerdo del consumidor, la excepción legal al retracto podrá aplicar.</p>
+          <p>Fuera de los casos de retracto u otros derechos obligatorios, las cancelaciones, terminaciones y reembolsos se regirán por la propuesta o contrato y por el trabajo efectivamente ejecutado, costos comprometidos y entregables producidos. No se aplicará una regla absoluta de “no reembolso” cuando una norma imperativa disponga lo contrario.</p>
 
-          <h2>13. Tiempos de entrega</h2>
-          <p>Son estimados y dependen de la entrega de información por parte del cliente y la respuesta de terceros. AEGRIX no responde por retrasos ajenos a su control razonable.</p>
+          <h2>13. Reversión de pagos</h2>
+          <p>Cuando la operación y el medio de pago estén comprendidos por las reglas colombianas de reversión de pagos electrónicos, AEGRIX atenderá las solicitudes que legalmente procedan. Este sitio actualmente funciona principalmente como canal informativo y comercial; las condiciones de pago de cada servicio se definen en la contratación correspondiente.</p>
 
-          <h2>14. Cambios de alcance</h2>
-          <p>Cualquier modificación no incluida inicialmente generará costos adicionales y ampliación de tiempos. AEGRIX no está obligada a ejecutar cambios no contratados.</p>
+          <h2>14. Tiempos y dependencias</h2>
+          <p>Los cronogramas se fijan en cada proyecto y pueden ajustarse por cambios de alcance, demoras del cliente, disponibilidad de terceros, incidentes o eventos fuera del control razonable de AEGRIX. Los cambios materiales serán comunicados.</p>
 
-          <h2>15. Propiedad intelectual</h2>
-          <p>Todos los contenidos del sitio pertenecen a AEGRIX. Queda prohibida su reproducción sin autorización escrita. En proyectos, la titularidad se rige por lo pactado en el contrato.</p>
+          <h2>15. Cambios de alcance</h2>
+          <p>Todo trabajo adicional que modifique el alcance, entregables o dependencias podrá requerir una aprobación de cambio, ajuste de precio y actualización del cronograma antes de ejecutarse.</p>
 
-          <h2>16. Uso de portafolio</h2>
-          <p>Salvo solicitud de confidencialidad escrita, AEGRIX podrá mencionar la relación comercial e incluir referencias visuales no sensibles en su portafolio comercial.</p>
+          <h2>16. Garantías, correcciones y aceptación</h2>
+          <p>Los criterios de aceptación y periodos de corrección se definirán en cada propuesta o contrato. AEGRIX corregirá defectos atribuibles a sus entregables dentro del alcance acordado. No se consideran defectos los cambios de preferencia, nuevas funcionalidades, fallas de terceros o modificaciones realizadas sin autorización por personas ajenas al proyecto.</p>
 
-          <h2>17. Confidencialidad</h2>
-          <p>Ambas partes se obligan a tratar con reserva la información técnica y comercial intercambiada que no sea de dominio público.</p>
+          <h2>17. Propiedad intelectual</h2>
+          <p>La marca, contenidos y elementos propios del sitio pertenecen a sus respectivos titulares y no pueden reproducirse sin autorización. En proyectos, la titularidad de código, diseños, documentación, licencias, componentes preexistentes y desarrollos específicos se determinará en el contrato aplicable.</p>
 
-          <h2>18. Protección de datos personales</h2>
-          <p>El tratamiento se realiza conforme a la Ley 1581 de 2012 y la Política de Privacidad de AEGRIX disponible en este sitio.</p>
+          <h2>18. Portafolio y referencias de clientes</h2>
+          <p>AEGRIX no publicará información confidencial, logos, capturas, resultados o referencias identificables de un cliente sin autorización o una base contractual que lo permita. El uso de un proyecto en portafolio debe respetar los compromisos de confidencialidad y propiedad intelectual aplicables.</p>
 
-          <h2>19. Enlaces y servicios de terceros</h2>
-          <p>AEGRIX no controla ni garantiza el funcionamiento o seguridad de sitios o APIs de terceros enlazados.</p>
+          <h2>19. Confidencialidad</h2>
+          <p>La información técnica, estratégica, comercial o de seguridad no pública recibida durante una relación será tratada con reserva y utilizada para las finalidades del proyecto, salvo autorización, obligación legal o requerimiento de autoridad competente.</p>
 
-          <h2>20. Disponibilidad del sitio web</h2>
-          <p>AEGRIX no garantiza funcionamiento ininterrumpido. Podrá suspender el sitio por mantenimiento o seguridad sin previo aviso.</p>
+          <h2>20. Protección de datos</h2>
+          <p>El tratamiento de datos personales se rige por la Política de Privacidad publicada en este sitio. El cliente debe informar a AEGRIX cuando un proyecto implique categorías especiales, datos sensibles, información de salud u obligaciones regulatorias específicas.</p>
 
-          <h2>21. Prohibiciones especiales</h2>
-          <p>Queda prohibido el scraping no autorizado, suplantación de identidad e introducción de malware. AEGRIX iniciará acciones legales ante incumplimientos.</p>
+          <h2>21. Servicios y plataformas de terceros</h2>
+          <p>Un proyecto puede depender de servicios externos. AEGRIX seleccionará e integrará proveedores según el alcance, pero no controla de forma absoluta la disponibilidad, decisiones, cambios de precio o incidentes propios de terceros.</p>
 
           <h2>22. Limitación de responsabilidad</h2>
-          <p>En la medida permitida por la ley, la responsabilidad total de AEGRIX está limitada al valor pagado por el servicio específico que originó la reclamación.</p>
+          <p>Las limitaciones de responsabilidad se interpretarán conforme a la ley y al contrato aplicable. Ninguna cláusula de estos términos pretende excluir responsabilidades que legalmente no puedan excluirse ni limitar derechos obligatorios de consumidores.</p>
 
-          <h2>23. Indemnidad</h2>
-          <p>El usuario mantendrá indemne a AEGRIX ante reclamaciones derivadas de su uso indebido del sitio o incumplimiento de estos términos.</p>
+          <h2>23. Fuerza mayor y caso fortuito</h2>
+          <p>Ninguna parte será responsable por incumplimientos causados por eventos imprevisibles o irresistibles fuera de su control razonable, sin perjuicio de los deberes de información, mitigación y continuidad que hayan sido expresamente contratados.</p>
 
-          <h2>24. Fuerza mayor y caso fortuito</h2>
-          <p>AEGRIX no responde por incumplimientos causados por eventos fuera de su control (fallas de internet, ataques informáticos externos, desastres, etc.).</p>
+          <h2>24. Terminación</h2>
+          <p>Las causas, efectos, pagos pendientes, entrega de activos, revocación de accesos y transición al terminar un servicio se regirán por el contrato. AEGRIX podrá suspender o terminar por incumplimientos graves, uso ilícito, riesgo de seguridad o mora, respetando obligaciones legales y contractuales.</p>
 
-          <h2>25. Terminación o suspensión</h2>
-          <p>AEGRIX podrá suspender servicios ante incumplimientos de términos o impago, sin perjuicio de las obligaciones pendientes del cliente.</p>
+          <h2>25. PQR y contacto</h2>
+          <p>Las peticiones, quejas o reclamos pueden enviarse a <a href={`mailto:${legalIdentity.email}`} className="text-aegrix-cyan">{legalIdentity.email}</a> con el asunto <strong>{legalIdentity.pqrSubject}</strong> o a la dirección {legalIdentity.addressEs}. AEGRIX dará trámite conforme a la naturaleza de la solicitud y a los términos legales aplicables.</p>
 
-          <h2>26. Comunicaciones</h2>
-          <p>Se consideran válidas las comunicaciones por correo o WhatsApp para efectos comerciales y probatorios según el marco de comercio electrónico colombiano.</p>
+          <h2>26. Autoridad de protección al consumidor</h2>
+          <p>Cuando la relación esté sujeta al régimen colombiano de protección al consumidor, puede consultarse información de la Superintendencia de Industria y Comercio en <a href="https://www.sic.gov.co" target="_blank" rel="noopener noreferrer" className="text-aegrix-cyan">www.sic.gov.co</a>.</p>
 
-          <h2>27. Legislación aplicable</h2>
-          <p>Estos términos se rigen íntegramente por las leyes de la República de Colombia.</p>
+          <h2>27. Ley aplicable y controversias</h2>
+          <p>Estos términos se rigen por la legislación de la República de Colombia. Las partes procurarán resolver primero las diferencias mediante comunicación directa, sin impedir el acceso a autoridades, mecanismos de protección al consumidor o jurisdicciones competentes cuando proceda.</p>
 
-          <h2>28. Resolución de controversias</h2>
-          <p>Las diferencias se resolverán primero mediante negociación directa de buena fe antes de acudir a instancias judiciales en Colombia.</p>
-
-          <h2>29. Modificaciones de los términos</h2>
-          <p>AEGRIX podrá actualizar estos términos en cualquier momento publicándolos en la web.</p>
-
-          <h2>30. Nulidad parcial</h2>
-          <p>Si una cláusula es inválida, las demás conservarán plena validez y efecto.</p>
-
-          <h2>31. Contacto</h2>
-          <p>
-            Correo electrónico: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
-            Sitio web: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>
-          </p>
+          <h2>28. Modificaciones</h2>
+          <p>AEGRIX puede actualizar estos términos para reflejar cambios legales, operativos o de servicios. Los cambios no alterarán retroactivamente condiciones contractuales ya pactadas salvo acuerdo o norma obligatoria.</p>
         </>
       ) : (
         <>
-          <p>Welcome to AEGRIX. By accessing, browsing, using this website, communicating with us, requesting information, contracting services, submitting forms, or interacting with our digital channels, you accept these Terms and Conditions of Service.</p>
-          <p>If you do not agree with these terms, you must refrain from using this website, submitting information, or contracting our services.</p>
+          <p>These Terms govern use of the AEGRIX website and establish general rules for commercial requests and services. Project-specific proposals, statements of work and contracts define the binding scope and prevail over general website descriptions.</p>
 
           <hr className="border-white/5 my-8" />
 
-          <h2>1. Identification of AEGRIX</h2>
-          <p>AEGRIX is a brand dedicated to providing software engineering, web development, cybersecurity, data analytics, artificial intelligence, technological training, digital consulting, and strategic accompaniment for companies.</p>
+          <h2>1. Identification</h2>
           <p>
-            Website: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a><br />
-            Email: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
-            Commercial channel: WhatsApp enabled on the website.
+            <strong>{legalIdentity.responsibleName}</strong><br />
+            {legalIdentity.roleEn}<br />
+            Commercial brand: <strong>{legalIdentity.brand}</strong><br />
+            {legalIdentity.taxIdLabelEn}: <strong>{legalIdentity.taxId}</strong><br />
+            Notice address: {legalIdentity.addressEn}<br />
+            Email: <a href={`mailto:${legalIdentity.email}`} className="text-aegrix-cyan">{legalIdentity.email}</a><br />
+            Website: <a href={legalIdentity.website} className="text-aegrix-cyan">{legalIdentity.website}</a>
           </p>
 
-          <h2>2. Acceptance of Terms</h2>
-          <p>Access and use of the website imply full acceptance. The user declares sufficient legal capacity to act on behalf of an organization when applicable.</p>
+          <h2>2. Website Purpose</h2>
+          <p>The website is informational and commercial. Public content is not a substitute for a formal proposal, contract, security assessment, legal advice or certification.</p>
 
-          <h2>3. Nature of the Website</h2>
-          <p>The website is for informative and commercial purposes. Published information does not constitute definitive technical advice without formal contracting.</p>
+          <h2>3. Services</h2>
+          <p>AEGRIX provides software engineering, web development, cybersecurity, data, automation, AI, technology consulting and AEGRIX 360 services. Scope, deliverables, exclusions, schedule, acceptance criteria and pricing are defined per project.</p>
 
-          <h2>4. Services Offered</h2>
-          <p>AEGRIX offers software development, cybersecurity, diagnostics, data analytics, and AI. Specific scope is defined in commercial proposals or contracts.</p>
+          <h2>4. AEGRIX 360 and Frameworks</h2>
+          <p>AEGRIX 360 may use NIST CSF 2.0, ISO/IEC 27001, ISO/IEC 27002, HIPAA Security Rule and GDPR for assessment, readiness and assurance within the contracted scope. AEGRIX does not act as a certification body unless expressly and lawfully stated, and an assessment alone is not a certification or legal compliance guarantee.</p>
 
-          <h2>5. User Responsibility</h2>
-          <p>The user is responsible for the truthfulness of provided information and must not use the site for illegal activities or security breaches.</p>
+          <h2>5. Client Information</h2>
+          <p>Clients must provide timely, accurate information and authorized access. Results may depend on the quality and completeness of that information.</p>
 
-          <h2>6. Information Provided by the User</h2>
-          <p>Users must have authorization to share information. AEGRIX is not responsible for incomplete results due to false or inaccurate data provided by the client.</p>
+          <h2>6. Security Assessments</h2>
+          <p>No cybersecurity service eliminates all risk. Findings represent the observed state within the agreed scope and time of assessment.</p>
 
-          <h2>7. Diagnostics, Audits, and Preliminary Analysis</h2>
-          <p>Based on available information at the time. No diagnosis constitutes an absolute guarantee of total security or elimination of risks.</p>
+          <h2>7. Software and Infrastructure</h2>
+          <p>AEGRIX is responsible for its contracted deliverables and agreed correction process. Third-party failures are handled according to the actual responsibility and project terms.</p>
 
-          <h2>8. Cybersecurity and Limitation of Warranties</h2>
-          <p>No cybersecurity service guarantees absolute protection. Clients are responsible for implementing recommendations and security measures.</p>
+          <h2>8. AI, Automation and Data</h2>
+          <p>AI and automation depend on data, models, configuration and third parties. Appropriate human controls must remain in place for critical or regulated decisions.</p>
 
-          <h2>9. Web Development, Software, and Integrations</h2>
-          <p>AEGRIX is responsible for the contracted scope. Clients must deliver information on time. AEGRIX is not responsible for third-party provider failures.</p>
+          <h2>9. SEO and Commercial Results</h2>
+          <p>AEGRIX may implement SEO, analytics and conversion work but does not guarantee specific rankings, traffic or sales outcomes dependent on external factors.</p>
 
-          <h2>10. Artificial Intelligence, Automation, and Data</h2>
-          <p>Subject to technical limitations. AEGRIX is not responsible for decisions based solely on AI results without professional human validation.</p>
+          <h2>10. Quotes, Taxes and Billing</h2>
+          <p>Proposals define validity, taxes, advances, milestones, currency, payment method and invoicing conditions where applicable.</p>
 
-          <h2>11. SEO, Marketing, and Commercial Results</h2>
-          <p>AEGRIX executes activities with professional criteria but does not guarantee specific sales, search rankings, or traffic.</p>
+          <h2>11. Payments</h2>
+          <p>Clients must pay according to the agreed schedule. Material non-payment may result in suspension after notice, without limiting mandatory consumer rights where applicable.</p>
 
-          <h2>12. Payments, Quotes, and Commercial Conditions</h2>
-          <p>Quotes have a specific validity. Payments for services already started are non-refundable. Late payments may result in service suspension.</p>
+          <h2>12. Withdrawal, Cancellation and Refunds</h2>
+          <p>Where Colombian consumer law grants a right of withdrawal for a distance contract, AEGRIX will honor the applicable statutory terms and exceptions. Services that have begun with the consumer&apos;s agreement may fall within a statutory exception.</p>
+          <p>Outside mandatory rights, cancellation and refunds are governed by the applicable proposal or contract, work performed, committed costs and delivered work.</p>
 
-          <h2>13. Delivery Times</h2>
-          <p>Estimated times depend on client information and third-party responses. AEGRIX is not responsible for delays outside its control.</p>
+          <h2>13. Payment Reversal</h2>
+          <p>Where Colombian electronic-payment reversal rules apply to the transaction and payment method, AEGRIX will process legally valid requests.</p>
 
-          <h2>14. Scope Changes</h2>
-          <p>Any modifications not initially included will result in additional costs and time. AEGRIX is not obliged to execute uncontracted changes.</p>
+          <h2>14. Schedule and Dependencies</h2>
+          <p>Project schedules may change due to scope changes, client delays, third-party availability, incidents or events outside reasonable control.</p>
 
-          <h2>15. Intellectual Property</h2>
-          <p>All content belongs to AEGRIX. Reproduction without written authorization is prohibited. Project ownership is governed by contract.</p>
+          <h2>15. Scope Changes</h2>
+          <p>Additional work may require an approved change request, pricing adjustment and updated schedule.</p>
 
-          <h2>16. Portfolio Use</h2>
-          <p>Unless confidentiality is requested in writing, AEGRIX may mention the commercial relationship and include visual references in its portfolio.</p>
+          <h2>16. Warranties, Corrections and Acceptance</h2>
+          <p>Acceptance and correction periods are defined in project terms. AEGRIX will correct defects attributable to its deliverables within the agreed scope.</p>
 
-          <h2>17. Confidentiality</h2>
-          <p>Both parties agree to treat technical and commercial information exchanged as confidential.</p>
+          <h2>17. Intellectual Property</h2>
+          <p>Website content and brand assets may not be reproduced without authorization. Project ownership, licenses, pre-existing components and custom developments are governed by contract.</p>
 
-          <h2>18. Personal Data Protection</h2>
-          <p>Treatment is performed in accordance with Law 1581 of 2012 and AEGRIX&apos;s Privacy Policy available on this site.</p>
+          <h2>18. Portfolio Use</h2>
+          <p>AEGRIX will not publish confidential client information, logos, screenshots, results or identifiable references without authorization or an applicable contractual basis.</p>
 
-          <h2>19. Third-Party Links and Services</h2>
-          <p>AEGRIX does not control or guarantee the functioning or security of linked third-party sites or APIs.</p>
+          <h2>19. Confidentiality</h2>
+          <p>Non-public technical, strategic, commercial and security information is treated as confidential and used for the project unless disclosure is authorized or legally required.</p>
 
-          <h2>20. Website Availability</h2>
-          <p>AEGRIX does not guarantee uninterrupted operation and may suspend the site for maintenance or security.</p>
+          <h2>20. Personal Data</h2>
+          <p>Personal data processing is governed by the Privacy Policy. Clients must identify projects involving sensitive, health or specially regulated information.</p>
 
-          <h2>21. Special Prohibitions</h2>
-          <p>Unauthorized scraping, identity theft, and malware introduction are prohibited. AEGRIX will take legal action against breaches.</p>
+          <h2>21. Third-Party Services</h2>
+          <p>Projects may depend on external services. AEGRIX does not fully control third-party availability, pricing changes or incidents.</p>
 
-          <h2>22. Limitation of Liability</h2>
-          <p>To the extent permitted by law, AEGRIX&apos;s total liability is limited to the value paid for the specific service.</p>
+          <h2>22. Liability</h2>
+          <p>Liability provisions are interpreted according to applicable law and contract. Nothing in these Terms excludes liability or mandatory consumer rights that cannot legally be excluded.</p>
 
-          <h2>23. Indemnity</h2>
-          <p>Users shall hold AEGRIX harmless from claims derived from improper use or breach of these terms.</p>
+          <h2>23. Force Majeure</h2>
+          <p>Neither party is liable for failures caused by events outside reasonable control, subject to any expressly contracted continuity obligations.</p>
 
-          <h2>24. Force Majeure</h2>
-          <p>AEGRIX is not responsible for failures caused by events beyond its control (internet failures, external cyberattacks, etc.).</p>
+          <h2>24. Termination</h2>
+          <p>Termination, pending payments, asset delivery, access revocation and transition are governed by the applicable contract and mandatory law.</p>
 
-          <h2>25. Termination or Suspension</h2>
-          <p>AEGRIX may suspend services for breach of terms or non-payment, without prejudice to pending obligations.</p>
+          <h2>25. Complaints and Contact</h2>
+          <p>Complaints may be sent to <a href={`mailto:${legalIdentity.email}`} className="text-aegrix-cyan">{legalIdentity.email}</a> using subject <strong>{legalIdentity.pqrSubject}</strong> or to {legalIdentity.addressEn}.</p>
 
-          <h2>26. Communications</h2>
-          <p>Email and WhatsApp communications are valid for commercial and evidentiary purposes under Colombian law.</p>
+          <h2>26. Colombian Consumer Authority</h2>
+          <p>Where Colombian consumer law applies, information from the Superintendence of Industry and Commerce is available at <a href="https://www.sic.gov.co" target="_blank" rel="noopener noreferrer" className="text-aegrix-cyan">www.sic.gov.co</a>.</p>
 
-          <h2>27. Applicable Law</h2>
-          <p>These terms are governed entirely by the laws of the Republic of Colombia.</p>
+          <h2>27. Applicable Law and Disputes</h2>
+          <p>These Terms are governed by Colombian law. The parties will first seek direct resolution without limiting access to competent authorities or mandatory consumer remedies.</p>
 
-          <h2>28. Dispute Resolution</h2>
-          <p>Differences will be resolved through direct negotiation before resorting to judicial instances in Colombia.</p>
-
-          <h2>29. Modifications of Terms</h2>
-          <p>AEGRIX may update these terms at any time by publishing them on the web.</p>
-
-          <h2>30. Partial Nullity</h2>
-          <p>If a clause is invalid, the others will retain full validity and effect.</p>
-
-          <h2>31. Contact</h2>
-          <p>
-            Email: <a href="mailto:contacto@aegrix.com.co" className="text-aegrix-cyan">contacto@aegrix.com.co</a><br />
-            Website: <a href="https://aegrix.com.co" className="text-aegrix-cyan">https://aegrix.com.co</a>
-          </p>
+          <h2>28. Changes</h2>
+          <p>AEGRIX may update these Terms for legal, operational or service changes. Existing project contracts are not retroactively altered without agreement or mandatory law.</p>
         </>
       )}
     </LegalPageLayout>
