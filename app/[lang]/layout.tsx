@@ -5,16 +5,17 @@ import { Sora, Manrope } from 'next/font/google';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { getLocalizedPath } from '@/lib/navigation';
+import '../globals.css';
+import Navbar from '@/components/Navbar';
+import CookieBanner from '@/components/CookieBanner';
+import ConsentAwareAnalytics from '@/components/ConsentAwareAnalytics';
+import { getDictionary } from '@/lib/get-dictionary';
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
 };
-import '../globals.css';
-import Navbar from '@/components/Navbar';
-import CookieBanner from '@/components/CookieBanner';
-import { getDictionary } from '@/lib/get-dictionary';
 
 const locales = ['es', 'en'] as const;
 type Locale = typeof locales[number];
@@ -39,20 +40,20 @@ const manrope = Manrope({
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  
+
   const headersList = await headers();
   const pathname = headersList.get('x-pathname');
-  
+
   if (!pathname) {
-    const errorMsg = 'CRITICAL: The x-pathname header is missing. Verify that middleware.ts is correctly running and injecting it.';
+    const errorMsg = 'CRITICAL: The x-pathname header is missing. Verify that proxy.ts is correctly running and injecting it.';
     if (process.env.NODE_ENV === 'development') {
       throw new Error(errorMsg);
     }
     console.error(errorMsg);
   }
-  
+
   const finalPathname = pathname || `/${lang}`;
-  
+
   if (!isValidLocale(lang)) {
     return {
       title: 'AEGRIX',
@@ -62,13 +63,13 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
   const isEn = lang === 'en';
 
-  const title = isEn 
-    ? 'AEGRIX | Software Engineering, Cybersecurity & AI' 
+  const title = isEn
+    ? 'AEGRIX | Software Engineering, Cybersecurity & AI'
     : 'AEGRIX | Ingeniería de Software, Ciberseguridad e IA';
-    
+
   const description = isEn
-    ? 'At AEGRIX we diagnose, build, and optimize the digital layer of your business (web, AI, data, automation, and cybersecurity) to help you sell more, operate better, and protect yourself.'
-    : 'En AEGRIX diagnosticamos, construimos y optimizamos la capa digital de tu negocio (web, IA, datos, automatización y ciberseguridad) para vender más, operar mejor y protegerse mejor.';
+    ? 'At AEGRIX we diagnose, build, and optimize digital solutions in software, cybersecurity, data, automation, and AI for companies.'
+    : 'En AEGRIX diagnosticamos, construimos y optimizamos soluciones digitales de software, ciberseguridad, datos, automatización e IA para empresas.';
 
   return {
     title,
@@ -77,8 +78,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     alternates: {
       canonical: finalPathname,
       languages: {
-        'es': getLocalizedPath(finalPathname, 'es'),
-        'en': getLocalizedPath(finalPathname, 'en'),
+        es: getLocalizedPath(finalPathname, 'es'),
+        en: getLocalizedPath(finalPathname, 'en'),
         'x-default': getLocalizedPath(finalPathname, 'es'),
       },
     },
@@ -87,7 +88,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       'desarrollo de software para empresas en Colombia',
       'auditoria de seguridad digital Colombia',
       'ciberseguridad para empresas',
-      'desarrollo de software robusto',
+      'desarrollo de software',
       'ingeniería de software',
       'empresa ciberseguridad Bogota',
       'desarrollo de software Bogota',
@@ -138,9 +139,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-import Script from 'next/script';
-import { GoogleAnalytics } from '@next/third-parties/google';
-
 export default async function RootLayout({
   children,
   params,
@@ -153,9 +151,10 @@ export default async function RootLayout({
   if (!isValidLocale(lang)) {
     notFound();
   }
-  
+
   const dict = await getDictionary(lang);
-  
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
   return (
     <html lang={lang} className={`${sora.variable} ${manrope.variable}`} data-theme="dark" suppressHydrationWarning>
       <head>
@@ -176,17 +175,17 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "AEGRIX",
-              "url": "https://aegrix.com.co",
-              "logo": "https://aegrix.com.co/AEGRIX_right_logo_icon.svg",
-              "sameAs": [
-                "https://www.linkedin.com/company/aegrix",
-                "https://x.com/aegrix"
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'AEGRIX',
+              url: 'https://aegrix.com.co',
+              logo: 'https://aegrix.com.co/AEGRIX_right_logo_icon.svg',
+              sameAs: [
+                'https://www.linkedin.com/company/aegrix',
+                'https://x.com/aegrix',
               ],
-              "description": "Firma de ingeniería de software, ciberseguridad avanzada y soluciones estratégicas de inteligencia artificial."
-            })
+              description: 'Firma de ingeniería de software, ciberseguridad y soluciones de inteligencia artificial.',
+            }),
           }}
         />
       </head>
@@ -194,7 +193,7 @@ export default async function RootLayout({
         <Navbar lang={lang} dict={dict.navbar} />
         {children}
         <CookieBanner lang={lang} dict={dict.cookies} />
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'} />
+        <ConsentAwareAnalytics gaId={gaId} />
       </body>
     </html>
   );
