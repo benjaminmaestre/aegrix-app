@@ -98,6 +98,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: 'es
       languages: {
         es: `https://aegrix.com.co/es/aegrix-360/${framework}`,
         en: `https://aegrix.com.co/en/aegrix-360/${framework}`,
+        'x-default': `https://aegrix.com.co/es/aegrix-360/${framework}`,
       },
     },
     openGraph: {
