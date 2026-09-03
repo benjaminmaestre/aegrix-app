@@ -7,7 +7,8 @@ const MAX_COMPANY_LENGTH = 160;
 const MAX_EMAIL_LENGTH = 254;
 const MAX_MESSAGE_LENGTH = 4_000;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const RATE_LIMIT_MAX_REQUESTS = 5;
+const RATE_LIMIT_MAX_PER_IP = 10;
+const RATE_LIMIT_MAX_PER_EMAIL = 5;
 
 type RateLimitRecord = {
   count: number;
@@ -26,10 +27,29 @@ globalForRateLimit.__aegrixContactRateLimit = rateLimitStore;
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
+function jsonResponse(
+  body: Record<string, unknown>,
+  init: ResponseInit = {}
+) {
+  const headers = new Headers(init.headers);
+  headers.set('Cache-Control', 'no-store, max-age=0');
+  headers.set('Pragma', 'no-cache');
+
+  return NextResponse.json(body, { ...init, headers });
+}
+
 function getClientIp(request: Request) {
   const forwardedFor = request.headers.get('x-forwarded-for');
   if (forwardedFor) return forwardedFor.split(',')[0]?.trim() || 'unknown';
   return request.headers.get('x-real-ip')?.trim() || 'unknown';
+}
+
+async function hashRateLimitKey(value: string) {
+  const bytes = new TextEncoder().encode(value);
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return Array.from(new Uint8Array(digest))
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('');
 }
 
 function escapeHtml(value: string) {
@@ -58,9 +78,16 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function isSameOriginRequest(request: Request) {
+function isAllowedRequestContext(request: Request) {
+  const secFetchSite = request.headers.get('sec-fetch-site')?.toLowerCase();
+  if (secFetchSite && !['same-origin', 'same-site', 'none'].includes(secFetchSite)) {
+    return false;
+  }
+
   const origin = request.headers.get('origin');
-  if (!origin) return true;
+  if (!origin) {
+    return process.env.NODE_ENV !== 'production' || secFetchSite === 'same-origin' || secFetchSite === 'same-site';
+  }
 
   const requestOrigin = new URL(request.url).origin;
   const allowedOrigins = new Set([
@@ -72,7 +99,7 @@ function isSameOriginRequest(request: Request) {
   return allowedOrigins.has(origin);
 }
 
-function consumeRateLimit(key: string) {
+function consumeRateLimit(key: string, maxRequests: number) {
   const now = Date.now();
 
   for (const [storedKey, record] of rateLimitStore) {
@@ -85,7 +112,7 @@ function consumeRateLimit(key: string) {
     return { allowed: true, retryAfterSeconds: 0 };
   }
 
-  if (current.count >= RATE_LIMIT_MAX_REQUESTS) {
+  if (current.count >= maxRequests) {
     return {
       allowed: false,
       retryAfterSeconds: Math.max(1, Math.ceil((current.resetAt - now) / 1000)),
@@ -104,29 +131,33 @@ function localizedError(lang: string, es: string, en: string) {
 export async function POST(request: Request) {
   const contentType = request.headers.get('content-type') || '';
   if (!contentType.toLowerCase().includes('application/json')) {
-    return NextResponse.json({ error: 'Unsupported content type' }, { status: 415 });
+    return jsonResponse({ error: 'Unsupported content type' }, { status: 415 });
   }
 
-  if (!isSameOriginRequest(request)) {
-    return NextResponse.json({ error: 'Request origin not allowed' }, { status: 403 });
+  if (!isAllowedRequestContext(request)) {
+    return jsonResponse({ error: 'Request origin not allowed' }, { status: 403 });
   }
 
   const declaredLength = Number(request.headers.get('content-length') || 0);
+  if (!Number.isFinite(declaredLength) || declaredLength < 0) {
+    return jsonResponse({ error: 'Invalid content length' }, { status: 400 });
+  }
+
   if (declaredLength > MAX_BODY_BYTES) {
-    return NextResponse.json({ error: 'Request too large' }, { status: 413 });
+    return jsonResponse({ error: 'Request too large' }, { status: 413 });
   }
 
   try {
     const rawBody = await request.text();
     if (new TextEncoder().encode(rawBody).length > MAX_BODY_BYTES) {
-      return NextResponse.json({ error: 'Request too large' }, { status: 413 });
+      return jsonResponse({ error: 'Request too large' }, { status: 413 });
     }
 
     let body: Record<string, unknown>;
     try {
       body = JSON.parse(rawBody) as Record<string, unknown>;
     } catch {
-      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+      return jsonResponse({ error: 'Invalid JSON body' }, { status: 400 });
     }
 
     const lang = body.lang === 'en' ? 'en' : 'es';
@@ -139,11 +170,11 @@ export async function POST(request: Request) {
     const marketingConsent = body.marketingConsent === true;
 
     if (honeypot) {
-      return NextResponse.json({ success: true });
+      return jsonResponse({ success: true });
     }
 
     if (!name || !email || !message || !privacyConsent) {
-      return NextResponse.json(
+      return jsonResponse(
         {
           error: localizedError(
             lang,
@@ -160,7 +191,7 @@ export async function POST(request: Request) {
       company.length > MAX_COMPANY_LENGTH ||
       message.length > MAX_MESSAGE_LENGTH
     ) {
-      return NextResponse.json(
+      return jsonResponse(
         {
           error: localizedError(
             lang,
@@ -173,23 +204,35 @@ export async function POST(request: Request) {
     }
 
     if (/\0/.test(name) || /\0/.test(company) || /\0/.test(message) || /[\r\n]/.test(name) || /[\r\n]/.test(company)) {
-      return NextResponse.json(
+      return jsonResponse(
         { error: localizedError(lang, 'El contenido del formulario no es válido.', 'The form content is not valid.') },
         { status: 400 }
       );
     }
 
     if (!isValidEmail(email)) {
-      return NextResponse.json(
+      return jsonResponse(
         { error: localizedError(lang, 'Formato de correo inválido.', 'Invalid email format.') },
         { status: 400 }
       );
     }
 
     const clientIp = getClientIp(request);
-    const rateLimit = consumeRateLimit(`${clientIp}:${email}`);
-    if (!rateLimit.allowed) {
-      return NextResponse.json(
+    const [ipKeyHash, emailKeyHash] = await Promise.all([
+      hashRateLimitKey(`ip:${clientIp}`),
+      hashRateLimitKey(`email:${email}`),
+    ]);
+
+    const ipRateLimit = consumeRateLimit(`ip:${ipKeyHash}`, RATE_LIMIT_MAX_PER_IP);
+    const emailRateLimit = consumeRateLimit(`email:${emailKeyHash}`, RATE_LIMIT_MAX_PER_EMAIL);
+
+    if (!ipRateLimit.allowed || !emailRateLimit.allowed) {
+      const retryAfterSeconds = Math.max(
+        ipRateLimit.retryAfterSeconds,
+        emailRateLimit.retryAfterSeconds
+      );
+
+      return jsonResponse(
         {
           error: localizedError(
             lang,
@@ -199,7 +242,7 @@ export async function POST(request: Request) {
         },
         {
           status: 429,
-          headers: { 'Retry-After': String(rateLimit.retryAfterSeconds) },
+          headers: { 'Retry-After': String(retryAfterSeconds) },
         }
       );
     }
@@ -256,7 +299,7 @@ export async function POST(request: Request) {
     if (!resend) {
       if (process.env.NODE_ENV === 'production') {
         console.error('[contact] Email provider is not configured in production.');
-        return NextResponse.json(
+        return jsonResponse(
           {
             error: localizedError(
               lang,
@@ -269,7 +312,7 @@ export async function POST(request: Request) {
       }
 
       console.info('[contact] Development dry run completed; no personal data logged.');
-      return NextResponse.json({ success: true, dryRun: true, reference });
+      return jsonResponse({ success: true, dryRun: true, reference });
     }
 
     const response = await resend.emails.send({
@@ -282,7 +325,7 @@ export async function POST(request: Request) {
 
     if (response.error) {
       console.error('[contact] Resend delivery failed.');
-      return NextResponse.json(
+      return jsonResponse(
         {
           error: localizedError(
             lang,
@@ -294,10 +337,10 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({ success: true, reference });
+    return jsonResponse({ success: true, reference });
   } catch {
     console.error('[contact] Unexpected contact endpoint failure.');
-    return NextResponse.json(
+    return jsonResponse(
       { error: 'Unable to process contact request' },
       { status: 500 }
     );
