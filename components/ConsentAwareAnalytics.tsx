@@ -11,9 +11,10 @@ import { trackEvent } from '@/lib/analytics';
 
 interface ConsentAwareAnalyticsProps {
   gaId?: string;
+  nonce?: string;
 }
 
-export default function ConsentAwareAnalytics({ gaId }: ConsentAwareAnalyticsProps) {
+export default function ConsentAwareAnalytics({ gaId, nonce }: ConsentAwareAnalyticsProps) {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
@@ -55,5 +56,5 @@ export default function ConsentAwareAnalytics({ gaId }: ConsentAwareAnalyticsPro
 
   if (!gaId || !enabled) return null;
 
-  return <GoogleAnalytics gaId={gaId} />;
+  return <GoogleAnalytics gaId={gaId} nonce={nonce} />;
 }
