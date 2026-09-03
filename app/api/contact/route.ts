@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { checkBotId } from 'botid/server';
+import { allowedRequestOrigins, siteConfig } from '@/lib/site-config';
 
 const MAX_BODY_BYTES = 12_000;
 const MAX_NAME_LENGTH = 100;
@@ -91,11 +92,7 @@ function isAllowedRequestContext(request: Request) {
   }
 
   const requestOrigin = new URL(request.url).origin;
-  const allowedOrigins = new Set([
-    requestOrigin,
-    'https://aegrix.com.co',
-    'https://www.aegrix.com.co',
-  ]);
+  const allowedOrigins = new Set([requestOrigin, ...allowedRequestOrigins]);
 
   return allowedOrigins.has(origin);
 }
@@ -322,8 +319,8 @@ export async function POST(request: Request) {
     }
 
     const response = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'website@aegrix.com.co',
-      to: process.env.CONTACT_TO_EMAIL || 'contacto@aegrix.com.co',
+      from: process.env.RESEND_FROM_EMAIL || siteConfig.defaultSenderEmail,
+      to: process.env.CONTACT_TO_EMAIL || siteConfig.contactEmail,
       replyTo: email,
       subject,
       html: emailHtml,
