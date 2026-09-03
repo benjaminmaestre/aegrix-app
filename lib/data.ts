@@ -143,6 +143,8 @@ export const webBenefits = [
   { title: 'Medición', desc: 'Analítica y eventos configurables según consentimiento y necesidades del proyecto.' },
 ];
 
-export const WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero iniciar una evaluación con AEGRIX 360 para mi organización.');
+// Shared CTAs use a language-neutral WhatsApp URL. Bilingual pages with a specific intent
+// build their own localized prefilled messages through buildWhatsAppUrl.
+export const WHATSAPP_URL = buildWhatsAppUrl();
 export const WHATSAPP_URL_WEB = buildWhatsAppUrl('Hola, quiero revisar si mi página web está perdiendo clientes.');
 export const WHATSAPP_URL_AI = buildWhatsAppUrl('Hola, quiero automatizar procesos con IA en mi empresa.');
