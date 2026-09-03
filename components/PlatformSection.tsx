@@ -24,16 +24,16 @@ const PlatformSection = () => {
 
   const layers = isEnglish
     ? [
-        { name: 'AI & Automation', icon: BrainCircuit, className: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20' },
-        { name: 'Data & Analytics', icon: BarChart3, className: 'text-purple-400 bg-purple-500/10 border-purple-500/20' },
-        { name: 'Software & Web', icon: Globe2, className: 'text-aegrix-cyan bg-aegrix-cyan/10 border-aegrix-cyan/20' },
-        { name: 'Cybersecurity', icon: ShieldCheck, className: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
+        { name: 'AI & Automation', detail: 'Automate repetitive work and accelerate analysis where it adds value.', icon: BrainCircuit, className: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20' },
+        { name: 'Data & Analytics', detail: 'Connect information, indicators and decisions with traceability.', icon: BarChart3, className: 'text-purple-400 bg-purple-500/10 border-purple-500/20' },
+        { name: 'Software & Web', detail: 'Build experience, performance, SEO and measurable conversion journeys.', icon: Globe2, className: 'text-aegrix-cyan bg-aegrix-cyan/10 border-aegrix-cyan/20' },
+        { name: 'Cybersecurity', detail: 'Strengthen identities, access, configurations and relevant controls.', icon: ShieldCheck, className: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
       ]
     : [
-        { name: 'IA & Automatización', icon: BrainCircuit, className: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20' },
-        { name: 'Datos & Analítica', icon: BarChart3, className: 'text-purple-400 bg-purple-500/10 border-purple-500/20' },
-        { name: 'Software & Web', icon: Globe2, className: 'text-aegrix-cyan bg-aegrix-cyan/10 border-aegrix-cyan/20' },
-        { name: 'Ciberseguridad', icon: ShieldCheck, className: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
+        { name: 'IA & Automatización', detail: 'Automatiza trabajo repetitivo y acelera análisis donde realmente aporta valor.', icon: BrainCircuit, className: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20' },
+        { name: 'Datos & Analítica', detail: 'Conecta información, indicadores y decisiones con trazabilidad.', icon: BarChart3, className: 'text-purple-400 bg-purple-500/10 border-purple-500/20' },
+        { name: 'Software & Web', detail: 'Construye experiencia, rendimiento, SEO y recorridos de conversión medibles.', icon: Globe2, className: 'text-aegrix-cyan bg-aegrix-cyan/10 border-aegrix-cyan/20' },
+        { name: 'Ciberseguridad', detail: 'Fortalece identidades, accesos, configuraciones y controles relevantes.', icon: ShieldCheck, className: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
       ];
 
   return (
@@ -104,9 +104,7 @@ const PlatformSection = () => {
                       </div>
                       <div>
                         <span className="font-sora font-bold text-aegrix-text text-sm md:text-base">{layer.name}</span>
-                        <p className="mt-1 text-[10px] md:text-xs text-aegrix-muted">
-                          {isEnglish ? 'Capability integrated according to project scope' : 'Capacidad integrada según el alcance del proyecto'}
-                        </p>
+                        <p className="mt-1 text-[10px] md:text-xs text-aegrix-muted leading-relaxed">{layer.detail}</p>
                       </div>
                     </div>
                   </motion.div>
