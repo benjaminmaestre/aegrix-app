@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   analyze:
-    name: CodeQL JavaScript/TypeScript
+    name: CodeQL
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
