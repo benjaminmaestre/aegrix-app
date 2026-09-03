@@ -1,107 +1,127 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Code2, Cpu, Globe2, Server, Database, Smartphone } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useParams } from 'next/navigation';
+import { Code2, Cpu, Database, Globe2, Server, Smartphone } from 'lucide-react';
 
-const capabilities = [
+const capabilitiesEs = [
   {
     icon: Globe2,
-    title: 'Landings de Alto Impacto',
-    desc: 'Diseñadas para convertir el tráfico en negocio mediante SEO técnico y UX de primer nivel.'
+    title: 'Landings de alto impacto',
+    desc: 'Diseñadas con SEO técnico, rendimiento y UX orientados a objetivos de conversión medibles.',
   },
   {
     icon: Database,
-    title: 'Sistemas Robustos',
-    desc: 'Arquitecturas escalables para gestionar operaciones críticas con disponibilidad del 99.9%.'
+    title: 'Sistemas robustos',
+    desc: 'Arquitecturas escalables para procesos empresariales, integraciones y crecimiento progresivo según el alcance del proyecto.',
   },
   {
     icon: Cpu,
-    title: 'Software a Medida',
-    desc: 'Desarrollo de herramientas personalizadas que se integran perfectamente con tu stack actual.'
+    title: 'Software a medida',
+    desc: 'Herramientas personalizadas que se integran con procesos, datos y plataformas existentes cuando el proyecto lo requiere.',
   },
   {
     icon: Server,
-    title: 'Infraestructura Cloud',
-    desc: 'Despliegues en AWS y Azure con configuraciones de seguridad de grado bancario.'
+    title: 'Infraestructura cloud',
+    desc: 'Despliegues con prácticas de seguridad, observabilidad, respaldo y operación acordes con la necesidad de cada solución.',
   },
   {
     icon: Smartphone,
-    title: 'Web Apps (PWA)',
-    desc: 'Experiencias móviles fluidas sin necesidad de descarga, optimizadas para cualquier dispositivo.'
+    title: 'Aplicaciones web y PWA',
+    desc: 'Experiencias rápidas y adaptables a distintos dispositivos, sin obligar al usuario a instalar una aplicación nativa.',
   },
   {
     icon: Code2,
-    title: 'Clean Code',
-    desc: 'Desarrollamos bajo estándares internacionales, garantizando software mantenible y fácil de escalar.'
-  }
+    title: 'Código mantenible',
+    desc: 'Prácticas de ingeniería orientadas a legibilidad, pruebas, mantenimiento, documentación y evolución del producto.',
+  },
+];
+
+const capabilitiesEn = [
+  {
+    icon: Globe2,
+    title: 'High-impact landing pages',
+    desc: 'Built with technical SEO, performance, and UX aligned with measurable conversion goals.',
+  },
+  {
+    icon: Database,
+    title: 'Robust systems',
+    desc: 'Scalable architectures for business processes, integrations, and progressive growth according to project scope.',
+  },
+  {
+    icon: Cpu,
+    title: 'Custom software',
+    desc: 'Purpose-built tools that integrate with existing processes, data, and platforms when the project requires it.',
+  },
+  {
+    icon: Server,
+    title: 'Cloud infrastructure',
+    desc: 'Deployments with security, observability, backup, and operational practices appropriate to each solution.',
+  },
+  {
+    icon: Smartphone,
+    title: 'Web apps and PWA',
+    desc: 'Fast, adaptable experiences across devices without requiring users to install a native application.',
+  },
+  {
+    icon: Code2,
+    title: 'Maintainable code',
+    desc: 'Engineering practices focused on readability, testing, maintenance, documentation, and product evolution.',
+  },
 ];
 
 const SoftwareExcellence = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  // Header parallax
-  const headerY = useTransform(scrollYProgress, [0, 1], [-20, 20]);
-  const headerOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
-
-  // Staggered column parallax on desktop
-  const yCol0 = useTransform(scrollYProgress, [0, 1], [30, -30]);
-  const yCol1 = useTransform(scrollYProgress, [0, 1], [0, 0]);
-  const yCol2 = useTransform(scrollYProgress, [0, 1], [-30, 30]);
-
-  const columnYTransforms = [yCol0, yCol1, yCol2];
+  const params = useParams();
+  const lang = (params?.lang as string) || 'es';
+  const isEnglish = lang === 'en';
+  const capabilities = isEnglish ? capabilitiesEn : capabilitiesEs;
 
   return (
-    <section ref={sectionRef} className="section-padding bg-aegrix-bg relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,194,255,0.03),transparent_70%)] pointer-events-none" />
-      
+    <section className="section-padding bg-aegrix-bg relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,194,255,0.03),transparent_70%)] pointer-events-none" aria-hidden="true" />
+
       <div className="container-width relative z-10">
-        <motion.div 
-          style={{ y: headerY, opacity: headerOpacity }}
-          className="text-center max-w-3xl mx-auto mb-12 md:mb-24"
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55 }}
+          className="text-center max-w-3xl mx-auto mb-12 md:mb-20"
         >
-          <h2 className="text-4xl md:text-6xl font-sora font-extrabold text-aegrix-text mb-8 tracking-tighter leading-none">
-            Ingeniería de Software <br />
-            <span className="text-aegrix-cyan">sin compromisos.</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">
+            {isEnglish ? 'Software engineering' : 'Ingeniería de software'}
+          </span>
+          <h2 className="text-4xl md:text-6xl font-sora font-extrabold text-aegrix-text mt-3 mb-8 tracking-tighter leading-none">
+            {isEnglish ? 'Engineering quality,' : 'Calidad de ingeniería,'} <br />
+            <span className="text-aegrix-cyan">{isEnglish ? 'not template assembly.' : 'no ensamblaje de plantillas.'}</span>
           </h2>
           <p className="text-lg text-aegrix-muted leading-relaxed">
-            No somos una agencia de marketing; somos una firma de ingeniería. Construimos soluciones digitales sólidas, seguras y preparadas para el futuro.
+            {isEnglish
+              ? 'AEGRIX approaches software as engineering: architecture, performance, security, maintainability, measurement, and a clear delivery scope.'
+              : 'En AEGRIX abordamos el software como ingeniería: arquitectura, rendimiento, seguridad, mantenibilidad, medición y un alcance de entrega claro.'}
           </p>
         </motion.div>
 
-        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-8 md:grid-cols-2 lg:grid-cols-3 pb-6 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
-          {capabilities.map((cap, idx) => {
-            // Apply column transformations based on index (0,1,2 layout on desktop)
-            const yTransform = columnYTransforms[idx % 3];
-            return (
-              <motion.div
-                key={idx}
-                style={{ y: yTransform }}
-                initial={{ opacity: 0, scale: 0.97 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: (idx % 3) * 0.1 }}
-                className="p-5 sm:p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all group w-[85%] sm:w-[50%] md:w-auto shrink-0 snap-align-start shadow-sm"
-              >
-                <div className="w-12 h-12 rounded-xl bg-aegrix-cyan/5 flex items-center justify-center text-aegrix-cyan mb-6 group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
-                  <cap.icon size={24} />
-                </div>
-                <h3 className="text-xl font-sora font-bold text-aegrix-text mb-3 tracking-tight">{cap.title}</h3>
-                <p className="text-sm text-aegrix-muted leading-relaxed">
-                  {cap.desc}
-                </p>
-              </motion.div>
-            );
-          })}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {capabilities.map((capability, index) => (
+            <motion.article
+              key={capability.title}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.45, delay: (index % 3) * 0.06 }}
+              className="p-6 sm:p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all group shadow-sm hover:shadow-xl"
+            >
+              <div className="w-12 h-12 rounded-xl bg-aegrix-cyan/5 border border-aegrix-cyan/10 flex items-center justify-center text-aegrix-cyan mb-6 group-hover:bg-aegrix-cyan/10 transition-all duration-300">
+                <capability.icon size={24} aria-hidden="true" />
+              </div>
+              <h3 className="text-xl font-sora font-bold text-aegrix-text mb-3 tracking-tight">{capability.title}</h3>
+              <p className="text-sm text-aegrix-muted leading-relaxed">{capability.desc}</p>
+            </motion.article>
+          ))}
         </div>
 
-        <div className="mt-12 md:mt-20 p-1 bg-linear-to-r from-transparent via-aegrix-cyan/20 to-transparent" />
+        <div className="mt-12 md:mt-20 h-px bg-linear-to-r from-transparent via-aegrix-cyan/25 to-transparent" />
       </div>
     </section>
   );
