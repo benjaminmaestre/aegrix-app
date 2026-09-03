@@ -6,12 +6,14 @@ import NicheLandingTemplate from '@/components/NicheLandingTemplate';
 import { Database, Clock, TrendingDown, RefreshCw } from 'lucide-react';
 import { buildWhatsAppUrl } from '@/lib/site-config';
 
-const INDUSTRIAL_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero evaluar integraciones, inventario y operación digital de mi empresa industrial, distribuidora o logística con AEGRIX.');
+const INDUSTRIAL_WHATSAPP_URL_ES = buildWhatsAppUrl('Hola, quiero evaluar integraciones, inventario y operación digital de mi empresa industrial, distribuidora o logística con AEGRIX.');
+const INDUSTRIAL_WHATSAPP_URL_EN = buildWhatsAppUrl('Hello, I want to assess integrations, inventory and digital operations for my industrial, distribution or logistics company with AEGRIX.');
 
 export default function IndustrialLogisticaPage() {
   const params = useParams();
   const lang = (params?.lang as 'es' | 'en') || 'es';
   const isEn = lang === 'en';
+  const industrialWhatsAppUrl = isEn ? INDUSTRIAL_WHATSAPP_URL_EN : INDUSTRIAL_WHATSAPP_URL_ES;
 
   const problems = [
     {
@@ -85,13 +87,13 @@ export default function IndustrialLogisticaPage() {
   return (
     <NicheLandingTemplate
       lang={lang}
-      heroTagline="AEGRIX Industrial & Logística"
+      heroTagline={isEn ? 'AEGRIX Industrial & Logistics' : 'AEGRIX Industrial & Logística'}
       heroTitlePart1={isEn ? 'Integration, inventory visibility and automation' : 'Integración, visibilidad de inventario y automatización'}
       heroTitleHighlight={isEn ? 'for industrial and logistics operations.' : 'para operaciones industriales y logísticas.'}
       heroDescription={isEn
         ? 'B2B portals, ERP integrations, operational dashboards and automation to connect orders, inventory, logistics and business data.'
         : 'Portales B2B, integraciones ERP, dashboards operativos y automatización para conectar pedidos, inventario, logística y datos de negocio.'}
-      heroWhatsAppUrl={INDUSTRIAL_WHATSAPP_URL}
+      heroWhatsAppUrl={industrialWhatsAppUrl}
       problemsSectionTitle={isEn ? 'Common integration and visibility gaps' : 'Brechas frecuentes de integración y visibilidad'}
       problemsSectionDesc={isEn
         ? 'Growing operations need reliable data flows, controlled integrations and visibility that matches the speed of operational decisions.'
@@ -109,7 +111,7 @@ export default function IndustrialLogisticaPage() {
         ? 'We can review systems, APIs, data flows, order processes and reporting to identify integration gaps and prioritize a realistic improvement plan.'
         : 'Podemos revisar sistemas, APIs, flujos de datos, procesos de pedidos y reportes para identificar brechas de integración y priorizar un plan realista de mejora.'}
       diagnosticBannerCta={isEn ? 'Start operations assessment' : 'Iniciar evaluación de operación'}
-      diagnosticWhatsAppUrl={INDUSTRIAL_WHATSAPP_URL}
+      diagnosticWhatsAppUrl={industrialWhatsAppUrl}
     />
   );
 }
