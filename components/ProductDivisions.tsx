@@ -117,7 +117,7 @@ const ProductDivisions = () => {
                       <Icon size={26} aria-hidden="true" />
                     </div>
                     <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-aegrix-text/25">
-                      AEGRIX / {String(index + 1).padStart(2, '0')}
+                      {String(index + 1).padStart(2, '0')}
                     </span>
                   </div>
 
