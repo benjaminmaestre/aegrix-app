@@ -4,12 +4,18 @@ import type { Metadata, Viewport } from 'next';
 import { Sora, Manrope } from 'next/font/google';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
-import { getLocalizedPath } from '@/lib/navigation';
 import '../globals.css';
 import Navbar from '@/components/Navbar';
 import CookieBanner from '@/components/CookieBanner';
 import ConsentAwareAnalytics from '@/components/ConsentAwareAnalytics';
 import { getDictionary } from '@/lib/get-dictionary';
+import {
+  buildSiteStructuredData,
+  getCanonicalUrl,
+  getLanguageUrls,
+  getRouteSeo,
+} from '@/lib/seo';
+import { siteConfig } from '@/lib/site-config';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -40,7 +46,6 @@ const manrope = Manrope({
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-
   const headersList = await headers();
   const pathname = headersList.get('x-pathname');
 
@@ -57,74 +62,44 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   if (!isValidLocale(lang)) {
     return {
       title: 'AEGRIX',
-      metadataBase: new URL('https://aegrix.com.co'),
+      metadataBase: new URL(siteConfig.origin),
     };
   }
 
   const isEn = lang === 'en';
-
-  const title = isEn
-    ? 'AEGRIX | Software Engineering, Cybersecurity & AI'
-    : 'AEGRIX | Ingeniería de Software, Ciberseguridad e IA';
-
-  const description = isEn
-    ? 'At AEGRIX we diagnose, build, and optimize digital solutions in software, cybersecurity, data, automation, and AI for companies.'
-    : 'En AEGRIX diagnosticamos, construimos y optimizamos soluciones digitales de software, ciberseguridad, datos, automatización e IA para empresas.';
+  const seo = getRouteSeo(finalPathname, lang);
+  const canonicalUrl = getCanonicalUrl(finalPathname);
+  const languageUrls = getLanguageUrls(finalPathname);
 
   return {
-    title,
-    description,
-    metadataBase: new URL('https://aegrix.com.co'),
+    title: seo.title,
+    description: seo.description,
+    metadataBase: new URL(siteConfig.origin),
     alternates: {
-      canonical: finalPathname,
-      languages: {
-        es: getLocalizedPath(finalPathname, 'es'),
-        en: getLocalizedPath(finalPathname, 'en'),
-        'x-default': getLocalizedPath(finalPathname, 'es'),
-      },
+      canonical: canonicalUrl,
+      languages: languageUrls,
     },
-    keywords: [
-      'empresa de ciberseguridad en Colombia',
-      'desarrollo de software para empresas en Colombia',
-      'auditoria de seguridad digital Colombia',
-      'ciberseguridad para empresas',
-      'desarrollo de software',
-      'ingeniería de software',
-      'empresa ciberseguridad Bogota',
-      'desarrollo de software Bogota',
-      'empresa ciberseguridad Cali',
-      'desarrollo de software Cali',
-      'empresa ciberseguridad Medellin',
-      'desarrollo de software Medellin',
-      'empresa ciberseguridad Barranquilla',
-      'desarrollo de software Barranquilla',
-      'empresa ciberseguridad Cartagena',
-      'desarrollo de software Cartagena',
-      'agentes de inteligencia artificial',
-      'IA para empresas',
-      'consultoría tecnológica',
-    ],
     openGraph: {
-      title,
-      description,
+      title: seo.title,
+      description: seo.description,
       type: 'website',
       locale: isEn ? 'en_US' : 'es_CO',
-      url: `https://aegrix.com.co/${lang}`,
-      siteName: 'AEGRIX',
+      url: canonicalUrl,
+      siteName: siteConfig.brand,
       images: [
         {
-          url: '/AEGRIX_preview.png',
+          url: `${siteConfig.origin}/AEGRIX_preview.png`,
           width: 1200,
           height: 630,
-          alt: 'AEGRIX Logo',
+          alt: 'AEGRIX',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
-      images: ['/AEGRIX_preview.png'],
+      title: seo.title,
+      description: seo.description,
+      images: [`${siteConfig.origin}/AEGRIX_preview.png`],
     },
     robots: { index: true, follow: true },
     icons: {
@@ -154,7 +129,10 @@ export default async function RootLayout({
 
   const dict = await getDictionary(lang);
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
-  const nonce = (await headers()).get('x-nonce') || undefined;
+  const requestHeaders = await headers();
+  const nonce = requestHeaders.get('x-nonce') || undefined;
+  const pathname = requestHeaders.get('x-pathname') || `/${lang}`;
+  const structuredData = JSON.stringify(buildSiteStructuredData(pathname, lang)).replace(/</g, '\\u003c');
 
   return (
     <html lang={lang} className={`${sora.variable} ${manrope.variable}`} data-theme="dark" suppressHydrationWarning>
@@ -176,20 +154,7 @@ export default async function RootLayout({
           id="json-ld"
           type="application/ld+json"
           nonce={nonce}
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: 'AEGRIX',
-              url: 'https://aegrix.com.co',
-              logo: 'https://aegrix.com.co/AEGRIX_right_logo_icon.svg',
-              sameAs: [
-                'https://www.linkedin.com/company/aegrix',
-                'https://x.com/aegrix',
-              ],
-              description: 'Firma de ingeniería de software, ciberseguridad y soluciones de inteligencia artificial.',
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: structuredData }}
         />
       </head>
       <body className="bg-aegrix-bg text-aegrix-text font-manrope selection:bg-aegrix-cyan/20">
