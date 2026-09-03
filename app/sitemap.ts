@@ -5,6 +5,11 @@ const DOMAIN = 'https://aegrix.com.co';
 const routePairs = [
   { es: '', en: '' },
   { es: '/nosotros', en: '/about' },
+  { es: '/aegrix-360', en: '/aegrix-360' },
+  { es: '/aegrix-360/nist', en: '/aegrix-360/nist' },
+  { es: '/aegrix-360/iso-27001', en: '/aegrix-360/iso-27001' },
+  { es: '/aegrix-360/hipaa', en: '/aegrix-360/hipaa' },
+  { es: '/aegrix-360/gdpr', en: '/aegrix-360/gdpr' },
   { es: '/terminos', en: '/terms' },
   { es: '/privacidad', en: '/privacy' },
   { es: '/seguridad', en: '/security' },
@@ -22,33 +27,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const pair of routePairs) {
     const today = new Date().toISOString().split('T')[0];
-    const changeFreq = pair.es === '' ? 'weekly' as const : 'monthly' as const;
-    const priority = pair.es === '' ? 1.0 : 0.8;
+    const isHome = pair.es === '';
+    const is360 = pair.es.startsWith('/aegrix-360');
+    const changeFreq = isHome || is360 ? 'weekly' as const : 'monthly' as const;
+    const priority = isHome ? 1.0 : is360 ? 0.9 : 0.8;
 
-    // Spanish entry
     sitemapEntries.push({
       url: `${DOMAIN}/es${pair.es}`,
       lastModified: today,
       changeFrequency: changeFreq,
-      priority: priority,
+      priority,
       alternates: {
         languages: {
-          'es': `${DOMAIN}/es${pair.es}`,
-          'en': `${DOMAIN}/en${pair.en}`,
+          es: `${DOMAIN}/es${pair.es}`,
+          en: `${DOMAIN}/en${pair.en}`,
         },
       },
     });
 
-    // English entry
     sitemapEntries.push({
       url: `${DOMAIN}/en${pair.en}`,
       lastModified: today,
       changeFrequency: changeFreq,
-      priority: priority,
+      priority,
       alternates: {
         languages: {
-          'es': `${DOMAIN}/es${pair.es}`,
-          'en': `${DOMAIN}/en${pair.en}`,
+          es: `${DOMAIN}/es${pair.es}`,
+          en: `${DOMAIN}/en${pair.en}`,
         },
       },
     });
