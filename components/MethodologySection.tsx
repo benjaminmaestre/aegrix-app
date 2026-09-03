@@ -1,34 +1,33 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Search, PenTool, ShieldCheck, TrendingUp } from 'lucide-react';
+import { CheckCircle2, PenTool, Search, TrendingUp } from 'lucide-react';
 
 const steps = [
   {
     icon: Search,
-    title: 'Diagnóstico de Fuga',
-    description: 'Identificamos las brechas de seguridad y las ineficiencias digitales que están costando dinero a tu operación.',
-    benefit: 'Elimina el gasto innecesario'
+    title: 'Diagnóstico inicial',
+    description: 'Revisamos el contexto, los riesgos y los puntos de fricción relevantes para definir qué conviene atender primero.',
+    benefit: 'Hallazgos priorizados',
   },
   {
     icon: PenTool,
-    title: 'Arquitectura Líquida',
-    description: 'Diseñamos una infraestructura que no interrumpe tu negocio, sino que lo potencia con tecnología de punta.',
-    benefit: 'Diseño a medida'
+    title: 'Diseño de solución',
+    description: 'Definimos alcance, arquitectura, dependencias y criterios de aceptación antes de implementar.',
+    benefit: 'Plan y alcance definidos',
   },
   {
-    icon: ShieldCheck,
-    title: 'Blindaje y Ejecución',
-    description: 'Implementamos la capa de control: ciberseguridad avanzada y desarrollo web de alto rendimiento.',
-    benefit: 'Operación sin riesgos'
+    icon: CheckCircle2,
+    title: 'Implementación controlada',
+    description: 'Ejecutamos los cambios acordados y verificamos los entregables contra el alcance del proyecto.',
+    benefit: 'Entregables verificables',
   },
   {
     icon: TrendingUp,
-    title: 'Evolución Inteligente',
-    description: 'Monitoreamos y optimizamos tus sistemas 24/7 para que tu empresa nunca deje de escalar.',
-    benefit: 'Crecimiento continuo'
-  }
+    title: 'Seguimiento y mejora',
+    description: 'Cuando el servicio lo incluye, revisamos resultados, pendientes y nuevas prioridades con una cadencia acordada.',
+    benefit: 'Próximos pasos claros',
+  },
 ];
 
 const MethodologySection = () => {
@@ -37,36 +36,32 @@ const MethodologySection = () => {
       <div className="container-width">
         <div className="max-w-3xl mb-12 md:mb-20">
           <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-6 leading-tight">
-            Un método diseñado para el <br />
-            <span className="text-aegrix-cyan">control total de tu empresa.</span>
+            Un proceso claro, desde el diagnóstico
+            <br />
+            <span className="text-aegrix-cyan">hasta los entregables.</span>
           </h2>
           <p className="text-lg text-aegrix-muted max-w-2xl">
-            No improvisamos. Aplicamos un proceso de ingeniería de precisión para asegurar que cada dólar invertido en tecnología se traduzca en seguridad y rentabilidad.
+            Cada trabajo parte de un alcance definido. Las recomendaciones, tiempos y resultados dependen del contexto y de las condiciones acordadas con el cliente.
           </p>
         </div>
 
-        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-6 md:grid-cols-2 lg:grid-cols-4 pb-6 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
-          {steps.map((step, idx) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {steps.map((step, index) => (
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
+              key={step.title}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-5 sm:p-7 md:p-8 rounded-2xl md:rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all duration-500 group h-full flex flex-col shadow-sm hover:shadow-xl relative overflow-hidden w-[90%] sm:w-[50%] md:w-auto shrink-0 snap-align-start"
+              transition={{ duration: 0.45, delay: index * 0.06 }}
+              className="p-6 md:p-7 rounded-2xl bg-aegrix-surface border border-aegrix-border h-full flex flex-col"
             >
-              <div className="absolute inset-0 grid-bg opacity-[0.02] pointer-events-none" />
-              <div className="relative z-10 w-14 h-14 rounded-2xl bg-aegrix-cyan/5 border border-aegrix-cyan/10 flex items-center justify-center text-aegrix-cyan mb-6 md:mb-8 group-hover:scale-110 group-hover:bg-aegrix-cyan/10 transition-all duration-500">
-                <step.icon size={24} />
+              <div className="w-12 h-12 rounded-xl bg-aegrix-cyan/8 border border-aegrix-cyan/15 flex items-center justify-center text-aegrix-cyan mb-6">
+                <step.icon size={22} aria-hidden="true" />
               </div>
-              <h3 className="text-xl font-sora font-bold text-aegrix-text mb-4">{step.title}</h3>
-              <p className="text-sm text-aegrix-muted leading-relaxed mb-6 grow">
-                {step.description}
-              </p>
+              <h3 className="text-lg font-sora font-bold text-aegrix-text mb-3">{step.title}</h3>
+              <p className="text-sm text-aegrix-muted leading-relaxed mb-6 grow">{step.description}</p>
               <div className="pt-4 border-t border-aegrix-border mt-auto">
-                <span className="text-[10px] font-bold text-aegrix-cyan uppercase tracking-widest">
-                  Resultado: {step.benefit}
-                </span>
+                <span className="text-xs font-semibold text-aegrix-cyan">{step.benefit}</span>
               </div>
             </motion.div>
           ))}
