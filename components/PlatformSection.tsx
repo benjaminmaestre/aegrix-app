@@ -1,115 +1,116 @@
 'use client';
 
-import React, { useRef } from 'react';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { useInView } from '@/hooks/useInView';
-import { cn } from '@/lib/utils';
-import { ShieldCheck, Zap, BarChart3 } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { BarChart3, BrainCircuit, Globe2, ShieldCheck } from 'lucide-react';
 
 const PlatformSection = () => {
-  const { ref: inViewRef, inView } = useInView();
-  const sectionRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
+  const params = useParams();
+  const lang = (params?.lang as string) || 'es';
+  const isEnglish = lang === 'en';
 
-  // Calculate slide-in offsets for each layer card
-  const x0 = useTransform(scrollYProgress, [0.15, 0.35], [-60, 0]);
-  const opacity0 = useTransform(scrollYProgress, [0.15, 0.35], [0, 1]);
+  const points = isEnglish
+    ? [
+        { icon: ShieldCheck, text: 'Security integrated into architecture, access, and configuration.' },
+        { icon: Globe2, text: 'Software and web built around performance, SEO, and measurable journeys.' },
+        { icon: BarChart3, text: 'Data and analytics connected to decisions, reports, and traceability.' },
+      ]
+    : [
+        { icon: ShieldCheck, text: 'Seguridad integrada en arquitectura, accesos y configuración.' },
+        { icon: Globe2, text: 'Software y web orientados a rendimiento, SEO y recorridos medibles.' },
+        { icon: BarChart3, text: 'Datos y analítica conectados con decisiones, reportes y trazabilidad.' },
+      ];
 
-  const x1 = useTransform(scrollYProgress, [0.22, 0.42], [60, 0]);
-  const opacity1 = useTransform(scrollYProgress, [0.22, 0.42], [0, 1]);
-
-  const x2 = useTransform(scrollYProgress, [0.29, 0.49], [-60, 0]);
-  const opacity2 = useTransform(scrollYProgress, [0.29, 0.49], [0, 1]);
-
-  const x3 = useTransform(scrollYProgress, [0.36, 0.56], [60, 0]);
-  const opacity3 = useTransform(scrollYProgress, [0.36, 0.56], [0, 1]);
-
-  const xTransforms = [x0, x1, x2, x3];
-  const opacityTransforms = [opacity0, opacity1, opacity2, opacity3];
+  const layers = isEnglish
+    ? [
+        { name: 'AI & Automation', icon: BrainCircuit, className: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20' },
+        { name: 'Data & Analytics', icon: BarChart3, className: 'text-purple-400 bg-purple-500/10 border-purple-500/20' },
+        { name: 'Software & Web', icon: Globe2, className: 'text-aegrix-cyan bg-aegrix-cyan/10 border-aegrix-cyan/20' },
+        { name: 'Cybersecurity', icon: ShieldCheck, className: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
+      ]
+    : [
+        { name: 'IA & Automatización', icon: BrainCircuit, className: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20' },
+        { name: 'Datos & Analítica', icon: BarChart3, className: 'text-purple-400 bg-purple-500/10 border-purple-500/20' },
+        { name: 'Software & Web', icon: Globe2, className: 'text-aegrix-cyan bg-aegrix-cyan/10 border-aegrix-cyan/20' },
+        { name: 'Ciberseguridad', icon: ShieldCheck, className: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
+      ];
 
   return (
-    <section id="arquitectura" ref={sectionRef} className="section-padding bg-aegrix-bg relative overflow-hidden">
-      <div className="container-width" ref={inViewRef}>
+    <section id="arquitectura" className="section-padding bg-aegrix-bg relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_50%,rgba(0,194,255,0.045),transparent_45%)] pointer-events-none" aria-hidden="true" />
+
+      <div className="container-width relative z-10">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
-          <div className={cn(
-            "transition-all duration-1000",
-            inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-          )}>
-            <h2 className="heading-lg mb-8 text-aegrix-text">
-              Una sola capa para proteger, <br />
-              <span className="text-aegrix-cyan">medir y acelerar tu operación.</span>
+          <motion.div
+            initial={{ opacity: 0, x: -18 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+          >
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">
+              {isEnglish ? 'Coordinated architecture' : 'Arquitectura coordinada'}
+            </span>
+            <h2 className="heading-lg mt-3 mb-8 text-aegrix-text">
+              {isEnglish ? 'Security, software, data and AI' : 'Seguridad, software, datos e IA'} <br />
+              <span className="text-aegrix-cyan">{isEnglish ? 'working in the same direction.' : 'trabajando en la misma dirección.'}</span>
             </h2>
             <p className="body-lg mb-8 md:mb-10 text-aegrix-muted">
-              AEGRIX conecta ciberseguridad, infraestructura web, analítica e inteligencia artificial en una estrategia coherente para que tu empresa opere con más control, confianza y velocidad.
+              {isEnglish
+                ? 'AEGRIX connects the capabilities a project actually needs instead of treating them as isolated tools. The architecture is defined around the client context, priorities, and delivery scope.'
+                : 'AEGRIX conecta las capacidades que realmente necesita un proyecto en lugar de tratarlas como herramientas aisladas. La arquitectura se define alrededor del contexto, las prioridades y el alcance de entrega del cliente.'}
             </p>
-            
-            <div className="space-y-6 mb-8 md:mb-12">
-              {[
-                { icon: ShieldCheck, text: "Seguridad integrada en cada nivel del sistema." },
-                { icon: Zap, text: "Infraestructura web optimizada para alta conversión." },
-                { icon: BarChart3, text: "Analítica inteligente para decisiones basadas en datos." },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-4 text-aegrix-text/80 font-medium">
-                  <div className="text-aegrix-cyan">
-                    <item.icon size={20} />
+
+            <div className="space-y-5 mb-8 md:mb-12">
+              {points.map((item) => (
+                <div key={item.text} className="flex items-start gap-4 text-aegrix-text/80 font-medium">
+                  <div className="w-9 h-9 rounded-lg bg-aegrix-cyan/7 border border-aegrix-cyan/12 text-aegrix-cyan flex items-center justify-center shrink-0">
+                    <item.icon size={18} aria-hidden="true" />
                   </div>
-                  {item.text}
+                  <span className="pt-1.5 leading-relaxed">{item.text}</span>
                 </div>
               ))}
             </div>
 
-            <Link href="#servicios" className="btn-primary">
-              Explorar la Capa de Control
+            <Link href={`/${lang}#servicios`} className="btn-primary">
+              {isEnglish ? 'Explore services' : 'Explorar servicios'}
             </Link>
-          </div>
+          </motion.div>
 
           <div className="relative">
-            {/* Visual representation of "Layers" */}
             <div className="relative aspect-square w-full max-w-125 mx-auto">
-              <div className="absolute inset-0 bg-aegrix-cyan/10 blur-[100px] rounded-full" />
-              
-              <div className="relative h-full flex flex-col justify-center gap-6">
-                {[
-                  { name: 'AI Automation Layer', color: 'bg-aegrix-green', icon: Zap },
-                  { name: 'Data Intelligence Layer', color: 'bg-purple-500', icon: BarChart3 },
-                  { name: 'Web Infrastructure Layer', color: 'bg-aegrix-cyan', icon: Globe },
-                  { name: 'Security Shield Layer', color: 'bg-blue-600', icon: ShieldCheck },
-                ].map((layer, i) => {
-                  const x = xTransforms[i];
-                  const opacity = opacityTransforms[i];
-                  return (
-                    <motion.div 
-                      key={i}
-                      style={{ 
-                        x,
-                        opacity,
-                        zIndex: 4 - i
-                      }}
-                      className={cn(
-                        "group relative bg-aegrix-surface border border-aegrix-border p-5 md:p-6 rounded-xl shadow-2xl transition-colors duration-500 hover:border-aegrix-cyan/50 hover:-translate-y-1",
-                        i === 0 ? "ml-0 mr-6 md:mr-15" : "",
-                        i === 1 ? "ml-2 md:ml-5 mr-4 md:mr-10" : "",
-                        i === 2 ? "ml-4 md:ml-10 mr-2 md:mr-5" : "",
-                        i === 3 ? "ml-6 md:ml-15 mr-0" : ""
-                      )}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                          <div className={cn("p-2 rounded-lg text-white", layer.color)}>
-                            <layer.icon size={18} />
-                          </div>
-                          <span className="font-sora font-bold text-aegrix-text text-sm md:text-base">{layer.name}</span>
-                        </div>
-                        <div className="w-2 h-2 rounded-full bg-aegrix-green shadow-[0_0_8px_#22C55E]" />
+              <div className="absolute inset-0 bg-aegrix-cyan/8 blur-[100px] rounded-full" aria-hidden="true" />
+
+              <div className="relative h-full flex flex-col justify-center gap-5 md:gap-6">
+                {layers.map((layer, index) => (
+                  <motion.div
+                    key={layer.name}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -24 : 24 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: index * 0.07 }}
+                    style={{ zIndex: layers.length - index }}
+                    className={[
+                      'group relative bg-aegrix-surface border border-aegrix-border p-5 md:p-6 rounded-xl shadow-xl transition-all duration-300 hover:border-aegrix-cyan/30 hover:-translate-y-0.5',
+                      index === 0 ? 'ml-0 mr-6 md:mr-15' : '',
+                      index === 1 ? 'ml-2 md:ml-5 mr-4 md:mr-10' : '',
+                      index === 2 ? 'ml-4 md:ml-10 mr-2 md:mr-5' : '',
+                      index === 3 ? 'ml-6 md:ml-15 mr-0' : '',
+                    ].join(' ')}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className={`p-2.5 rounded-lg border ${layer.className}`}>
+                        <layer.icon size={19} aria-hidden="true" />
                       </div>
-                    </motion.div>
-                  );
-                })}
+                      <div>
+                        <span className="font-sora font-bold text-aegrix-text text-sm md:text-base">{layer.name}</span>
+                        <p className="mt-1 text-[10px] md:text-xs text-aegrix-muted">
+                          {isEnglish ? 'Capability integrated according to project scope' : 'Capacidad integrada según el alcance del proyecto'}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
@@ -118,24 +119,5 @@ const PlatformSection = () => {
     </section>
   );
 };
-
-const Globe = ({ size, className }: { size: number, className?: string }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width={size} 
-    height={size} 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    className={className}
-  >
-    <circle cx="12" cy="12" r="10" />
-    <line x1="2" y1="12" x2="22" y2="12" />
-    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-  </svg>
-);
 
 export default PlatformSection;
