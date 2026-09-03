@@ -2,8 +2,8 @@
   "hero": {
     "title_part1": "Elite technology engineering for",
     "title_highlight": "software, cybersecurity, data and AI.",
-    "description": "At AEGRIX we design, strengthen and scale digital infrastructure for companies through web development, cybersecurity, analytics, automation and artificial intelligence, with defined scopes and deliverables.",
-    "cta_primary": "Request a diagnostic",
+    "description": "At AEGRIX we design, strengthen and scale digital infrastructure for companies through software engineering, cybersecurity, analytics, automation and artificial intelligence, with defined scopes and deliverables.",
+    "cta_primary": "Start an AEGRIX 360 diagnostic",
     "cta_secondary": "View services"
   },
   "navbar": {
@@ -12,20 +12,20 @@
     "sectors": "Sectors",
     "methodology": "Methodology",
     "contact": "Contact",
-    "cta": "Request a diagnostic"
+    "cta": "Start diagnostic"
   },
   "about": {
-    "title": "How we work",
+    "title": "Engineering for systems that matter",
     "subtitle": "AEGRIX",
-    "description": "We are a technology firm focused on solving specific business needs through software engineering, cybersecurity, data, automation and artificial intelligence.",
+    "description": "We are a technology engineering firm specializing in software, cybersecurity, data, automation and artificial intelligence for enterprise environments and critical operations.",
     "mission_title": "Mission",
-    "mission_text": "Design and implement technology solutions with clear scope, technical criteria and verifiable deliverables.",
+    "mission_text": "Design and implement robust, secure and scalable technology solutions with clear scope, technical criteria and verifiable deliverables.",
     "vision_title": "Vision",
-    "vision_text": "Build long-term relationships based on responsible engineering, continuous improvement and measurable results.",
+    "vision_text": "Become a Latin American reference firm for the quality of its engineering, the depth of its assessments and its ability to solve complex digital problems.",
     "values": {
       "security": "Security",
       "precision": "Technical rigor",
-      "innovation": "Continuous improvement"
+      "innovation": "Evolution"
     }
   },
   "cookies": {
