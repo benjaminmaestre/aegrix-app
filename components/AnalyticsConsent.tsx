@@ -2,14 +2,24 @@
 
 import { useEffect, useState } from 'react';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { getCookiePreferences } from '@/lib/cookie-consent';
+import { COOKIE_CONSENT_KEY, getCookiePreferences } from '@/lib/cookie-consent';
 import { GA_MEASUREMENT_ID, trackEvent } from '@/lib/analytics';
 
 export default function AnalyticsConsent() {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    const update = () => setEnabled(Boolean(getCookiePreferences()?.analytics));
+    const update = () => {
+      const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+      const preferences = getCookiePreferences();
+      // Analytics is enabled only by the explicit "Accept all" action.
+      setEnabled(consent === 'accepted' && Boolean(
+        preferences?.necessary &&
+        preferences.analytics &&
+        preferences.marketing &&
+        preferences.functional
+      ));
+    };
     update();
     window.addEventListener('cookie-consent-updated', update);
 
