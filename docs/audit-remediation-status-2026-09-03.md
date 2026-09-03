@@ -7,18 +7,18 @@ Este documento registra el estado de los hallazgos técnicos, de privacidad, con
 | Área | Estado | Nota |
 |---|---|---|
 | Seguridad de `POST /api/contact` | RESUELTO | Validación server-side, límites, escape, antiabuso, errores genéricos y no-cache. |
-| Anti-bot / spam | RESUELTO | BotID server-side + honeypot + origen + rate limit local y **Vercel Firewall distribuido en el edge: 5 solicitudes/IP/10 min, respuesta 429**. |
-| Headers / CSP | RESUELTO | CSP con nonce por petición y `strict-dynamic`, sin `unsafe-inline` en `script-src` de producción; HSTS, anti-clickjacking, nosniff, Referrer/Permissions/COOP/CORP. |
+| Anti-bot / spam | RESUELTO | BotID server-side + honeypot + origen + rate limit IP/correo + Vercel Firewall distribuido en edge para `/api/contact` (5 solicitudes por IP cada 10 minutos, `429` al exceder). |
+| Headers / CSP | RESUELTO | CSP con nonce por petición y `strict-dynamic` para scripts, sin `unsafe-inline` en `script-src` de producción; HSTS, anti-clickjacking, nosniff, Referrer/Permissions/COOP/CORP. |
 | Dependencias | RESUELTO | CI ejecuta audit de producción, lint y build; Next/Sharp actualizados. |
-| Code scanning | RESUELTO | CodeQL JavaScript/TypeScript activo en PR, `main` y ejecución semanal; análisis exitoso. |
+| Code scanning | RESUELTO | CodeQL JavaScript/TypeScript activo en PR, `main` y ejecución semanal; análisis exitosos. |
 | Logs / PII | RESUELTO | Los errores no registran payloads completos ni datos personales del formulario. |
 | Analytics / consentimiento | RESUELTO | GA solo carga con consentimiento de analítica; categorías separadas y nonce CSP aplicado. |
 | Cookies | RESUELTO | No hay consentimiento por mera navegación; preferencias reabribles y categorías explícitas. |
-| Hardcode / configuración | RESUELTO EN ALCANCE | Secretos en variables de entorno; configuración pública centralizada en `lib/site-config.ts`; identidad legal pública centralizada en `lib/legal-identity.ts`. |
+| Hardcode / configuración | RESUELTO EN ALCANCE | Secretos permanecen en variables de entorno; dominio, portal, correo público y WhatsApp están centralizados en `lib/site-config.ts`. Identidad legal pública centralizada en `lib/legal-identity.ts`. |
 | Claims / métricas simuladas | RESUELTO | Eliminadas telemetrías y promesas absolutas ficticias; se conserva lenguaje fuerte respaldado. |
 | AEGRIX 360 / marcos | RESUELTO | NIST, ISO 27001/27002, HIPAA y GDPR se mantienen como capacidades reales con lenguaje de assessment/readiness/assurance. |
 | Legal / identidad | IMPLEMENTADO · VALIDACIÓN EXTERNA PENDIENTE | Datos reales, PQR, plazos, proveedores, retención, retracto y responsabilidad corregidos. Falta revisión final por abogado colombiano. |
-| Seguridad del repositorio | IMPLEMENTADO · CHECKS POR CONFIRMAR | `main` tiene PR obligatorio, 1 aprobación, conversaciones resueltas, sin force push/borrado ni bypass de administradores. Falta confirmar que `validate` y, si está disponible, CodeQL estén configurados como required status checks. |
+| Seguridad del repositorio | PARCIALMENTE RESUELTO | `main` ya exige PR, 1 aprobación, conversaciones resueltas y bloquea force push/eliminación/bypass. Los workflows ya publican checks exactos `validate` y `CodeQL`; falta activarlos como required status checks en Branch Protection. |
 | Accesibilidad / móvil | RESUELTO EN ALCANCE AUDITADO | Focus visible, reduced motion y grids móviles sustituyen carruseles problemáticos. |
 | Revisión visual final | PENDIENTE DE APROBACIÓN | El PR continúa draft hasta aprobación visual y merge. |
 
@@ -36,7 +36,7 @@ Implementado en `app/api/contact/route.ts`:
 - Control de `Origin` y `Sec-Fetch-Site`.
 - Honeypot.
 - BotID Basic con verificación server-side.
-- Rate limit local por IP y correo, claves SHA-256, `429` y `Retry-After`.
+- Rate limit por IP y correo, claves SHA-256, `429` y `Retry-After`.
 - Respuestas `Cache-Control: no-store`.
 - Error `503` si Resend no está configurado en producción, evitando falso éxito.
 - Errores genéricos sin exponer datos personales completos.
@@ -44,56 +44,98 @@ Implementado en `app/api/contact/route.ts`:
 
 ### Rate limiting distribuido
 
-El rate limiting distribuido de Vercel Firewall quedó activo directamente en el edge para `/api/contact`:
+Además del contador IP/correo de la aplicación, Vercel Firewall aplica rate limiting distribuido en el edge para `/api/contact`:
 
 - identificador: IP;
-- umbral: **5 solicitudes por 10 minutos por IP**;
-- respuesta al exceder: **HTTP 429 Too Many Requests**;
-- aplicado en la infraestructura edge de Vercel.
+- umbral: 5 solicitudes por 10 minutos por IP;
+- respuesta al exceder: HTTP `429 Too Many Requests`;
+- aplicado antes de llegar a la función.
 
-La regla distribuida complementa, no sustituye, las capas de la aplicación: BotID, honeypot, control de origen, límites de entrada y rate limit local por correo/IP. Issue #3 cerrado como completado.
+El límite local por correo se mantiene como segunda dimensión de defensa dentro de la aplicación.
 
 ## CSP y headers del navegador
 
 La CSP se genera por petición en `proxy.ts` con nonce criptográficamente aleatorio y se propaga a Next mediante `x-nonce`.
 
-En producción, `script-src` utiliza `'self'`, nonce por petición y `'strict-dynamic'`, sin `'unsafe-inline'` para scripts. El nonce también se pasa a los scripts propios y a Google Analytics cuando existe consentimiento.
+En producción, `script-src` utiliza:
 
-`next.config.ts` conserva HSTS, `nosniff`, `DENY`, Referrer Policy, Permissions Policy, COOP/CORP, Origin-Agent-Cluster y `X-Powered-By` deshabilitado. `style-src` conserva `'unsafe-inline'` por compatibilidad con el renderizado/estilos actuales.
+- `'self'`;
+- nonce por petición;
+- `'strict-dynamic'`;
+- sin `'unsafe-inline'` para scripts.
+
+El nonce también se pasa a los scripts inline propios y a Google Analytics cuando existe consentimiento.
+
+`next.config.ts` conserva los headers estáticos complementarios:
+
+- `Strict-Transport-Security`;
+- `X-Content-Type-Options: nosniff`;
+- `X-Frame-Options: DENY`;
+- `Referrer-Policy: strict-origin-when-cross-origin`;
+- `Permissions-Policy`;
+- `Cross-Origin-Opener-Policy`;
+- `Cross-Origin-Resource-Policy`;
+- `Origin-Agent-Cluster`;
+- `X-Powered-By` deshabilitado.
+
+`style-src` conserva `'unsafe-inline'` por compatibilidad con el renderizado/estilos actuales. La restricción crítica de ejecución de JavaScript ya se movió a nonce.
 
 ## Dependencias, CI y CodeQL
 
-El workflow CI ejecuta `npm ci`, `npm audit --omit=dev --audit-level=high`, lint y build de producción. `.github/workflows/codeql.yml` ejecuta CodeQL JavaScript/TypeScript en pull requests hacia `main`, pushes a `main` y semanalmente.
+El workflow CI ejecuta:
+
+- instalación reproducible con `npm ci`;
+- `npm audit --omit=dev --audit-level=high`;
+- lint;
+- build de producción.
+
+Los nombres de checks publicados están fijados explícitamente para Branch Protection:
+
+- `validate` — CI/audit/lint/build;
+- `CodeQL` — análisis estático JavaScript/TypeScript.
+
+Además, `.github/workflows/codeql.yml` ejecuta CodeQL:
+
+- en pull requests hacia `main`;
+- en pushes a `main`;
+- semanalmente.
 
 ## Seguridad del repositorio
 
-La protección de `main` fue activada directamente en GitHub con:
+`main` ya tiene Branch Protection activa con:
 
 - pull request obligatorio;
-- **1 aprobación requerida**;
+- 1 aprobación requerida;
 - resolución de conversaciones;
 - force push bloqueado;
-- borrado de `main` bloqueado;
+- eliminación bloqueada;
 - sin bypass de administradores.
 
-Queda por confirmar en la configuración clásica de Branch Protection que **Require status checks to pass before merging** esté habilitado y que `validate` sea obligatorio; si CodeQL aparece como check seleccionable, debe exigirse también. El conector no puede leer ese detalle porque GitHub devuelve 403 para el endpoint clásico de branch protection y el repositorio no usa Rulesets. Issue #5 permanece abierto únicamente para esa confirmación.
+Los workflows ya generan exactamente los checks `validate` y `CodeQL`. Falta únicamente activar en Branch Protection:
+
+- `Require status checks to pass before merging`;
+- required check `validate`;
+- required check `CodeQL`.
+
+Issue #5 permanece abierto hasta confirmar esa configuración.
 
 ## Hardcode y secretos
 
 - `RESEND_API_KEY` se obtiene exclusivamente de `process.env`.
-- `NEXT_PUBLIC_GA_ID` se obtiene de entorno; es identificador público, no secreto.
-- `.env*` está excluido por `.gitignore`; el repo solo contiene `.env.example` sin secretos.
-- Configuración pública/operativa centralizada en `lib/site-config.ts`: dominio, `www`, Portal 360, correo público/remitente por defecto y WhatsApp.
-- URLs de WhatsApp generadas mediante una única función.
-- Identidad legal pública centralizada en `lib/legal-identity.ts`.
-- Allowlist de orígenes del formulario usa la configuración central.
+- `NEXT_PUBLIC_GA_ID` se obtiene de entorno; es un identificador público de medición, no un secreto.
+- `.env*` está excluido por `.gitignore`; el repo solo contiene `.env.example` sin valores secretos.
+- La configuración pública y operativa está centralizada en `lib/site-config.ts`: origen canónico, `www`, Portal 360, correo público/remitente por defecto y número de WhatsApp.
+- Las URLs de WhatsApp se generan mediante `buildWhatsAppUrl()` en vez de repetir el número en múltiples archivos.
+- La identidad legal pública permanece centralizada en `lib/legal-identity.ts`; no se trata como secreto porque debe publicarse en las páginas legales.
+- El allowlist de orígenes del formulario usa la configuración central, evitando divergencias entre dominios.
 
 ## Vulnerability disclosure
 
 - Política pública en `/{lang}/seguridad`.
 - Canal: `contacto@aegrix.com.co`, asunto `[SECURITY]`.
-- `/.well-known/security.txt` se sirve desde una única implementación efectiva mediante `app/api/securitytxt/route.ts` y el proxy.
-- `Expires` dentro de un horizonte inferior a un año.
+- `/.well-known/security.txt` se sirve desde una única implementación efectiva (`app/api/securitytxt/route.ts`) a través del proxy.
+- `Expires` se mantiene dentro de un horizonte inferior a un año.
+- Se eliminaron rutas, archivos estáticos y rewrites duplicados usados durante el diagnóstico.
 - Reglas explícitas de investigación no destructiva y prohibición de acceso a datos de terceros, DoS, malware y persistencia.
 
 ## Privacidad y cookies
@@ -104,17 +146,26 @@ Queda por confirmar en la configuración clásica de Branch Protection que **Req
 - Reclamos: 15 días hábiles + hasta 8 adicionales.
 - Proveedores identificados: Vercel, Resend y Google Analytics condicionado a consentimiento.
 - Tratamiento internacional descrito.
-- Retención operativa definida.
+- Retención operativa: prospectos 24 meses; marketing 24 meses de inactividad; logs 12 meses; documentación comercial/contable sujeta a conservación hasta 10 años o término obligatorio superior.
 - Analytics, funcionales y marketing no se activan por mera navegación.
-- Marketing opcional e independiente.
+- Marketing permanece opcional e independiente.
 
 ## Términos comerciales
 
-Se eliminó la cláusula absoluta de no reembolso y se incorporaron retracto/excepciones, reversión de pagos cuando proceda, garantías/correcciones ligadas al alcance, responsabilidad sujeta a normas imperativas, autorización para portafolio, confidencialidad, propiedad intelectual, terminación, PQR y enlace a la SIC.
+Corregido:
+
+- Eliminada la cláusula absoluta de no reembolso.
+- Incorporado retracto y excepciones cuando resulte aplicable.
+- Incorporada reversión de pagos cuando legalmente proceda.
+- Garantías y correcciones ligadas al alcance y proceso de aceptación.
+- Limitación de responsabilidad sujeta a normas imperativas.
+- Uso de portafolio condicionado a autorización o base contractual válida.
+- Confidencialidad, propiedad intelectual, terminación y PQR clarificados.
+- Enlace a la Superintendencia de Industria y Comercio.
 
 ## Contenido y credibilidad
 
-El sitio conserva posicionamiento de ingeniería de élite, software robusto, seguridad, escalabilidad, observabilidad, alta disponibilidad como objetivo de arquitectura y monitoreo proactivo cuando corresponda. Se eliminaron porcentajes ficticios, uptime simulado, estados `SECURED/Operational`, `100% protegido`, `sin fallos` y garantías absolutas.
+El sitio conserva posicionamiento de ingeniería de élite, software robusto, seguridad, escalabilidad, observabilidad, alta disponibilidad como objetivo de arquitectura y monitoreo proactivo cuando corresponda. Se eliminaron únicamente datos o promesas que aparentaban evidencia inexistente: porcentajes ficticios, uptime simulado, estados `SECURED/Operational`, `100% protegido`, `sin fallos` y garantías absolutas.
 
 ## AEGRIX 360
 
@@ -122,17 +173,23 @@ El sitio conserva posicionamiento de ingeniería de élite, software robusto, se
 - Pulse · Compass · Assurance.
 - Rutas específicas para NIST, ISO 27001/27002, HIPAA y GDPR.
 - Diferenciación entre página comercial y Portal 360.
-- Assessment, readiness, evidencia, hallazgos, remediación y assurance sin presentarlos como certificación automática.
+- Assessment, readiness, evidencia, hallazgos, remediación y assurance descritos sin presentarlos como certificación automática.
 
 ## Limpieza técnica
 
-Se retiraron el script local obsoleto `scratch/check_tags_3001.js`, copias redundantes de `security.txt` y el `vercel.json` que ya no era necesario.
+Se retiraron:
+
+- script local obsoleto `scratch/check_tags_3001.js`;
+- copias redundantes de `security.txt`;
+- `vercel.json` que ya no era necesario para este flujo.
+
+Esto reduce configuración duplicada y evita que futuras correcciones se apliquen a una copia pero no a otra.
 
 ## Pendientes antes de merge
 
-1. Confirmar que `validate` y, si está disponible, CodeQL están configurados como **required status checks** de `main` (issue #5).
-2. Revisión jurídica externa final por abogado colombiano (issue #2).
+1. Activar `Require status checks to pass before merging` en `main` con `validate` y `CodeQL` como checks obligatorios — issue #5.
+2. Revisión jurídica externa final por abogado colombiano — issue #2.
 3. Aprobación visual final del PR.
 4. Merge a `main` y smoke test de producción.
 
-Los hallazgos críticos originales del endpoint, navegador y protección antiabuso están mitigados. El rate limiting distribuido ya está activo en Vercel Firewall.
+Los hallazgos críticos originales del endpoint y del navegador están mitigados en esta rama. El único control técnico de repositorio pendiente es hacer obligatorios los checks `validate` y `CodeQL` que ya publica GitHub Actions.
