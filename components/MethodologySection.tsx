@@ -61,45 +61,58 @@ const stepsEn = [
 const MethodologySection = () => {
   const params = useParams();
   const lang = (params?.lang as string) || 'es';
-  const steps = lang === 'en' ? stepsEn : stepsEs;
+  const isEnglish = lang === 'en';
+  const steps = isEnglish ? stepsEn : stepsEs;
 
   return (
     <section id="metodologia" className="section-padding bg-aegrix-bg relative overflow-hidden">
-      <div className="container-width">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,194,255,0.035),transparent_45%)] pointer-events-none" aria-hidden="true" />
+
+      <div className="container-width relative z-10">
         <div className="max-w-3xl mb-12 md:mb-20">
-          <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-6 leading-tight">
-            {lang === 'en' ? 'A clear process, from assessment' : 'Un proceso claro, desde el diagnóstico'}
+          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">
+            {isEnglish ? 'How we work' : 'Cómo trabajamos'}
+          </span>
+          <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mt-3 mb-6 leading-tight">
+            {isEnglish ? 'A clear process, from assessment' : 'Un proceso claro, desde el diagnóstico'}
             <br />
             <span className="text-aegrix-cyan">
-              {lang === 'en' ? 'to defined deliverables.' : 'hasta los entregables.'}
+              {isEnglish ? 'to defined deliverables.' : 'hasta los entregables.'}
             </span>
           </h2>
           <p className="text-lg text-aegrix-muted max-w-2xl">
-            {lang === 'en'
+            {isEnglish
               ? 'Every engagement starts with a defined scope. Recommendations, timing, and outcomes depend on the context and the conditions agreed with the client.'
               : 'Cada trabajo parte de un alcance definido. Las recomendaciones, tiempos y resultados dependen del contexto y de las condiciones acordadas con el cliente.'}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px bg-linear-to-r from-transparent via-aegrix-cyan/20 to-transparent" aria-hidden="true" />
+
           {steps.map((step, index) => (
-            <motion.div
+            <motion.article
               key={step.title}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: index * 0.06 }}
-              className="p-6 md:p-7 rounded-2xl bg-aegrix-surface border border-aegrix-border h-full flex flex-col"
+              className="group relative p-6 md:p-7 rounded-2xl md:rounded-3xl bg-aegrix-surface border border-aegrix-border h-full flex flex-col shadow-sm hover:shadow-xl hover:border-aegrix-cyan/20 hover:-translate-y-0.5 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-xl bg-aegrix-cyan/8 border border-aegrix-cyan/15 flex items-center justify-center text-aegrix-cyan mb-6">
-                <step.icon size={22} aria-hidden="true" />
+              <div className="flex items-center justify-between mb-6 relative z-10">
+                <div className="w-12 h-12 rounded-xl bg-aegrix-cyan/8 border border-aegrix-cyan/15 flex items-center justify-center text-aegrix-cyan shadow-sm">
+                  <step.icon size={22} aria-hidden="true" />
+                </div>
+                <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-aegrix-text/25">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
               </div>
               <h3 className="text-lg font-sora font-bold text-aegrix-text mb-3">{step.title}</h3>
               <p className="text-sm text-aegrix-muted leading-relaxed mb-6 grow">{step.description}</p>
               <div className="pt-4 border-t border-aegrix-border mt-auto">
                 <span className="text-xs font-semibold text-aegrix-cyan">{step.benefit}</span>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>
