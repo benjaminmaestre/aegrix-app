@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { Check, Cookie, Settings, X } from 'lucide-react';
+import { Check, Cookie, Settings } from 'lucide-react';
 import Link from 'next/link';
 import {
   COOKIE_CONSENT_KEY,
@@ -82,8 +82,7 @@ const CookieBanner = ({ lang, dict }: CookieBannerProps) => {
     setIsVisible(false);
   };
 
-  const handleDeclineAll = (event?: React.MouseEvent) => {
-    event?.stopPropagation();
+  const handleDeclineAll = () => {
     setPreferences(defaultPreferences);
     setCookieConsent('declined', defaultPreferences);
     setShowConfig(false);
@@ -132,19 +131,21 @@ const CookieBanner = ({ lang, dict }: CookieBannerProps) => {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={shouldReduceMotion ? false : { y: 50, opacity: 0 }}
+          initial={shouldReduceMotion ? false : { y: 36, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={shouldReduceMotion ? undefined : { y: 50, opacity: 0 }}
-          className="fixed bottom-4 left-4 right-4 z-100 flex justify-center pointer-events-none"
+          exit={shouldReduceMotion ? undefined : { y: 36, opacity: 0 }}
+          className="fixed bottom-3 sm:bottom-5 left-3 sm:left-5 right-3 sm:right-5 z-100 flex justify-center pointer-events-none"
           role="dialog"
           aria-modal="false"
           aria-label={lang === 'es' ? 'Preferencias de cookies' : 'Cookie preferences'}
         >
-          <div className="w-full max-w-3xl bg-aegrix-surface/95 backdrop-blur-md border border-aegrix-border p-4 sm:p-5 rounded-2xl shadow-2xl pointer-events-auto relative overflow-hidden">
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-4 relative z-10 pr-8">
-              <div className="flex-1 flex items-start gap-3">
-                <Cookie className="text-aegrix-cyan shrink-0 mt-0.5" size={18} aria-hidden="true" />
-                <p className="text-xs sm:text-sm text-aegrix-muted leading-relaxed max-w-xl">
+          <div className="w-full max-w-5xl bg-aegrix-surface/95 backdrop-blur-md border border-aegrix-border p-4 sm:p-5 md:p-6 rounded-2xl shadow-2xl pointer-events-auto overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] items-start md:items-center gap-4 md:gap-6">
+              <div className="flex items-start gap-3 min-w-0">
+                <div className="w-9 h-9 rounded-xl bg-aegrix-cyan/8 border border-aegrix-cyan/15 text-aegrix-cyan flex items-center justify-center shrink-0">
+                  <Cookie size={17} aria-hidden="true" />
+                </div>
+                <p className="text-xs sm:text-sm text-aegrix-muted leading-relaxed min-w-0">
                   {dict.message}
                   <Link href={`/${lang}/cookies`} className="text-aegrix-cyan ml-1 hover:underline font-semibold">
                     {lang === 'es' ? 'Ver política de cookies' : 'View cookie policy'}
@@ -152,59 +153,56 @@ const CookieBanner = ({ lang, dict }: CookieBannerProps) => {
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-2 shrink-0">
-                {!showConfig ? (
-                  <>
-                    <button
-                      type="button"
-                      onClick={handleDeclineAll}
-                      className="min-h-11 px-4 py-2 text-xs font-semibold text-aegrix-muted hover:text-aegrix-text transition-colors rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
-                    >
-                      {dict.decline}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setShowConfig(true)}
-                      className="min-w-11 min-h-11 p-2 text-aegrix-muted hover:text-aegrix-text border border-aegrix-border rounded-lg hover:bg-aegrix-bg-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
-                      title={dict.settings}
-                      aria-label={dict.settings}
-                    >
-                      <Settings size={17} aria-hidden="true" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleAcceptAll}
-                      className="min-h-11 px-4 py-2 bg-aegrix-cyan text-aegrix-bg text-xs font-bold rounded-lg hover:brightness-110 transition-all shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-text"
-                    >
-                      {dict.accept}
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      type="button"
-                      onClick={() => setShowConfig(false)}
-                      className="min-h-11 px-3 text-xs font-semibold text-aegrix-muted hover:text-aegrix-text rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
-                    >
-                      {lang === 'es' ? 'Volver' : 'Back'}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleSaveConfig}
-                      className="min-h-11 px-4 py-2 bg-aegrix-text text-aegrix-bg text-xs font-bold rounded-lg shadow-lg hover:brightness-110 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
-                    >
-                      {lang === 'es' ? 'Guardar preferencias' : 'Save preferences'}
-                    </button>
-                  </>
-                )}
-              </div>
+              {!showConfig ? (
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full md:w-auto md:min-w-105">
+                  <button
+                    type="button"
+                    onClick={handleDeclineAll}
+                    className="min-h-11 px-4 py-2 text-xs font-semibold text-aegrix-muted hover:text-aegrix-text border border-aegrix-border rounded-lg hover:bg-aegrix-bg-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
+                  >
+                    {dict.decline}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowConfig(true)}
+                    className="min-h-11 px-4 py-2 inline-flex items-center justify-center gap-2 text-xs font-semibold text-aegrix-muted hover:text-aegrix-text border border-aegrix-border rounded-lg hover:bg-aegrix-bg-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
+                  >
+                    <Settings size={15} aria-hidden="true" />
+                    {dict.settings}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleAcceptAll}
+                    className="min-h-11 px-4 py-2 bg-aegrix-cyan text-aegrix-bg text-xs font-bold rounded-lg hover:brightness-110 transition-all shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-text"
+                  >
+                    {dict.accept}
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-2 w-full md:w-auto md:min-w-72">
+                  <button
+                    type="button"
+                    onClick={() => setShowConfig(false)}
+                    className="min-h-11 px-4 text-xs font-semibold text-aegrix-muted hover:text-aegrix-text border border-aegrix-border rounded-lg hover:bg-aegrix-bg-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
+                  >
+                    {lang === 'es' ? 'Volver' : 'Back'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleSaveConfig}
+                    className="min-h-11 px-4 py-2 bg-aegrix-text text-aegrix-bg text-xs font-bold rounded-lg shadow-lg hover:brightness-110 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
+                  >
+                    {lang === 'es' ? 'Guardar preferencias' : 'Save preferences'}
+                  </button>
+                </div>
+              )}
             </div>
 
             {showConfig && (
               <motion.div
                 initial={shouldReduceMotion ? false : { opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 pt-4 mt-4 border-t border-aegrix-border"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-4 mt-4 border-t border-aegrix-border"
               >
                 {categories.map((category) => (
                   <button
@@ -214,7 +212,7 @@ const CookieBanner = ({ lang, dict }: CookieBannerProps) => {
                     disabled={category.required}
                     aria-pressed={preferences[category.id]}
                     className={cn(
-                      'min-h-16 flex items-start justify-between gap-3 p-3 rounded-lg border text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60',
+                      'min-h-18 flex items-start justify-between gap-3 p-3.5 rounded-xl border text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60',
                       preferences[category.id]
                         ? 'bg-aegrix-cyan/10 border-aegrix-cyan/40'
                         : 'bg-aegrix-bg-2 border-aegrix-border',
@@ -230,15 +228,6 @@ const CookieBanner = ({ lang, dict }: CookieBannerProps) => {
                 ))}
               </motion.div>
             )}
-
-            <button
-              type="button"
-              onClick={handleDeclineAll}
-              className="absolute top-2 right-2 min-w-11 min-h-11 flex items-center justify-center text-aegrix-muted hover:text-aegrix-text rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
-              aria-label={lang === 'es' ? 'Cerrar y rechazar cookies no necesarias' : 'Close and reject non-essential cookies'}
-            >
-              <X size={16} aria-hidden="true" />
-            </button>
           </div>
         </motion.div>
       )}
