@@ -1,5 +1,0 @@
-Contact: mailto:contacto@aegrix.com.co
-Expires: 2027-09-03T23:59:59Z
-Preferred-Languages: es, en
-Canonical: https://aegrix.com.co/.well-known/security.txt
-Policy: https://aegrix.com.co/es/seguridad
