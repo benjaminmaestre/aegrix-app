@@ -125,7 +125,7 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
                   className="w-full relative hidden lg:flex justify-end lg:col-span-6 xl:col-span-6"
                 >
                   <div className="w-full max-w-180">
-                    <HeroControlLayer />
+                    <HeroControlLayer lang={lang} />
                   </div>
                   <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-aegrix-cyan/2 blur-[100px] rounded-full pointer-events-none" />
                 </motion.div>
@@ -143,7 +143,7 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
           >
             <div className="container-width w-full mt-4 md:my-auto h-full flex flex-col">
               <div className="w-full flex-1 min-h-125 md:min-h-150 rounded-3xl md:rounded-[40px] overflow-hidden border border-aegrix-border relative bg-aegrix-surface/20">
-                <VisionSlide />
+                <VisionSlide lang={lang} />
               </div>
             </div>
           </motion.div>
