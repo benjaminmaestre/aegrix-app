@@ -1,6 +1,7 @@
 export const navItems = [
   { label: 'Inicio', href: '/' },
   { label: 'Servicios', href: '/#servicios' },
+  { label: 'AEGRIX 360', href: '/aegrix-360' },
   { label: 'Sectores', href: '/#sectores' },
   { label: 'Metodología', href: '/#metodologia' },
   { label: 'Contacto', href: '/#contacto' },
@@ -37,16 +38,16 @@ export const productDivisions = [
   {
     id: 'shield',
     title: 'AEGRIX Shield',
-    tagline: 'Ciberseguridad y protección de datos.',
-    description: 'Evaluamos riesgos y controles para proponer mejoras de seguridad acordes con el alcance y el contexto de cada organización.',
-    features: ['Evaluación de riesgos y controles', 'Gestión de identidades y accesos', 'Revisión de configuraciones y vulnerabilidades', 'Privacidad y marcos de referencia según alcance'],
+    tagline: 'Ciberseguridad, riesgo y protección de datos.',
+    description: 'Evaluamos postura de seguridad, riesgos y controles para fortalecer organizaciones y preparar evaluaciones sobre marcos reconocidos cuando el alcance lo requiere.',
+    features: ['Evaluación de riesgos y controles', 'Gestión de identidades y accesos', 'Revisión de configuraciones y vulnerabilidades', 'NIST, ISO/IEC 27001/27002, HIPAA y GDPR según alcance'],
   },
   {
     id: 'web',
     title: 'AEGRIX Software & Web',
-    tagline: 'Software y experiencias web para objetivos concretos.',
-    description: 'Diseñamos y desarrollamos soluciones web y software con alcance técnico, criterios de rendimiento y entregables definidos.',
-    features: ['Aplicaciones web y software empresarial', 'Desarrollo full-stack', 'Landing pages y sitios corporativos', 'Arquitectura y rendimiento técnico'],
+    tagline: 'Software robusto, seguro y preparado para escalar.',
+    description: 'Diseñamos y desarrollamos soluciones web y software con arquitectura, seguridad, rendimiento, mantenibilidad y criterios de entrega definidos.',
+    features: ['Aplicaciones web y software empresarial', 'Desarrollo full-stack', 'Landing pages y sitios corporativos', 'Arquitectura, rendimiento y escalabilidad'],
   },
   {
     id: 'data-ai',
@@ -58,14 +59,15 @@ export const productDivisions = [
   {
     id: 'care',
     title: 'AEGRIX Care',
-    tagline: 'Soporte y mejora continua.',
-    description: 'Acompañamiento técnico bajo planes de servicio, prioridades y tiempos de atención previamente acordados.',
-    features: ['Soporte técnico según plan', 'Optimización periódica', 'Actualizaciones y mantenimiento', 'Acompañamiento consultivo'],
+    tagline: 'Soporte, monitoreo y mejora continua.',
+    description: 'Acompañamiento técnico bajo planes de servicio con prioridades, monitoreo u observabilidad cuando aplica y tiempos de atención previamente acordados.',
+    features: ['Soporte técnico según plan', 'Monitoreo proactivo según alcance', 'Actualizaciones y mantenimiento', 'Optimización y acompañamiento consultivo'],
   },
 ];
 
 export const diagnosticChecklist = [
-  { category: 'Seguridad', items: ['Accesos, correo y autenticación', 'Riesgos y controles relevantes'] },
+  { category: 'Seguridad', items: ['Accesos, correo y autenticación', 'Riesgos, controles y evidencia'] },
+  { category: 'Marcos', items: ['NIST e ISO/IEC 27001/27002', 'HIPAA y GDPR según alcance'] },
   { category: 'Web & Conversión', items: ['Rendimiento y experiencia de usuario', 'Formularios, medición y recorridos de contacto'] },
   { category: 'Datos & IA', items: ['Reportes y fuentes de información', 'Oportunidades de automatización e IA'] },
 ];
@@ -139,6 +141,6 @@ export const webBenefits = [
   { title: 'Medición', desc: 'Analítica y eventos configurables según consentimiento y necesidades del proyecto.' },
 ];
 
-export const WHATSAPP_URL = 'https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20digital%20360%20para%20mi%20empresa.';
+export const WHATSAPP_URL = 'https://wa.me/573107379163?text=Hola,%20quiero%20iniciar%20una%20evaluaci%C3%B3n%20con%20AEGRIX%20360%20para%20mi%20organizaci%C3%B3n.';
 export const WHATSAPP_URL_WEB = 'https://wa.me/573107379163?text=Hola,%20quiero%20revisar%20si%20mi%20p%C3%A1gina%20web%20est%C3%A1%20perdiendo%20clientes.';
 export const WHATSAPP_URL_AI = 'https://wa.me/573107379163?text=Hola,%20quiero%20automatizar%20procesos%20con%20IA%20en%20mi%20empresa.';
