@@ -9,6 +9,7 @@ import { useScrolled } from '@/hooks/useScrolled';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from './ThemeToggle';
 import { getLocalizedPath } from '@/lib/navigation';
+import { siteConfig } from '@/lib/site-config';
 
 interface NavbarProps {
   lang: 'en' | 'es';
@@ -21,8 +22,6 @@ interface NavbarProps {
     cta: string;
   };
 }
-
-const PLATFORM_URL = 'https://360.aegrix.com.co/login';
 
 const Navbar = ({ lang, dict }: NavbarProps) => {
   const scrolled = useScrolled(40);
@@ -113,7 +112,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
             </div>
 
             <Link
-              href={PLATFORM_URL}
+              href={siteConfig.portalUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="font-manrope text-[10px] font-extrabold uppercase tracking-[0.14em] text-aegrix-muted hover:text-aegrix-cyan transition-colors whitespace-nowrap"
@@ -175,7 +174,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
               </Link>
             ))}
             <Link
-              href={PLATFORM_URL}
+              href={siteConfig.portalUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
