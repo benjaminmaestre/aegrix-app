@@ -6,13 +6,17 @@ import NicheLandingTemplate from '@/components/NicheLandingTemplate';
 import { Database, Lock, Clock, Shield } from 'lucide-react';
 import { buildWhatsAppUrl } from '@/lib/site-config';
 
-const LEGAL_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero evaluar la seguridad digital de mi firma u organización financiera con AEGRIX.');
-const LEGAL_360_WHATSAPP_URL = buildWhatsAppUrl('Hola, quiero iniciar una evaluación AEGRIX 360 para mi firma u organización financiera.');
+const LEGAL_WHATSAPP_URL_ES = buildWhatsAppUrl('Hola, quiero evaluar la seguridad digital de mi firma u organización financiera con AEGRIX.');
+const LEGAL_WHATSAPP_URL_EN = buildWhatsAppUrl('Hello, I want to assess the digital security of my law firm or financial organization with AEGRIX.');
+const LEGAL_360_WHATSAPP_URL_ES = buildWhatsAppUrl('Hola, quiero iniciar una evaluación AEGRIX 360 para mi firma u organización financiera.');
+const LEGAL_360_WHATSAPP_URL_EN = buildWhatsAppUrl('Hello, I want to start an AEGRIX 360 assessment for my law firm or financial organization.');
 
 export default function LegalFinancePage() {
   const params = useParams();
   const lang = (params?.lang as 'es' | 'en') || 'es';
   const isEn = lang === 'en';
+  const legalWhatsAppUrl = isEn ? LEGAL_WHATSAPP_URL_EN : LEGAL_WHATSAPP_URL_ES;
+  const legal360WhatsAppUrl = isEn ? LEGAL_360_WHATSAPP_URL_EN : LEGAL_360_WHATSAPP_URL_ES;
 
   const problems = [
     {
@@ -92,7 +96,7 @@ export default function LegalFinancePage() {
       heroDescription={isEn
         ? 'Security assessment, secure software, data protection, traceability and workflow automation for organizations that handle confidential information.'
         : 'Evaluación de seguridad, software seguro, protección de datos, trazabilidad y automatización de flujos para organizaciones que manejan información confidencial.'}
-      heroWhatsAppUrl={LEGAL_WHATSAPP_URL}
+      heroWhatsAppUrl={legalWhatsAppUrl}
       heroImageBaseName="hero-legal-medellin"
       heroImageAlt={isEn ? 'Legal executive meeting with view of downtown Medellin and the Coltejer building.' : 'Reunión ejecutiva legal con vista al centro de Medellín y el edificio Coltejer.'}
       problemsSectionTitle={isEn ? 'Common security and operational gaps' : 'Brechas frecuentes de seguridad y operación'}
@@ -112,7 +116,7 @@ export default function LegalFinancePage() {
         ? 'The assessment can include NIST or ISO/IEC 27001/27002 readiness and GDPR-related privacy and security controls when they are relevant to the contracted scope.'
         : 'La evaluación puede incluir readiness NIST o ISO/IEC 27001/27002 y controles de privacidad y seguridad relacionados con GDPR cuando sean relevantes para el alcance contratado.'}
       diagnosticBannerCta={isEn ? 'Start security assessment' : 'Iniciar evaluación de seguridad'}
-      diagnosticWhatsAppUrl={LEGAL_360_WHATSAPP_URL}
+      diagnosticWhatsAppUrl={legal360WhatsAppUrl}
     />
   );
 }
