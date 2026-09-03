@@ -8,43 +8,42 @@ import { Globe, Lock, Clock, MessageSquare } from 'lucide-react';
 export default function HealthPremiumPage() {
   const params = useParams();
   const lang = (params?.lang as 'es' | 'en') || 'es';
-
   const isEn = lang === 'en';
 
   const problems = [
     {
-      code: '[WARN_WHATSAPP_FUGA]',
-      title: isEn ? 'Patient Leakage on WhatsApp' : 'Fuga de prospectos en WhatsApp',
+      code: isEn ? 'PATIENT JOURNEY' : 'RECORRIDO DEL PACIENTE',
+      title: isEn ? 'Untracked WhatsApp conversations' : 'Conversaciones de WhatsApp sin trazabilidad',
       description: isEn
-        ? 'High-value patients write via WhatsApp but there is no response tracking or agile assignment to patient coordinators.'
-        : 'Pacientes de alto valor escriben por WhatsApp pero no hay trazabilidad de respuesta ni asignación ágil a coordinadores.',
+        ? 'Patient inquiries arrive through WhatsApp but response ownership, follow-up and conversion are not consistently measured.'
+        : 'Las consultas de pacientes llegan por WhatsApp, pero la asignación, el seguimiento y la conversión no siempre quedan medidos.',
       icon: MessageSquare,
       colorClass: 'text-green-500',
     },
     {
-      code: '[WARN_DATOS_EXPUESTOS]',
-      title: isEn ? 'Legal & Compliance Risks' : 'Riesgo de cumplimiento legal',
+      code: isEn ? 'SENSITIVE DATA' : 'DATOS SENSIBLES',
+      title: isEn ? 'Privacy and security gaps' : 'Brechas de privacidad y seguridad',
       description: isEn
-        ? 'Clinical records or consents shared through insecure channels, risking heavy fines from local regulatory bodies.'
-        : 'Historias clínicas o consentimientos compartidos por canales inseguros, con riesgo de multas de Habeas Data.',
+        ? 'Clinical records, consents or other sensitive information may move through channels without sufficient access controls, evidence or traceability.'
+        : 'Historias clínicas, consentimientos u otra información sensible pueden circular por canales sin suficientes controles de acceso, evidencia o trazabilidad.',
       icon: Lock,
       colorClass: 'text-red-500',
     },
     {
-      code: '[WARN_WEB_PASIVA]',
-      title: isEn ? 'Static Medical Website' : 'Web médica pasiva',
+      code: 'WEB',
+      title: isEn ? 'Medical website without a clear journey' : 'Web médica sin un recorrido claro',
       description: isEn
-        ? 'A website that looks like a static business card instead of an automated high-ticket patient acquisition funnel.'
-        : 'Sitio web que parece una tarjeta de presentación estática en lugar de un embudo automatizado de pacientes de alto valor.',
+        ? 'The site provides information but does not clearly connect discovery, trust, contact, booking and measurement.'
+        : 'El sitio informa, pero no conecta con claridad descubrimiento, confianza, contacto, agendamiento y medición.',
       icon: Globe,
       colorClass: 'text-pink-500',
     },
     {
-      code: '[WARN_AGENDA_MANUAL]',
-      title: isEn ? 'Manual Appointment Booking' : 'Coordinación manual de citas',
+      code: isEn ? 'OPERATIONS' : 'OPERACIÓN',
+      title: isEn ? 'Manual appointment coordination' : 'Coordinación manual de citas',
       description: isEn
-        ? 'Administrative staff spending hours coordinating appointments by phone or chat without real-time calendar sync.'
-        : 'Secretarias dedicando horas a coordinar citas por teléfono o chat sin sincronización en tiempo real de calendarios.',
+        ? 'Administrative teams spend time coordinating appointments through calls and chats without integrated workflows.'
+        : 'Los equipos administrativos dedican tiempo a coordinar citas por llamadas y chats sin flujos integrados.',
       icon: Clock,
       colorClass: 'text-orange-500',
     },
@@ -52,64 +51,64 @@ export default function HealthPremiumPage() {
 
   const solutions = [
     {
-      title: isEn ? 'High-Conversion Medical Web' : 'Web Médica de Alta Conversión',
+      title: isEn ? 'High-performance medical web' : 'Web médica de alto rendimiento',
       desc: isEn
-        ? 'Custom web development with specialized medical SEO and premium UX to attract high-ticket patients.'
-        : 'Desarrollo web a medida con SEO médico especializado y UX premium para captar pacientes de alto ticket.',
+        ? 'Custom web engineering with technical SEO, performance, accessibility and patient journeys designed around measurable goals.'
+        : 'Ingeniería web a medida con SEO técnico, rendimiento, accesibilidad y recorridos de pacientes diseñados alrededor de objetivos medibles.',
       features: isEn
-        ? ['Specialized Local SEO', 'Instant load times', 'Interactive booking flows', 'Enterprise design']
-        : ['SEO Local especializado', 'Velocidad de carga instantánea', 'Formularios y agendamiento interactivo', 'Diseño de primer nivel'],
+        ? ['Technical and local SEO', 'Performance optimization', 'Contact and booking journeys', 'Analytics with consent']
+        : ['SEO técnico y local', 'Optimización de rendimiento', 'Recorridos de contacto y agendamiento', 'Analítica con consentimiento'],
     },
     {
-      title: isEn ? 'WhatsApp & AI Automation' : 'Automatización por WhatsApp e IA',
+      title: isEn ? 'WhatsApp & AI automation' : 'Automatización por WhatsApp e IA',
       desc: isEn
-        ? 'Intelligent automated responses that pre-qualify patients, coordinate agendas, and notify reminders.'
-        : 'Respuestas automáticas inteligentes que pre-califican pacientes, coordinan agendas y envían recordatorios.',
+        ? 'Automation for qualification, routing, reminders and operational follow-up when the workflow and data involved make it appropriate.'
+        : 'Automatización para clasificación, asignación, recordatorios y seguimiento operativo cuando el flujo y los datos involucrados lo permiten.',
       features: isEn
-        ? ['Pre-qualification AI Agent', 'Automated reminders', 'Medical CRM integration', 'Response speed tracking']
-        : ['Agente IA de pre-calificación', 'Recordatorios automatizados de citas', 'Integración con CRM médico', 'Estadísticas de velocidad de respuesta'],
+        ? ['AI assistants according to use case', 'Automated reminders', 'CRM or agenda integrations', 'Response and conversion measurement']
+        : ['Asistentes de IA según caso de uso', 'Recordatorios automatizados', 'Integraciones con CRM o agenda', 'Medición de respuesta y conversión'],
     },
     {
-      title: isEn ? 'Habeas Data & Security Compliance' : 'Cumplimiento Habeas Data y Seguridad',
+      title: isEn ? 'Privacy, security & HIPAA readiness' : 'Privacidad, seguridad y readiness HIPAA',
       desc: isEn
-        ? 'Comprehensive protection and encryption of sensitive patient data to comply with government regulations.'
-        : 'Protección integral y encriptación de datos de pacientes para cumplir con las regulaciones de la Superintendencia.',
+        ? 'Security assessment and remediation for sensitive health information, including HIPAA Security Rule readiness when it is part of the engagement scope.'
+        : 'Evaluación de seguridad y remediación para información sensible de salud, incluyendo readiness frente a HIPAA Security Rule cuando forma parte del alcance.',
       features: isEn
-        ? ['Encrypted medical histories', 'Vulnerability audits', 'Password & access control', 'Automated daily backups']
-        : ['Encriptación de historias clínicas', 'Auditoría de vulnerabilidades en red', 'Políticas de contraseñas y accesos', 'Backups diarios automatizados'],
+        ? ['Risk and control assessment', 'Identity and access controls', 'HIPAA Security Rule readiness', 'Evidence and remediation tracking']
+        : ['Evaluación de riesgos y controles', 'Identidades y controles de acceso', 'Readiness HIPAA Security Rule', 'Seguimiento de evidencia y remediación'],
     },
   ];
 
   return (
     <NicheLandingTemplate
       lang={lang}
-      heroTagline="AEGRIX Health Premium"
-      heroTitlePart1={isEn ? "Acquisition, automation and digital security" : "Captación, automatización y seguridad digital"}
-      heroTitleHighlight={isEn ? "for premium clinics." : "para clínicas premium."}
+      heroTagline="AEGRIX Health"
+      heroTitlePart1={isEn ? 'Digital engineering, automation and security' : 'Ingeniería digital, automatización y seguridad'}
+      heroTitleHighlight={isEn ? 'for healthcare organizations.' : 'para organizaciones de salud.'}
       heroDescription={isEn
-        ? "Premium medical web, patient funnels, WhatsApp automation, commercial analytics, and sensitive data protection."
-        : "Web médica premium, embudos de pacientes, automatización por WhatsApp, analítica comercial y protección de datos sensibles."}
-      heroWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20de%20salud%20digital%20para%20mi%20cl%C3%ADnica%20premium."
+        ? 'High-performance medical web, patient journeys, automation, analytics and security assessment for sensitive health information.'
+        : 'Web médica de alto rendimiento, recorridos de pacientes, automatización, analítica y evaluación de seguridad para información sensible de salud.'}
+      heroWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20evaluar%20la%20seguridad%20y%20la%20operaci%C3%B3n%20digital%20de%20mi%20organizaci%C3%B3n%20de%20salud%20con%20AEGRIX."
       heroImageBaseName="hero-health-medellin"
-      heroImageAlt={isEn ? "Premium clinic in Medellin with panoramic view of the city." : "Clínica premium en Medellín con vista panorámica de la ciudad."}
-      problemsSectionTitle={isEn ? "Does your clinic face any of these challenges?" : "¿Tu clínica tiene alguno de estos problemas?"}
+      heroImageAlt={isEn ? 'Healthcare organization in Medellin with panoramic view of the city.' : 'Organización de salud en Medellín con vista panorámica de la ciudad.'}
+      problemsSectionTitle={isEn ? 'Common digital challenges in healthcare' : 'Retos digitales frecuentes en salud'}
       problemsSectionDesc={isEn
-        ? "High-end medical centers handle high-value patients and extremely sensitive data, but often experience information leaks and slow processes."
-        : "Los centros médicos de alta gama manejan pacientes de alto valor y datos extremadamente sensibles, pero suelen tener fugas de información y procesos lentos."}
+        ? 'Healthcare combines sensitive information, demanding patient journeys and operational processes that require stronger security, traceability and measurement.'
+        : 'Salud combina información sensible, recorridos exigentes de pacientes y procesos operativos que requieren mayor seguridad, trazabilidad y medición.'}
       problems={problems}
-      solutionsSectionTitle={isEn ? "Medical Technology Solutions" : "Soluciones de Ingeniería Médica"}
+      solutionsSectionTitle={isEn ? 'Healthcare technology engineering' : 'Ingeniería tecnológica para salud'}
       solutionsSectionDesc={isEn
-        ? "We build the digital control layer that your high-end clinic needs to operate with absolute trust and scalability."
-        : "Estructuramos la capa de control tecnológico que tu clínica de alta gama necesita para operar con confianza y escala."}
+        ? 'We combine software, cybersecurity, analytics and automation according to the organization’s real scope and risk context.'
+        : 'Combinamos software, ciberseguridad, analítica y automatización según el alcance real y el contexto de riesgo de la organización.'}
       solutions={solutions}
       diagnosticBannerTitle={isEn
-        ? "If you check 2 or more, your clinic needs a digital health check."
-        : "Si marcaste 2 o más, tu clínica necesita un diagnóstico digital de salud."}
+        ? 'Assess security, digital journeys and operational gaps with AEGRIX.'
+        : 'Evalúa seguridad, recorridos digitales y brechas operativas con AEGRIX.'}
       diagnosticBannerDesc={isEn
-        ? "We evaluate the security of patient data, your web speed, and the efficiency of your medical WhatsApp channel completely free of charge."
-        : "Evaluamos gratis la seguridad de datos de pacientes, la velocidad de tu web y la eficiencia de tu canal de WhatsApp médico. Te entregamos un informe en 48 horas."}
-      diagnosticBannerCta={isEn ? "Request Free Medical Diagnosis" : "Solicitar diagnóstico médico gratuito"}
-      diagnosticWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20de%20salud%20digital%20para%20mi%20cl%C3%ADnica%20premium."
+        ? 'We can structure the assessment with AEGRIX 360 and include HIPAA Security Rule readiness when it is relevant to the contracted scope.'
+        : 'Podemos estructurar la evaluación con AEGRIX 360 e incluir readiness frente a HIPAA Security Rule cuando sea relevante para el alcance contratado.'}
+      diagnosticBannerCta={isEn ? 'Start healthcare assessment' : 'Iniciar evaluación de salud'}
+      diagnosticWhatsAppUrl="https://wa.me/573107379163?text=Hola,%20quiero%20iniciar%20una%20evaluaci%C3%B3n%20AEGRIX%20360%20para%20mi%20organizaci%C3%B3n%20de%20salud."
     />
   );
 }
