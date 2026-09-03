@@ -37,6 +37,14 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   trailingSlash: false,
   poweredByHeader: false,
+  async rewrites() {
+    return [
+      {
+        source: '/.well-known/security.txt',
+        destination: '/security.txt',
+      },
+    ];
+  },
   async headers() {
     return [
       {
