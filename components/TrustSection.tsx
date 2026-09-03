@@ -20,8 +20,8 @@ export default function TrustSection() {
         },
         {
           icon: Award,
-          title: 'Traceable reference frameworks',
-          desc: 'When the engagement requires it, we work with references such as NIST CSF 2.0, the HIPAA Security Rule, and ISO/IEC 27001:2022 readiness without presenting readiness as certification.',
+          title: 'Recognized frameworks when they apply',
+          desc: 'When the engagement requires it, we use references such as NIST CSF 2.0, the HIPAA Security Rule, and ISO/IEC 27001:2022 readiness without presenting readiness as certification.',
         },
         {
           icon: ClipboardCheck,
@@ -37,7 +37,7 @@ export default function TrustSection() {
         },
         {
           icon: Award,
-          title: 'Marcos de referencia trazables',
+          title: 'Marcos reconocidos cuando aplican',
           desc: 'Cuando el trabajo lo requiere, usamos referencias como NIST CSF 2.0, HIPAA Security Rule e ISO/IEC 27001:2022 Readiness sin presentar readiness como certificación.',
         },
         {
@@ -65,8 +65,8 @@ export default function TrustSection() {
           </h2>
           <p className="body-lg text-aegrix-muted">
             {isEnglish
-              ? 'The goal is not to decorate a proposal with standards or technical language. It is to leave clear criteria, evidence, and traceability behind the work.'
-              : 'El objetivo no es decorar una propuesta con estándares o lenguaje técnico. Es dejar criterios claros, evidencia y trazabilidad detrás del trabajo.'}
+              ? 'We work with clear technical criteria, evidence and traceability so each decision can be understood, reviewed and sustained over time.'
+              : 'Trabajamos con criterios técnicos claros, evidencia y trazabilidad para que cada decisión pueda entenderse, revisarse y sostenerse en el tiempo.'}
           </p>
         </div>
 
