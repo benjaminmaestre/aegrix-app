@@ -88,15 +88,32 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: 'es
   const config = getConfig(framework);
   if (!config) return {};
   const copy = config[lang];
+  const url = `https://aegrix.com.co/${lang}/aegrix-360/${framework}`;
+
   return {
     title: copy.title,
     description: copy.description,
     alternates: {
-      canonical: `https://aegrix.com.co/${lang}/aegrix-360/${framework}`,
+      canonical: url,
       languages: {
         es: `https://aegrix.com.co/es/aegrix-360/${framework}`,
         en: `https://aegrix.com.co/en/aegrix-360/${framework}`,
       },
+    },
+    openGraph: {
+      title: copy.title,
+      description: copy.description,
+      url,
+      siteName: 'AEGRIX',
+      type: 'website',
+      locale: lang === 'en' ? 'en_US' : 'es_CO',
+      images: [{ url: 'https://aegrix.com.co/AEGRIX_preview.png', width: 1200, height: 630, alt: `${copy.title} · AEGRIX 360` }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: copy.title,
+      description: copy.description,
+      images: ['https://aegrix.com.co/AEGRIX_preview.png'],
     },
   };
 }
