@@ -3,7 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { diagnosticChecklist, WHATSAPP_URL } from '@/lib/data';
+import { diagnosticChecklist } from '@/lib/data';
+import { buildWhatsAppUrl } from '@/lib/site-config';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
 import { CheckCircle2, ClipboardCheck } from 'lucide-react';
@@ -20,6 +21,11 @@ const DiagnosticSection = () => {
   const params = useParams();
   const lang = (params?.lang as string) || 'es';
   const checklist = lang === 'en' ? diagnosticChecklistEn : diagnosticChecklist;
+  const assessmentWhatsAppUrl = buildWhatsAppUrl(
+    lang === 'en'
+      ? 'Hello, I want to discuss an AEGRIX 360 assessment for my organization.'
+      : 'Hola, quiero conversar sobre una evaluación AEGRIX 360 para mi organización.'
+  );
   const evaluationItems = lang === 'en'
     ? ['Security posture and access', 'Framework readiness', 'Web performance and conversion', 'Analytics, automation and AI']
     : ['Postura de seguridad y accesos', 'Readiness frente a marcos', 'Rendimiento y conversión web', 'Analítica, automatización e IA'];
@@ -29,11 +35,11 @@ const DiagnosticSection = () => {
       <div className="container-width">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           <div className={cn(
-            'transition-all duration-1000',
-            inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+            'transition-all duration-1000 motion-reduce:transition-none',
+            inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 motion-reduce:opacity-100 motion-reduce:translate-x-0'
           )}>
             <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan block mb-4">
-              {lang === 'en' ? 'Assessment · Readiness · Assurance' : 'Assessment · Readiness · Assurance'}
+              Assessment · Readiness · Assurance
             </span>
             <h2 className="heading-lg mb-8 text-aegrix-text">
               <span className="text-aegrix-cyan">AEGRIX 360</span>
@@ -77,19 +83,21 @@ const DiagnosticSection = () => {
               <Link href={`/${lang}/aegrix-360`} className="btn-primary w-full sm:w-auto text-center justify-center">
                 {lang === 'en' ? 'Explore AEGRIX 360' : 'Conocer AEGRIX 360'}
               </Link>
-              <Link href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary w-full sm:w-auto text-center justify-center">
+              <Link href={assessmentWhatsAppUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary w-full sm:w-auto text-center justify-center">
                 {lang === 'en' ? 'Start an assessment' : 'Iniciar evaluación'}
               </Link>
             </div>
           </div>
 
           <div className={cn(
-            'relative transition-all duration-1000 delay-300',
-            inView ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'
+            'relative transition-all duration-1000 delay-300 motion-reduce:transition-none motion-reduce:delay-0',
+            inView ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95 motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:scale-100'
           )}>
             <div className="card-base bg-aegrix-surface border-aegrix-border p-0 overflow-hidden shadow-xl">
               <div className="bg-aegrix-bg-2/50 px-8 py-6 border-b border-aegrix-border">
-                <div className="text-[10px] font-bold text-aegrix-muted uppercase tracking-[0.3em]">AEGRIX 360 · Evaluation Scope</div>
+                <div className="text-[10px] font-bold text-aegrix-muted uppercase tracking-[0.3em]">
+                  {lang === 'en' ? 'AEGRIX 360 · Evaluation Scope' : 'AEGRIX 360 · Alcance de evaluación'}
+                </div>
               </div>
               <div className="p-5 sm:p-8 space-y-6 md:space-y-8">
                 {checklist.map((group, idx) => (
@@ -103,7 +111,7 @@ const DiagnosticSection = () => {
                     <div className="ml-12 space-y-3">
                       {group.items.map((item) => (
                         <div key={item} className="flex items-center gap-3 text-xs text-aegrix-muted group cursor-default">
-                          <div className="w-1.5 h-1.5 rounded-full bg-aegrix-text/10 group-hover:bg-aegrix-cyan transition-colors" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-aegrix-text/10 group-hover:bg-aegrix-cyan transition-colors motion-reduce:transition-none" />
                           {item}
                         </div>
                       ))}

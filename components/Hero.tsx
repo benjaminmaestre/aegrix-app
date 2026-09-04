@@ -1,11 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import HeroControlLayer from './HeroControlLayer';
 import VisionSlide from './VisionSlide';
 import { cn } from '@/lib/utils';
+
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+
+const subscribeToReducedMotion = (onStoreChange: () => void) => {
+  const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY);
+  mediaQuery.addEventListener('change', onStoreChange);
+  return () => mediaQuery.removeEventListener('change', onStoreChange);
+};
+
+const getReducedMotionSnapshot = () => window.matchMedia(REDUCED_MOTION_QUERY).matches;
+const getReducedMotionServerSnapshot = () => true;
 
 interface HeroBackground {
   videoMp4: string;
@@ -26,21 +37,33 @@ interface HeroProps {
 
 const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const shouldReduceMotion = useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  );
 
   return (
     <section className="relative w-full min-h-auto lg:min-h-screen overflow-hidden flex flex-col">
       <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-        <video
-          key={activeBackground.videoMp4}
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={activeBackground.poster}
-          className="absolute inset-0 w-full h-full object-cover object-center scale-[1.04] origin-center opacity-90 lg:opacity-80 transition-opacity duration-500"
-        >
-          <source src={activeBackground.videoMp4} type="video/mp4" />
-        </video>
+        {shouldReduceMotion ? (
+          <div
+            className="absolute inset-0 w-full h-full bg-cover bg-center scale-[1.04] origin-center opacity-90 lg:opacity-80"
+            style={{ backgroundImage: `url(${activeBackground.poster})` }}
+          />
+        ) : (
+          <video
+            key={activeBackground.videoMp4}
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={activeBackground.poster}
+            className="absolute inset-0 w-full h-full object-cover object-center scale-[1.04] origin-center opacity-90 lg:opacity-80 transition-opacity duration-500"
+          >
+            <source src={activeBackground.videoMp4} type="video/mp4" />
+          </video>
+        )}
         <div className="absolute inset-0 bg-aegrix-bg/10" />
         <div className="absolute inset-0 bg-linear-to-r from-aegrix-bg via-aegrix-bg/50 to-transparent hidden lg:block" />
         <div className="absolute inset-0 bg-linear-to-b from-aegrix-bg/60 via-aegrix-bg/10 to-aegrix-bg/95 lg:hidden" />
@@ -48,7 +71,7 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
         <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.03),transparent_50%)]" />
         <div className="absolute inset-0 grid-bg opacity-[0.06]" />
 
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] lg:opacity-[0.04] dark:opacity-[0.01] dark:lg:opacity-[0.03] pointer-events-none scale-[1.2] lg:scale-[2] transition-all duration-1000">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] lg:opacity-[0.04] dark:opacity-[0.01] dark:lg:opacity-[0.03] pointer-events-none scale-[1.2] lg:scale-[2] transition-all duration-1000 motion-reduce:transition-none">
           <svg width="700" height="700" viewBox="300 230 650 560" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g fillRule="evenodd">
               <path
@@ -68,22 +91,22 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
         {currentSlide === 0 ? (
           <motion.div
             key="engineering"
-            initial={{ opacity: 0 }}
+            initial={shouldReduceMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.65 }}
+            exit={shouldReduceMotion ? undefined : { opacity: 0 }}
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.65 }}
             className="w-full min-h-[85vh] lg:min-h-screen flex flex-col justify-center relative pt-24 pb-28 lg:pt-32 lg:pb-32"
           >
             <div className="container-width relative z-10">
               <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <motion.div
-                  initial={{ opacity: 0, x: -24 }}
+                  initial={shouldReduceMotion ? false : { opacity: 0, x: -24 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                   className="flex flex-col text-center lg:text-left z-20 lg:col-span-6 xl:col-span-6"
                 >
                   <div className="max-w-180 mx-auto lg:mx-0">
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-aegrix-cyan/5 border border-aegrix-cyan/15 backdrop-blur-md mb-5 md:mb-6 hover:bg-aegrix-cyan/10 transition-colors duration-300 mx-auto lg:mx-0">
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-aegrix-cyan/5 border border-aegrix-cyan/15 backdrop-blur-md mb-5 md:mb-6 hover:bg-aegrix-cyan/10 transition-colors duration-300 motion-reduce:transition-none mx-auto lg:mx-0">
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-aegrix-cyan" aria-hidden="true" />
                       <span className="text-[9px] sm:text-[10px] font-bold text-aegrix-cyan tracking-[0.25em] uppercase font-manrope">
                         {lang === 'es' ? 'Infraestructura Tecnológica de Élite' : 'Elite Technological Infrastructure'}
@@ -119,9 +142,9 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.97, x: 24 }}
+                  initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.97, x: 24 }}
                   animate={{ opacity: 1, scale: 1, x: 0 }}
-                  transition={{ duration: 0.85, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                  transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.85, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
                   className="w-full relative hidden lg:flex justify-end lg:col-span-6 xl:col-span-6"
                 >
                   <div className="w-full max-w-180">
@@ -135,10 +158,10 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
         ) : (
           <motion.div
             key="vision"
-            initial={{ opacity: 0 }}
+            initial={shouldReduceMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.65 }}
+            exit={shouldReduceMotion ? undefined : { opacity: 0 }}
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.65 }}
             className="w-full min-h-auto lg:min-h-screen flex flex-col relative pt-28 sm:pt-32 md:pt-36 pb-28 md:pb-32"
           >
             <div className="container-width w-full mt-4 md:my-auto h-full flex flex-col">
@@ -158,13 +181,13 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
           className="group flex flex-col items-start gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60 rounded-sm"
         >
           <span className={cn(
-            'text-[10px] font-bold uppercase tracking-[0.25em] transition-colors',
+            'text-[10px] font-bold uppercase tracking-[0.25em] transition-colors motion-reduce:transition-none',
             currentSlide === 0 ? 'text-aegrix-cyan' : 'text-aegrix-text/30 group-hover:text-aegrix-text/60'
           )}>
             {lang === 'es' ? 'Control Digital' : 'Digital Control'}
           </span>
           <div className={cn(
-            'h-[1.5px] rounded-full transition-all duration-500',
+            'h-[1.5px] rounded-full transition-all duration-500 motion-reduce:transition-none',
             currentSlide === 0 ? 'w-12 bg-aegrix-cyan' : 'w-6 bg-aegrix-text/10'
           )} />
         </button>
@@ -176,13 +199,13 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
           className="group flex flex-col items-start gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60 rounded-sm"
         >
           <span className={cn(
-            'text-[10px] font-bold uppercase tracking-[0.25em] transition-colors',
+            'text-[10px] font-bold uppercase tracking-[0.25em] transition-colors motion-reduce:transition-none',
             currentSlide === 1 ? 'text-aegrix-cyan' : 'text-aegrix-text/30 group-hover:text-aegrix-text/60'
           )}>
             {lang === 'es' ? 'Visión Estratégica' : 'Strategic Vision'}
           </span>
           <div className={cn(
-            'h-[1.5px] rounded-full transition-all duration-500',
+            'h-[1.5px] rounded-full transition-all duration-500 motion-reduce:transition-none',
             currentSlide === 1 ? 'w-12 bg-aegrix-cyan' : 'w-6 bg-aegrix-text/10'
           )} />
         </button>
