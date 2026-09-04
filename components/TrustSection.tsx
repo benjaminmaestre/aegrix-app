@@ -1,7 +1,6 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { Award, ClipboardCheck, ShieldCheck } from 'lucide-react';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
 
@@ -14,34 +13,28 @@ export default function TrustSection() {
   const items = isEnglish
     ? [
         {
-          icon: ShieldCheck,
           title: 'Security by design',
           desc: 'We incorporate access control, authentication, traceability, and secure configuration practices according to the scope of each solution.',
         },
         {
-          icon: Award,
           title: 'Frameworks assessed with AEGRIX 360',
           desc: 'AEGRIX 360 can assess readiness and maturity against NIST CSF 2.0, the HIPAA Security Rule, GDPR, ISO/IEC 27001 and ISO/IEC 27002 according to the engagement scope, without presenting readiness as certification.',
         },
         {
-          icon: ClipboardCheck,
           title: 'Evidence and follow-up',
           desc: 'Findings, decisions, remediation actions, and deliverables are documented so the work can be reviewed and explained later.',
         },
       ]
     : [
         {
-          icon: ShieldCheck,
           title: 'Seguridad por diseño',
           desc: 'Incorporamos control de acceso, autenticación, trazabilidad y prácticas de configuración segura según el alcance de cada solución.',
         },
         {
-          icon: Award,
           title: 'Marcos evaluados con AEGRIX 360',
           desc: 'AEGRIX 360 puede evaluar preparación y madurez frente a NIST CSF 2.0, HIPAA Security Rule, GDPR, ISO/IEC 27001 e ISO/IEC 27002 según el alcance contratado, sin presentar readiness como certificación.',
         },
         {
-          icon: ClipboardCheck,
           title: 'Evidencia y seguimiento',
           desc: 'Documentamos hallazgos, decisiones, acciones de remediación y entregables para que el trabajo pueda revisarse y explicarse posteriormente.',
         },
@@ -75,13 +68,19 @@ export default function TrustSection() {
             <article
               key={item.title}
               className={cn(
-                'p-6 sm:p-7 md:p-8 rounded-2xl md:rounded-3xl bg-aegrix-surface border border-aegrix-border text-center flex flex-col items-center transition-all duration-700 shadow-sm',
+                'relative p-6 sm:p-7 md:p-8 rounded-2xl md:rounded-3xl bg-aegrix-surface border border-aegrix-border text-left transition-all duration-700 shadow-sm overflow-hidden',
                 inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               )}
               style={{ transitionDelay: `${index * 120}ms` }}
             >
-              <div className="w-14 h-14 rounded-full bg-aegrix-cyan/10 border border-aegrix-cyan/15 flex items-center justify-center text-aegrix-cyan mb-6">
-                <item.icon size={27} aria-hidden="true" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-aegrix-cyan/60 via-aegrix-cyan/20 to-transparent" aria-hidden="true" />
+              <div className="flex items-center justify-between gap-4 mb-8">
+                <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">
+                  {isEnglish ? 'Principle' : 'Principio'}
+                </span>
+                <span className="font-mono text-sm font-semibold tracking-[0.18em] text-aegrix-text/25">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
               </div>
               <h3 className="text-xl font-bold text-aegrix-text mb-4">{item.title}</h3>
               <p className="text-aegrix-muted leading-relaxed">{item.desc}</p>
