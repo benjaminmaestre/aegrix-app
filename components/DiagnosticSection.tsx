@@ -36,7 +36,7 @@ const DiagnosticSection = () => {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           <div className={cn(
             'transition-all duration-1000 motion-reduce:transition-none',
-            inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 motion-reduce:translate-x-0'
+            inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 motion-reduce:opacity-100 motion-reduce:translate-x-0'
           )}>
             <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan block mb-4">
               Assessment · Readiness · Assurance
@@ -91,7 +91,7 @@ const DiagnosticSection = () => {
 
           <div className={cn(
             'relative transition-all duration-1000 delay-300 motion-reduce:transition-none motion-reduce:delay-0',
-            inView ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95 motion-reduce:translate-y-0 motion-reduce:scale-100'
+            inView ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95 motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:scale-100'
           )}>
             <div className="card-base bg-aegrix-surface border-aegrix-border p-0 overflow-hidden shadow-xl">
               <div className="bg-aegrix-bg-2/50 px-8 py-6 border-b border-aegrix-border">
