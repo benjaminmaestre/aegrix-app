@@ -96,6 +96,7 @@ export default function LegalFinancePage() {
       heroDescription={isEn
         ? 'Security assessment, secure software, data protection, traceability and workflow automation for organizations that handle confidential information.'
         : 'Evaluación de seguridad, software seguro, protección de datos, trazabilidad y automatización de flujos para organizaciones que manejan información confidencial.'}
+      heroPrimaryCta={isEn ? 'Request an assessment' : 'Solicitar evaluación'}
       heroWhatsAppUrl={legalWhatsAppUrl}
       heroImageBaseName="hero-legal-medellin"
       heroImageAlt={isEn ? 'Legal executive meeting with view of downtown Medellin and the Coltejer building.' : 'Reunión ejecutiva legal con vista al centro de Medellín y el edificio Coltejer.'}

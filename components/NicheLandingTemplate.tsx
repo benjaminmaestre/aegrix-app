@@ -34,6 +34,7 @@ interface NicheLandingTemplateProps {
   heroTitleHighlight: string;
   heroDescription: string;
   heroWhatsAppUrl: string;
+  heroPrimaryCta?: string;
   heroImageBaseName?: string;
   heroImageAlt?: string;
   problemsSectionTitle: string;
@@ -56,6 +57,7 @@ const NicheLandingTemplate = ({
   heroTitleHighlight,
   heroDescription,
   heroWhatsAppUrl,
+  heroPrimaryCta,
   heroImageBaseName,
   heroImageAlt,
   problemsSectionTitle,
@@ -103,7 +105,7 @@ const NicheLandingTemplate = ({
             {heroImageAlt && <span className="sr-only">{heroImageAlt}</span>}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link href={heroWhatsAppUrl} target="_blank" rel="noopener noreferrer" className="btn-primary min-h-12">
-                {isEnglish ? 'Request an assessment' : 'Solicitar evaluación'}
+                {heroPrimaryCta ?? (isEnglish ? 'Request a diagnostic' : 'Solicitar diagnóstico')}
               </Link>
               <Link href="#soluciones" className="btn-secondary min-h-12">
                 {isEnglish ? 'View services' : 'Ver servicios'}
