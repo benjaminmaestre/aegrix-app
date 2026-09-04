@@ -89,9 +89,9 @@ const Footer = () => {
             <FooterColumn title={isEnglish ? 'Company' : 'Empresa'} links={companyLinks} />
 
             <div className="col-span-2 md:col-span-1">
-              <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.18em] mb-5">
+              <p className="text-xs font-bold text-aegrix-text uppercase tracking-[0.18em] mb-5">
                 {isEnglish ? 'Contact' : 'Contacto'}
-              </h4>
+              </p>
               <div className="space-y-3 text-sm text-aegrix-muted">
                 <p className="text-aegrix-text font-semibold">Colombia</p>
                 <ObfuscatedEmail email="contacto@aegrix.com.co" className="block hover:text-aegrix-cyan transition-colors" />
@@ -104,7 +104,7 @@ const Footer = () => {
         </div>
 
         <div className="pt-6 border-t border-aegrix-border flex flex-col lg:flex-row items-center justify-between gap-6">
-          <div className="text-xs text-aegrix-muted/70 text-center lg:text-left">
+          <div className="text-xs text-aegrix-muted/90 text-center lg:text-left">
             © {currentYear} AEGRIX. {isEnglish ? 'All rights reserved.' : 'Todos los derechos reservados.'}
           </div>
 
@@ -136,8 +136,8 @@ interface FooterColumnProps {
 
 function FooterColumn({ title, links }: FooterColumnProps) {
   return (
-    <div>
-      <h4 className="text-xs font-bold text-aegrix-text uppercase tracking-[0.18em] mb-5">{title}</h4>
+    <nav aria-label={title}>
+      <p className="text-xs font-bold text-aegrix-text uppercase tracking-[0.18em] mb-5">{title}</p>
       <ul className="space-y-3">
         {links.map((link) => (
           <li key={`${link.name}-${link.href}`}>
@@ -148,7 +148,7 @@ function FooterColumn({ title, links }: FooterColumnProps) {
           </li>
         ))}
       </ul>
-    </div>
+    </nav>
   );
 }
 
