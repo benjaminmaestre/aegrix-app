@@ -2,36 +2,29 @@
 
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
-import { Code2, Cpu, Database, Globe2, Server, Smartphone } from 'lucide-react';
 
 const capabilitiesEs = [
   {
-    icon: Globe2,
     title: 'Landings de alto impacto',
     desc: 'Diseñadas con SEO técnico, rendimiento y UX orientados a objetivos de conversión medibles.',
   },
   {
-    icon: Database,
     title: 'Sistemas robustos',
     desc: 'Arquitecturas seguras y escalables para procesos empresariales, integraciones y crecimiento progresivo.',
   },
   {
-    icon: Cpu,
     title: 'Software a medida',
     desc: 'Herramientas personalizadas que se integran con procesos, datos y plataformas existentes cuando el proyecto lo requiere.',
   },
   {
-    icon: Server,
     title: 'Infraestructura cloud',
     desc: 'Arquitecturas diseñadas para observabilidad, recuperación, alta disponibilidad y tolerancia a fallos según los requisitos del proyecto.',
   },
   {
-    icon: Smartphone,
     title: 'Aplicaciones web y PWA',
     desc: 'Experiencias rápidas y adaptables a distintos dispositivos, sin obligar al usuario a instalar una aplicación nativa.',
   },
   {
-    icon: Code2,
     title: 'Código mantenible',
     desc: 'Prácticas de ingeniería orientadas a legibilidad, pruebas, mantenimiento, documentación y evolución del producto.',
   },
@@ -39,32 +32,26 @@ const capabilitiesEs = [
 
 const capabilitiesEn = [
   {
-    icon: Globe2,
     title: 'High-impact landing pages',
     desc: 'Built with technical SEO, performance and UX aligned with measurable conversion goals.',
   },
   {
-    icon: Database,
     title: 'Robust systems',
     desc: 'Secure, scalable architectures for business processes, integrations and progressive growth.',
   },
   {
-    icon: Cpu,
     title: 'Custom software',
     desc: 'Purpose-built tools that integrate with existing processes, data and platforms when the project requires it.',
   },
   {
-    icon: Server,
     title: 'Cloud infrastructure',
     desc: 'Architectures designed for observability, recovery, high availability and fault tolerance according to project requirements.',
   },
   {
-    icon: Smartphone,
     title: 'Web apps and PWA',
     desc: 'Fast, adaptable experiences across devices without requiring users to install a native application.',
   },
   {
-    icon: Code2,
     title: 'Maintainable code',
     desc: 'Engineering practices focused on readability, testing, maintenance, documentation and product evolution.',
   },
@@ -110,10 +97,16 @@ const SoftwareExcellence = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.45, delay: (index % 3) * 0.06 }}
-              className="p-6 sm:p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all group shadow-sm hover:shadow-xl"
+              className="relative p-6 sm:p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all group shadow-sm hover:shadow-xl overflow-hidden"
             >
-              <div className="w-12 h-12 rounded-xl bg-aegrix-cyan/5 border border-aegrix-cyan/10 flex items-center justify-center text-aegrix-cyan mb-6 group-hover:bg-aegrix-cyan/10 transition-all duration-300">
-                <capability.icon size={24} aria-hidden="true" />
+              <div className="absolute top-0 left-0 w-20 h-px bg-aegrix-cyan/55 group-hover:w-full transition-all duration-500" aria-hidden="true" />
+              <div className="flex items-start justify-between gap-5 mb-8">
+                <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan/75">
+                  {isEnglish ? 'Capability' : 'Capacidad'}
+                </span>
+                <span className="font-mono text-sm font-semibold tracking-[0.16em] text-aegrix-text/20 group-hover:text-aegrix-cyan/50 transition-colors">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
               </div>
               <h3 className="text-xl font-sora font-bold text-aegrix-text mb-3 tracking-tight">{capability.title}</h3>
               <p className="text-sm text-aegrix-muted leading-relaxed">{capability.desc}</p>
