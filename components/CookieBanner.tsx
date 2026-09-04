@@ -173,7 +173,7 @@ const CookieBanner = ({ lang, dict }: CookieBannerProps) => {
                   <button
                     type="button"
                     onClick={handleAcceptAll}
-                    className="min-h-11 px-4 py-2 bg-aegrix-cyan text-aegrix-bg text-xs font-bold rounded-lg hover:brightness-110 transition-all shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-text"
+                    className="min-h-11 px-4 py-2 bg-aegrix-cyan text-aegrix-on-accent text-xs font-bold rounded-lg hover:brightness-110 transition-all shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-text"
                   >
                     {dict.accept}
                   </button>
