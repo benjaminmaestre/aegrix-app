@@ -43,8 +43,26 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
   const languageSwitchLabel = lang === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish';
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    const desktopMedia = window.matchMedia('(min-width: 1280px)');
+
+    const syncMenuWithViewport = (event: MediaQueryListEvent | MediaQueryList) => {
+      if (event.matches) {
+        setMenuOpen(false);
+        document.body.style.overflow = '';
+      }
+    };
+
+    syncMenuWithViewport(desktopMedia);
+    desktopMedia.addEventListener('change', syncMenuWithViewport);
+
+    if (menuOpen && !desktopMedia.matches) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
     return () => {
+      desktopMedia.removeEventListener('change', syncMenuWithViewport);
       document.body.style.overflow = '';
     };
   }, [menuOpen]);
