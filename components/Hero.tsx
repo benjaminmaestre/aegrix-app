@@ -1,11 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import HeroControlLayer from './HeroControlLayer';
 import VisionSlide from './VisionSlide';
 import { cn } from '@/lib/utils';
+
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+
+const subscribeToReducedMotion = (onStoreChange: () => void) => {
+  const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY);
+  mediaQuery.addEventListener('change', onStoreChange);
+  return () => mediaQuery.removeEventListener('change', onStoreChange);
+};
+
+const getReducedMotionSnapshot = () => window.matchMedia(REDUCED_MOTION_QUERY).matches;
+const getReducedMotionServerSnapshot = () => true;
 
 interface HeroBackground {
   videoMp4: string;
@@ -26,7 +37,11 @@ interface HeroProps {
 
 const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  );
 
   return (
     <section className="relative w-full min-h-auto lg:min-h-screen overflow-hidden flex flex-col">
