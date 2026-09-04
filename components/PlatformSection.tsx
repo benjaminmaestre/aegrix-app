@@ -12,14 +12,14 @@ const PlatformSection = () => {
 
   const points = isEnglish
     ? [
-        { icon: ShieldCheck, text: 'Security integrated into architecture, access, and configuration.' },
-        { icon: Globe2, text: 'Software and web built around performance, SEO, and measurable journeys.' },
-        { icon: BarChart3, text: 'Data and analytics connected to decisions, reports, and traceability.' },
+        'Security integrated into architecture, access, and configuration.',
+        'Software and web built around performance, SEO, and measurable journeys.',
+        'Data and analytics connected to decisions, reports, and traceability.',
       ]
     : [
-        { icon: ShieldCheck, text: 'Seguridad integrada en arquitectura, accesos y configuración.' },
-        { icon: Globe2, text: 'Software y web orientados a rendimiento, SEO y recorridos medibles.' },
-        { icon: BarChart3, text: 'Datos y analítica conectados con decisiones, reportes y trazabilidad.' },
+        'Seguridad integrada en arquitectura, accesos y configuración.',
+        'Software y web orientados a rendimiento, SEO y recorridos medibles.',
+        'Datos y analítica conectados con decisiones, reportes y trazabilidad.',
       ];
 
   const layers = isEnglish
@@ -62,12 +62,12 @@ const PlatformSection = () => {
             </p>
 
             <div className="space-y-5 mb-8 md:mb-12">
-              {points.map((item) => (
-                <div key={item.text} className="flex items-start gap-4 text-aegrix-text/80 font-medium">
-                  <div className="w-9 h-9 rounded-lg bg-aegrix-cyan/7 border border-aegrix-cyan/12 text-aegrix-cyan flex items-center justify-center shrink-0">
-                    <item.icon size={18} aria-hidden="true" />
-                  </div>
-                  <span className="pt-1.5 leading-relaxed">{item.text}</span>
+              {points.map((item, index) => (
+                <div key={item} className="grid grid-cols-[auto_1fr] gap-4 items-start text-aegrix-text/80 font-medium">
+                  <span className="font-mono text-[10px] font-semibold tracking-[0.16em] text-aegrix-cyan/70 pt-1.5">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div className="border-l border-aegrix-cyan/20 pl-4 leading-relaxed">{item}</div>
                 </div>
               ))}
             </div>
