@@ -51,7 +51,7 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
           src={activeBackground.poster}
           alt=""
           fill
-          priority
+          loading="eager"
           fetchPriority="high"
           sizes="100vw"
           className={cn(
