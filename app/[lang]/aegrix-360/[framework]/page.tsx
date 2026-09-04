@@ -153,6 +153,26 @@ export default async function FrameworkPage({ params }: { params: Promise<{ lang
       </section>
 
       <section className="section-padding bg-aegrix-bg-2 border-y border-aegrix-border/50">
+        <div className="container-width grid lg:grid-cols-3 gap-8">
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">{isEnglish ? 'Scope' : 'Alcance'}</span>
+            <h2 className="heading-lg mt-3 mb-4 text-aegrix-text">{isEnglish ? 'What we can review' : 'Qué podemos evaluar'}</h2>
+            <p className="text-aegrix-muted leading-relaxed">{isEnglish ? 'The review is defined around your organization, systems, evidence and contracted scope.' : 'La revisión se define alrededor de la organización, los sistemas, la evidencia y el alcance contratado.'}</p>
+          </div>
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">{isEnglish ? 'Client input' : 'Información del cliente'}</span>
+            <h2 className="heading-lg mt-3 mb-4 text-aegrix-text">{isEnglish ? 'What we may need' : 'Qué podemos necesitar'}</h2>
+            <p className="text-aegrix-muted leading-relaxed">{isEnglish ? 'Relevant owners, documentation, inventories, existing evidence and controlled access when applicable.' : 'Responsables, documentación, inventarios, evidencia disponible y accesos controlados cuando aplique.'}</p>
+          </div>
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">{isEnglish ? 'Outcome' : 'Resultado'}</span>
+            <h2 className="heading-lg mt-3 mb-4 text-aegrix-text">{isEnglish ? 'What you may receive' : 'Qué puede recibir'}</h2>
+            <p className="text-aegrix-muted leading-relaxed">{isEnglish ? 'Findings, gaps, reviewed evidence, ownership and a remediation roadmap when included in the engagement.' : 'Hallazgos, brechas, evidencia revisada, responsables y un roadmap de remediación cuando formen parte del servicio.'}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-aegrix-bg-2 border-y border-aegrix-border/50">
         <div className="container-width grid lg:grid-cols-2 gap-12 lg:gap-20">
           <div>
             <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">

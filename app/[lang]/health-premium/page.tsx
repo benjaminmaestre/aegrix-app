@@ -117,6 +117,10 @@ export default function HealthPremiumPage() {
         : 'Podemos estructurar la evaluación con AEGRIX 360 e incluir readiness frente a HIPAA Security Rule cuando sea relevante para el alcance contratado.'}
       diagnosticBannerCta={isEn ? 'Start healthcare assessment' : 'Iniciar evaluación de salud'}
       diagnosticWhatsAppUrl={health360WhatsAppUrl}
+      contextualLinks={[
+        { href: `/${lang}/aegrix-360/hipaa`, label: isEn ? 'HIPAA Security Rule assessment' : 'Evaluación HIPAA Security Rule' },
+        { href: `/${lang}/aegrix-360`, label: isEn ? 'Explore AEGRIX 360' : 'Explorar AEGRIX 360' },
+      ]}
     />
   );
 }

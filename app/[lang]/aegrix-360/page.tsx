@@ -138,6 +138,36 @@ export default async function Aegrix360Page({ params }: { params: Promise<{ lang
       </section>
 
       <section className="section-padding bg-aegrix-bg-2 border-y border-aegrix-border/50">
+        <div className="container-width grid lg:grid-cols-2 gap-12 lg:gap-20">
+          <div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">
+              {isEnglish ? 'Who it is for' : 'Para quién es'}
+            </span>
+            <h2 className="heading-lg mt-3 mb-6 text-aegrix-text">
+              {isEnglish ? 'A practical starting point for security decisions.' : 'Un punto de partida práctico para decidir sobre seguridad.'}
+            </h2>
+            <ul className="space-y-3 text-aegrix-muted">
+              {(isEnglish
+                ? ['Organizations that need to understand their security posture.', 'Teams that need to organize evidence and ownership.', 'Companies preparing for a framework or customer review.', 'Leaders who need a prioritized remediation path.']
+                : ['Organizaciones que necesitan entender su postura de seguridad.', 'Equipos que deben ordenar evidencia y responsables.', 'Empresas que preparan una revisión de marco o de un cliente.', 'Líderes que necesitan priorizar la remediación.']
+              ).map((item) => <li key={item} className="flex gap-3"><CheckCircle2 size={18} className="text-aegrix-cyan shrink-0 mt-0.5" aria-hidden="true" />{item}</li>)}
+            </ul>
+          </div>
+          <div className="rounded-3xl border border-aegrix-border bg-aegrix-surface p-7 md:p-9">
+            <h3 className="font-sora font-bold text-xl text-aegrix-text mb-5">
+              {isEnglish ? 'What the three levels mean' : 'Qué significan los tres niveles'}
+            </h3>
+            <div className="space-y-5 text-aegrix-muted">
+              <p><strong className="text-aegrix-text">Pulse:</strong> {isEnglish ? 'understand where the organization is.' : 'entender dónde está la organización.'}</p>
+              <p><strong className="text-aegrix-text">Compass:</strong> {isEnglish ? 'organize how to prepare and close gaps.' : 'organizar cómo prepararse y cerrar brechas.'}</p>
+              <p><strong className="text-aegrix-text">Assurance:</strong> {isEnglish ? 'review evidence, controls and decisions in greater depth.' : 'revisar con mayor profundidad evidencia, controles y decisiones.'}</p>
+              <p className="text-sm border-t border-aegrix-border pt-5">{isEnglish ? 'Assurance is not a certification and does not replace an independent audit when one is required.' : 'Assurance no es una certificación ni reemplaza una auditoría independiente cuando esta sea necesaria.'}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-aegrix-bg-2 border-y border-aegrix-border/50">
         <div className="container-width">
           <div className="max-w-3xl mb-12 md:mb-16">
             <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">

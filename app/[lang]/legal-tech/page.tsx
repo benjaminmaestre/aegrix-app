@@ -117,6 +117,11 @@ export default function LegalFinancePage() {
         : 'La evaluación puede incluir readiness NIST o ISO/IEC 27001/27002 y controles de privacidad y seguridad relacionados con GDPR cuando sean relevantes para el alcance contratado.'}
       diagnosticBannerCta={isEn ? 'Start security assessment' : 'Iniciar evaluación de seguridad'}
       diagnosticWhatsAppUrl={legal360WhatsAppUrl}
+      contextualLinks={[
+        { href: `/${lang}/aegrix-360/nist`, label: isEn ? 'NIST CSF 2.0 assessment' : 'Evaluación NIST CSF 2.0' },
+        { href: `/${lang}/aegrix-360/iso-27001`, label: isEn ? 'ISO 27001 readiness' : 'Readiness ISO 27001' },
+        { href: `/${lang}/aegrix-360`, label: isEn ? 'Explore AEGRIX 360' : 'Explorar AEGRIX 360' },
+      ]}
     />
   );
 }
