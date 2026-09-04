@@ -22,6 +22,11 @@ export interface NicheSolution {
   features: string[];
 }
 
+export interface NicheContextLink {
+  label: string;
+  href: string;
+}
+
 interface NicheLandingTemplateProps {
   lang: 'es' | 'en';
   heroTagline: string;
@@ -29,6 +34,7 @@ interface NicheLandingTemplateProps {
   heroTitleHighlight: string;
   heroDescription: string;
   heroWhatsAppUrl: string;
+  heroPrimaryCta?: string;
   heroImageBaseName?: string;
   heroImageAlt?: string;
   problemsSectionTitle: string;
@@ -41,6 +47,7 @@ interface NicheLandingTemplateProps {
   diagnosticBannerDesc: string;
   diagnosticBannerCta: string;
   diagnosticWhatsAppUrl: string;
+  contextualLinks?: NicheContextLink[];
 }
 
 const NicheLandingTemplate = ({
@@ -50,6 +57,7 @@ const NicheLandingTemplate = ({
   heroTitleHighlight,
   heroDescription,
   heroWhatsAppUrl,
+  heroPrimaryCta,
   heroImageBaseName,
   heroImageAlt,
   problemsSectionTitle,
@@ -62,6 +70,7 @@ const NicheLandingTemplate = ({
   diagnosticBannerDesc,
   diagnosticBannerCta,
   diagnosticWhatsAppUrl,
+  contextualLinks = [],
 }: NicheLandingTemplateProps) => {
   const isEnglish = lang === 'en';
 
@@ -96,7 +105,7 @@ const NicheLandingTemplate = ({
             {heroImageAlt && <span className="sr-only">{heroImageAlt}</span>}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link href={heroWhatsAppUrl} target="_blank" rel="noopener noreferrer" className="btn-primary min-h-12">
-                {isEnglish ? 'Request a diagnostic' : 'Solicitar diagnóstico'}
+                {heroPrimaryCta ?? (isEnglish ? 'Request a diagnostic' : 'Solicitar diagnóstico')}
               </Link>
               <Link href="#soluciones" className="btn-secondary min-h-12">
                 {isEnglish ? 'View services' : 'Ver servicios'}
@@ -105,6 +114,23 @@ const NicheLandingTemplate = ({
           </div>
         </div>
       </section>
+
+      {contextualLinks.length > 0 && (
+        <section className="section-padding bg-aegrix-bg-2 border-b border-aegrix-border">
+          <div className="container-width">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-aegrix-cyan mb-4">
+              {isEnglish ? 'Related assessment paths' : 'Rutas de evaluación relacionadas'}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {contextualLinks.map((link) => (
+                <Link key={link.href} href={link.href} className="btn-secondary min-h-11">
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="section-padding bg-aegrix-bg">
         <div className="container-width">

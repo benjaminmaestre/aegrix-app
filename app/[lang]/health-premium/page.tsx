@@ -96,6 +96,7 @@ export default function HealthPremiumPage() {
       heroDescription={isEn
         ? 'High-performance medical web, patient journeys, automation, analytics and security assessment for sensitive health information.'
         : 'Web médica de alto rendimiento, recorridos de pacientes, automatización, analítica y evaluación de seguridad para información sensible de salud.'}
+      heroPrimaryCta={isEn ? 'Request an assessment' : 'Solicitar evaluación'}
       heroWhatsAppUrl={healthWhatsAppUrl}
       heroImageBaseName="hero-health-medellin"
       heroImageAlt={isEn ? 'Healthcare organization in Medellin with panoramic view of the city.' : 'Organización de salud en Medellín con vista panorámica de la ciudad.'}
@@ -117,6 +118,10 @@ export default function HealthPremiumPage() {
         : 'Podemos estructurar la evaluación con AEGRIX 360 e incluir readiness frente a HIPAA Security Rule cuando sea relevante para el alcance contratado.'}
       diagnosticBannerCta={isEn ? 'Start healthcare assessment' : 'Iniciar evaluación de salud'}
       diagnosticWhatsAppUrl={health360WhatsAppUrl}
+      contextualLinks={[
+        { href: `/${lang}/aegrix-360/hipaa`, label: isEn ? 'HIPAA Security Rule assessment' : 'Evaluación HIPAA Security Rule' },
+        { href: `/${lang}/aegrix-360`, label: isEn ? 'Explore AEGRIX 360' : 'Explorar AEGRIX 360' },
+      ]}
     />
   );
 }
