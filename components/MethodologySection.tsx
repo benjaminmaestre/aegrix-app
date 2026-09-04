@@ -2,29 +2,24 @@
 
 import { motion } from 'framer-motion';
 import { useParams } from 'next/navigation';
-import { CheckCircle2, PenTool, Search, TrendingUp } from 'lucide-react';
 
 const stepsEs = [
   {
-    icon: Search,
     title: 'Diagnóstico inicial',
     description: 'Revisamos el contexto, los riesgos y los puntos de fricción relevantes para definir qué conviene atender primero.',
     benefit: 'Hallazgos priorizados',
   },
   {
-    icon: PenTool,
     title: 'Diseño de solución',
     description: 'Definimos alcance, arquitectura, dependencias y criterios de aceptación antes de implementar.',
     benefit: 'Plan y alcance definidos',
   },
   {
-    icon: CheckCircle2,
     title: 'Implementación controlada',
     description: 'Ejecutamos los cambios acordados y verificamos los entregables contra el alcance del proyecto.',
     benefit: 'Entregables verificables',
   },
   {
-    icon: TrendingUp,
     title: 'Seguimiento y mejora',
     description: 'Cuando el servicio lo incluye, revisamos resultados, pendientes y nuevas prioridades con una cadencia acordada.',
     benefit: 'Próximos pasos claros',
@@ -33,25 +28,21 @@ const stepsEs = [
 
 const stepsEn = [
   {
-    icon: Search,
     title: 'Initial assessment',
     description: 'We review the context, risks, and relevant friction points to determine what should be addressed first.',
     benefit: 'Prioritized findings',
   },
   {
-    icon: PenTool,
     title: 'Solution design',
     description: 'We define scope, architecture, dependencies, and acceptance criteria before implementation.',
     benefit: 'Defined plan and scope',
   },
   {
-    icon: CheckCircle2,
     title: 'Controlled implementation',
     description: 'We execute the agreed changes and verify deliverables against the project scope.',
     benefit: 'Verifiable deliverables',
   },
   {
-    icon: TrendingUp,
     title: 'Follow-up and improvement',
     description: 'When included in the service, we review results, pending items, and new priorities on an agreed cadence.',
     benefit: 'Clear next steps',
@@ -88,7 +79,7 @@ const MethodologySection = () => {
         </div>
 
         <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px bg-linear-to-r from-transparent via-aegrix-cyan/20 to-transparent" aria-hidden="true" />
+          <div className="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-linear-to-r from-transparent via-aegrix-cyan/25 to-transparent" aria-hidden="true" />
 
           {steps.map((step, index) => (
             <motion.article
@@ -97,13 +88,14 @@ const MethodologySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: index * 0.06 }}
-              className="group relative p-6 md:p-7 rounded-2xl md:rounded-3xl bg-aegrix-surface border border-aegrix-border h-full flex flex-col shadow-sm hover:shadow-xl hover:border-aegrix-cyan/20 hover:-translate-y-0.5 transition-all duration-300"
+              className="group relative p-6 md:p-7 rounded-2xl md:rounded-3xl bg-aegrix-surface border border-aegrix-border h-full flex flex-col shadow-sm hover:shadow-xl hover:border-aegrix-cyan/20 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"
             >
-              <div className="flex items-center justify-between mb-6 relative z-10">
-                <div className="w-12 h-12 rounded-xl bg-aegrix-cyan/8 border border-aegrix-cyan/15 flex items-center justify-center text-aegrix-cyan shadow-sm">
-                  <step.icon size={22} aria-hidden="true" />
-                </div>
-                <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-aegrix-text/25">
+              <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-aegrix-cyan/45 via-aegrix-cyan/15 to-transparent opacity-70" aria-hidden="true" />
+              <div className="flex items-center justify-between mb-8 relative z-10">
+                <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan/80">
+                  {isEnglish ? 'Phase' : 'Fase'}
+                </span>
+                <span className="font-mono text-2xl font-semibold tracking-[-0.04em] text-aegrix-text/20 group-hover:text-aegrix-cyan/55 transition-colors">
                   {String(index + 1).padStart(2, '0')}
                 </span>
               </div>
