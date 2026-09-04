@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { BarChart3, Cpu, Globe, Layout, Pause, Play, Shield } from 'lucide-react';
@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 const CYAN = '#00D4D4';
 const TOTAL_STEPS = 4;
 const AUTOPLAY_DELAY_MS = 6500;
+const subscribeToHydration = () => () => {};
 
 type VisionSlideProps = {
   lang: 'es' | 'en';
@@ -32,20 +33,23 @@ const capabilitiesEn = [
 const VisionSlide = ({ lang }: VisionSlideProps) => {
   const [step, setStep] = useState(0);
   const [isAutoplayPaused, setIsAutoplayPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocusWithin, setIsFocusWithin] = useState(false);
   const [autoplayCycle, setAutoplayCycle] = useState(0);
   const shouldReduceMotion = useReducedMotion();
+  const isHydrated = useSyncExternalStore(subscribeToHydration, () => true, () => false);
   const isEnglish = lang === 'en';
   const capabilities = isEnglish ? capabilitiesEn : capabilitiesEs;
 
   useEffect(() => {
-    if (shouldReduceMotion || isAutoplayPaused) return;
+    if (shouldReduceMotion || isAutoplayPaused || isHovered || isFocusWithin) return;
 
     const timer = window.setTimeout(() => {
       setStep((currentStep) => (currentStep + 1) % TOTAL_STEPS);
     }, AUTOPLAY_DELAY_MS);
 
     return () => window.clearTimeout(timer);
-  }, [step, autoplayCycle, isAutoplayPaused, shouldReduceMotion]);
+  }, [step, autoplayCycle, isAutoplayPaused, isHovered, isFocusWithin, shouldReduceMotion]);
 
   const selectStep = (index: number) => {
     setStep(index);
@@ -53,7 +57,18 @@ const VisionSlide = ({ lang }: VisionSlideProps) => {
   };
 
   return (
-    <div className="relative w-full h-full min-h-110 md:min-h-150 flex items-center justify-center overflow-hidden rounded-3xl md:rounded-[40px] z-20 border border-aegrix-border shadow-xl bg-aegrix-surface">
+    <div
+      className="relative w-full h-full min-h-110 md:min-h-150 flex items-center justify-center overflow-hidden rounded-3xl md:rounded-[40px] z-20 border border-aegrix-border shadow-xl bg-aegrix-surface"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocusCapture={() => setIsFocusWithin(true)}
+      onBlurCapture={(event) => {
+        const nextTarget = event.relatedTarget as Node | null;
+        if (!nextTarget || !event.currentTarget.contains(nextTarget)) {
+          setIsFocusWithin(false);
+        }
+      }}
+    >
       <AnimatePresence mode="wait">
         {step === 0 && (
           <motion.div
@@ -237,7 +252,7 @@ const VisionSlide = ({ lang }: VisionSlideProps) => {
           ))}
         </div>
 
-        {!shouldReduceMotion && (
+        {isHydrated && !shouldReduceMotion && (
           <button
             type="button"
             onClick={() => setIsAutoplayPaused((paused) => !paused)}
