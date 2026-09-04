@@ -1,10 +1,10 @@
 {
   "hero": {
-    "title_part1": "Blindamos, optimizamos y escalamos",
-    "title_highlight": "la capa digital de tu negocio.",
-    "description": "En AEGRIX diagnosticamos, construimos y optimizamos la capa digital de tu negocio: web, IA, datos, automatización y ciberseguridad.",
-    "cta_primary": "Solicitar diagnóstico 360",
-    "cta_secondary": "Ver soluciones para mi empresa"
+    "title_part1": "Ingeniería tecnológica de élite para",
+    "title_highlight": "software, ciberseguridad, datos e IA.",
+    "description": "En AEGRIX diseñamos, fortalecemos y escalamos infraestructura digital para empresas mediante desarrollo de software, ciberseguridad, analítica, automatización e inteligencia artificial, con alcances y entregables definidos.",
+    "cta_primary": "Iniciar diagnóstico AEGRIX 360",
+    "cta_secondary": "Ver servicios"
   },
   "navbar": {
     "services": "Servicios",
@@ -12,24 +12,24 @@
     "sectors": "Sectores",
     "methodology": "Metodología",
     "contact": "Contacto",
-    "cta": "Solicitar diagnóstico 360"
+    "cta": "Iniciar diagnóstico"
   },
   "about": {
-    "title": "Nuestra Filosofía",
-    "subtitle": "ADN AEGRIX",
-    "description": "No somos solo una firma de tecnología; somos arquitectos de estabilidad digital. En AEGRIX, creemos que la tecnología debe ser una capa invisible pero indestructible que permita a las empresas operar sin límites.",
+    "title": "Ingeniería para sistemas que importan",
+    "subtitle": "AEGRIX",
+    "description": "Somos una firma de ingeniería tecnológica especializada en software, ciberseguridad, datos, automatización e inteligencia artificial para entornos empresariales y operaciones críticas.",
     "mission_title": "Misión",
-    "mission_text": "Proveer la infraestructura digital más segura y eficiente para las empresas que lideran el futuro.",
+    "mission_text": "Diseñar e implementar soluciones tecnológicas robustas, seguras y escalables, con alcance claro, criterios técnicos y entregables verificables.",
     "vision_title": "Visión",
-    "vision_text": "Ser el estándar global en integración de seguridad, datos e inteligencia artificial.",
+    "vision_text": "Ser una firma latinoamericana de referencia por la calidad de su ingeniería, la profundidad de sus evaluaciones y la capacidad de resolver problemas digitales complejos.",
     "values": {
-      "security": "Seguridad Total",
-      "precision": "Precisión en Datos",
-      "innovation": "Innovación Constante"
+      "security": "Seguridad",
+      "precision": "Rigor técnico",
+      "innovation": "Evolución"
     }
   },
   "cookies": {
-    "message": "Utilizamos cookies propias y de terceros para garantizar el funcionamiento del sitio, mejorar tu experiencia, analizar el tráfico, proteger la seguridad de la plataforma y optimizar nuestras comunicaciones comerciales. Al continuar navegando, aceptas nuestra Política de Cookies.",
+    "message": "Usamos cookies necesarias para el funcionamiento del sitio. Las cookies de analítica, funcionales o de marketing solo se activan según las preferencias que elijas.",
     "accept": "Aceptar todas",
     "decline": "Rechazar no necesarias",
     "settings": "Configurar cookies"
@@ -37,19 +37,19 @@
   "legal": {
     "privacy": {
       "title": "Política de Privacidad",
-      "last_updated": "Última actualización: Mayo 2024"
+      "last_updated": "Última actualización: 3 de septiembre de 2026"
     },
     "terms": {
       "title": "Términos de Servicio",
-      "last_updated": "Última actualización: Mayo 2024"
+      "last_updated": "Última actualización: 3 de septiembre de 2026"
     },
     "cookies": {
       "title": "Política de Cookies",
-      "last_updated": "Última actualización: Mayo 2024"
+      "last_updated": "Última actualización: 3 de septiembre de 2026"
     },
     "security": {
       "title": "Política de Seguridad",
-      "last_updated": "Última actualización: Mayo 2024"
+      "last_updated": "Última actualización: 3 de septiembre de 2026"
     }
   }
 }

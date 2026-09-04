@@ -1,12 +1,12 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import { productDivisions, WHATSAPP_URL } from '@/lib/data';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { CheckCircle2, Cpu, Globe, Heart, Shield, type LucideIcon } from 'lucide-react';
+import { productDivisions } from '@/lib/data';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
-import { Shield, Globe, Cpu, Heart, CheckCircle2, type LucideIcon } from 'lucide-react';
 import BrandMarquee from './BrandMarquee';
 
 const icons: Record<string, LucideIcon> = {
@@ -23,99 +23,136 @@ const cardImages: Record<string, string> = {
   care: '/images/aegrix-card-care.avif',
 };
 
+const englishDivisions: Record<string, { title: string; tagline: string; description: string; features: string[] }> = {
+  shield: {
+    title: 'AEGRIX Shield',
+    tagline: 'Cybersecurity, risk and data protection.',
+    description: 'We assess security posture, risks and controls to strengthen organizations and support evaluations against recognized frameworks when the engagement requires it.',
+    features: ['Risk and control assessment', 'Identity and access management', 'Configuration and vulnerability review', 'NIST, ISO/IEC 27001/27002, HIPAA and GDPR according to scope'],
+  },
+  web: {
+    title: 'AEGRIX Software & Web',
+    tagline: 'Robust, secure software built to scale.',
+    description: 'We design and build web and software solutions with architecture, security, performance, maintainability and clear delivery criteria.',
+    features: ['Web applications and business software', 'Full-stack development', 'Landing pages and corporate websites', 'Architecture, performance and scalability'],
+  },
+  'data-ai': {
+    title: 'AEGRIX Data & AI',
+    tagline: 'Data, automation and applied AI.',
+    description: 'We implement data, automation and artificial intelligence solutions around specific processes and use cases.',
+    features: ['AI agents and assistants', 'Applied AI training', 'Process automation', 'Dashboards and analytics'],
+  },
+  care: {
+    title: 'AEGRIX Care',
+    tagline: 'Support, monitoring and continuous improvement.',
+    description: 'Technical support through service plans with defined priorities, monitoring or observability when applicable, and agreed response times.',
+    features: ['Technical support according to plan', 'Proactive monitoring according to scope', 'Updates and maintenance', 'Optimization and advisory support'],
+  },
+};
+
 const ProductDivisions = () => {
   const { ref, inView } = useInView();
+  const params = useParams();
+  const lang = (params?.lang as string) || 'es';
+  const isEnglish = lang === 'en';
 
   return (
-    <section id="servicios" ref={ref} className="section-padding bg-aegrix-bg-2">
-      <div className="container-width">
-        <div className={cn(
-          "text-center max-w-3xl mx-auto mb-12 md:mb-20 transition-all duration-1000",
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        )}>
-          <h2 className="heading-lg mb-8 text-aegrix-text">
-            Diseñamos sistemas digitales <br />
-            <span className="text-aegrix-cyan">seguros, medibles e inteligentes.</span>
+    <section id="servicios" ref={ref} className="section-padding bg-aegrix-bg-2 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(0,194,255,0.035),transparent_40%),radial-gradient(circle_at_85%_80%,rgba(99,102,241,0.035),transparent_40%)] pointer-events-none" aria-hidden="true" />
+
+      <div className="container-width relative z-10">
+        <div
+          className={cn(
+            'text-center max-w-3xl mx-auto mb-12 md:mb-20 transition-all duration-700',
+            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          )}
+        >
+          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">
+            {isEnglish ? 'AEGRIX capabilities' : 'Capacidades AEGRIX'}
+          </span>
+          <h2 className="heading-lg mt-3 mb-8 text-aegrix-text">
+            {isEnglish ? 'Elite engineering across' : 'Ingeniería de élite aplicada a'}
+            <br />
+            <span className="text-aegrix-cyan">
+              {isEnglish ? 'security, software, data and AI.' : 'seguridad, software, datos e IA.'}
+            </span>
           </h2>
           <p className="body-lg text-aegrix-muted">
-            No vendemos herramientas sueltas. Construimos la infraestructura digital que tu empresa necesita para operar con control absoluto.
+            {isEnglish
+              ? 'We combine the capabilities each project needs. Scope, deliverables, responsibilities and success criteria are defined before implementation.'
+              : 'Combinamos las capacidades que necesita cada proyecto. El alcance, los entregables, las responsabilidades y los criterios de éxito se definen antes de implementar.'}
           </p>
         </div>
 
-        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-8 md:grid-cols-2 pb-6 md:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
-          {productDivisions.map((division, idx) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {productDivisions.map((division, index) => {
             const Icon = icons[division.id];
+            const localizedDivision = isEnglish ? englishDivisions[division.id] : division;
+
             return (
-              <div 
+              <article
                 key={division.id}
                 className={cn(
-                  "relative p-5 sm:p-8 md:p-10 rounded-2xl md:rounded-4xl bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all duration-700 flex flex-col shadow-sm hover:shadow-xl overflow-hidden",
-                  "w-[90%] sm:w-[50%] md:w-auto shrink-0 md:shrink snap-align-start",
-                  inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                  'group relative p-6 sm:p-8 md:p-10 rounded-2xl md:rounded-4xl bg-aegrix-surface border border-aegrix-border transition-all duration-500 flex flex-col overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-aegrix-cyan/25',
+                  inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 )}
-                style={{ transitionDelay: `${idx * 150}ms` }}
+                style={{ transitionDelay: `${index * 80}ms` }}
               >
-                {/* Background image decoration */}
                 <div className="absolute inset-0 z-0 pointer-events-none">
-                  <div className="absolute inset-0 bg-white/90 dark:bg-aegrix-surface/90" />
-                  <div className="absolute inset-0 bg-linear-to-br from-white via-white/95 to-white/85 dark:from-aegrix-surface dark:via-aegrix-surface/95 dark:to-aegrix-surface/85" />
                   <Image
                     src={cardImages[division.id]}
-                    alt={`Ilustración de fondo para la división ${division.title}`}
+                    alt=""
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-center opacity-[0.18] dark:opacity-[0.12]"
+                    className="object-cover object-center opacity-[0.16] dark:opacity-[0.12] transition-transform duration-700 group-hover:scale-[1.03]"
                   />
-                  <div className="absolute inset-0 grid-bg opacity-[0.02]" />
+                  <div className="absolute inset-0 bg-linear-to-br from-aegrix-surface/70 via-aegrix-surface/92 to-aegrix-surface" />
+                  <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-aegrix-cyan/40 to-transparent opacity-60" />
+                  <div className="absolute inset-0 grid-bg opacity-[0.018]" />
                 </div>
 
-                {/* Content Layer */}
                 <div className="relative z-10 flex flex-col h-full grow">
-                  <div className="flex items-start justify-between mb-6 md:mb-8">
-                    <div className="p-4 rounded-xl bg-aegrix-bg-2 border border-aegrix-border text-aegrix-cyan">
-                      <Icon size={32} />
+                  <div className="flex items-start justify-between gap-4 mb-7">
+                    <div className="w-13 h-13 rounded-xl bg-aegrix-bg-2/80 border border-aegrix-border text-aegrix-cyan flex items-center justify-center shadow-sm">
+                      <Icon size={26} aria-hidden="true" />
                     </div>
-                    <div className="text-[10px] font-bold text-aegrix-text/20 uppercase tracking-[0.3em]">
-                      AEGRIX Division
-                    </div>
+                    <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-aegrix-text/25">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
                   </div>
 
-                  <div className="mb-8 md:mb-10">
-                    <div className="heading-md text-aegrix-text mb-3 tracking-tight font-extrabold">{division.title}</div>
-                    <div className="text-[11px] font-extrabold text-aegrix-cyan/95 uppercase tracking-[0.25em] mb-4">
-                      {division.tagline}
-                    </div>
-                    <p className="body-md text-aegrix-muted leading-relaxed">
-                      {division.description}
-                    </p>
-                  </div>
+                  <h3 className="text-2xl font-sora font-bold text-aegrix-text mb-2 tracking-tight">{localizedDivision.title}</h3>
+                  <p className="text-xs font-semibold text-aegrix-cyan uppercase tracking-[0.16em] mb-4">{localizedDivision.tagline}</p>
+                  <p className="body-md text-aegrix-muted leading-relaxed mb-7">{localizedDivision.description}</p>
 
-                  <div className="grow mb-8 md:mb-10 space-y-3">
-                    {division.features.map((feature, i) => (
-                      <div key={i} className="flex items-center gap-3 text-sm text-aegrix-text/70">
-                        <CheckCircle2 size={16} className="text-aegrix-cyan" />
-                        {feature}
-                      </div>
+                  <ul className="grow space-y-3">
+                    {localizedDivision.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-3 text-sm text-aegrix-text/80">
+                        <CheckCircle2 size={16} className="text-aegrix-cyan shrink-0 mt-0.5" aria-hidden="true" />
+                        <span>{feature}</span>
+                      </li>
                     ))}
-                  </div>
-
-                  <Link 
-                    href={WHATSAPP_URL} 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-secondary w-full"
-                  >
-                    Saber más
-                  </Link>
+                  </ul>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>
 
+        <div className="mt-10 md:mt-14 flex justify-center">
+          <Link
+            href={`/${lang}#contacto`}
+            className="btn-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-text"
+          >
+            {isEnglish ? 'Talk about a project' : 'Hablar sobre un proyecto'}
+          </Link>
+        </div>
+
         <div className="mt-12 md:mt-20">
-          <p className="text-center text-aegrix-muted italic font-medium mb-8 md:mb-12">
-            &quot;Menos caos operativo. Más control digital.&quot;
+          <p className="text-center text-aegrix-muted font-medium mb-8 md:mb-12">
+            {isEnglish
+              ? 'Technologies and ecosystems we work with according to project requirements.'
+              : 'Tecnologías y ecosistemas con los que trabajamos según los requisitos del proyecto.'}
           </p>
           <BrandMarquee />
         </div>

@@ -1,6 +1,9 @@
+import { buildWhatsAppUrl } from '@/lib/site-config';
+
 export const navItems = [
   { label: 'Inicio', href: '/' },
   { label: 'Servicios', href: '/#servicios' },
+  { label: 'AEGRIX 360', href: '/aegrix-360' },
   { label: 'Sectores', href: '/#sectores' },
   { label: 'Metodología', href: '/#metodologia' },
   { label: 'Contacto', href: '/#contacto' },
@@ -10,25 +13,25 @@ export const problemCards = [
   {
     id: 1,
     title: 'Datos dispersos',
-    description: 'Información fragmentada en archivos, correos y plataformas sin una arquitectura que los conecte.',
+    description: 'Información fragmentada en archivos, correos y plataformas sin una arquitectura que facilite su uso.',
     icon: 'Database',
   },
   {
     id: 2,
-    title: 'Web sin conversión',
-    description: 'Páginas que existen como tarjetas de presentación, pero no generan leads ni confianza comercial.',
+    title: 'Web sin objetivos claros',
+    description: 'Sitios que no tienen un recorrido de conversión, medición o contacto claramente definido.',
     icon: 'Globe',
   },
   {
     id: 3,
     title: 'Reportes manuales',
-    description: 'Horas perdidas procesando Excel críticos sin visibilidad en tiempo real de la operación.',
+    description: 'Procesos repetitivos en hojas de cálculo que pueden dificultar la trazabilidad y el análisis oportuno.',
     icon: 'Clock',
   },
   {
     id: 4,
-    title: 'Información vulnerable',
-    description: 'Accesos y sistemas expuestos por falta de una estrategia proactiva de seguridad digital.',
+    title: 'Controles de seguridad incompletos',
+    description: 'Accesos, configuraciones o procesos que requieren revisión para reducir riesgos digitales relevantes.',
     icon: 'Lock',
   },
 ];
@@ -37,37 +40,38 @@ export const productDivisions = [
   {
     id: 'shield',
     title: 'AEGRIX Shield',
-    tagline: 'Ciberseguridad y protección de datos.',
-    description: 'La seguridad no es apagar incendios. Es diseñar para que el incendio no empiece.',
-    features: ['Protección de activos digitales', 'Gestión de identidades y accesos', 'Auditoría de vulnerabilidades', 'Compliance y privacidad'],
+    tagline: 'Ciberseguridad, riesgo y protección de datos.',
+    description: 'Evaluamos postura de seguridad, riesgos y controles para fortalecer organizaciones y preparar evaluaciones sobre marcos reconocidos cuando el alcance lo requiere.',
+    features: ['Evaluación de riesgos y controles', 'Gestión de identidades y accesos', 'Revisión de configuraciones y vulnerabilidades', 'NIST, ISO/IEC 27001/27002, HIPAA y GDPR según alcance'],
   },
   {
     id: 'web',
     title: 'AEGRIX Software & Web',
-    tagline: 'Sistemas robustos e infraestructura de alto rendimiento.',
-    description: 'No solo diseñamos páginas; construimos el motor digital de tu empresa. Desde landings de alta conversión hasta sistemas enterprise escalables y robustos.',
-    features: ['Sistemas Enterprise & SaaS', 'Desarrollo Full-Stack Premium', 'Landings de Alta Conversión', 'Arquitecturas Escalables y Seguras'],
+    tagline: 'Software robusto, seguro y preparado para escalar.',
+    description: 'Diseñamos y desarrollamos soluciones web y software con arquitectura, seguridad, rendimiento, mantenibilidad y criterios de entrega definidos.',
+    features: ['Aplicaciones web y software empresarial', 'Desarrollo full-stack', 'Landing pages y sitios corporativos', 'Arquitectura, rendimiento y escalabilidad'],
   },
   {
     id: 'data-ai',
     title: 'AEGRIX Data & IA',
-    tagline: 'IA Estratégica y Capacitación Corporativa.',
-    description: 'No solo implementamos inteligencia artificial; capacitamos a tu equipo para dominarla y transformar los datos en decisiones rentables.',
-    features: ['Implementación de Agentes IA', 'Capacitación Ejecutiva en IA', 'Automatización de Procesos Inteligentes', 'Modelos Predictivos de Negocio'],
+    tagline: 'Datos, automatización e IA aplicada.',
+    description: 'Implementamos soluciones de datos, automatización e inteligencia artificial orientadas a procesos y casos de uso específicos.',
+    features: ['Agentes y asistentes de IA', 'Capacitación aplicada en IA', 'Automatización de procesos', 'Dashboards y analítica'],
   },
   {
     id: 'care',
     title: 'AEGRIX Care',
-    tagline: 'Acompañamiento y mejora continua.',
-    description: 'Mantenimiento activo para asegurar que tu capa de control digital nunca se detenga.',
-    features: ['Soporte técnico especializado', 'Optimización periódica', 'Actualizaciones de seguridad', 'Consultoría estratégica continua'],
+    tagline: 'Soporte, monitoreo y mejora continua.',
+    description: 'Acompañamiento técnico bajo planes de servicio con prioridades, monitoreo u observabilidad cuando aplica y tiempos de atención previamente acordados.',
+    features: ['Soporte técnico según plan', 'Monitoreo proactivo según alcance', 'Actualizaciones y mantenimiento', 'Optimización y acompañamiento consultivo'],
   },
 ];
 
 export const diagnosticChecklist = [
-  { category: 'Seguridad', items: ['Accesos, correos y contraseñas', 'Vulnerabilidades críticas'] },
-  { category: 'Web & Conversión', items: ['Velocidad y UX', 'Efectividad de formularios y tracking'] },
-  { category: 'Datos & IA', items: ['Reportes y Excel críticos', 'Oportunidades de automatización e IA'] },
+  { category: 'Seguridad', items: ['Accesos, correo y autenticación', 'Riesgos, controles y evidencia'] },
+  { category: 'Marcos', items: ['NIST e ISO/IEC 27001/27002', 'HIPAA y GDPR según alcance'] },
+  { category: 'Web & Conversión', items: ['Rendimiento y experiencia de usuario', 'Formularios, medición y recorridos de contacto'] },
+  { category: 'Datos & IA', items: ['Reportes y fuentes de información', 'Oportunidades de automatización e IA'] },
 ];
 
 export const sectors = [
@@ -79,49 +83,68 @@ export const sectors = [
   { name: 'Real Estate & Proyectos', icon: 'Home', path: 'real-estate' },
 ];
 
-export const commandMetrics = [
-  { layer: 'Security Layer', value: '100%', label: 'Protección activa', status: 'active' },
-  { layer: 'Web Layer', value: '0.8s', label: 'Alta velocidad', status: 'active' },
-  { layer: 'Data Layer', value: '24/24', label: 'Fuentes conectadas', status: 'active' },
-  { layer: 'AI Layer', value: 'Activo', label: 'Reportes inteligentes', status: 'active' },
+export const commandCapabilities = [
+  {
+    layer: 'Security',
+    title: 'Riesgos y controles',
+    description: 'Revisión del estado actual, hallazgos, prioridades y medidas propuestas.',
+  },
+  {
+    layer: 'Web',
+    title: 'Rendimiento y conversión',
+    description: 'Medición de experiencia, velocidad, formularios y recorridos relevantes.',
+  },
+  {
+    layer: 'Data',
+    title: 'Fuentes y reportes',
+    description: 'Inventario de fuentes, integraciones y oportunidades para mejorar trazabilidad.',
+  },
+  {
+    layer: 'AI',
+    title: 'Casos de uso',
+    description: 'Identificación de tareas donde automatización o IA pueden aportar valor medible.',
+  },
 ];
 
 export const platformBlocks = [
   {
     id: 1,
     label: 'AEGRIX Control Layer',
-    title: 'Una sola capa para proteger, medir y acelerar tu operación.',
-    description: 'Conectamos ciberseguridad, infraestructura web, analítica e inteligencia artificial en una estrategia coherente para que tu empresa opere con más control, confianza y velocidad.',
-    cta: 'Ver arquitectura',
+    title: 'Una estrategia para conectar seguridad, software, datos e IA.',
+    description: 'Organizamos capacidades digitales dentro de un alcance común, con prioridades, responsables y entregables definidos.',
+    cta: 'Ver enfoque',
   },
 ];
+
 export const processSteps = [
-  { number: '01', title: 'Diagnóstico 360', description: 'Evaluación exhaustiva de seguridad, infraestructura y datos.' },
-  { number: '02', title: 'Arquitectura', description: 'Diseño a medida de tu Capa de Control Digital (AEGRIX Layer).' },
-  { number: '03', title: 'Implementación', description: 'Despliegue técnico preciso con estándares de Silicon Valley.' },
-  { number: '04', title: 'Control Continuo', description: 'Monitoreo, mantenimiento y mejora estratégica constante.' },
+  { number: '01', title: 'Diagnóstico', description: 'Revisión del contexto, necesidades, riesgos y oportunidades relevantes.' },
+  { number: '02', title: 'Diseño', description: 'Definición de alcance, arquitectura, dependencias y criterios de aceptación.' },
+  { number: '03', title: 'Implementación', description: 'Ejecución técnica y validación de los entregables acordados.' },
+  { number: '04', title: 'Seguimiento', description: 'Revisión de resultados y mejora continua cuando el servicio contratado lo contempla.' },
 ];
 
 export const implementationModels = [
   {
     title: 'Project-Based',
-    desc: 'Implementaciones de arquitectura cerrada con objetivos y entregables definidos.',
-    benefits: ['Alcance definido', 'Inversión fija', 'Cronograma claro']
+    desc: 'Proyectos con objetivos, alcance, entregables y condiciones comerciales definidos.',
+    benefits: ['Alcance definido', 'Presupuesto acordado', 'Cronograma de referencia'],
   },
   {
     title: 'Strategic Partnership',
-    desc: 'Acompañamiento continuo para empresas que escalan su infraestructura digital.',
-    benefits: ['Soporte 24/7', 'Mejora continua', 'Consultoría recurrente']
-  }
+    desc: 'Acompañamiento recurrente con prioridades, capacidad y tiempos de atención acordados.',
+    benefits: ['Capacidad reservada', 'Mejora continua', 'Consultoría recurrente'],
+  },
 ];
 
 export const webBenefits = [
-  { title: 'Premium Design', desc: 'Interfaces que proyectan autoridad enterprise.' },
-  { title: 'High Performance', desc: 'Velocidad de carga que elimina la fricción comercial.' },
-  { title: 'Conversion First', desc: 'Formularios y flujos diseñados para captar oportunidades.' },
-  { title: 'Full Tracking', desc: 'Medición real desde el clic hasta la conversión.' },
+  { title: 'Diseño profesional', desc: 'Interfaces alineadas con la marca, el contenido y el objetivo del proyecto.' },
+  { title: 'Rendimiento técnico', desc: 'Optimización de carga y experiencia dentro de criterios medibles.' },
+  { title: 'Conversión', desc: 'Formularios y recorridos de contacto diseñados alrededor de objetivos definidos.' },
+  { title: 'Medición', desc: 'Analítica y eventos configurables según consentimiento y necesidades del proyecto.' },
 ];
 
-export const WHATSAPP_URL = "https://wa.me/573107379163?text=Hola,%20quiero%20solicitar%20un%20diagn%C3%B3stico%20digital%20360%20para%20mi%20empresa.";
-export const WHATSAPP_URL_WEB = "https://wa.me/573107379163?text=Hola,%20quiero%20revisar%20si%20mi%20p%C3%A1gina%20web%20est%C3%A1%20perdiendo%20clientes.";
-export const WHATSAPP_URL_AI = "https://wa.me/573107379163?text=Hola,%20quiero%20automatizar%20procesos%20con%20IA%20en%20mi%20empresa.";
+// Shared CTAs use a language-neutral WhatsApp URL. Bilingual pages with a specific intent
+// build their own localized prefilled messages through buildWhatsAppUrl.
+export const WHATSAPP_URL = buildWhatsAppUrl();
+export const WHATSAPP_URL_WEB = buildWhatsAppUrl('Hola, quiero revisar si mi página web está perdiendo clientes.');
+export const WHATSAPP_URL_AI = buildWhatsAppUrl('Hola, quiero automatizar procesos con IA en mi empresa.');

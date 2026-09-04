@@ -1,74 +1,66 @@
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Shield, Globe, Cpu, ArrowRight } from 'lucide-react';
+import { ArrowRight, Cpu, Globe, Shield } from 'lucide-react';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
 
-const summaryServices = [
-  {
-    title: 'Ciberseguridad',
-    description: 'Protección, diagnóstico de riesgos, hardening y control de accesos.',
-    icon: Shield,
-    color: 'text-aegrix-cyan',
-    bgColor: 'bg-aegrix-cyan/10',
-    borderColor: 'border-aegrix-cyan/20'
-  },
-  {
-    title: 'Web Growth',
-    description: 'Sitios web de alto rendimiento, landing pages, SEO técnico y conversión.',
-    icon: Globe,
-    color: 'text-blue-500',
-    bgColor: 'bg-blue-500/10',
-    borderColor: 'border-blue-500/20'
-  },
-  {
-    title: 'Datos e IA',
-    description: 'Dashboards, automatización, inteligencia artificial aplicada y reportes ejecutivos.',
-    icon: Cpu,
-    color: 'text-aegrix-green',
-    bgColor: 'bg-aegrix-green/10',
-    borderColor: 'border-aegrix-green/20'
-  }
-];
-
 const HomeServicesSummary = () => {
   const { ref, inView } = useInView();
+  const params = useParams();
+  const lang = (params?.lang as string) || 'es';
+  const isEnglish = lang === 'en';
+
+  const services = [
+    {
+      title: isEnglish ? 'Cybersecurity' : 'Ciberseguridad',
+      description: isEnglish
+        ? 'Risk assessment, hardening, access controls and security improvement plans.'
+        : 'Evaluación de riesgos, hardening, controles de acceso y planes de mejora de seguridad.',
+      icon: Shield,
+    },
+    {
+      title: 'Software & Web',
+      description: isEnglish
+        ? 'Websites, landing pages and business software with defined technical scope.'
+        : 'Sitios web, landing pages y software empresarial con alcance técnico definido.',
+      icon: Globe,
+    },
+    {
+      title: isEnglish ? 'Data & AI' : 'Datos e IA',
+      description: isEnglish
+        ? 'Dashboards, automation and applied AI solutions for specific business processes.'
+        : 'Dashboards, automatización y soluciones de IA aplicadas a procesos empresariales concretos.',
+      icon: Cpu,
+    },
+  ];
 
   return (
     <section ref={ref} className="section-padding bg-aegrix-bg-2 border-y border-aegrix-border">
       <div className="container-width">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {summaryServices.map((service, idx) => (
+          {services.map((service, index) => (
             <motion.div
-              key={idx}
+              key={service.title}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: idx * 0.1, duration: 0.8 }}
-              className={cn(
-                "p-5 md:p-8 rounded-2xl bg-aegrix-surface border transition-all duration-500 hover:bg-aegrix-surface/80 group",
-                service.borderColor
-              )}
+              transition={{ delay: index * 0.08, duration: 0.5 }}
+              className={cn('p-5 md:p-8 rounded-2xl bg-aegrix-surface border border-aegrix-border')}
             >
-              <div className={cn("p-3 rounded-xl w-fit mb-6", service.bgColor, service.color)}>
-                <service.icon size={24} />
+              <div className="p-3 rounded-xl w-fit mb-6 bg-aegrix-cyan/10 text-aegrix-cyan">
+                <service.icon size={24} aria-hidden="true" />
               </div>
               <h3 className="font-sora font-bold text-aegrix-text text-xl mb-4">{service.title}</h3>
-              <p className="text-aegrix-muted text-sm leading-relaxed mb-6">
-                {service.description}
-              </p>
+              <p className="text-aegrix-muted text-sm leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
         </div>
-        
-        <div className="mt-16 flex justify-center">
-          <Link 
-            href="/servicios" 
-            className="btn-ghost"
-          >
-            Ver servicios AEGRIX <ArrowRight size={16} />
+
+        <div className="mt-12 flex justify-center">
+          <Link href={`/${lang}#servicios`} className="btn-ghost focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60 rounded-sm">
+            {isEnglish ? 'View AEGRIX services' : 'Ver servicios AEGRIX'} <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </div>
       </div>

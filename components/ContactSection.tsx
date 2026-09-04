@@ -3,76 +3,88 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Send, ShieldCheck } from 'lucide-react';
-import { WhatsAppIcon } from './WhatsAppIcon';
-import { WHATSAPP_URL } from '@/lib/data';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import ObfuscatedEmail from './ObfuscatedEmail';
+import { WHATSAPP_URL } from '@/lib/data';
 import { trackEvent } from '@/lib/analytics';
+
+const MAX_MESSAGE_LENGTH = 4000;
 
 const ContactSection = () => {
   const params = useParams();
   const lang = (params?.lang as string) || 'es';
 
-  // State variables for form fields
   const [name, setName] = React.useState('');
   const [company, setCompany] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [message, setMessage] = React.useState('');
-  
-  // Submission status states
+  const [website, setWebsite] = React.useState('');
+  const [privacyConsent, setPrivacyConsent] = React.useState(false);
+  const [marketingConsent, setMarketingConsent] = React.useState(false);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [submitStatus, setSubmitStatus] = React.useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = React.useState('');
+  const [reference, setReference] = React.useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isSubmitting) return;
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setErrorMessage('');
+    setReference('');
 
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name,
           company,
           email,
           message,
+          website,
+          privacyConsent,
+          marketingConsent,
           lang,
         }),
       });
 
-      const data = await response.json();
+      const data = (await response.json()) as {
+        success?: boolean;
+        error?: string;
+        reference?: string;
+      };
 
       if (response.ok && data.success) {
         trackEvent('contact_form_submit', { language: lang });
         setSubmitStatus('success');
+        setReference(data.reference || '');
         setName('');
         setCompany('');
         setEmail('');
         setMessage('');
-        
-        // Reset checkbox elements manually
-        const privacyCheckbox = document.getElementById('privacy-consent') as HTMLInputElement;
-        const termsCheckbox = document.getElementById('terms-consent') as HTMLInputElement;
-        if (privacyCheckbox) privacyCheckbox.checked = false;
-        if (termsCheckbox) termsCheckbox.checked = false;
+        setWebsite('');
+        setPrivacyConsent(false);
+        setMarketingConsent(false);
       } else {
         setSubmitStatus('error');
         setErrorMessage(
-          data.error || 
-          (lang === 'es' ? 'Hubo un error al enviar el mensaje.' : 'There was an error sending the message.')
+          data.error ||
+            (lang === 'es'
+              ? 'No pudimos enviar la solicitud. Puedes intentarlo de nuevo o usar WhatsApp.'
+              : 'We could not send the request. Please try again or use WhatsApp.')
         );
       }
-    } catch (err) {
-      console.error('Error submitting form:', err);
+    } catch {
       setSubmitStatus('error');
       setErrorMessage(
-        lang === 'es' ? 'Error de red. Inténtalo de nuevo.' : 'Network error. Please try again.'
+        lang === 'es'
+          ? 'No pudimos conectar con el formulario. Inténtalo de nuevo o contáctanos por WhatsApp.'
+          : 'We could not connect to the form. Please try again or contact us on WhatsApp.'
       );
     } finally {
       setIsSubmitting(false);
@@ -83,213 +95,259 @@ const ContactSection = () => {
     <section id="contacto" className="section-padding bg-aegrix-bg relative overflow-hidden">
       <div className="container-width relative z-10">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-20">
-          
-          {/* Left: Info & Context */}
           <div>
             <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-8 tracking-tight">
-              ¿Listo para dar el <br />
-              <span className="text-aegrix-cyan">siguiente paso?</span>
+              {lang === 'es' ? 'Cuéntanos qué necesitas' : 'Tell us what you need'}
+              <br />
+              <span className="text-aegrix-cyan">
+                {lang === 'es' ? 'y revisamos el siguiente paso.' : 'and we will review the next step.'}
+              </span>
             </h2>
             <p className="text-lg text-aegrix-muted mb-8 md:mb-12 max-w-md">
-              Estamos aquí para resolver tus dudas y ayudarte a construir la infraestructura digital que tu empresa merece.
+              {lang === 'es'
+                ? 'Describe brevemente tu necesidad. Revisaremos la solicitud y te responderemos por el canal que indiques.'
+                : 'Briefly describe what you need. We will review your request and reply through the channel you provide.'}
             </p>
 
             <div className="space-y-8">
               <div className="flex items-center gap-6 group">
-                <div className="w-14 h-14 rounded-2xl bg-aegrix-surface border border-aegrix-border flex items-center justify-center text-aegrix-cyan group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
-                  <Mail size={24} />
+                <div className="w-14 h-14 rounded-2xl bg-aegrix-surface border border-aegrix-border flex items-center justify-center text-aegrix-cyan">
+                  <Mail size={24} aria-hidden="true" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-aegrix-muted uppercase tracking-widest mb-1">Email Corporativo</div>
-                  <div className="text-lg font-semibold text-aegrix-text"><ObfuscatedEmail email="contacto@aegrix.com.co" /></div>
+                  <div className="text-xs font-bold text-aegrix-muted uppercase tracking-widest mb-1">
+                    {lang === 'es' ? 'Correo corporativo' : 'Corporate email'}
+                  </div>
+                  <div className="text-lg font-semibold text-aegrix-text">
+                    <ObfuscatedEmail email="contacto@aegrix.com.co" />
+                  </div>
                 </div>
               </div>
 
-              <a 
-                href={WHATSAPP_URL} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-6 group"
               >
-                <div className="w-14 h-14 rounded-2xl bg-aegrix-surface border border-aegrix-border flex items-center justify-center text-aegrix-cyan group-hover:bg-aegrix-cyan group-hover:text-aegrix-bg transition-all duration-500">
+                <div className="w-14 h-14 rounded-2xl bg-aegrix-surface border border-aegrix-border flex items-center justify-center text-aegrix-cyan">
                   <WhatsAppIcon size={24} />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-aegrix-muted uppercase tracking-widest mb-1">Respuesta Inmediata</div>
+                  <div className="text-xs font-bold text-aegrix-muted uppercase tracking-widest mb-1">WhatsApp</div>
                   <div className="text-lg font-semibold text-aegrix-text">+57 310 737 9163</div>
                 </div>
               </a>
             </div>
           </div>
 
-          {/* Right: Premium Form */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="p-5 sm:p-8 md:p-10 rounded-4xl bg-aegrix-surface border border-aegrix-border relative overflow-hidden group shadow-xl"
+            className="p-5 sm:p-8 md:p-10 rounded-4xl bg-aegrix-surface border border-aegrix-border relative overflow-hidden shadow-xl"
           >
             {submitStatus === 'success' ? (
-              <div className="flex flex-col items-center justify-center text-center py-12 space-y-6 relative z-10">
-                <div className="w-16 h-16 rounded-full bg-aegrix-cyan/10 border border-aegrix-cyan/20 flex items-center justify-center text-aegrix-cyan animate-pulse">
-                  <ShieldCheck size={36} />
+              <div className="flex flex-col items-center justify-center text-center py-12 space-y-6 relative z-10" role="status">
+                <div className="w-16 h-16 rounded-full bg-aegrix-cyan/10 border border-aegrix-cyan/20 flex items-center justify-center text-aegrix-cyan">
+                  <ShieldCheck size={36} aria-hidden="true" />
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-2xl font-sora font-bold text-aegrix-text">
-                    {lang === 'es' ? '¡Mensaje Enviado!' : 'Message Sent!'}
+                    {lang === 'es' ? 'Solicitud recibida' : 'Request received'}
                   </h3>
                   <p className="text-sm text-aegrix-muted max-w-sm leading-relaxed">
-                    {lang === 'es' 
-                      ? 'Hemos recibido tu solicitud correctamente. Un ingeniero de AEGRIX se pondrá en contacto contigo en las próximas horas.' 
-                      : 'We have received your request successfully. An AEGRIX engineer will contact you within the next few hours.'}
+                    {lang === 'es'
+                      ? 'La solicitud fue enviada correctamente. Conserva la referencia si necesitas hacer seguimiento.'
+                      : 'Your request was sent successfully. Keep the reference if you need to follow up.'}
                   </p>
+                  {reference && (
+                    <p className="text-sm font-semibold text-aegrix-text">
+                      {lang === 'es' ? 'Referencia' : 'Reference'}: {reference}
+                    </p>
+                  )}
                 </div>
-                <button 
+                <button
+                  type="button"
                   onClick={() => setSubmitStatus('idle')}
-                  className="btn-secondary px-6 py-2.5 text-xs font-semibold uppercase tracking-widest mt-4"
+                  className="btn-secondary px-6 py-2.5 text-xs font-semibold uppercase tracking-widest mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
                 >
-                  {lang === 'es' ? 'Enviar otro mensaje' : 'Send another message'}
+                  {lang === 'es' ? 'Enviar otra solicitud' : 'Send another request'}
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+              <form onSubmit={handleSubmit} className="space-y-6 relative z-10" noValidate={false}>
                 {submitStatus === 'error' && (
-                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-medium">
-                    {errorMessage}
+                  <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-300 text-sm" role="alert">
+                    <p>{errorMessage}</p>
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-block mt-2 font-semibold underline">
+                      {lang === 'es' ? 'Abrir WhatsApp' : 'Open WhatsApp'}
+                    </a>
                   </div>
                 )}
-                
+
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-aegrix-muted uppercase tracking-widest ml-1">Nombre</label>
-                    <input 
-                      type="text" 
+                    <label htmlFor="contact-name" className="text-xs font-bold text-aegrix-muted uppercase tracking-widest ml-1">
+                      {lang === 'es' ? 'Nombre *' : 'Name *'}
+                    </label>
+                    <input
+                      id="contact-name"
+                      name="name"
+                      type="text"
                       required
-                      placeholder="Ej. Juan Pérez"
+                      maxLength={100}
+                      autoComplete="name"
+                      placeholder={lang === 'es' ? 'Ej. Juan Pérez' : 'e.g. Jane Smith'}
                       value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-aegrix-bg-2 border border-aegrix-border rounded-xl px-4 py-4 text-aegrix-text focus:outline-none focus:border-aegrix-cyan/50 transition-all"
+                      onChange={(event) => setName(event.target.value)}
+                      className="w-full bg-aegrix-bg-2 border border-aegrix-border rounded-xl px-4 py-4 text-aegrix-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/50"
                     />
                   </div>
+
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-aegrix-muted uppercase tracking-widest ml-1">Empresa</label>
-                    <input 
-                      type="text" 
-                      placeholder="Nombre de tu empresa"
+                    <label htmlFor="contact-company" className="text-xs font-bold text-aegrix-muted uppercase tracking-widest ml-1">
+                      {lang === 'es' ? 'Empresa' : 'Company'}
+                    </label>
+                    <input
+                      id="contact-company"
+                      name="company"
+                      type="text"
+                      maxLength={160}
+                      autoComplete="organization"
+                      placeholder={lang === 'es' ? 'Nombre de tu empresa' : 'Company name'}
                       value={company}
-                      onChange={(e) => setCompany(e.target.value)}
-                      className="w-full bg-aegrix-bg-2 border border-aegrix-border rounded-xl px-4 py-4 text-aegrix-text focus:outline-none focus:border-aegrix-cyan/50 transition-all"
+                      onChange={(event) => setCompany(event.target.value)}
+                      className="w-full bg-aegrix-bg-2 border border-aegrix-border rounded-xl px-4 py-4 text-aegrix-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/50"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-aegrix-muted uppercase tracking-widest ml-1">Correo Electrónico</label>
-                  <input 
-                    type="email" 
+                  <label htmlFor="contact-email" className="text-xs font-bold text-aegrix-muted uppercase tracking-widest ml-1">
+                    {lang === 'es' ? 'Correo electrónico *' : 'Email *'}
+                  </label>
+                  <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
                     required
-                    placeholder="juan@empresa.com"
+                    maxLength={254}
+                    autoComplete="email"
+                    inputMode="email"
+                    placeholder="nombre@empresa.com"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-aegrix-bg-2 border border-aegrix-border rounded-xl px-4 py-4 text-aegrix-text focus:outline-none focus:border-aegrix-cyan/50 transition-all"
+                    onChange={(event) => setEmail(event.target.value)}
+                    className="w-full bg-aegrix-bg-2 border border-aegrix-border rounded-xl px-4 py-4 text-aegrix-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/50"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-aegrix-muted uppercase tracking-widest ml-1">Mensaje</label>
-                  <textarea 
-                    rows={4}
+                  <div className="flex items-center justify-between gap-4">
+                    <label htmlFor="contact-message" className="text-xs font-bold text-aegrix-muted uppercase tracking-widest ml-1">
+                      {lang === 'es' ? 'Mensaje *' : 'Message *'}
+                    </label>
+                    <span className="text-[11px] text-aegrix-muted" aria-live="polite">
+                      {message.length}/{MAX_MESSAGE_LENGTH}
+                    </span>
+                  </div>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows={5}
                     required
-                    placeholder="¿En qué podemos ayudarte?"
+                    maxLength={MAX_MESSAGE_LENGTH}
+                    placeholder={lang === 'es' ? '¿En qué podemos ayudarte?' : 'How can we help?'}
                     value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    className="w-full bg-aegrix-bg-2 border border-aegrix-border rounded-xl px-4 py-4 text-aegrix-text focus:outline-none focus:border-aegrix-cyan/50 transition-all resize-none"
+                    onChange={(event) => setMessage(event.target.value)}
+                    className="w-full bg-aegrix-bg-2 border border-aegrix-border rounded-xl px-4 py-4 text-aegrix-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/50 resize-y"
                   />
                 </div>
 
-                <div className="space-y-3 mt-6 mb-2">
-                  <div className="flex items-start gap-3">
-                    <div className="pt-1">
-                      <input 
-                        type="checkbox" 
-                        id="privacy-consent" 
-                        required 
-                        className="w-4 h-4 rounded border-aegrix-border bg-aegrix-bg-2 text-aegrix-cyan focus:ring-aegrix-cyan/30"
-                      />
-                    </div>
-                    <label htmlFor="privacy-consent" className="text-[11px] text-aegrix-muted leading-relaxed cursor-pointer">
-                      {lang === 'es' ? (
-                        <>
-                          He leído y acepto la <Link href="/es/privacidad" className="text-aegrix-cyan hover:underline">Política de Privacidad</Link>.
-                        </>
-                      ) : (
-                        <>
-                          I have read and accept the <Link href="/en/privacy" className="text-aegrix-cyan hover:underline">Privacy Policy</Link>.
-                        </>
-                      )}
-                    </label>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="pt-1">
-                      <input 
-                        type="checkbox" 
-                        id="terms-consent" 
-                        required 
-                        className="w-4 h-4 rounded border-aegrix-border bg-aegrix-bg-2 text-aegrix-cyan focus:ring-aegrix-cyan/30"
-                      />
-                    </div>
-                    <label htmlFor="terms-consent" className="text-[11px] text-aegrix-muted leading-relaxed cursor-pointer">
-                      {lang === 'es' ? (
-                        <>
-                          He leído y acepto los <Link href="/es/terminos" className="text-aegrix-cyan hover:underline">Términos y Condiciones de Servicio</Link>.
-                        </>
-                      ) : (
-                        <>
-                          I have read and accept the <Link href="/en/terms" className="text-aegrix-cyan hover:underline">Terms and Conditions of Service</Link>.
-                        </>
-                      )}
-                    </label>
-                  </div>
+                <div className="absolute -left-[10000px] top-auto w-px h-px overflow-hidden" aria-hidden="true">
+                  <label htmlFor="contact-website">Website</label>
+                  <input
+                    id="contact-website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={website}
+                    onChange={(event) => setWebsite(event.target.value)}
+                  />
                 </div>
 
-                <button 
+                <fieldset className="space-y-4 mt-6">
+                  <legend className="sr-only">{lang === 'es' ? 'Autorizaciones' : 'Consents'}</legend>
+
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="privacy-consent"
+                      required
+                      checked={privacyConsent}
+                      onChange={(event) => setPrivacyConsent(event.target.checked)}
+                      className="mt-1 w-5 h-5 rounded border-aegrix-border bg-aegrix-bg-2 text-aegrix-cyan focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
+                    />
+                    <label htmlFor="privacy-consent" className="text-xs sm:text-sm text-aegrix-muted leading-relaxed cursor-pointer">
+                      {lang === 'es' ? (
+                        <>
+                          Autorizo el tratamiento de mis datos necesario para responder esta solicitud, conforme a la{' '}
+                          <Link href="/es/privacidad" className="text-aegrix-cyan hover:underline">Política de Privacidad</Link>. *
+                        </>
+                      ) : (
+                        <>
+                          I authorize the processing of my data as necessary to respond to this request, according to the{' '}
+                          <Link href="/en/privacy" className="text-aegrix-cyan hover:underline">Privacy Policy</Link>. *
+                        </>
+                      )}
+                    </label>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="marketing-consent"
+                      checked={marketingConsent}
+                      onChange={(event) => setMarketingConsent(event.target.checked)}
+                      className="mt-1 w-5 h-5 rounded border-aegrix-border bg-aegrix-bg-2 text-aegrix-cyan focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
+                    />
+                    <label htmlFor="marketing-consent" className="text-xs sm:text-sm text-aegrix-muted leading-relaxed cursor-pointer">
+                      {lang === 'es'
+                        ? 'Acepto recibir comunicaciones comerciales de AEGRIX. Esta autorización es opcional y puede revocarse.'
+                        : 'I agree to receive marketing communications from AEGRIX. This consent is optional and may be withdrawn.'}
+                    </label>
+                  </div>
+                </fieldset>
+
+                <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary w-full flex items-center justify-center gap-3 group mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="btn-primary w-full min-h-12 flex items-center justify-center gap-3 group mt-4 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-text"
                 >
                   {isSubmitting ? (
                     <>
                       {lang === 'es' ? 'Enviando...' : 'Sending...'}
-                      <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                      <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" aria-hidden="true" />
                     </>
                   ) : (
                     <>
-                      {lang === 'es' ? 'Enviar Mensaje' : 'Send Message'}
-                      <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      {lang === 'es' ? 'Enviar solicitud' : 'Send request'}
+                      <Send size={18} aria-hidden="true" />
                     </>
                   )}
                 </button>
 
                 <div className="mt-6 flex items-start gap-2 p-4 rounded-xl bg-aegrix-bg-2 border border-aegrix-border">
-                  <ShieldCheck size={14} className="text-aegrix-cyan shrink-0 mt-0.5" />
-                  <p className="text-[10px] text-aegrix-muted leading-relaxed italic">
-                    {lang === 'es' ? (
-                      <>
-                        Al enviar este formulario, declaro que la información suministrada es veraz, que cuento con autorización para compartirla y que acepto el tratamiento de mis datos personales conforme a la Política de Privacidad de AEGRIX. Entiendo que AEGRIX no será responsable por consecuencias derivadas de información falsa o incompleta.
-                      </>
-                    ) : (
-                      <>
-                        By sending this form, I declare that the information provided is true, that I have authorization to share it, and that I accept the treatment of my personal data in accordance with AEGRIX&apos;s Privacy Policy. I understand that AEGRIX will not be responsible for consequences derived from false or incomplete information.
-                      </>
-                    )}
+                  <ShieldCheck size={15} className="text-aegrix-cyan shrink-0 mt-0.5" aria-hidden="true" />
+                  <p className="text-xs text-aegrix-muted leading-relaxed">
+                    {lang === 'es'
+                      ? 'No incluyas contraseñas, credenciales, historias clínicas ni otra información sensible en este formulario.'
+                      : 'Do not include passwords, credentials, medical records, or other sensitive information in this form.'}
                   </p>
                 </div>
               </form>
             )}
-
-            {/* Decorative background for the form */}
-            <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-aegrix-cyan/2 blur-[60px] rounded-full pointer-events-none group-hover:bg-aegrix-cyan/4 transition-all duration-700" />
           </motion.div>
         </div>
       </div>

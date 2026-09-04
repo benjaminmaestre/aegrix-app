@@ -4,17 +4,24 @@ import type { Metadata, Viewport } from 'next';
 import { Sora, Manrope } from 'next/font/google';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
-import { getLocalizedPath } from '@/lib/navigation';
+import '../globals.css';
+import Navbar from '@/components/Navbar';
+import CookieBanner from '@/components/CookieBanner';
+import ConsentAwareAnalytics from '@/components/ConsentAwareAnalytics';
+import { getDictionary } from '@/lib/get-dictionary';
+import {
+  buildSiteStructuredData,
+  getCanonicalUrl,
+  getLanguageUrls,
+  getRouteSeo,
+} from '@/lib/seo';
+import { siteConfig } from '@/lib/site-config';
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
 };
-import '../globals.css';
-import Navbar from '@/components/Navbar';
-import CookieBanner from '@/components/CookieBanner';
-import { getDictionary } from '@/lib/get-dictionary';
 
 const locales = ['es', 'en'] as const;
 type Locale = typeof locales[number];
@@ -39,91 +46,60 @@ const manrope = Manrope({
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  
   const headersList = await headers();
   const pathname = headersList.get('x-pathname');
-  
+
   if (!pathname) {
-    const errorMsg = 'CRITICAL: The x-pathname header is missing. Verify that middleware.ts is correctly running and injecting it.';
+    const errorMsg = 'CRITICAL: The x-pathname header is missing. Verify that proxy.ts is correctly running and injecting it.';
     if (process.env.NODE_ENV === 'development') {
       throw new Error(errorMsg);
     }
     console.error(errorMsg);
   }
-  
+
   const finalPathname = pathname || `/${lang}`;
-  
+
   if (!isValidLocale(lang)) {
     return {
       title: 'AEGRIX',
-      metadataBase: new URL('https://aegrix.com.co'),
+      metadataBase: new URL(siteConfig.origin),
     };
   }
 
   const isEn = lang === 'en';
-
-  const title = isEn 
-    ? 'AEGRIX | Software Engineering, Cybersecurity & AI' 
-    : 'AEGRIX | Ingeniería de Software, Ciberseguridad e IA';
-    
-  const description = isEn
-    ? 'At AEGRIX we diagnose, build, and optimize the digital layer of your business (web, AI, data, automation, and cybersecurity) to help you sell more, operate better, and protect yourself.'
-    : 'En AEGRIX diagnosticamos, construimos y optimizamos la capa digital de tu negocio (web, IA, datos, automatización y ciberseguridad) para vender más, operar mejor y protegerse mejor.';
+  const seo = getRouteSeo(finalPathname, lang);
+  const canonicalUrl = getCanonicalUrl(finalPathname);
+  const languageUrls = getLanguageUrls(finalPathname);
 
   return {
-    title,
-    description,
-    metadataBase: new URL('https://aegrix.com.co'),
+    title: seo.title,
+    description: seo.description,
+    metadataBase: new URL(siteConfig.origin),
     alternates: {
-      canonical: finalPathname,
-      languages: {
-        'es': getLocalizedPath(finalPathname, 'es'),
-        'en': getLocalizedPath(finalPathname, 'en'),
-        'x-default': getLocalizedPath(finalPathname, 'es'),
-      },
+      canonical: canonicalUrl,
+      languages: languageUrls,
     },
-    keywords: [
-      'empresa de ciberseguridad en Colombia',
-      'desarrollo de software para empresas en Colombia',
-      'auditoria de seguridad digital Colombia',
-      'ciberseguridad para empresas',
-      'desarrollo de software robusto',
-      'ingeniería de software',
-      'empresa ciberseguridad Bogota',
-      'desarrollo de software Bogota',
-      'empresa ciberseguridad Cali',
-      'desarrollo de software Cali',
-      'empresa ciberseguridad Medellin',
-      'desarrollo de software Medellin',
-      'empresa ciberseguridad Barranquilla',
-      'desarrollo de software Barranquilla',
-      'empresa ciberseguridad Cartagena',
-      'desarrollo de software Cartagena',
-      'agentes de inteligencia artificial',
-      'IA para empresas',
-      'consultoría tecnológica',
-    ],
     openGraph: {
-      title,
-      description,
+      title: seo.title,
+      description: seo.description,
       type: 'website',
       locale: isEn ? 'en_US' : 'es_CO',
-      url: `https://aegrix.com.co/${lang}`,
-      siteName: 'AEGRIX',
+      url: canonicalUrl,
+      siteName: siteConfig.brand,
       images: [
         {
-          url: '/AEGRIX_preview.png',
+          url: `${siteConfig.origin}/AEGRIX_preview.png`,
           width: 1200,
           height: 630,
-          alt: 'AEGRIX Logo',
+          alt: 'AEGRIX',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
-      images: ['/AEGRIX_preview.png'],
+      title: seo.title,
+      description: seo.description,
+      images: [`${siteConfig.origin}/AEGRIX_preview.png`],
     },
     robots: { index: true, follow: true },
     icons: {
@@ -138,9 +114,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-import Script from 'next/script';
-import AnalyticsConsent from '@/components/AnalyticsConsent';
-
 export default async function RootLayout({
   children,
   params,
@@ -153,14 +126,20 @@ export default async function RootLayout({
   if (!isValidLocale(lang)) {
     notFound();
   }
-  
+
   const dict = await getDictionary(lang);
-  
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const requestHeaders = await headers();
+  const nonce = requestHeaders.get('x-nonce') || undefined;
+  const pathname = requestHeaders.get('x-pathname') || `/${lang}`;
+  const structuredData = JSON.stringify(buildSiteStructuredData(pathname, lang)).replace(/</g, '\\u003c');
+
   return (
     <html lang={lang} className={`${sora.variable} ${manrope.variable}`} data-theme="dark" suppressHydrationWarning>
       <head>
         <script
           id="theme-initializer"
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: `
               try {
@@ -174,27 +153,15 @@ export default async function RootLayout({
         <script
           id="json-ld"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "AEGRIX",
-              "url": "https://aegrix.com.co",
-              "logo": "https://aegrix.com.co/AEGRIX_right_logo_icon.svg",
-              "sameAs": [
-                "https://www.linkedin.com/company/aegrix",
-                "https://x.com/aegrix"
-              ],
-              "description": "Firma de ingeniería de software, ciberseguridad avanzada y soluciones estratégicas de inteligencia artificial."
-            })
-          }}
+          nonce={nonce}
+          dangerouslySetInnerHTML={{ __html: structuredData }}
         />
       </head>
       <body className="bg-aegrix-bg text-aegrix-text font-manrope selection:bg-aegrix-cyan/20">
         <Navbar lang={lang} dict={dict.navbar} />
         {children}
         <CookieBanner lang={lang} dict={dict.cookies} />
-        <AnalyticsConsent />
+        <ConsentAwareAnalytics gaId={gaId} nonce={nonce} />
       </body>
     </html>
   );

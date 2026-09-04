@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useInView } from '@/hooks/useInView';
@@ -12,59 +11,73 @@ const FinalCTA = () => {
   const { ref, inView } = useInView();
   const params = useParams();
   const lang = (params?.lang as string) || 'es';
+  const isEnglish = lang === 'en';
+
+  const qualities = isEnglish
+    ? [
+        { title: 'Security', text: 'Integrated from design' },
+        { title: 'Control', text: 'Visibility and traceability' },
+        { title: 'Scale', text: 'Architecture ready to evolve' },
+      ]
+    : [
+        { title: 'Seguridad', text: 'Integrada desde el diseño' },
+        { title: 'Control', text: 'Visibilidad y trazabilidad' },
+        { title: 'Escala', text: 'Arquitectura preparada para evolucionar' },
+      ];
 
   return (
-    <section id="contacto" ref={ref} className="section-padding bg-aegrix-bg relative overflow-hidden">
-      {/* Decorative Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl bg-aegrix-cyan/5 blur-[150px] rounded-full pointer-events-none" />
-      
+    <section ref={ref} className="section-padding bg-aegrix-bg relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl bg-aegrix-cyan/5 blur-[150px] rounded-full pointer-events-none" aria-hidden="true" />
+
       <div className="container-width relative z-10">
-        <div className={cn(
-          "max-w-4xl mx-auto text-center transition-all duration-1000",
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        )}>
+        <div
+          className={cn(
+            'max-w-4xl mx-auto text-center transition-all duration-700',
+            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          )}
+        >
           <div className="label-tag mb-8 border-aegrix-cyan/20">
-            {lang === 'en' ? 'The Final Step' : 'El Paso Final'}
+            {isEnglish ? 'Let’s talk' : 'Conversemos'}
           </div>
           <h2 className="heading-lg mb-8 text-aegrix-text">
-            Construye una empresa más <br />
-            <span className="text-aegrix-cyan">segura, medible e inteligente.</span>
+            {isEnglish ? 'Build a more secure, measurable' : 'Construye una empresa más segura, medible'} <br />
+            <span className="text-aegrix-cyan">{isEnglish ? 'and intelligent digital operation.' : 'e inteligente en lo digital.'}</span>
           </h2>
           <p className="body-lg mb-8 md:mb-12 text-aegrix-muted max-w-2xl mx-auto">
-            No importa en qué etapa tecnológica se encuentre tu empresa. Puedes empezar por lo más urgente y escalar tu Capa de Control Digital por fases.
+            {isEnglish
+              ? 'You do not need to transform everything at once. Start with the highest-priority need, define the scope, and evolve the digital infrastructure in controlled phases.'
+              : 'No necesitas transformar todo de una vez. Puedes empezar por la necesidad de mayor prioridad, definir el alcance y evolucionar la infraestructura digital por fases controladas.'}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
-            <Link 
-              href={WHATSAPP_URL} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <Link
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary w-full sm:w-auto"
             >
-              Solicitar Diagnóstico 360
+              {isEnglish ? 'Request AEGRIX diagnostic' : 'Solicitar diagnóstico AEGRIX'}
             </Link>
-            <ObfuscatedEmail 
-              email="contacto@aegrix.com.co" 
-              label="Escribir por correo"
+            <ObfuscatedEmail
+              email="contacto@aegrix.com.co"
+              label={isEnglish ? 'Write by email' : 'Escribir por correo'}
               className="btn-secondary w-full sm:w-auto text-center"
             />
           </div>
 
-          <div className="mt-8 sm:mt-12 md:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 md:gap-12 text-aegrix-text/40">
-            <div className="flex flex-col items-center gap-1 sm:gap-2 bg-white/2 sm:bg-transparent border border-white/5 sm:border-transparent rounded-xl sm:rounded-none w-full sm:w-auto p-4 sm:p-0">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text/60 sm:text-aegrix-text/40">Seguridad</span>
-              <span className="text-xs">Diseñada para durar</span>
-            </div>
-            <div className="w-px h-8 bg-aegrix-border hidden sm:block" />
-            <div className="flex flex-col items-center gap-1 sm:gap-2 bg-white/2 sm:bg-transparent border border-white/5 sm:border-transparent rounded-xl sm:rounded-none w-full sm:w-auto p-4 sm:p-0">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text/60 sm:text-aegrix-text/40">Control</span>
-              <span className="text-xs">Visibilidad absoluta</span>
-            </div>
-            <div className="w-px h-8 bg-aegrix-border hidden sm:block" />
-            <div className="flex flex-col items-center gap-1 sm:gap-2 bg-white/2 sm:bg-transparent border border-white/5 sm:border-transparent rounded-xl sm:rounded-none w-full sm:w-auto p-4 sm:p-0">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text/60 sm:text-aegrix-text/40">Escala</span>
-              <span className="text-xs">Arquitectura de futuro</span>
-            </div>
+          <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-0 text-aegrix-text/45">
+            {qualities.map((quality, index) => (
+              <div
+                key={quality.title}
+                className={cn(
+                  'flex flex-col items-center gap-1.5 rounded-xl sm:rounded-none w-full p-4 sm:px-6 sm:py-0',
+                  index > 0 ? 'sm:border-l sm:border-aegrix-border' : ''
+                )}
+              >
+                <span className="text-[10px] font-bold uppercase tracking-widest text-aegrix-text/60">{quality.title}</span>
+                <span className="text-xs text-aegrix-muted">{quality.text}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

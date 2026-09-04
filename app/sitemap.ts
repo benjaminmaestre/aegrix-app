@@ -1,10 +1,14 @@
 import { MetadataRoute } from 'next';
-
-const DOMAIN = 'https://aegrix.com.co';
+import { siteConfig } from '@/lib/site-config';
 
 const routePairs = [
   { es: '', en: '' },
   { es: '/nosotros', en: '/about' },
+  { es: '/aegrix-360', en: '/aegrix-360' },
+  { es: '/aegrix-360/nist', en: '/aegrix-360/nist' },
+  { es: '/aegrix-360/iso-27001', en: '/aegrix-360/iso-27001' },
+  { es: '/aegrix-360/hipaa', en: '/aegrix-360/hipaa' },
+  { es: '/aegrix-360/gdpr', en: '/aegrix-360/gdpr' },
   { es: '/terminos', en: '/terms' },
   { es: '/privacidad', en: '/privacy' },
   { es: '/seguridad', en: '/security' },
@@ -14,43 +18,29 @@ const routePairs = [
   { es: '/education-corporate', en: '/education-corporate' },
   { es: '/health-premium', en: '/health-premium' },
   { es: '/legal-tech', en: '/legal-tech' },
-  { es: '/real-estate', en: '/real-estate' }
+  { es: '/real-estate', en: '/real-estate' },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
   for (const pair of routePairs) {
-    const today = new Date().toISOString().split('T')[0];
-    const changeFreq = pair.es === '' ? 'weekly' as const : 'monthly' as const;
-    const priority = pair.es === '' ? 1.0 : 0.8;
+    const esUrl = `${siteConfig.origin}/es${pair.es}`;
+    const enUrl = `${siteConfig.origin}/en${pair.en}`;
+    const languages = {
+      es: esUrl,
+      en: enUrl,
+      'x-default': esUrl,
+    };
 
-    // Spanish entry
     sitemapEntries.push({
-      url: `${DOMAIN}/es${pair.es}`,
-      lastModified: today,
-      changeFrequency: changeFreq,
-      priority: priority,
-      alternates: {
-        languages: {
-          'es': `${DOMAIN}/es${pair.es}`,
-          'en': `${DOMAIN}/en${pair.en}`,
-        },
-      },
+      url: esUrl,
+      alternates: { languages },
     });
 
-    // English entry
     sitemapEntries.push({
-      url: `${DOMAIN}/en${pair.en}`,
-      lastModified: today,
-      changeFrequency: changeFreq,
-      priority: priority,
-      alternates: {
-        languages: {
-          'es': `${DOMAIN}/es${pair.es}`,
-          'en': `${DOMAIN}/en${pair.en}`,
-        },
-      },
+      url: enUrl,
+      alternates: { languages },
     });
   }
 

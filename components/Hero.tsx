@@ -1,13 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import HeroControlLayer from './HeroControlLayer';
 import VisionSlide from './VisionSlide';
 import { cn } from '@/lib/utils';
-import heroBg from '@/public/images/aegrix-hero-command-center.avif';
 
 interface HeroBackground {
   videoMp4: string;
@@ -29,19 +27,9 @@ interface HeroProps {
 const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Auto-switch main slides with dynamic timing
-  useEffect(() => {
-    const duration = currentSlide === 0 ? 25000 : 30000;
-    const timer = setTimeout(() => {
-      setCurrentSlide((prev) => (prev === 0 ? 1 : 0));
-    }, duration);
-    return () => clearTimeout(timer);
-  }, [currentSlide]);
-
   return (
     <section className="relative w-full min-h-auto lg:min-h-screen overflow-hidden flex flex-col">
-      {/* Background Ambience */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
         <video
           key={activeBackground.videoMp4}
           autoPlay
@@ -59,19 +47,16 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(0,194,255,0.03),transparent_50%)]" />
         <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.03),transparent_50%)]" />
         <div className="absolute inset-0 grid-bg opacity-[0.06]" />
-        
-        {/* Large Isotype Watermark for Hero */}
+
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] lg:opacity-[0.04] dark:opacity-[0.01] dark:lg:opacity-[0.03] pointer-events-none scale-[1.2] lg:scale-[2] transition-all duration-1000">
           <svg width="700" height="700" viewBox="300 230 650 560" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g fillRule="evenodd">
-              {/* Base Isotype */}
-              <path 
-                d="M 775 526 L 740 564 L 736 570 L 736 576 L 832 743 L 904 744 L 777 527 Z M 628 275 L 350 743 L 351 744 L 421 744 L 627 398 L 629 399 L 696 512 L 698 512 L 746 477 Z" 
+              <path
+                d="M 775 526 L 740 564 L 736 570 L 736 576 L 832 743 L 904 744 L 777 527 Z M 628 275 L 350 743 L 351 744 L 421 744 L 627 398 L 629 399 L 696 512 L 698 512 L 746 477 Z"
                 className="fill-black dark:fill-white"
               />
-              {/* Orange Slash Accent */}
-              <path 
-                d="M 863 408 L 817 443 L 585 629 L 545 660 L 499 763 L 513 752 L 579 692 L 688 588 L 801 475 Z" 
+              <path
+                d="M 863 408 L 817 443 L 585 629 L 545 660 L 499 763 L 513 752 L 579 692 L 688 588 L 801 475 Z"
                 fill="#FF4D00"
               />
             </g>
@@ -81,31 +66,25 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
 
       <AnimatePresence mode="wait">
         {currentSlide === 0 ? (
-          /* SLIDE 0: ENGINEERING DOMINANCE */
           <motion.div
             key="engineering"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.65 }}
             className="w-full min-h-[85vh] lg:min-h-screen flex flex-col justify-center relative pt-24 pb-28 lg:pt-32 lg:pb-32"
           >
-
             <div className="container-width relative z-10">
               <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <motion.div
-                  initial={{ opacity: 0, x: -30 }}
+                  initial={{ opacity: 0, x: -24 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                   className="flex flex-col text-center lg:text-left z-20 lg:col-span-6 xl:col-span-6"
                 >
                   <div className="max-w-180 mx-auto lg:mx-0">
-                    {/* Premium Badge */}
                     <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-aegrix-cyan/5 border border-aegrix-cyan/15 backdrop-blur-md mb-5 md:mb-6 hover:bg-aegrix-cyan/10 transition-colors duration-300 mx-auto lg:mx-0">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-aegrix-cyan opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-aegrix-cyan"></span>
-                      </span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-aegrix-cyan" aria-hidden="true" />
                       <span className="text-[9px] sm:text-[10px] font-bold text-aegrix-cyan tracking-[0.25em] uppercase font-manrope">
                         {lang === 'es' ? 'Infraestructura Tecnológica de Élite' : 'Elite Technological Infrastructure'}
                       </span>
@@ -118,30 +97,20 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
                       </span>
                     </h1>
 
-                    {(() => {
-                      const sentences = dict.description.split(/\.\s+/);
-                      const firstSentence = sentences[0] ? (sentences[0].endsWith('.') ? sentences[0] : sentences[0] + '.') : '';
-                      const remainingSentences = sentences.slice(1).join('. ');
-                      return (
-                        <p className="font-manrope text-sm sm:text-base md:text-lg mb-6 md:mb-12 text-aegrix-muted max-w-xl mx-auto lg:mx-0 opacity-80 leading-relaxed">
-                          <span>{firstSentence}</span>
-                          {remainingSentences && (
-                            <span className="hidden md:inline"> {remainingSentences.endsWith('.') ? remainingSentences : remainingSentences + '.'}</span>
-                          )}
-                        </p>
-                      );
-                    })()}
+                    <p className="font-manrope text-sm sm:text-base md:text-lg mb-6 md:mb-12 text-aegrix-muted max-w-xl mx-auto lg:mx-0 opacity-90 leading-relaxed">
+                      {dict.description}
+                    </p>
 
-                    <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center lg:justify-start items-center sm:items-center gap-3 sm:gap-5 w-full sm:w-auto">
-                      <Link 
-                        href={`/${lang}#diagnostico`} 
-                        className="btn-primary w-full sm:w-auto text-center justify-center max-w-70 sm:max-w-none"
+                    <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center lg:justify-start items-center gap-3 sm:gap-5 w-full sm:w-auto">
+                      <Link
+                        href={`/${lang}#diagnostico`}
+                        className="btn-primary w-full sm:w-auto text-center justify-center max-w-70 sm:max-w-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-text"
                       >
                         {dict.cta_primary}
                       </Link>
-                      <Link 
-                        href="#arquitectura" 
-                        className="btn-secondary w-full sm:w-auto text-center justify-center max-w-70 sm:max-w-none"
+                      <Link
+                        href={`/${lang}#servicios`}
+                        className="btn-secondary w-full sm:w-auto text-center justify-center max-w-70 sm:max-w-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
                       >
                         {dict.cta_secondary}
                       </Link>
@@ -150,13 +119,13 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95, x: 30 }}
+                  initial={{ opacity: 0, scale: 0.97, x: 24 }}
                   animate={{ opacity: 1, scale: 1, x: 0 }}
-                  transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.85, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
                   className="w-full relative hidden lg:flex justify-end lg:col-span-6 xl:col-span-6"
                 >
                   <div className="w-full max-w-180">
-                    <HeroControlLayer />
+                    <HeroControlLayer lang={lang} />
                   </div>
                   <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-aegrix-cyan/2 blur-[100px] rounded-full pointer-events-none" />
                 </motion.div>
@@ -164,55 +133,57 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
             </div>
           </motion.div>
         ) : (
-          /* SLIDE 1: VISION NARRATIVE */
           <motion.div
             key="vision"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.65 }}
             className="w-full min-h-auto lg:min-h-screen flex flex-col relative pt-28 sm:pt-32 md:pt-36 pb-28 md:pb-32"
           >
             <div className="container-width w-full mt-4 md:my-auto h-full flex flex-col">
               <div className="w-full flex-1 min-h-125 md:min-h-150 rounded-3xl md:rounded-[40px] overflow-hidden border border-aegrix-border relative bg-aegrix-surface/20">
-                <VisionSlide />
+                <VisionSlide lang={lang} />
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Slide Navigation Controls */}
-      <div className="absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-12 z-40">
-        <button 
+      <div className="absolute bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-12 z-40" aria-label={lang === 'es' ? 'Vistas del hero' : 'Hero views'}>
+        <button
+          type="button"
           onClick={() => setCurrentSlide(0)}
-          className="group flex flex-col items-start gap-3"
+          aria-pressed={currentSlide === 0}
+          className="group flex flex-col items-start gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60 rounded-sm"
         >
           <span className={cn(
-            "text-[10px] font-bold uppercase tracking-[0.25em] transition-colors",
-            currentSlide === 0 ? "text-aegrix-cyan" : "text-aegrix-text/20 group-hover:text-aegrix-text/40"
+            'text-[10px] font-bold uppercase tracking-[0.25em] transition-colors',
+            currentSlide === 0 ? 'text-aegrix-cyan' : 'text-aegrix-text/30 group-hover:text-aegrix-text/60'
           )}>
             {lang === 'es' ? 'Control Digital' : 'Digital Control'}
           </span>
           <div className={cn(
-            "h-[1.5px] rounded-full transition-all duration-700",
-            currentSlide === 0 ? "w-12 bg-aegrix-cyan" : "w-0 bg-aegrix-text/10 group-hover:w-6"
+            'h-[1.5px] rounded-full transition-all duration-500',
+            currentSlide === 0 ? 'w-12 bg-aegrix-cyan' : 'w-6 bg-aegrix-text/10'
           )} />
         </button>
 
-        <button 
+        <button
+          type="button"
           onClick={() => setCurrentSlide(1)}
-          className="group flex flex-col items-start gap-3"
+          aria-pressed={currentSlide === 1}
+          className="group flex flex-col items-start gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60 rounded-sm"
         >
           <span className={cn(
-            "text-[10px] font-bold uppercase tracking-[0.25em] transition-colors",
-            currentSlide === 1 ? "text-aegrix-cyan" : "text-aegrix-text/20 group-hover:text-aegrix-text/40"
+            'text-[10px] font-bold uppercase tracking-[0.25em] transition-colors',
+            currentSlide === 1 ? 'text-aegrix-cyan' : 'text-aegrix-text/30 group-hover:text-aegrix-text/60'
           )}>
             {lang === 'es' ? 'Visión Estratégica' : 'Strategic Vision'}
           </span>
           <div className={cn(
-            "h-[1.5px] rounded-full transition-all duration-700",
-            currentSlide === 1 ? "w-12 bg-aegrix-cyan" : "w-0 bg-aegrix-text/10 group-hover:w-6"
+            'h-[1.5px] rounded-full transition-all duration-500',
+            currentSlide === 1 ? 'w-12 bg-aegrix-cyan' : 'w-6 bg-aegrix-text/10'
           )} />
         </button>
       </div>

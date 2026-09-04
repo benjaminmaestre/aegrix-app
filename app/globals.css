@@ -1,30 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── AEGRIX Enterprise Design System ── */
-  --color-aegrix-bg:       var(--aegrix-bg);
-  --color-aegrix-bg-2:     var(--aegrix-bg-2);
-  --color-aegrix-surface:  var(--aegrix-surface);
+  --color-aegrix-bg: var(--aegrix-bg);
+  --color-aegrix-bg-2: var(--aegrix-bg-2);
+  --color-aegrix-surface: var(--aegrix-surface);
   --color-aegrix-charcoal: var(--aegrix-charcoal);
-  --color-aegrix-cyan:     var(--aegrix-cyan);
-  --color-aegrix-blue:     var(--aegrix-blue);
-  --color-aegrix-green:    #22C55E;
-  --color-aegrix-text:     var(--aegrix-text);
-  --color-aegrix-muted:    var(--aegrix-muted);
-  --color-aegrix-border:   var(--aegrix-border);
-
-  --font-sora:    var(--font-sora), sans-serif;
+  --color-aegrix-cyan: var(--aegrix-cyan);
+  --color-aegrix-blue: var(--aegrix-blue);
+  --color-aegrix-green: #22C55E;
+  --color-aegrix-text: var(--aegrix-text);
+  --color-aegrix-muted: var(--aegrix-muted);
+  --color-aegrix-border: var(--aegrix-border);
+  --font-sora: var(--font-sora), sans-serif;
   --font-manrope: var(--font-manrope), sans-serif;
-
   --shadow-cyan-sm: 0 4px 20px rgba(0,143,199,0.02);
   --shadow-cyan-md: 0 8px 30px rgba(0,143,199,0.04);
   --shadow-cyan-lg: 0 12px 40px rgba(0,143,199,0.06);
-
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-fade-in:    fadeIn 0.8s ease forwards;
-  --animate-marquee:    marquee 45s linear infinite;
+  --animate-fade-in: fadeIn 0.8s ease forwards;
+  --animate-marquee: marquee 45s linear infinite;
   --animate-marquee-reverse: marquee-reverse 45s linear infinite;
-
   --z-60: 60;
   --z-100: 100;
 
@@ -44,35 +39,33 @@
   }
 }
 
-/* ── Theme Definitions ── */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root,
 html[data-theme="dark"] {
-  --aegrix-bg:       #0B111C;
-  --aegrix-bg-2:     #101827;
-  --aegrix-surface:  #162033;
+  --aegrix-bg: #0B111C;
+  --aegrix-bg-2: #101827;
+  --aegrix-surface: #162033;
   --aegrix-charcoal: #243047;
-  --aegrix-text:     #FFFFFF;
-  --aegrix-muted:    #B7C0D0;
-  --aegrix-border:   rgba(255,255,255,0.06);
-  --aegrix-cyan:     #00C2FF;
-  --aegrix-blue:     #2563EB;
+  --aegrix-text: #FFFFFF;
+  --aegrix-muted: #B7C0D0;
+  --aegrix-border: rgba(255,255,255,0.06);
+  --aegrix-cyan: #00C2FF;
+  --aegrix-blue: #2563EB;
 }
 
 html[data-theme="light"] {
-  --aegrix-bg:       #F3F7FB;
-  --aegrix-bg-2:     #EAF1F8;
-  --aegrix-surface:  #FFFFFF;
+  --aegrix-bg: #F3F7FB;
+  --aegrix-bg-2: #EAF1F8;
+  --aegrix-surface: #FFFFFF;
   --aegrix-charcoal: #DCE6F2;
-  --aegrix-text:     #171717; /* Gris neutro oscurísimo (estilo Vercel/Linear) en lugar de negro absoluto o azul */
-  --aegrix-muted:    #52525B; /* Gris neutro suave */
-  --aegrix-border:   rgba(15, 23, 42, 0.10);
-  --aegrix-cyan:     #008FC7;
-  --aegrix-blue:     #1D4ED8;
+  --aegrix-text: #171717;
+  --aegrix-muted: #52525B;
+  --aegrix-border: rgba(15, 23, 42, 0.10);
+  --aegrix-cyan: #008FC7;
+  --aegrix-blue: #1D4ED8;
 }
 
-/* ── Base ── */
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -87,51 +80,40 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-
-/* ── Scrollbar Enterprise ── */
-::-webkit-scrollbar       { width: 8px; }
-::-webkit-scrollbar-track { background: var(--aegrix-bg); }
-::-webkit-scrollbar-thumb { 
-  background: var(--aegrix-charcoal); 
-  border-radius: 4px;
+:focus-visible {
+  outline: 2px solid var(--aegrix-cyan);
+  outline-offset: 3px;
 }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--aegrix-bg); }
+::-webkit-scrollbar-thumb { background: var(--aegrix-charcoal); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--aegrix-surface); }
 
-/* Firefox Scrollbar */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--aegrix-charcoal) var(--aegrix-bg);
 }
 
-/* ── Utilidades Globales de Alta Ingeniería ── */
 @layer utilities {
-  .section-padding  { @apply py-24 md:py-36 lg:py-48; }
-  .container-width  { @apply max-w-7xl mx-auto px-4 sm:px-6 md:px-12; }
-  
-  .heading-xl       { @apply font-sora font-extrabold text-4xl md:text-6xl lg:text-7xl tracking-tighter leading-[1.05]; }
-  .heading-lg       { @apply font-sora font-extrabold text-3xl md:text-5xl tracking-tighter leading-[1.1]; }
-  .heading-md       { @apply font-sora font-semibold text-2xl md:text-3xl; }
-  
-  .body-lg          { @apply font-manrope text-lg md:text-xl text-aegrix-muted leading-relaxed; }
-  .body-md          { @apply font-manrope text-base text-aegrix-muted leading-relaxed; }
-  
-  .label-tag        { @apply font-manrope text-[10px] font-bold uppercase tracking-[0.2em] text-aegrix-cyan px-3 py-1.5 bg-aegrix-surface/30 border border-aegrix-border rounded-sm inline-flex items-center gap-2; }
-  
-  .card-base        { @apply bg-aegrix-surface border border-aegrix-border rounded-xl p-8; }
-  .card-hover       { @apply transition-all duration-500 hover:border-aegrix-cyan/20 hover:shadow-cyan-sm hover:-translate-y-0.5; }
-  
-  /* ── SISTEMA DE BOTONES AEGRIX CORPORATE PREMIUM ── */
-  
-  .btn-primary { 
-    @apply inline-flex items-center justify-center gap-3 rounded-full px-8 py-3.5
-    font-manrope text-[13px] font-bold uppercase tracking-widest
-    transition-all duration-300 whitespace-nowrap
-    border border-aegrix-cyan/20;
+  .section-padding { @apply py-24 md:py-36 lg:py-48; }
+  .container-width { @apply max-w-7xl mx-auto px-4 sm:px-6 md:px-12; }
+  .heading-xl { @apply font-sora font-extrabold text-4xl md:text-6xl lg:text-7xl tracking-tighter leading-[1.05]; }
+  .heading-lg { @apply font-sora font-extrabold text-3xl md:text-5xl tracking-tighter leading-[1.1]; }
+  .heading-md { @apply font-sora font-semibold text-2xl md:text-3xl; }
+  .body-lg { @apply font-manrope text-lg md:text-xl text-aegrix-muted leading-relaxed; }
+  .body-md { @apply font-manrope text-base text-aegrix-muted leading-relaxed; }
+  .label-tag { @apply font-manrope text-[10px] font-bold uppercase tracking-[0.2em] text-aegrix-cyan px-3 py-1.5 bg-aegrix-surface/30 border border-aegrix-border rounded-sm inline-flex items-center gap-2; }
+  .card-base { @apply bg-aegrix-surface border border-aegrix-border rounded-xl p-8; }
+  .card-hover { @apply transition-all duration-500 hover:border-aegrix-cyan/20 hover:shadow-cyan-sm hover:-translate-y-0.5; }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-3 rounded-full px-8 py-3.5 font-manrope text-[13px] font-bold uppercase tracking-widest transition-all duration-300 whitespace-nowrap border border-aegrix-cyan/20;
     background: var(--aegrix-cyan);
     color: var(--aegrix-bg);
     box-shadow: 0 4px 12px rgba(0, 194, 255, 0.1);
   }
-  
+
   .btn-primary:hover {
     @apply brightness-105 -translate-y-0.5;
     box-shadow: 0 8px 20px rgba(0, 194, 255, 0.15);
@@ -139,11 +121,8 @@ body {
 
   .btn-primary:active { @apply translate-y-px brightness-100 transition-none; }
 
-  .btn-secondary { 
-    @apply inline-flex items-center justify-center gap-3 rounded-full px-8 py-3.5
-    font-manrope text-[13px] font-bold uppercase tracking-widest
-    text-aegrix-text transition-all duration-500 whitespace-nowrap
-    border border-aegrix-border relative overflow-hidden;
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-3 rounded-full px-8 py-3.5 font-manrope text-[13px] font-bold uppercase tracking-widest text-aegrix-text transition-all duration-500 whitespace-nowrap border border-aegrix-border relative overflow-hidden;
     background: rgba(128, 128, 128, 0.05);
   }
 
@@ -155,31 +134,22 @@ body {
   .btn-secondary:active { @apply translate-y-px transition-none; }
 
   .btn-nav {
-    @apply inline-flex items-center justify-center rounded-full px-6 h-10
-    font-sora text-[10px] font-extrabold uppercase tracking-[0.2em]
-    transition-all duration-300 whitespace-nowrap;
-    @apply bg-aegrix-cyan text-white shadow-sm hover:bg-aegrix-cyan/90 hover:scale-[1.02] active:scale-[0.98];
+    @apply inline-flex items-center justify-center rounded-full px-6 h-10 font-sora text-[10px] font-extrabold uppercase tracking-[0.2em] transition-all duration-300 whitespace-nowrap bg-aegrix-cyan text-white shadow-sm hover:bg-aegrix-cyan/90 hover:scale-[1.02] active:scale-[0.98];
   }
 
   .btn-ghost {
-    @apply inline-flex items-center gap-2 font-manrope text-[13px] font-bold uppercase tracking-widest
-    text-aegrix-cyan transition-all duration-300 hover:text-aegrix-text;
-  }
-  
-  .grid-bg { 
-    background-image: linear-gradient(rgba(128,128,128,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(128,128,128,0.03) 1px, transparent 1px); 
-    background-size: 60px 60px; 
+    @apply inline-flex items-center gap-2 font-manrope text-[13px] font-bold uppercase tracking-widest text-aegrix-cyan transition-all duration-300 hover:text-aegrix-text;
   }
 
-  /* Smooth scroll margins for anchor links */
-  section[id] {
-    scroll-margin-top: 100px;
+  .grid-bg {
+    background-image: linear-gradient(rgba(128,128,128,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(128,128,128,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
+
+  section[id] { scroll-margin-top: 100px; }
 
   .footer-social-link {
-    @apply flex items-center justify-center w-11 h-11 rounded-full
-    bg-aegrix-surface border border-aegrix-border text-aegrix-muted
-    transition-all duration-300 relative overflow-hidden;
+    @apply flex items-center justify-center w-11 h-11 rounded-full bg-aegrix-surface border border-aegrix-border text-aegrix-muted transition-all duration-300 relative overflow-hidden;
   }
 
   .footer-social-link:hover {
@@ -188,36 +158,20 @@ body {
   }
 }
 
-/* ── Logo Visibility ── */
-.logo-dark-theme { 
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-}
-.logo-light-theme { 
-  opacity: 1;
-  visibility: visible;
-  position: relative;
-}
+.logo-dark-theme { opacity: 0; visibility: hidden; position: absolute; }
+.logo-light-theme { opacity: 1; visibility: visible; position: relative; }
+html[data-theme="dark"] .logo-dark-theme { opacity: 1; visibility: visible; position: relative; }
+html[data-theme="dark"] .logo-light-theme { opacity: 0; visibility: hidden; position: absolute; }
 
-html[data-theme="dark"] .logo-dark-theme { 
-  opacity: 1;
-  visibility: visible;
-  position: relative;
-}
-html[data-theme="dark"] .logo-light-theme { 
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-}
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.scrollbar-none::-webkit-scrollbar {
-  display: none;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
-/* Hide scrollbar for IE, Edge and Firefox */
-.scrollbar-none {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-

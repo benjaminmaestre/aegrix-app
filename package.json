@@ -9,11 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@next/third-parties": "^16.2.9",
+    "@next/third-parties": "^16.3.4",
+    "botid": "^1.5.11",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
     "lucide-react": "^0.454.0",
-    "next": "16.2.4",
+    "next": "16.3.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "resend": "^6.12.4",
@@ -25,8 +26,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.4",
-    "sharp": "^0.34.5",
+    "eslint-config-next": "16.3.4",
+    "sharp": "^0.35.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

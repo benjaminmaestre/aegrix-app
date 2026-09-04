@@ -1,74 +1,118 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Search, PenTool, ShieldCheck, TrendingUp } from 'lucide-react';
+import { useParams } from 'next/navigation';
+import { CheckCircle2, PenTool, Search, TrendingUp } from 'lucide-react';
 
-const steps = [
+const stepsEs = [
   {
     icon: Search,
-    title: 'Diagnóstico de Fuga',
-    description: 'Identificamos las brechas de seguridad y las ineficiencias digitales que están costando dinero a tu operación.',
-    benefit: 'Elimina el gasto innecesario'
+    title: 'Diagnóstico inicial',
+    description: 'Revisamos el contexto, los riesgos y los puntos de fricción relevantes para definir qué conviene atender primero.',
+    benefit: 'Hallazgos priorizados',
   },
   {
     icon: PenTool,
-    title: 'Arquitectura Líquida',
-    description: 'Diseñamos una infraestructura que no interrumpe tu negocio, sino que lo potencia con tecnología de punta.',
-    benefit: 'Diseño a medida'
+    title: 'Diseño de solución',
+    description: 'Definimos alcance, arquitectura, dependencias y criterios de aceptación antes de implementar.',
+    benefit: 'Plan y alcance definidos',
   },
   {
-    icon: ShieldCheck,
-    title: 'Blindaje y Ejecución',
-    description: 'Implementamos la capa de control: ciberseguridad avanzada y desarrollo web de alto rendimiento.',
-    benefit: 'Operación sin riesgos'
+    icon: CheckCircle2,
+    title: 'Implementación controlada',
+    description: 'Ejecutamos los cambios acordados y verificamos los entregables contra el alcance del proyecto.',
+    benefit: 'Entregables verificables',
   },
   {
     icon: TrendingUp,
-    title: 'Evolución Inteligente',
-    description: 'Monitoreamos y optimizamos tus sistemas 24/7 para que tu empresa nunca deje de escalar.',
-    benefit: 'Crecimiento continuo'
-  }
+    title: 'Seguimiento y mejora',
+    description: 'Cuando el servicio lo incluye, revisamos resultados, pendientes y nuevas prioridades con una cadencia acordada.',
+    benefit: 'Próximos pasos claros',
+  },
+];
+
+const stepsEn = [
+  {
+    icon: Search,
+    title: 'Initial assessment',
+    description: 'We review the context, risks, and relevant friction points to determine what should be addressed first.',
+    benefit: 'Prioritized findings',
+  },
+  {
+    icon: PenTool,
+    title: 'Solution design',
+    description: 'We define scope, architecture, dependencies, and acceptance criteria before implementation.',
+    benefit: 'Defined plan and scope',
+  },
+  {
+    icon: CheckCircle2,
+    title: 'Controlled implementation',
+    description: 'We execute the agreed changes and verify deliverables against the project scope.',
+    benefit: 'Verifiable deliverables',
+  },
+  {
+    icon: TrendingUp,
+    title: 'Follow-up and improvement',
+    description: 'When included in the service, we review results, pending items, and new priorities on an agreed cadence.',
+    benefit: 'Clear next steps',
+  },
 ];
 
 const MethodologySection = () => {
+  const params = useParams();
+  const lang = (params?.lang as string) || 'es';
+  const isEnglish = lang === 'en';
+  const steps = isEnglish ? stepsEn : stepsEs;
+
   return (
     <section id="metodologia" className="section-padding bg-aegrix-bg relative overflow-hidden">
-      <div className="container-width">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,194,255,0.035),transparent_45%)] pointer-events-none" aria-hidden="true" />
+
+      <div className="container-width relative z-10">
         <div className="max-w-3xl mb-12 md:mb-20">
-          <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-6 leading-tight">
-            Un método diseñado para el <br />
-            <span className="text-aegrix-cyan">control total de tu empresa.</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">
+            {isEnglish ? 'How we work' : 'Cómo trabajamos'}
+          </span>
+          <h2 className="text-4xl md:text-5xl font-sora font-extrabold text-aegrix-text mt-3 mb-6 leading-tight">
+            {isEnglish ? 'A clear process, from assessment' : 'Un proceso claro, desde el diagnóstico'}
+            <br />
+            <span className="text-aegrix-cyan">
+              {isEnglish ? 'to defined deliverables.' : 'hasta los entregables.'}
+            </span>
           </h2>
           <p className="text-lg text-aegrix-muted max-w-2xl">
-            No improvisamos. Aplicamos un proceso de ingeniería de precisión para asegurar que cada dólar invertido en tecnología se traduzca en seguridad y rentabilidad.
+            {isEnglish
+              ? 'Every engagement starts with a defined scope. Recommendations, timing, and outcomes depend on the context and the conditions agreed with the client.'
+              : 'Cada trabajo parte de un alcance definido. Las recomendaciones, tiempos y resultados dependen del contexto y de las condiciones acordadas con el cliente.'}
           </p>
         </div>
 
-        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none gap-6 md:grid-cols-2 lg:grid-cols-4 pb-6 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
-          {steps.map((step, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
+        <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px bg-linear-to-r from-transparent via-aegrix-cyan/20 to-transparent" aria-hidden="true" />
+
+          {steps.map((step, index) => (
+            <motion.article
+              key={step.title}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="p-5 sm:p-7 md:p-8 rounded-2xl md:rounded-[32px] bg-aegrix-surface border border-aegrix-border hover:border-aegrix-cyan/20 transition-all duration-500 group h-full flex flex-col shadow-sm hover:shadow-xl relative overflow-hidden w-[90%] sm:w-[50%] md:w-auto shrink-0 snap-align-start"
+              transition={{ duration: 0.45, delay: index * 0.06 }}
+              className="group relative p-6 md:p-7 rounded-2xl md:rounded-3xl bg-aegrix-surface border border-aegrix-border h-full flex flex-col shadow-sm hover:shadow-xl hover:border-aegrix-cyan/20 hover:-translate-y-0.5 transition-all duration-300"
             >
-              <div className="absolute inset-0 grid-bg opacity-[0.02] pointer-events-none" />
-              <div className="relative z-10 w-14 h-14 rounded-2xl bg-aegrix-cyan/5 border border-aegrix-cyan/10 flex items-center justify-center text-aegrix-cyan mb-6 md:mb-8 group-hover:scale-110 group-hover:bg-aegrix-cyan/10 transition-all duration-500">
-                <step.icon size={24} />
-              </div>
-              <h3 className="text-xl font-sora font-bold text-aegrix-text mb-4">{step.title}</h3>
-              <p className="text-sm text-aegrix-muted leading-relaxed mb-6 grow">
-                {step.description}
-              </p>
-              <div className="pt-4 border-t border-aegrix-border mt-auto">
-                <span className="text-[10px] font-bold text-aegrix-cyan uppercase tracking-widest">
-                  Resultado: {step.benefit}
+              <div className="flex items-center justify-between mb-6 relative z-10">
+                <div className="w-12 h-12 rounded-xl bg-aegrix-cyan/8 border border-aegrix-cyan/15 flex items-center justify-center text-aegrix-cyan shadow-sm">
+                  <step.icon size={22} aria-hidden="true" />
+                </div>
+                <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-aegrix-text/25">
+                  {String(index + 1).padStart(2, '0')}
                 </span>
               </div>
-            </motion.div>
+              <h3 className="text-lg font-sora font-bold text-aegrix-text mb-3">{step.title}</h3>
+              <p className="text-sm text-aegrix-muted leading-relaxed mb-6 grow">{step.description}</p>
+              <div className="pt-4 border-t border-aegrix-border mt-auto">
+                <span className="text-xs font-semibold text-aegrix-cyan">{step.benefit}</span>
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>

@@ -17,12 +17,10 @@ export default async function NosotrosPage({
 
   return (
     <div className="pt-32 pb-24 min-h-screen relative overflow-hidden">
-      {/* Background Decorative Elements */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-aegrix-cyan/5 blur-[120px] rounded-full -z-10" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-aegrix-blue/5 blur-[100px] rounded-full -z-10" />
 
       <div className="container-width">
-        {/* Hero Section - About */}
         <div className="max-w-4xl mb-24">
           <FadeIn>
             <span className="inline-block px-4 py-1.5 rounded-full bg-aegrix-cyan/10 border border-aegrix-cyan/20 text-aegrix-cyan text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
@@ -37,7 +35,6 @@ export default async function NosotrosPage({
           </FadeIn>
         </div>
 
-        {/* Mission & Vision Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
           <FadeIn x={-20} y={0} delay={0.2}>
             <div className="glass-card p-5 sm:p-8 md:p-10 rounded-3xl border border-aegrix-border relative group overflow-hidden h-full shadow-lg">
@@ -74,11 +71,10 @@ export default async function NosotrosPage({
           </FadeIn>
         </div>
 
-        {/* Values Grid */}
         <div className="mb-24">
           <FadeIn delay={0.4}>
             <h2 className="text-3xl font-sora font-bold text-aegrix-text mb-12 text-center">
-              {lang === 'es' ? 'Nuestros Valores Core' : 'Our Core Values'}
+              {lang === 'es' ? 'Principios de ingeniería' : 'Engineering principles'}
             </h2>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -99,15 +95,14 @@ export default async function NosotrosPage({
           </div>
         </div>
 
-        {/* CTA Section */}
         <ScaleIn delay={0.6}>
           <div className="relative p-6 sm:p-12 md:p-20 rounded-[40px] overflow-hidden text-center">
             <div className="absolute inset-0 bg-linear-to-br from-aegrix-cyan/20 to-aegrix-blue/20 -z-10" />
             <h2 className="text-3xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-8">
-              {lang === 'es' ? '¿Listo para blindar tu futuro?' : 'Ready to secure your future?'}
+              {lang === 'es' ? '¿Necesitas evaluar o fortalecer una operación crítica?' : 'Need to assess or strengthen a critical operation?'}
             </h2>
-            <Link href={`/${lang}#diagnostico`} className="btn-primary inline-flex items-center gap-3">
-              {lang === 'es' ? 'Empezar Diagnóstico 360' : 'Start 360 Diagnostic'}
+            <Link href={`/${lang}/aegrix-360`} className="btn-primary inline-flex items-center gap-3">
+              {lang === 'es' ? 'Conocer AEGRIX 360' : 'Explore AEGRIX 360'}
               <ChevronRight size={18} />
             </Link>
           </div>
