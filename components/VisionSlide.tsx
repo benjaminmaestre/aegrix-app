@@ -1,13 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { BarChart3, Cpu, Globe, Layout, Shield } from 'lucide-react';
+import { BarChart3, Cpu, Globe, Layout, Pause, Play, Shield } from 'lucide-react';
 import { WHATSAPP_URL } from '@/lib/data';
 import { cn } from '@/lib/utils';
 
 const CYAN = '#00D4D4';
+const TOTAL_STEPS = 4;
+const AUTOPLAY_DELAY_MS = 6500;
+const subscribeToHydration = () => () => {};
 
 type VisionSlideProps = {
   lang: 'es' | 'en';
@@ -29,12 +32,43 @@ const capabilitiesEn = [
 
 const VisionSlide = ({ lang }: VisionSlideProps) => {
   const [step, setStep] = useState(0);
+  const [isAutoplayPaused, setIsAutoplayPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocusWithin, setIsFocusWithin] = useState(false);
+  const [autoplayCycle, setAutoplayCycle] = useState(0);
   const shouldReduceMotion = useReducedMotion();
+  const isHydrated = useSyncExternalStore(subscribeToHydration, () => true, () => false);
   const isEnglish = lang === 'en';
   const capabilities = isEnglish ? capabilitiesEn : capabilitiesEs;
 
+  useEffect(() => {
+    if (shouldReduceMotion || isAutoplayPaused || isHovered || isFocusWithin) return;
+
+    const timer = window.setTimeout(() => {
+      setStep((currentStep) => (currentStep + 1) % TOTAL_STEPS);
+    }, AUTOPLAY_DELAY_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [step, autoplayCycle, isAutoplayPaused, isHovered, isFocusWithin, shouldReduceMotion]);
+
+  const selectStep = (index: number) => {
+    setStep(index);
+    setAutoplayCycle((cycle) => cycle + 1);
+  };
+
   return (
-    <div className="relative w-full h-full min-h-110 md:min-h-150 flex items-center justify-center overflow-hidden rounded-3xl md:rounded-[40px] z-20 border border-aegrix-border shadow-xl bg-aegrix-surface">
+    <div
+      className="relative w-full h-full min-h-110 md:min-h-150 flex items-center justify-center overflow-hidden rounded-3xl md:rounded-[40px] z-20 border border-aegrix-border shadow-xl bg-aegrix-surface"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocusCapture={() => setIsFocusWithin(true)}
+      onBlurCapture={(event) => {
+        const nextTarget = event.relatedTarget as Node | null;
+        if (!nextTarget || !event.currentTarget.contains(nextTarget)) {
+          setIsFocusWithin(false);
+        }
+      }}
+    >
       <AnimatePresence mode="wait">
         {step === 0 && (
           <motion.div
@@ -196,25 +230,47 @@ const VisionSlide = ({ lang }: VisionSlideProps) => {
         )}
       </AnimatePresence>
 
-      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-50" aria-label={isEnglish ? 'Strategic view navigation' : 'Navegación de visión estratégica'}>
-        {[0, 1, 2, 3].map((index) => (
+      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-50">
+        <div className="flex gap-2 md:gap-3" aria-label={isEnglish ? 'Strategic view navigation' : 'Navegación de visión estratégica'}>
+          {Array.from({ length: TOTAL_STEPS }, (_, index) => (
+            <button
+              type="button"
+              key={index}
+              onClick={() => selectStep(index)}
+              aria-label={isEnglish ? `View panel ${index + 1}` : `Ver panel ${index + 1}`}
+              aria-pressed={step === index}
+              className="h-6 flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60 rounded-full"
+            >
+              <span
+                className="h-1 rounded-full transition-all duration-300"
+                style={{
+                  width: step === index ? 32 : 8,
+                  backgroundColor: step === index ? CYAN : 'rgba(100,116,139,0.35)',
+                }}
+              />
+            </button>
+          ))}
+        </div>
+
+        {isHydrated && !shouldReduceMotion && (
           <button
             type="button"
-            key={index}
-            onClick={() => setStep(index)}
-            aria-label={isEnglish ? `View panel ${index + 1}` : `Ver panel ${index + 1}`}
-            aria-pressed={step === index}
-            className="h-6 flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60 rounded-full"
+            onClick={() => setIsAutoplayPaused((paused) => !paused)}
+            aria-label={
+              isAutoplayPaused
+                ? isEnglish
+                  ? 'Resume automatic panels'
+                  : 'Reanudar paneles automáticos'
+                : isEnglish
+                  ? 'Pause automatic panels'
+                  : 'Pausar paneles automáticos'
+            }
+            aria-pressed={isAutoplayPaused}
+            className="w-7 h-7 rounded-full border border-aegrix-border bg-aegrix-surface/80 text-aegrix-muted hover:text-aegrix-cyan hover:border-aegrix-cyan/30 transition-colors flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aegrix-cyan/60"
           >
-            <span
-              className="h-1 rounded-full transition-all duration-300"
-              style={{
-                width: step === index ? 32 : 8,
-                backgroundColor: step === index ? CYAN : 'rgba(100,116,139,0.35)',
-              }}
-            />
+            {isAutoplayPaused ? <Play size={12} aria-hidden="true" /> : <Pause size={12} aria-hidden="true" />}
           </button>
-        ))}
+        )}
       </div>
     </div>
   );
