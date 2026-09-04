@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useSyncExternalStore } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import HeroControlLayer from './HeroControlLayer';
@@ -46,12 +47,20 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
   return (
     <section className="relative w-full min-h-auto lg:min-h-screen overflow-hidden flex flex-col">
       <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
-        {shouldReduceMotion ? (
-          <div
-            className="absolute inset-0 w-full h-full bg-cover bg-center scale-[1.04] origin-center opacity-90 lg:opacity-80"
-            style={{ backgroundImage: `url(${activeBackground.poster})` }}
-          />
-        ) : (
+        <Image
+          src={activeBackground.poster}
+          alt=""
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className={cn(
+            'object-cover object-center scale-[1.04] origin-center opacity-90 lg:opacity-80',
+            !shouldReduceMotion && 'lg:hidden'
+          )}
+        />
+
+        {!shouldReduceMotion && (
           <video
             key={activeBackground.videoMp4}
             autoPlay
@@ -59,9 +68,10 @@ const Hero = ({ lang, dict, activeBackground }: HeroProps) => {
             loop
             playsInline
             poster={activeBackground.poster}
-            className="absolute inset-0 w-full h-full object-cover object-center scale-[1.04] origin-center opacity-90 lg:opacity-80 transition-opacity duration-500"
+            preload="metadata"
+            className="absolute inset-0 hidden lg:block w-full h-full object-cover object-center scale-[1.04] origin-center opacity-80 transition-opacity duration-500"
           >
-            <source src={activeBackground.videoMp4} type="video/mp4" />
+            <source media="(min-width: 1024px)" src={activeBackground.videoMp4} type="video/mp4" />
           </video>
         )}
         <div className="absolute inset-0 bg-aegrix-bg/10" />
