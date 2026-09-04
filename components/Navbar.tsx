@@ -27,6 +27,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
   const scrolled = useScrolled(40);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const languageSwitchLabel = lang === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish';
 
   const navItems = [
     { label: dict.nosotros, href: lang === 'es' ? '/es/nosotros' : '/en/about' },
@@ -93,11 +94,12 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
               <Link
                 href={pathname ? getLocalizedPath(pathname, lang === 'es' ? 'en' : 'es') : (lang === 'es' ? '/en' : '/es')}
                 className="flex items-center gap-2 px-3 h-full rounded-full hover:bg-aegrix-cyan/5 transition-all group"
+                aria-label={languageSwitchLabel}
               >
                 <div className="w-4 h-4 rounded-full overflow-hidden relative border border-white/10 shadow-sm transition-transform group-hover:scale-110">
                   <Image
                     src={lang === 'es' ? '/Flag_of_the_United_States.svg' : '/Flag_of_Spain.svg'}
-                    alt={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+                    alt={languageSwitchLabel}
                     fill
                     className="object-cover"
                   />
@@ -131,11 +133,12 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
           <Link
             href={pathname ? getLocalizedPath(pathname, lang === 'es' ? 'en' : 'es') : (lang === 'es' ? '/en' : '/es')}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-aegrix-bg/50 backdrop-blur-md border border-aegrix-border"
+            aria-label={languageSwitchLabel}
           >
             <div className="w-4 h-4 rounded-full overflow-hidden relative">
               <Image
                 src={lang === 'es' ? '/Flag_of_the_United_States.svg' : '/Flag_of_Spain.svg'}
-                alt={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+                alt={languageSwitchLabel}
                 fill
                 className="object-cover"
               />
@@ -151,12 +154,16 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
             className="p-2 text-aegrix-text"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={lang === 'es' ? 'Abrir o cerrar menú' : 'Toggle menu'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation-menu"
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         <div
+          id="mobile-navigation-menu"
+          aria-hidden={!menuOpen}
           className={cn(
             'fixed inset-0 bg-aegrix-bg z-40 xl:hidden flex flex-col pt-24 sm:pt-32 px-6 sm:px-8 transition-all duration-500 ease-in-out',
             menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
@@ -168,6 +175,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
                 key={`${item.label}-${item.href}`}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
+                tabIndex={menuOpen ? 0 : -1}
                 className="text-2xl font-sora font-bold text-aegrix-text py-2 border-b border-aegrix-border/50"
               >
                 {item.label}
@@ -178,6 +186,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
+              tabIndex={menuOpen ? 0 : -1}
               className="text-lg font-sora font-bold text-aegrix-cyan py-2 border-b border-aegrix-border/50"
             >
               {lang === 'es' ? 'Portal AEGRIX 360' : 'AEGRIX 360 Portal'}
@@ -185,6 +194,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
             <Link
               href={`/${lang}#diagnostico`}
               onClick={() => setMenuOpen(false)}
+              tabIndex={menuOpen ? 0 : -1}
               className="btn-primary w-full text-center"
             >
               {dict.cta}
