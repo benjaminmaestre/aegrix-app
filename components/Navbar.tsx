@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -37,33 +37,41 @@ interface NavbarProps {
   };
 }
 
+const emptySubscribe = () => () => {};
+const getClientSnapshot = () => true;
+const getServerSnapshot = () => false;
+
 const Navbar = ({ lang, dict }: NavbarProps) => {
   const scrolled = useScrolled(40);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [portalReady, setPortalReady] = useState(false);
+  const portalReady = useSyncExternalStore(emptySubscribe, getClientSnapshot, getServerSnapshot);
   const pathname = usePathname();
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const languageSwitchLabel = lang === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish';
 
   useEffect(() => {
-    setPortalReady(true);
-    return () => setPortalReady(false);
-  }, []);
+    const closeForBrowserNavigation = () => setMenuOpen(false);
+    window.addEventListener('popstate', closeForBrowserNavigation);
+    window.addEventListener('hashchange', closeForBrowserNavigation);
 
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
+    return () => {
+      window.removeEventListener('popstate', closeForBrowserNavigation);
+      window.removeEventListener('hashchange', closeForBrowserNavigation);
+    };
+  }, []);
 
   useEffect(() => {
     const desktopMedia = window.matchMedia('(min-width: 1280px)');
 
-    const syncMenuWithViewport = (event: MediaQueryListEvent | MediaQueryList) => {
+    const syncMenuWithViewport = (event: MediaQueryListEvent) => {
       if (event.matches) {
         setMenuOpen(false);
         document.body.style.overflow = '';
       }
     };
 
-    syncMenuWithViewport(desktopMedia);
     desktopMedia.addEventListener('change', syncMenuWithViewport);
 
     if (menuOpen && !desktopMedia.matches) {
@@ -75,6 +83,67 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
     return () => {
       desktopMedia.removeEventListener('change', syncMenuWithViewport);
       document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const menu = menuRef.current;
+    const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const focusFrame = window.requestAnimationFrame(() => {
+      closeButtonRef.current?.focus({ preventScroll: true });
+    });
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setMenuOpen(false);
+        return;
+      }
+
+      if (event.key !== 'Tab' || !menu) return;
+
+      const focusable = Array.from(
+        menu.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((element) => element.getAttribute('aria-hidden') !== 'true');
+
+      if (focusable.length === 0) {
+        event.preventDefault();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const activeElement = document.activeElement;
+
+      if (!menu.contains(activeElement)) {
+        event.preventDefault();
+        first.focus({ preventScroll: true });
+        return;
+      }
+
+      if (event.shiftKey && activeElement === first) {
+        event.preventDefault();
+        last.focus({ preventScroll: true });
+      } else if (!event.shiftKey && activeElement === last) {
+        event.preventDefault();
+        first.focus({ preventScroll: true });
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      document.removeEventListener('keydown', handleKeyDown);
+      if (previousFocus?.isConnected) {
+        previousFocus.focus({ preventScroll: true });
+      } else {
+        menuTriggerRef.current?.focus({ preventScroll: true });
+      }
     };
   }, [menuOpen]);
 
@@ -120,7 +189,11 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
 
   const mobileMenu = (
     <div
+      ref={menuRef}
       id="mobile-navigation-menu"
+      role="dialog"
+      aria-modal={menuOpen ? 'true' : undefined}
+      aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}
       aria-hidden={!menuOpen}
       className={cn(
         'fixed inset-0 z-[9999] xl:hidden h-[100dvh] min-h-[100svh] overflow-y-auto overscroll-contain bg-aegrix-bg',
@@ -132,8 +205,10 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
       )}
     >
       <button
+        ref={closeButtonRef}
         type="button"
         onClick={() => setMenuOpen(false)}
+        tabIndex={menuOpen ? 0 : -1}
         className="fixed right-4 top-[max(1rem,env(safe-area-inset-top))] z-[10000] flex h-11 w-11 items-center justify-center rounded-full border border-aegrix-border bg-aegrix-bg/95 text-aegrix-text shadow-lg backdrop-blur-md"
         aria-label={lang === 'es' ? 'Cerrar menú' : 'Close menu'}
       >
@@ -351,6 +426,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
           <div className="xl:hidden flex items-center gap-2 sm:gap-3 relative z-[80]">
             <Link
               href={pathname ? getLocalizedPath(pathname, lang === 'es' ? 'en' : 'es') : lang === 'es' ? '/en' : '/es'}
+              onClick={() => setMenuOpen(false)}
               className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-aegrix-bg/50 backdrop-blur-md border border-aegrix-border"
               aria-label={languageSwitchLabel}
             >
@@ -368,6 +444,7 @@ const Navbar = ({ lang, dict }: NavbarProps) => {
             <ThemeToggle />
 
             <button
+              ref={menuTriggerRef}
               type="button"
               className="p-2 text-aegrix-text rounded-full hover:bg-aegrix-surface/70 transition-colors"
               onClick={() => setMenuOpen((open) => !open)}
