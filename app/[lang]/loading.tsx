@@ -1,6 +1,17 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
+
 export default function Loading() {
+  const pathname = usePathname();
+  const isEnglish = pathname?.startsWith('/en');
+
   return (
-    <main className="min-h-screen bg-aegrix-bg pt-28 md:pt-36" aria-busy="true" aria-label="Cargando página">
+    <main
+      className="min-h-screen bg-aegrix-bg pt-28 md:pt-36"
+      aria-busy="true"
+      aria-label={isEnglish ? 'Loading page' : 'Cargando página'}
+    >
       <div className="container-width py-10 md:py-16">
         <div className="max-w-3xl animate-pulse">
           <div className="h-7 w-44 rounded-full bg-aegrix-surface mb-7" />
