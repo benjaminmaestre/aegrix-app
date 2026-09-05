@@ -43,20 +43,20 @@ export default async function NosotrosPage({
   ];
 
   return (
-    <div className="pt-32 pb-24 min-h-screen relative overflow-hidden">
+    <div className="pt-24 md:pt-32 pb-24 min-h-screen relative overflow-hidden">
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-aegrix-cyan/5 blur-[120px] rounded-full -z-10" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-aegrix-blue/5 blur-[100px] rounded-full -z-10" />
 
       <div className="container-width">
-        <div className="max-w-4xl mb-24">
+        <div className="max-w-4xl mb-14 sm:mb-20 md:mb-24">
           <FadeIn>
-            <span className="inline-block px-4 py-1.5 rounded-full bg-aegrix-cyan/10 border border-aegrix-cyan/20 text-aegrix-cyan text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
+            <span className="inline-block px-3.5 sm:px-4 py-1.5 rounded-full bg-aegrix-cyan/10 border border-aegrix-cyan/20 text-aegrix-cyan text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] mb-4 sm:mb-6">
               {about.subtitle}
             </span>
-            <h1 className="text-5xl md:text-7xl font-sora font-extrabold text-aegrix-text mb-8 leading-[1.1] tracking-tight">
+            <h1 className="text-[2.35rem] sm:text-5xl md:text-7xl font-sora font-extrabold text-aegrix-text mb-5 sm:mb-8 leading-[1.08] md:leading-[1.1] tracking-tight">
               {about.title}
             </h1>
-            <p className="text-xl text-aegrix-muted leading-relaxed max-w-2xl">
+            <p className="text-base sm:text-lg md:text-xl text-aegrix-muted leading-relaxed max-w-2xl">
               {about.description}
             </p>
           </FadeIn>
