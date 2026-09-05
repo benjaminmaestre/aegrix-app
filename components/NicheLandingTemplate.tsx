@@ -76,7 +76,7 @@ const NicheLandingTemplate = ({
 
   return (
     <div className="relative min-h-screen bg-aegrix-bg overflow-x-hidden">
-      <section className="relative min-h-[72vh] flex items-center pt-32 pb-20 border-b border-aegrix-border">
+      <section className="relative min-h-auto md:min-h-[72vh] flex items-center pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 border-b border-aegrix-border">
         {heroImageBaseName && (
           <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
             <Image
@@ -94,12 +94,12 @@ const NicheLandingTemplate = ({
 
         <div className="container-width relative z-10 w-full">
           <div className="max-w-3xl">
-            <div className="label-tag mb-6">{heroTagline}</div>
-            <h1 className="font-sora font-extrabold text-4xl sm:text-5xl lg:text-6xl text-aegrix-text leading-[1.08] tracking-tight mb-7">
+            <div className="label-tag mb-4 sm:mb-6">{heroTagline}</div>
+            <h1 className="font-sora font-extrabold text-[2.2rem] sm:text-5xl lg:text-6xl text-aegrix-text leading-[1.08] tracking-tight mb-5 sm:mb-7">
               {heroTitlePart1}{' '}
               <span className="text-aegrix-cyan">{heroTitleHighlight}</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-aegrix-muted leading-relaxed max-w-2xl mb-9">
+            <p className="text-base sm:text-lg md:text-xl text-aegrix-muted leading-relaxed max-w-2xl mb-7 sm:mb-9">
               {heroDescription}
             </p>
             {heroImageAlt && <span className="sr-only">{heroImageAlt}</span>}
