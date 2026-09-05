@@ -139,16 +139,16 @@ export default async function FrameworkPage({ params }: { params: Promise<{ lang
       ];
 
   return (
-    <main className="pt-28 md:pt-36 pb-24">
-      <section className="container-width py-14 md:py-20">
-        <Link href={`/${lang}/aegrix-360`} className="inline-flex items-center gap-2 text-sm font-semibold text-aegrix-muted hover:text-aegrix-cyan transition-colors mb-10">
+    <main className="pt-24 md:pt-36 pb-24">
+      <section className="container-width py-8 sm:py-12 md:py-20">
+        <Link href={`/${lang}/aegrix-360`} className="inline-flex items-center gap-2 text-sm font-semibold text-aegrix-muted hover:text-aegrix-cyan transition-colors mb-6 sm:mb-10">
           <ArrowLeft size={16} aria-hidden="true" />
           {isEnglish ? 'Back to AEGRIX 360' : 'Volver a AEGRIX 360'}
         </Link>
         <div className="max-w-4xl">
-          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan">AEGRIX 360 · {config.name}</span>
-          <h1 className="text-4xl md:text-6xl font-sora font-extrabold tracking-tight text-aegrix-text mt-4 mb-7">{copy.title}</h1>
-          <p className="text-lg md:text-xl text-aegrix-muted leading-relaxed max-w-3xl">{copy.intro}</p>
+          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.22em] text-aegrix-cyan">AEGRIX 360 · {config.name}</span>
+          <h1 className="text-[2.25rem] sm:text-4xl md:text-6xl font-sora font-extrabold tracking-tight text-aegrix-text mt-3 sm:mt-4 mb-5 sm:mb-7 leading-[1.08]">{copy.title}</h1>
+          <p className="text-base sm:text-lg md:text-xl text-aegrix-muted leading-relaxed max-w-3xl">{copy.intro}</p>
         </div>
       </section>
 
