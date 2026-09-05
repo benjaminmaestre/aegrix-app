@@ -163,6 +163,14 @@ body {
   }
 }
 
+@media (min-width: 768px) and (max-width: 1279px) {
+  #sectores,
+  #metodologia,
+  #contacto {
+    padding-top: 5rem;
+  }
+}
+
 .logo-dark-theme { opacity: 0; visibility: hidden; position: absolute; }
 .logo-light-theme { opacity: 1; visibility: visible; position: relative; }
 html[data-theme="dark"] .logo-dark-theme { opacity: 1; visibility: visible; position: relative; }
