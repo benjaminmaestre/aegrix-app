@@ -8,6 +8,7 @@ import '../globals.css';
 import Navbar from '@/components/Navbar';
 import CookieBanner from '@/components/CookieBanner';
 import ConsentAwareAnalytics from '@/components/ConsentAwareAnalytics';
+import RouteNavigationManager from '@/components/RouteNavigationManager';
 import { getDictionary } from '@/lib/get-dictionary';
 import {
   buildSiteStructuredData,
@@ -158,6 +159,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="bg-aegrix-bg text-aegrix-text font-manrope selection:bg-aegrix-cyan/20">
+        <RouteNavigationManager lang={lang} />
         <Navbar lang={lang} dict={dict.navbar} />
         {children}
         <CookieBanner lang={lang} dict={dict.cookies} />
