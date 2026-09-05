@@ -168,6 +168,7 @@ body {
   #metodologia,
   #contacto {
     padding-top: 5rem;
+    scroll-margin-top: 5rem;
   }
 }
 
