@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 interface RouteNavigationManagerProps {
@@ -10,26 +10,36 @@ interface RouteNavigationManagerProps {
 export default function RouteNavigationManager({ lang }: RouteNavigationManagerProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const historyTraversal = useRef(false);
 
   useEffect(() => {
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
-    }
-
     const warmRoutes = [
-      `/${lang}/nosotros`,
+      lang === 'es' ? '/es/nosotros' : '/en/about',
       `/${lang}/aegrix-360`,
       `/${lang}`,
     ];
 
-    const timeoutId = globalThis.setTimeout(() => {
-      warmRoutes.forEach((route) => router.prefetch(route));
-    }, 250);
+    const warmup = () => warmRoutes.forEach((route) => router.prefetch(route));
+    const timeoutId = globalThis.setTimeout(warmup, 250);
 
     return () => globalThis.clearTimeout(timeoutId);
   }, [lang, router]);
 
   useEffect(() => {
+    const markHistoryTraversal = () => {
+      historyTraversal.current = true;
+    };
+
+    window.addEventListener('popstate', markHistoryTraversal);
+    return () => window.removeEventListener('popstate', markHistoryTraversal);
+  }, []);
+
+  useEffect(() => {
+    if (historyTraversal.current) {
+      historyTraversal.current = false;
+      return;
+    }
+
     const restorePosition = () => {
       const hash = window.location.hash.replace('#', '');
 
