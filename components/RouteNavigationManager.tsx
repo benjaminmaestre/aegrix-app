@@ -22,15 +22,11 @@ export default function RouteNavigationManager({ lang }: RouteNavigationManagerP
       `/${lang}`,
     ];
 
-    const warmup = () => warmRoutes.forEach((route) => router.prefetch(route));
+    const timeoutId = globalThis.setTimeout(() => {
+      warmRoutes.forEach((route) => router.prefetch(route));
+    }, 250);
 
-    if ('requestIdleCallback' in window) {
-      const idleId = window.requestIdleCallback(warmup, { timeout: 1500 });
-      return () => window.cancelIdleCallback(idleId);
-    }
-
-    const timeoutId = window.setTimeout(warmup, 250);
-    return () => window.clearTimeout(timeoutId);
+    return () => globalThis.clearTimeout(timeoutId);
   }, [lang, router]);
 
   useEffect(() => {
