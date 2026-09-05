@@ -106,21 +106,21 @@ export default async function Aegrix360Page({ params }: { params: Promise<{ lang
       ];
 
   return (
-    <main className="pt-28 md:pt-36 pb-24 overflow-hidden">
+    <main className="pt-24 md:pt-36 pb-24 overflow-hidden">
       <section className="relative">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(0,194,255,0.08),transparent_35%),radial-gradient(circle_at_85%_25%,rgba(99,102,241,0.07),transparent_35%)] pointer-events-none" aria-hidden="true" />
-        <div className="container-width relative z-10 py-16 md:py-24">
+        <div className="container-width relative z-10 py-8 sm:py-12 md:py-24">
           <div className="max-w-4xl">
-            <span className="inline-flex items-center rounded-full border border-aegrix-cyan/20 bg-aegrix-cyan/5 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.22em] text-aegrix-cyan mb-7">
+            <span className="inline-flex items-center rounded-full border border-aegrix-cyan/20 bg-aegrix-cyan/5 px-3.5 py-1.5 sm:px-4 sm:py-2 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] sm:tracking-[0.22em] text-aegrix-cyan mb-5 sm:mb-7">
               Assessment · Readiness · Assurance
             </span>
-            <h1 className="text-5xl md:text-7xl font-sora font-extrabold tracking-tight text-aegrix-text leading-[1.02] mb-8">
+            <h1 className="text-[2.35rem] sm:text-5xl md:text-7xl font-sora font-extrabold tracking-tight text-aegrix-text leading-[1.04] md:leading-[1.02] mb-6 md:mb-8">
               AEGRIX 360
-              <span className="block text-transparent bg-clip-text bg-linear-to-r from-aegrix-cyan via-blue-400 to-indigo-500 mt-2">
+              <span className="block text-transparent bg-clip-text bg-linear-to-r from-aegrix-cyan via-blue-400 to-indigo-500 mt-1.5 md:mt-2">
                 {isEnglish ? 'Security evaluations with evidence and traceability.' : 'Evaluaciones de seguridad con evidencia y trazabilidad.'}
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-aegrix-muted leading-relaxed max-w-3xl mb-9">
+            <p className="text-base md:text-xl text-aegrix-muted leading-relaxed max-w-3xl mb-7 md:mb-9">
               {isEnglish
                 ? 'AEGRIX 360 is the common assessment engine behind Pulse, Compass and Assurance. It brings organizational context, framework requirements, responses, evidence, findings, remediation and decisions into one auditable workflow.'
                 : 'AEGRIX 360 es el motor común de evaluación detrás de Pulse, Compass y Assurance. Integra contexto organizacional, requisitos del marco, respuestas, evidencia, hallazgos, remediación y decisiones en un flujo auditable.'}
