@@ -49,21 +49,19 @@ export default async function NosotrosPage({
 
       <div className="container-width">
         <div className="max-w-4xl mb-14 sm:mb-20 md:mb-24">
-          <FadeIn>
-            <span className="inline-block px-3.5 sm:px-4 py-1.5 rounded-full bg-aegrix-cyan/10 border border-aegrix-cyan/20 text-aegrix-cyan text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] mb-4 sm:mb-6">
-              {about.subtitle}
-            </span>
-            <h1 className="text-[2.35rem] sm:text-5xl md:text-7xl font-sora font-extrabold text-aegrix-text mb-5 sm:mb-8 leading-[1.08] md:leading-[1.1] tracking-tight">
-              {about.title}
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-aegrix-muted leading-relaxed max-w-2xl">
-              {about.description}
-            </p>
-          </FadeIn>
+          <span className="inline-block px-3.5 sm:px-4 py-1.5 rounded-full bg-aegrix-cyan/10 border border-aegrix-cyan/20 text-aegrix-cyan text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] mb-4 sm:mb-6">
+            {about.subtitle}
+          </span>
+          <h1 className="text-[2.35rem] sm:text-5xl md:text-7xl font-sora font-extrabold text-aegrix-text mb-5 sm:mb-8 leading-[1.08] md:leading-[1.1] tracking-tight">
+            {about.title}
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-aegrix-muted leading-relaxed max-w-2xl">
+            {about.description}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 border-y border-aegrix-border mb-24">
-          <FadeIn x={-20} y={0} delay={0.2}>
+          <FadeIn x={-12} y={0} delay={0.03}>
             <article className="h-full py-10 md:py-14 md:pr-12 border-b md:border-b-0 md:border-r border-aegrix-border">
               <div className="flex items-center gap-4 mb-7">
                 <span className="font-mono text-[10px] font-bold tracking-[0.22em] text-aegrix-cyan">01</span>
@@ -78,7 +76,7 @@ export default async function NosotrosPage({
             </article>
           </FadeIn>
 
-          <FadeIn x={20} y={0} delay={0.3}>
+          <FadeIn x={12} y={0} delay={0.06}>
             <article className="h-full py-10 md:py-14 md:pl-12">
               <div className="flex items-center gap-4 mb-7">
                 <span className="font-mono text-[10px] font-bold tracking-[0.22em] text-aegrix-blue">02</span>
@@ -95,7 +93,7 @@ export default async function NosotrosPage({
         </div>
 
         <div className="mb-24">
-          <FadeIn delay={0.4}>
+          <FadeIn delay={0.03}>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10 md:mb-14">
               <h2 className="text-3xl md:text-4xl font-sora font-bold text-aegrix-text">
                 {lang === 'es' ? 'Principios de ingeniería' : 'Engineering principles'}
@@ -110,7 +108,7 @@ export default async function NosotrosPage({
 
           <div className="grid grid-cols-1 md:grid-cols-3 border-t border-b border-aegrix-border">
             {principles.map((principle, idx) => (
-              <FadeIn key={principle.number} delay={0.1 * idx + 0.5}>
+              <FadeIn key={principle.number} delay={0.03 * idx + 0.04}>
                 <article className={`h-full py-9 md:py-11 ${idx > 0 ? 'border-t md:border-t-0 md:border-l border-aegrix-border md:pl-8' : ''} ${idx < principles.length - 1 ? 'md:pr-8' : ''}`}>
                   <div className="font-mono text-[10px] font-bold tracking-[0.24em] text-aegrix-cyan/70 mb-8">
                     {principle.number}
@@ -127,7 +125,7 @@ export default async function NosotrosPage({
           </div>
         </div>
 
-        <ScaleIn delay={0.6}>
+        <ScaleIn delay={0.08}>
           <div className="relative p-6 sm:p-12 md:p-20 rounded-[40px] overflow-hidden text-center">
             <div className="absolute inset-0 bg-linear-to-br from-aegrix-cyan/20 to-aegrix-blue/20 -z-10" />
             <h2 className="text-3xl md:text-5xl font-sora font-extrabold text-aegrix-text mb-8">
