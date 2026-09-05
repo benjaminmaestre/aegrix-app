@@ -99,7 +99,7 @@ body {
 }
 
 @layer utilities {
-  .section-padding { @apply py-16 sm:py-20 md:py-36 lg:py-48; }
+  .section-padding { @apply py-16 sm:py-20 md:py-24 lg:py-28 xl:py-36 2xl:py-48; }
   .container-width { @apply max-w-7xl mx-auto px-4 sm:px-6 md:px-12; }
   .heading-xl { @apply font-sora font-extrabold text-4xl md:text-6xl lg:text-7xl tracking-tighter leading-[1.05]; }
   .heading-lg { @apply font-sora font-extrabold text-3xl md:text-5xl tracking-tighter leading-[1.1]; }
