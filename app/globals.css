@@ -171,6 +171,26 @@ html[data-theme="dark"] .logo-light-theme { opacity: 0; visibility: hidden; posi
 .scrollbar-none::-webkit-scrollbar { display: none; }
 .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 
+/*
+ * iOS WebKit 26 rendering workaround.
+ * WebKit can stall first-frame compositing when large CSS filter: blur()
+ * decorations share the viewport with painted SVG/icon content. These glows
+ * are purely decorative, so remove only the expensive blur layers on coarse
+ * pointer iOS devices while leaving every layout dimension untouched.
+ */
+@supports (-webkit-touch-callout: none) {
+  @media (hover: none) and (pointer: coarse) {
+    [class~="blur-3xl"],
+    [class~="blur-[80px]"],
+    [class~="blur-[100px]"],
+    [class~="blur-[120px]"],
+    [class~="blur-[150px]"] {
+      filter: none !important;
+      opacity: 0 !important;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
