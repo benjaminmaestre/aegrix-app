@@ -78,10 +78,10 @@ const PlatformSection = () => {
           </motion.div>
 
           <div className="relative">
-            <div className="relative aspect-square w-full max-w-125 mx-auto">
+            <div className="relative w-full max-w-125 mx-auto lg:aspect-square">
               <div className="absolute inset-0 bg-aegrix-cyan/8 blur-[100px] rounded-full" aria-hidden="true" />
 
-              <div className="relative h-full flex flex-col justify-center gap-5 md:gap-6">
+              <div className="relative flex flex-col gap-5 md:gap-6 lg:h-full lg:justify-center">
                 {layers.map((layer, index) => (
                   <motion.div
                     key={layer.name}
