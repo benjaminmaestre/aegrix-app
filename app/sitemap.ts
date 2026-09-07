@@ -1,8 +1,10 @@
 import { MetadataRoute } from 'next';
 import { siteConfig } from '@/lib/site-config';
 
+const indexingRefreshDate = new Date('2026-09-07T00:00:00.000Z');
+
 const routePairs = [
-  { es: '', en: '' },
+  { es: '', en: '', lastModified: indexingRefreshDate },
   { es: '/nosotros', en: '/about' },
   { es: '/aegrix-360', en: '/aegrix-360' },
   { es: '/aegrix-360/nist', en: '/aegrix-360/nist' },
@@ -11,7 +13,7 @@ const routePairs = [
   { es: '/aegrix-360/gdpr', en: '/aegrix-360/gdpr' },
   { es: '/terminos', en: '/terms' },
   { es: '/privacidad', en: '/privacy' },
-  { es: '/seguridad', en: '/security' },
+  { es: '/seguridad', en: '/security', lastModified: indexingRefreshDate },
   { es: '/cookies', en: '/cookies' },
   { es: '/industrial-logistica', en: '/industrial-logistics' },
   { es: '/construction-tech', en: '/construction-tech' },
@@ -32,14 +34,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       en: enUrl,
       'x-default': esUrl,
     };
+    const freshness = pair.lastModified ? { lastModified: pair.lastModified } : {};
 
     sitemapEntries.push({
       url: esUrl,
+      ...freshness,
       alternates: { languages },
     });
 
     sitemapEntries.push({
       url: enUrl,
+      ...freshness,
       alternates: { languages },
     });
   }

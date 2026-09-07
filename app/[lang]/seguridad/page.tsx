@@ -13,7 +13,7 @@ export default async function SecurityPage({
   const { lang } = await params;
   const dict = await getDictionary(lang);
   const { security } = dict.legal;
-  const lastUpdated = lang === 'es' ? '3 de septiembre de 2026' : 'September 3, 2026';
+  const lastUpdated = lang === 'es' ? '7 de septiembre de 2026' : 'September 7, 2026';
 
   return (
     <LegalPageLayout title={security.title} lastUpdated={lastUpdated}>
@@ -74,6 +74,7 @@ export default async function SecurityPage({
           <h2>12. Reporte responsable de vulnerabilidades</h2>
           <p>Los investigadores o usuarios pueden reportar una vulnerabilidad a <a href={`mailto:${legalIdentity.email}`} className="text-aegrix-cyan">{legalIdentity.email}</a> utilizando el asunto <strong>{legalIdentity.securitySubject}</strong>.</p>
           <p>El reporte debería incluir la URL o activo afectado, descripción del problema, pasos mínimos para reproducirlo, impacto estimado y evidencia técnica que no contenga datos personales innecesarios.</p>
+          <p>AEGRIX también publica un archivo estándar <a href="/.well-known/security.txt" className="text-aegrix-cyan">security.txt</a> con el canal oficial de reporte, idiomas preferidos y referencia canónica de esta política.</p>
 
           <h2>13. Reglas de investigación responsable</h2>
           <ul>
@@ -152,6 +153,7 @@ export default async function SecurityPage({
 
           <h2>12. Responsible Vulnerability Disclosure</h2>
           <p>Security issues may be reported to <a href={`mailto:${legalIdentity.email}`} className="text-aegrix-cyan">{legalIdentity.email}</a> with subject <strong>{legalIdentity.securitySubject}</strong>. Reports should include the affected URL or asset, description, minimal reproduction steps, estimated impact and non-sensitive technical evidence.</p>
+          <p>AEGRIX also publishes a standard <a href="/.well-known/security.txt" className="text-aegrix-cyan">security.txt</a> file with the official reporting channel, preferred languages and the canonical reference for this policy.</p>
 
           <h2>13. Responsible Research Rules</h2>
           <ul>

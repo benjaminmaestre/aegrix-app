@@ -1,8 +1,16 @@
 'use client';
 
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useInView } from '@/hooks/useInView';
 import { cn } from '@/lib/utils';
+
+type TrustItem = {
+  title: string;
+  desc: string;
+  href?: string;
+  linkLabel?: string;
+};
 
 export default function TrustSection() {
   const { ref, inView } = useInView();
@@ -10,11 +18,13 @@ export default function TrustSection() {
   const lang = (params?.lang as string) || 'es';
   const isEnglish = lang === 'en';
 
-  const items = isEnglish
+  const items: TrustItem[] = isEnglish
     ? [
         {
           title: 'Security by design',
           desc: 'We incorporate access control, authentication, traceability, and secure configuration practices according to the scope of each solution.',
+          href: '/en/security',
+          linkLabel: 'Review security policy',
         },
         {
           title: 'Frameworks assessed with AEGRIX 360',
@@ -29,6 +39,8 @@ export default function TrustSection() {
         {
           title: 'Seguridad por diseño',
           desc: 'Incorporamos control de acceso, autenticación, trazabilidad y prácticas de configuración segura según el alcance de cada solución.',
+          href: '/es/seguridad',
+          linkLabel: 'Revisar política de seguridad',
         },
         {
           title: 'Marcos evaluados con AEGRIX 360',
@@ -84,6 +96,14 @@ export default function TrustSection() {
               </div>
               <h3 className="text-xl font-bold text-aegrix-text mb-4">{item.title}</h3>
               <p className="text-aegrix-muted leading-relaxed">{item.desc}</p>
+              {item.href && item.linkLabel ? (
+                <Link
+                  href={item.href}
+                  className="inline-flex mt-5 text-sm font-semibold text-aegrix-cyan hover:text-aegrix-text transition-colors"
+                >
+                  {item.linkLabel} →
+                </Link>
+              ) : null}
             </article>
           ))}
         </div>
