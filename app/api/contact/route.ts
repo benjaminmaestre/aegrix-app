@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { checkBotId } from 'botid/server';
+import { CONTACT_BOT_CHECK_LEVEL } from '@/lib/botid-config';
 import { allowedRequestOrigins, siteConfig } from '@/lib/site-config';
 
 const MAX_BODY_BYTES = 12_000;
@@ -11,6 +12,19 @@ const MAX_MESSAGE_LENGTH = 4_000;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX_PER_IP = 10;
 const RATE_LIMIT_MAX_PER_EMAIL = 5;
+const RATE_LIMIT_STORE_MAX_ENTRIES = 2_000;
+const RATE_LIMIT_SWEEP_INTERVAL_MS = 60 * 1000;
+const EXPECTED_BODY_FIELDS = new Set([
+  'name',
+  'company',
+  'email',
+  'message',
+  'website',
+  'privacyConsent',
+  'marketingConsent',
+  'lang',
+]);
+const FORBIDDEN_CONTROL_CHARACTERS = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/;
 
 type RateLimitRecord = {
   count: number;
@@ -19,12 +33,15 @@ type RateLimitRecord = {
 
 const globalForRateLimit = globalThis as typeof globalThis & {
   __aegrixContactRateLimit?: Map<string, RateLimitRecord>;
+  __aegrixContactRateLimitLastSweep?: number;
 };
 
 const rateLimitStore =
   globalForRateLimit.__aegrixContactRateLimit ?? new Map<string, RateLimitRecord>();
 
 globalForRateLimit.__aegrixContactRateLimit = rateLimitStore;
+
+globalForRateLimit.__aegrixContactRateLimitLastSweep ??= 0;
 
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
@@ -36,6 +53,8 @@ function jsonResponse(
   const headers = new Headers(init.headers);
   headers.set('Cache-Control', 'no-store, max-age=0');
   headers.set('Pragma', 'no-cache');
+  headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
+  headers.set('Vary', 'Origin, Sec-Fetch-Site');
 
   return NextResponse.json(body, { ...init, headers });
 }
@@ -71,8 +90,33 @@ function safeHeader(value: string) {
   return value.replace(/[\r\n]+/g, ' ').trim();
 }
 
-function asTrimmedString(value: unknown) {
-  return typeof value === 'string' ? value.trim() : '';
+function asNormalizedString(value: unknown) {
+  return typeof value === 'string' ? value.normalize('NFC').trim() : '';
+}
+
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function hasOnlyExpectedBodyFields(body: Record<string, unknown>) {
+  return Object.keys(body).every((key) => EXPECTED_BODY_FIELDS.has(key));
+}
+
+function hasValidBodyTypes(body: Record<string, unknown>) {
+  return (
+    typeof body.name === 'string' &&
+    (body.company === undefined || typeof body.company === 'string') &&
+    typeof body.email === 'string' &&
+    typeof body.message === 'string' &&
+    (body.website === undefined || typeof body.website === 'string') &&
+    typeof body.privacyConsent === 'boolean' &&
+    (body.marketingConsent === undefined || typeof body.marketingConsent === 'boolean') &&
+    (body.lang === undefined || body.lang === 'es' || body.lang === 'en')
+  );
+}
+
+function containsForbiddenControlCharacters(value: string) {
+  return FORBIDDEN_CONTROL_CHARACTERS.test(value);
 }
 
 function isValidEmail(email: string) {
@@ -88,21 +132,48 @@ function isAllowedRequestContext(request: Request) {
 
   const origin = request.headers.get('origin');
   if (!origin) {
-    return process.env.NODE_ENV !== 'production' || secFetchSite === 'same-origin' || secFetchSite === 'same-site';
+    return (
+      process.env.NODE_ENV !== 'production' ||
+      secFetchSite === 'same-origin' ||
+      secFetchSite === 'same-site'
+    );
   }
 
-  const requestOrigin = new URL(request.url).origin;
-  const allowedOrigins = new Set([requestOrigin, ...allowedRequestOrigins]);
+  let requestOrigin: string;
+  try {
+    requestOrigin = new URL(request.url).origin;
+  } catch {
+    return false;
+  }
 
+  const allowedOrigins = new Set([requestOrigin, ...allowedRequestOrigins]);
   return allowedOrigins.has(origin);
 }
 
-function consumeRateLimit(key: string, maxRequests: number) {
-  const now = Date.now();
+function pruneRateLimitStore(now: number) {
+  const lastSweep = globalForRateLimit.__aegrixContactRateLimitLastSweep ?? 0;
+  const shouldSweep =
+    now - lastSweep >= RATE_LIMIT_SWEEP_INTERVAL_MS ||
+    rateLimitStore.size >= RATE_LIMIT_STORE_MAX_ENTRIES;
+
+  if (!shouldSweep) return;
 
   for (const [storedKey, record] of rateLimitStore) {
     if (record.resetAt <= now) rateLimitStore.delete(storedKey);
   }
+
+  while (rateLimitStore.size >= RATE_LIMIT_STORE_MAX_ENTRIES) {
+    const oldestKey = rateLimitStore.keys().next().value as string | undefined;
+    if (!oldestKey) break;
+    rateLimitStore.delete(oldestKey);
+  }
+
+  globalForRateLimit.__aegrixContactRateLimitLastSweep = now;
+}
+
+function consumeRateLimit(key: string, maxRequests: number) {
+  const now = Date.now();
+  pruneRateLimitStore(now);
 
   const current = rateLimitStore.get(key);
   if (!current || current.resetAt <= now) {
@@ -128,7 +199,7 @@ function localizedError(lang: string, es: string, en: string) {
 
 export async function POST(request: Request) {
   const contentType = request.headers.get('content-type') || '';
-  if (!contentType.toLowerCase().includes('application/json')) {
+  if (!/^application\/json(?:\s*;|$)/i.test(contentType)) {
     return jsonResponse({ error: 'Unsupported content type' }, { status: 415 });
   }
 
@@ -136,17 +207,25 @@ export async function POST(request: Request) {
     return jsonResponse({ error: 'Request origin not allowed' }, { status: 403 });
   }
 
-  const declaredLength = Number(request.headers.get('content-length') || 0);
-  if (!Number.isFinite(declaredLength) || declaredLength < 0) {
-    return jsonResponse({ error: 'Invalid content length' }, { status: 400 });
-  }
+  const rawContentLength = request.headers.get('content-length');
+  if (rawContentLength) {
+    const declaredLength = Number(rawContentLength);
+    if (!Number.isFinite(declaredLength) || declaredLength < 0) {
+      return jsonResponse({ error: 'Invalid content length' }, { status: 400 });
+    }
 
-  if (declaredLength > MAX_BODY_BYTES) {
-    return jsonResponse({ error: 'Request too large' }, { status: 413 });
+    if (declaredLength > MAX_BODY_BYTES) {
+      return jsonResponse({ error: 'Request too large' }, { status: 413 });
+    }
   }
 
   try {
-    const verification = await checkBotId();
+    const verification = await checkBotId({
+      advancedOptions: {
+        checkLevel: CONTACT_BOT_CHECK_LEVEL,
+      },
+    });
+
     if (verification.isBot) {
       return jsonResponse({ error: 'Automated request denied' }, { status: 403 });
     }
@@ -156,19 +235,28 @@ export async function POST(request: Request) {
       return jsonResponse({ error: 'Request too large' }, { status: 413 });
     }
 
-    let body: Record<string, unknown>;
+    let parsedBody: unknown;
     try {
-      body = JSON.parse(rawBody) as Record<string, unknown>;
+      parsedBody = JSON.parse(rawBody) as unknown;
     } catch {
       return jsonResponse({ error: 'Invalid JSON body' }, { status: 400 });
     }
 
+    if (
+      !isPlainObject(parsedBody) ||
+      !hasOnlyExpectedBodyFields(parsedBody) ||
+      !hasValidBodyTypes(parsedBody)
+    ) {
+      return jsonResponse({ error: 'Invalid request body' }, { status: 400 });
+    }
+
+    const body = parsedBody;
     const lang = body.lang === 'en' ? 'en' : 'es';
-    const name = asTrimmedString(body.name);
-    const company = asTrimmedString(body.company);
-    const email = asTrimmedString(body.email).toLowerCase();
-    const message = asTrimmedString(body.message);
-    const honeypot = asTrimmedString(body.website);
+    const name = asNormalizedString(body.name);
+    const company = asNormalizedString(body.company);
+    const email = asNormalizedString(body.email).toLowerCase();
+    const message = asNormalizedString(body.message);
+    const honeypot = asNormalizedString(body.website);
     const privacyConsent = body.privacyConsent === true;
     const marketingConsent = body.marketingConsent === true;
 
@@ -206,9 +294,22 @@ export async function POST(request: Request) {
       );
     }
 
-    if (/\0/.test(name) || /\0/.test(company) || /\0/.test(message) || /[\r\n]/.test(name) || /[\r\n]/.test(company)) {
+    if (
+      containsForbiddenControlCharacters(name) ||
+      containsForbiddenControlCharacters(company) ||
+      containsForbiddenControlCharacters(email) ||
+      containsForbiddenControlCharacters(message) ||
+      /[\r\n]/.test(name) ||
+      /[\r\n]/.test(company)
+    ) {
       return jsonResponse(
-        { error: localizedError(lang, 'El contenido del formulario no es válido.', 'The form content is not valid.') },
+        {
+          error: localizedError(
+            lang,
+            'El contenido del formulario no es válido.',
+            'The form content is not valid.'
+          ),
+        },
         { status: 400 }
       );
     }
