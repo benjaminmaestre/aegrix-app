@@ -33,11 +33,12 @@ function withContentSecurityPolicy(response: NextResponse, contentSecurityPolicy
 export function proxy(request: NextRequest) {
   const url = request.nextUrl.clone();
   const hostname = request.headers.get('host') || '';
+  const originalPathname = request.nextUrl.pathname;
+  let shouldRedirect = false;
 
-  // Enforce non-www and HTTPS.
+  // Enforce non-www and HTTPS, but delay the response so path canonicalization
+  // can be folded into the same permanent redirect when the request reaches us.
   if (!hostname.includes('localhost')) {
-    let shouldRedirect = false;
-
     if (hostname.startsWith('www.')) {
       url.hostname = hostname.replace(/^www\./, '');
       shouldRedirect = true;
@@ -50,34 +51,59 @@ export function proxy(request: NextRequest) {
 
     if (shouldRedirect) {
       url.port = '';
-      return NextResponse.redirect(url, 301);
     }
   }
 
-  const pathname = request.nextUrl.pathname;
-
   // RFC 9116 security.txt must live at the non-localized well-known URL.
-  if (pathname === '/.well-known/security.txt') {
+  if (originalPathname === '/.well-known/security.txt') {
+    if (shouldRedirect) {
+      return NextResponse.redirect(url, 301);
+    }
+
     url.pathname = '/api/securitytxt';
     return NextResponse.rewrite(url);
   }
 
-  // Redirect index pages (e.g. /index.html -> /, /es/index.html -> /es).
-  const indexMatch = pathname.match(/^(.*)\/(index\.(?:html|php|htm)|default\.(?:html|aspx))$/i);
+  let canonicalPathname = originalPathname;
+
+  // Normalize index-document aliases before locale and language-slug checks so
+  // /index.html, /es/index.html and /en/nosotros/index.html need one redirect.
+  const indexMatch = canonicalPathname.match(/^(.*)\/(index\.(?:html|php|htm)|default\.(?:html|aspx))$/i);
   if (indexMatch) {
-    const cleanPath = indexMatch[1] || '/';
-    return NextResponse.redirect(new URL(cleanPath, request.url), 301);
+    canonicalPathname = indexMatch[1] || '/';
   }
 
   const pathnameIsMissingLocale = locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+    (locale) => !canonicalPathname.startsWith(`/${locale}/`) && canonicalPathname !== `/${locale}`
   );
 
   if (pathnameIsMissingLocale) {
-    const normalizedPathname = pathname === '/' ? '' : pathname;
-    return NextResponse.redirect(new URL(`/es${normalizedPathname}`, request.url), 301);
+    const normalizedPathname = canonicalPathname === '/' ? '' : canonicalPathname;
+    canonicalPathname = `/es${normalizedPathname}`;
+  } else {
+    const canonicalSegments = canonicalPathname.split('/').filter(Boolean);
+    const canonicalLocale = canonicalSegments[0];
+    const canonicalPageSlug = canonicalSegments[1];
+    const canonicalRest = canonicalSegments.slice(2).join('/');
+
+    // Redirect hybrid Spanish slugs under /en directly to the clean English URL.
+    if (canonicalLocale === 'en' && canonicalPageSlug && REVERSE_MAPPINGS[canonicalPageSlug]) {
+      const cleanSlug = REVERSE_MAPPINGS[canonicalPageSlug];
+      canonicalPathname = `/en/${cleanSlug}${canonicalRest ? '/' + canonicalRest : ''}`;
+    }
   }
 
+  if (canonicalPathname !== originalPathname) {
+    url.pathname = canonicalPathname;
+    shouldRedirect = true;
+  }
+
+  if (shouldRedirect) {
+    url.port = '';
+    return NextResponse.redirect(url, 301);
+  }
+
+  const pathname = canonicalPathname;
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
   const contentSecurityPolicy = createContentSecurityPolicy(nonce);
   const requestHeaders = new Headers(request.headers);
@@ -91,23 +117,14 @@ export function proxy(request: NextRequest) {
   const pageSlug = segments[1];
   const rest = segments.slice(2).join('/');
 
-  if (locale === 'en' && pageSlug) {
-    // Redirect hybrid / Spanish URLs under /en to their clean English counterparts.
-    if (REVERSE_MAPPINGS[pageSlug]) {
-      const cleanSlug = REVERSE_MAPPINGS[pageSlug];
-      const targetPath = `/en/${cleanSlug}${rest ? '/' + rest : ''}`;
-      return NextResponse.redirect(new URL(targetPath, request.url), 301);
-    }
-
+  if (locale === 'en' && pageSlug && ROUTE_MAPPINGS[pageSlug]) {
     // Rewrite clean English URLs to the physical Spanish folder names internally.
-    if (ROUTE_MAPPINGS[pageSlug]) {
-      const internalSlug = ROUTE_MAPPINGS[pageSlug];
-      url.pathname = `/en/${internalSlug}${rest ? '/' + rest : ''}`;
-      const response = NextResponse.rewrite(url, {
-        request: { headers: requestHeaders },
-      });
-      return withContentSecurityPolicy(response, contentSecurityPolicy);
-    }
+    const internalSlug = ROUTE_MAPPINGS[pageSlug];
+    url.pathname = `/en/${internalSlug}${rest ? '/' + rest : ''}`;
+    const response = NextResponse.rewrite(url, {
+      request: { headers: requestHeaders },
+    });
+    return withContentSecurityPolicy(response, contentSecurityPolicy);
   }
 
   const response = NextResponse.next({
