@@ -50,7 +50,6 @@ export default function ConsentAwareAnalytics({ gaId, nonce }: ConsentAwareAnaly
 
       const href = element.getAttribute('href') || '';
       if (href.includes('wa.me')) trackEvent('whatsapp_click', { location: 'website' });
-      if (href.includes('360.aegrix.com.co')) trackEvent('portal_click', { location: 'website' });
       if (href.includes('#diagnostico')) trackEvent('diagnostic_cta_click', { location: 'website' });
     };
 
